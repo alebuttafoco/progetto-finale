@@ -21,10 +21,14 @@ Route::get('restaurants/{id}', 'PageController@showRestaurant')->name('restauran
 Route::get('/cart', 'PageController@cart')->name('cart');
 
 Auth::routes();
+
 Route::get('/user', 'HomeController@user')->name('user');
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+    
+    Route::resource('restaurant', RestaurantController::class);
+    Route::resource('plate', PlateController::class);
+    
+    Route::get('/ordini', 'HomeController@ordini' )->name('ordini');
+    Route::get('/statistiche', 'HomeController@statistiche' )->name('statistiche');
 
-Route::resource('restaurant', RestaurantController::class);
-Route::resource('plate', PlateController::class);
-
-Route::get('/ordini', 'HomeController@ordini' )->name('ordini');
-Route::get('/statistiche', 'HomeController@statistiche' )->name('statistiche');
+});
