@@ -11103,34 +11103,19 @@ header .btn_div > * {
   margin: 0.3rem;
 }
 
-main {
-  background-color: #F8B735;
-  padding-top: 50px;
+.dashboard {
+  background-color: white;
+  padding-bottom: 5rem;
+  margin-top: 4rem;
+  border-radius: 0.4rem;
 }
 
-main hr {
-  margin: 200px 0;
+.dashboard li {
+  margin: 0.3rem 0;
 }
 
-main h2 {
-  margin: 100px 0;
-  text-align: center;
-  font-weight: 600;
-}
-
-.rabbit_1,
-.rabbit_2 {
-  text-align: center;
-}
-
-.col3 {
-  display: flex;
-  display: -ms-flexbox;
-  justify-content: space-between;
-  margin: 100px 0px;
-}
-
-.col3 img {
-  height: 150px;
+.dashboard li a:hover {
+  color: #2B898B !important;
+  border-color: #2B898B !important;
 }
 
