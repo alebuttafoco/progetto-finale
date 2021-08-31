@@ -23,7 +23,9 @@
 
 <body>
     <div id="app">
-        @include('components.navbar')
+        <header>
+            @include('components.navbar')
+        </header>
         @yield('content')
     </div>
 </body>
