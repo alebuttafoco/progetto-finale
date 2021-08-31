@@ -24,4 +24,7 @@ Auth::routes();
 Route::get('/user', 'HomeController@user')->name('user');
 
 Route::resource('restaurant', RestaurantController::class);
+Route::resource('plate', PlateController::class);
 
+Route::get('/ordini', 'HomeController@ordini' )->name('ordini');
+Route::get('/statistiche', 'HomeController@statistiche' )->name('statistiche');
