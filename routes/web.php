@@ -17,8 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PageController@home')->name('home');
 Route::get('restaurants/{id}', 'PageController@showRestaurant')->name('restaurant.show');
 
+Route::get('/cart', 'PageController@cart')->name('cart');
 
 Auth::routes();
 Route::get('/user', 'HomeController@user')->name('user');
 
 Route::resource('restaurant', RestaurantController::class);
+
