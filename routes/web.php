@@ -1,4 +1,6 @@
 <?php
+
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,5 @@ Route::get('/', 'PageController@home')->name('home');
 
 Auth::routes();
 Route::get('/user', 'HomeController@user')->name('user');
+
+Route::resource('restaurant', RestaurantController::class);
