@@ -16,4 +16,8 @@ class Restaurant extends Model
         'description',
         'piva',
     ];
+
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 }
