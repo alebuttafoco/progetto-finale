@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
+    public function home()
+    {
+        return view('home');
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -21,8 +27,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function user()
     {
-        return view('home');
+        return view('user');
     }
 }
