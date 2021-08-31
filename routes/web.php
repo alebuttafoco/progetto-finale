@@ -20,3 +20,5 @@ Route::get('restaurants/{id}', 'PageController@showRestaurant')->name('restauran
 
 Auth::routes();
 Route::get('/user', 'HomeController@user')->name('user');
+
+Route::resource('restaurant', RestaurantController::class);
