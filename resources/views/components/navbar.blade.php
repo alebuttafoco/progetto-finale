@@ -1,21 +1,18 @@
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+        <div class="d-flex flex-wrap align-items-center justify-content-center">
+            <div class="container d-flex flex-wrap align-items-center justify-content-around">
+
+                <a id="logo" class="d-flex align-items-center mb-md-0 text-decoration-none" href="{{ url('/') }}">
+                    <img src="{{ asset('img/logo_secondary.png') }}" alt="Logo DeliveBoo">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="link">I nostri ristoranti</a></li>
+                    <li><a href="#" class="link">Riders</a></li>
+                    <li><a href="#" class="link">FAQs</a></li>
+                    <li><a href="#" class="link">Contattaci</a></li>
+                </ul>
 
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
+                <div class="btn_div d-flex justify-content-end">
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
@@ -39,7 +36,7 @@
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                             document.getElementById('logout-form').submit();">
+                                                                                                 document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -54,4 +51,4 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </div>
