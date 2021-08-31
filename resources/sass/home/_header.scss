@@ -1,0 +1,76 @@
+// NAVBAR TOP MENU
+header {
+    font-weight: $txt_normal;
+
+    & > div:first-child {
+        height: 5rem;
+        background-color: #f8b735c9;
+        position: relative;
+        z-index: 3;
+    }
+
+    .btn_div {
+        & > * {
+            margin: 0 0.5rem ;
+        }
+    }
+}
+
+#logo {
+    & > * {
+        width: 10rem;
+    }
+}
+
+#main_nav {
+    @include d-flex;
+    text-decoration: none;
+    justify-content: space-between;
+    align-items: center;
+
+    & li {
+        list-style: none;
+        display: inline-block;
+        padding: 0px 10px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.jumbo {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+#HomeVideo {
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+}
+
+.overlay {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.527);
+    color: white;
+
+    & > div {
+        background-color: white;
+        padding: 2rem;
+        margin: 1rem;
+    }
+
+    .search_form > * {
+        margin: 0.3rem;
+    }
+}
+
