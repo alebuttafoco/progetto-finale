@@ -14,7 +14,6 @@ class PlateSeeder extends Seeder
     {
         for ($i = 0; $i < 15; $i++) {
             $plate = new Plate();
-            $plate->restaurant_id = $i++;
             $plate->name = $faker->sentence(5);
             $plate->image = 'https://picsum.photos/200/300';
             $plate->description = $faker->paragraph();
