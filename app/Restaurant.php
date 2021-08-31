@@ -16,4 +16,14 @@ class Restaurant extends Model
         'description',
         'piva',
     ];
+
+    /**
+     * The categories that belong to the Restaurant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }
