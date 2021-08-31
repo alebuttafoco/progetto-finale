@@ -15,4 +15,9 @@ class Plate extends Model
         'type',
         'visible',
     ];
+
+    public function restaurant()
+    {
+        return $this->belongsTo('App\Restaurant');
+    }
 }

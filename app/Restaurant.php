@@ -16,4 +16,8 @@ class Restaurant extends Model
         'description',
         'piva',
     ];
+
+    public function plates(){
+        return $this->hasMany('App\Plate');
+    }
 }
