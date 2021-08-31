@@ -24,7 +24,8 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
+        
     }
 
     /**
@@ -46,7 +47,8 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        //
+        return view('admin.show');
+        
     }
 
     /**
@@ -57,7 +59,8 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        //
+        return view('admin.edit');
+        
     }
 
     /**
