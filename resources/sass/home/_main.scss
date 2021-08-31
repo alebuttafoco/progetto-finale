@@ -1,0 +1,30 @@
+main {
+    background-color: $primary;
+    padding-top: 50px;
+
+    & hr {
+        margin: 200px 0;
+    }
+
+    & h2 {
+        margin: 100px 0;
+        text-align: center;
+        font-weight: 600;
+    }
+}
+
+//RABBIT DIV
+.rabbit_1, .rabbit_2 {
+    text-align: center;
+}
+
+.col3 {
+    @include d-flex;
+    justify-content: space-between;
+    margin: 100px 0px;
+
+    & img {
+        height: 150px;
+    }
+}
+////////////
