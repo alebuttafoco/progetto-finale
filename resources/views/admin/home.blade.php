@@ -1,7 +1,9 @@
 @extends('layouts.admin')
 
+@section('titolo')
+    <h1>Home</h1>
+@endsection
+
 @section('content')
-    <div class="container">
-        <h1>pagina ristorante admin</h1>
-    </div>
+    <h4>Contenuto pagina</h4>
 @endsection

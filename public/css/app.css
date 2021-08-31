@@ -11103,3 +11103,19 @@ header .btn_div > * {
   margin: 0.3rem;
 }
 
+.dashboard {
+  background-color: white;
+  padding-bottom: 5rem;
+  margin-top: 4rem;
+  border-radius: 0.4rem;
+}
+
+.dashboard li {
+  margin: 0.3rem 0;
+}
+
+.dashboard li a:hover {
+  color: #2B898B !important;
+  border-color: #2B898B !important;
+}
+
