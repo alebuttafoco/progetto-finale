@@ -20,7 +20,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('name');
             $table->string('image')->nullable();
             $table->string('address');
-            $table->smallInteger('cap'); //5 cifre
+            $table->string('cap'); //come stringa perche' Faker lo genera AAAAA-AAAA
             $table->string('city');
             $table->text('description')->nullable();
             $table->bigInteger('piva'); //11 cifre
