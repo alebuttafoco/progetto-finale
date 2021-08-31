@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('customer_address');
             $table->string('status');
             $table->dateTime('date');
-            $table->smallInteger('total_price');
+            $table->float('total_price');
             $table->timestamps();
         });
     }
