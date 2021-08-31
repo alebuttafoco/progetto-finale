@@ -31,4 +31,8 @@ class Restaurant extends Model
     {
         return $this->hasMany('App\Plate');
     }
+    
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 }
