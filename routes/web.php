@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PageController@home')->name('home');
+Route::get('restaurants/{id}', 'PageController@showRestaurant')->name('restaurant.show');
+
 
 Auth::routes();
 Route::get('/user', 'HomeController@user')->name('user');
