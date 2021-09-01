@@ -53,13 +53,7 @@ h4 {
     border: 1px solid transparent;
     background-color: $secondary;
     color: white;
-
-    &:hover {
-        cursor: pointer;
-        border: 1px solid $secondary;
-        background-color: white;
-        color: $secondary;
-    }
+    cursor: pointer
 }
 
 .bttn_reverse {
