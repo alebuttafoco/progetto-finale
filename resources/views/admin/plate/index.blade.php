@@ -42,6 +42,9 @@
                             <a class="btn btn-success" href="{{ route('admin.plate.show', $plate->id) }}">
                                 <i class="fas fa-eye"></i>
                             </a>
+                            <a href="#" class="btn btn-secondary">
+                                <i class="fas fa-edit"></i>
+                            </a>
                             <a class="btn btn-danger" href="#"><i class="fas fa-trash-alt"></i></a>
 
                         </td>
