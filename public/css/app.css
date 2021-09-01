@@ -10995,13 +10995,7 @@ h4 {
   border: 1px solid transparent;
   background-color: #2B898B;
   color: white;
-}
-
-.bttn:hover {
   cursor: pointer;
-  border: 1px solid #2B898B;
-  background-color: white;
-  color: #2B898B;
 }
 
 .bttn_reverse {
@@ -11056,13 +11050,14 @@ h4 {
 
 header {
   font-weight: 600;
+  z-index: 9999;
 }
 
-#logo > * {
+header #logo > * {
   width: 10rem;
 }
 
-.navbar {
+header .navbar {
   width: 80%;
   margin: auto;
 }
