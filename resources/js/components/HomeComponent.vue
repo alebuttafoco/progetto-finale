@@ -1,12 +1,12 @@
 <template>
-<div>
+<div class="bg-white">
     <div class="jumbo">
-        <video autoplay muted loop id="HomeVideo">
+        <!-- <video autoplay muted loop id="HomeVideo">
             <source src="img/video.mp4" type="video/mp4">
-        </video>
+        </video> -->
         
         <!-- RICERCA DEL RISTORANTE -->
-        <div class="overlay d-flex flex-column align-items-center justify-content-center">
+        <!-- <div class="overlay d-flex flex-column align-items-center justify-content-center">
             <h1>Ordina su DeliveBoo!</h1>
             <div class="search_div">
 
@@ -33,16 +33,16 @@
                 </form>
 
             </div>
-        </div>
+        </div> -->
     </div>
 
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
     <div class="restaurants" v-if="isVisibleRestaurants">
-        <div class="card" v-for="restaurant in 10" :key='restaurant.id'>
-            <img src="https://picsum.photos/536/354" alt="">
+        <div class="card" v-for="restaurant in restaurants" :key='restaurant.id'>
+            <img :src="restaurant.image" alt="">
 
             <div class="details">
-                <h3>NOME RISTORANTE</h3>
+                <h3> {{restaurant.name}} </h3>
             </div>
         </div>
     </div>
@@ -55,17 +55,32 @@ import Axios from 'axios';
 export default {
     data() {
         return{
-            isVisibleRestaurants: false,
+            isVisibleRestaurants: true,
+            restaurants: '',
         }
     },
-    methods: {},
-    mouted(){}
+    methods: {
+        callRestaurants(){
+            Axios.get('./api/restaurants')
+            .then(resp => {
+                this.restaurants = resp.data.data;
+            })
+            .catch(e => {
+                console.error(e);
+            })
+        }
+    },
+    mounted(){
+        this.callRestaurants();
+    }
 
 }
 </script>
 
 <style lang="scss" scoped>
 .restaurants {
+    width: 80%;
+    margin: auto;
     display: flex;
     flex-wrap: wrap;
 
@@ -74,7 +89,7 @@ export default {
         width: calc(100% / 5);
         min-width: 250px;
         margin: 1rem;
-        background-color: white;
+        background-color: rgb(240, 240, 240);
         img {
         width: 100%;
         }
