@@ -11,34 +11,21 @@ use Illuminate\Support\Facades\Storage;
 
 class PlateController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         $plates= Plate::all();
         return view('admin.plate.index', compact('plates'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         return view('admin.plate.create');
         
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         //validation
@@ -66,49 +53,56 @@ class PlateController extends Controller
         /**/
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Plate  $plate
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(Plate $plate)
     {
         return view('admin.plate.show', compact('plate'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Plate  $plate
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Plate $plate)
     {
-        return view('admin.plate.edit');
+        return view('admin.plate.edit', compact('plate'));
         
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Plate  $plate
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, Plate $plate)
     {
-        //
+
+        $validated_data = $request->validate([
+            'name' => 'required',
+            'image' => 'max:50',
+            'description' => 'required',
+            'price' => 'required|numeric',
+            'type'=> 'required',
+            'visible' => 'required|boolean',
+        ]);
+        
+        //take restaurant id
+        $id = Auth::user()->id;
+        $restaurant_id = Restaurant::find($id)->id;
+        $validated_data['restaurant_id']= $restaurant_id;
+
+        //controll image
+        if (array_key_exists('image', $validated_data)) {
+            $file_path = Storage::put('plate_images', $validated_data['image']);
+            $validated_data['image'] = $file_path;
+            Storage::delete($plate->image);
+        }
+
+        $plate->update($validated_data);
+
+        return redirect()->route('admin.plate.index');
+
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Plate  $plate
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Plate $plate)
     {
-        //
+        $plate->delete();
+        
+        return redirect()->route('admin.plate.index');
     }
 }
