@@ -17,7 +17,10 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::all();
+
+        $id = Auth::user()->id;
+        $restaurant_id = Restaurant::find($id)->id;
+        $restaurants = Restaurant::where('user_id', $restaurant_id)->get();
         return view('admin.restaurant.index', compact('restaurants'));
     }
 
@@ -53,6 +56,9 @@ class RestaurantController extends Controller
 
         if (in_array('img', $validatedData)) {
             // Se esiste l'immagine spostala nello spazio web dedicato all'archiviazione
+            $file_path = Storage::put('restaurant_images', $validatedData['img']);
+            $validatedData['image'] = $file_path;
+
             $cover_img = Storage::disk('public')->put('PERCORSO', $request->img);
             $validatedData['img'] = $cover_img;
         } else {
@@ -73,7 +79,7 @@ class RestaurantController extends Controller
         $validatedData['user_id'] = $id_utente;
 
         $restaurant = Restaurant::create($validatedData);
-        return redirect()->route('restaurant.show', $restaurant->id);
+        return redirect()->route('admin.restaurant.show', $restaurant->id);
     }
 
     /**
@@ -141,6 +147,7 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-        //
+        Restaurant::destroy($restaurant->id);
+        return redirect()->route('admin.restaurant.index');
     }
 }

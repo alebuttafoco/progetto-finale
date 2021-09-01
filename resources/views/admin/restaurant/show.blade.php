@@ -10,7 +10,8 @@
                 class="fa fa-chevron-left" aria-hidden="true"></i> Indietro</a>
     </div>
 
-    <div>
+    <div class="mt-5">
+        <img src="" alt="Copertina Ristorante">
         <p>{{ $restaurant->description }}</p>
     </div>
 @endsection
