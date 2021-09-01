@@ -1964,13 +1964,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      isVisibleRestaurants: false,
       restaurants: '',
       categories: '',
+      isVisibleRestaurants: false,
       selectedCategory: ''
     };
   },
@@ -6456,7 +6465,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#HomeVideo[data-v-782dcf83] {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  -o-object-fit: cover;\n     object-fit: cover;\n  z-index: -999;\n}\n.search_center[data-v-782dcf83] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.search_restaurants[data-v-782dcf83], .search_div[data-v-782dcf83] {\n  padding: 2rem;\n  background-color: white;\n}\n.search_div[data-v-782dcf83] {\n  position: sticky;\n  top: 0;\n  z-index: 999;\n}\n.category[data-v-782dcf83] {\n  cursor: pointer;\n}\n.restaurants[data-v-782dcf83] {\n  width: 80%;\n  margin: auto;\n  display: flex;\n  flex-wrap: wrap;\n}\n.restaurants .my_card[data-v-782dcf83] {\n  flex-grow: 1;\n  width: calc(100% / 5);\n  min-width: 250px;\n  margin: 1rem;\n  background-color: #f0f0f0;\n}\n.restaurants .my_card img[data-v-782dcf83] {\n  width: 100%;\n}\n.restaurants .my_card .details[data-v-782dcf83] {\n  padding: 1rem;\n}", ""]);
+exports.push([module.i, "#HomeVideo[data-v-782dcf83] {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  -o-object-fit: cover;\n     object-fit: cover;\n  z-index: -999;\n}\n.search_center[data-v-782dcf83] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.search_restaurants[data-v-782dcf83], .search_div[data-v-782dcf83] {\n  padding: 1rem;\n  background-color: white;\n}\n.sticky[data-v-782dcf83] {\n  position: sticky;\n  top: 0;\n}\n.category[data-v-782dcf83] {\n  cursor: pointer;\n}\n.restaurants[data-v-782dcf83] {\n  width: 80%;\n  margin: auto;\n  display: flex;\n  flex-wrap: wrap;\n}\n.restaurants .my_card[data-v-782dcf83] {\n  flex-grow: 1;\n  width: calc(100% / 5);\n  min-width: 250px;\n  margin: 1rem;\n  background-color: #f0f0f0;\n}\n.restaurants .my_card img[data-v-782dcf83] {\n  width: 100%;\n}\n.restaurants .my_card .details[data-v-782dcf83] {\n  padding: 1rem;\n}", ""]);
 
 // exports
 
@@ -38309,40 +38318,69 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { class: _vm.isVisibleRestaurants ? "" : "search_center" }, [
-      _c("div", { staticClass: "search_restaurants text-center" }, [
-        _c("h1", [_vm._v("Ordina su DeliveBoo!")]),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "category card px-4 py-2 m-2 bg-success",
-            on: {
-              click: function($event) {
-                ;(_vm.isVisibleRestaurants = true), (_vm.selectedCategory = "")
-              }
-            }
-          },
-          [_vm._v("Visualizza tutti i Ristoranti")]
-        ),
-        _vm._v(" "),
-        _c("h4", [_vm._v("Oppure seleziona una categoria per iniziare")])
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "search_div d-flex flex-wrap justify-content-center" },
-        _vm._l(_vm.categories, function(category) {
-          return _c(
-            "div",
-            {
-              key: category.id,
-              staticClass: "category card px-4 py-2 m-2 bg-white"
-            },
-            [
+    _c(
+      "div",
+      { class: _vm.isVisibleRestaurants ? "sticky" : "search_center" },
+      [
+        !_vm.isVisibleRestaurants
+          ? _c("div", { staticClass: "search_restaurants text-center" }, [
+              _c("h1", [_vm._v("Ordina su DeliveBoo!")]),
+              _vm._v(" "),
               _c(
                 "span",
                 {
+                  staticClass: "bttn px-4 py-2 m-2",
+                  on: {
+                    click: function($event) {
+                      ;(_vm.isVisibleRestaurants = true),
+                        (_vm.selectedCategory = "")
+                    }
+                  }
+                },
+                [_vm._v("Visualizza tutti i Ristoranti")]
+              ),
+              _vm._v(" "),
+              _c("h4", { staticClass: "mt-5" }, [
+                _vm._v("Oppure seleziona una categoria per iniziare")
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "search_div d-flex flex-wrap justify-content-center" },
+          [
+            _vm.isVisibleRestaurants
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "px-4 py-2 m-2",
+                    class: _vm.selectedCategory == "" ? "bttn" : "bttn_reverse",
+                    on: {
+                      click: function($event) {
+                        ;(_vm.isVisibleRestaurants = true),
+                          (_vm.selectedCategory = "")
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\r\n                Visualizza tutti i Ristoranti\r\n            "
+                    )
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._l(_vm.categories, function(category) {
+              return _c(
+                "div",
+                {
+                  key: category.id,
+                  staticClass: "px-4 py-2 m-2",
+                  class:
+                    _vm.selectedCategory == category.id
+                      ? "bttn"
+                      : "bttn_reverse",
                   on: {
                     click: function($event) {
                       ;(_vm.isVisibleRestaurants = true),
@@ -38350,14 +38388,20 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v(_vm._s(category.name))]
+                [
+                  _vm._v(
+                    "\r\n                " +
+                      _vm._s(category.name) +
+                      "\r\n            "
+                  )
+                ]
               )
-            ]
-          )
-        }),
-        0
-      )
-    ]),
+            })
+          ],
+          2
+        )
+      ]
+    ),
     _vm._v(" "),
     _vm.isVisibleRestaurants
       ? _c(
