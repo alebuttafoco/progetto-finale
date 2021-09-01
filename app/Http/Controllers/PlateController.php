@@ -14,7 +14,8 @@ class PlateController extends Controller
      */
     public function index()
     {
-        return view('admin.plate.index');
+        $plates= Plate::all();
+        return view('admin.plate.index', compact('plates'));
     }
 
     /**
@@ -47,7 +48,7 @@ class PlateController extends Controller
      */
     public function show(Plate $plate)
     {
-        return view('admin.plate.show');
+        return view('admin.plate.show', compact('plate'));
     }
 
     /**

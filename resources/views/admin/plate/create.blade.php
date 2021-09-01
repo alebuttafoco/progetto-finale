@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div>
         <h1>pagina crea piatto</h1>
     </div>
 @endsection
