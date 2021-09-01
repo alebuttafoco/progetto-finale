@@ -35,25 +35,26 @@
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">
+                                <a class="nav-link active" aria-current="page"
+                                    href="{{ route('admin.restaurant.index') }}">
                                     <i class="fas fa-home fa-lg"></i>
                                     Home
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ route('admin.plate.index') }}">
                                     <i class="fas fa-utensils fa-lg"></i>
                                     Piatti
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ route('admin.ordini') }}">
                                     <i class="fas fa-shopping-cart fa-lg"></i>
                                     Ordini
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ route('admin.statistiche') }}">
                                     <i class="fas fa-chart-line fa-lg"></i>
                                     Dashboard
                                 </a>

@@ -1,11 +1,13 @@
 @extends('layouts.admin')
+
 @section('titolo')
-    <h1>pagina crea piatto</h1>
+    <h1>pagina lista piatti</h1>
 
 @endsection
 
 @section('content')
     <div class="container">
-        <h1>pagina crea piatto</h1>
+
+        <a href="{{ route('admin.plate.create') }}">Aggiungi un nuovo piatto</a>
     </div>
 @endsection
