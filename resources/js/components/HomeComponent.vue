@@ -129,7 +129,7 @@ export default {
 .sticky {
     position: sticky;
     top: 0;
-    z-index: 9999;
+    z-index: 999;
     animation: slide_up .5s ease;
 }
 
