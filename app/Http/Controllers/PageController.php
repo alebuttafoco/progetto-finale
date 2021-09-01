@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Restaurant;
+use App\Plate;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -12,8 +13,12 @@ class PageController extends Controller
         return view('home');
     }
 
-    public function showRestaurant(Restaurant $restaurant)
+    public function showRestaurant(Request $request)
     {
-        return view('restaurants.show', compact('restaurant'));
+        //ddd($request->id);
+        $restaurant=Restaurant::find($request->id);
+        $plates=Plate::all();
+        //ddd($plates);
+        return view('restaurants.show', compact('restaurant', 'plates'));
     }
 }

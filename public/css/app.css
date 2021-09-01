@@ -11086,17 +11086,22 @@ header .navbar {
   font-size: 0.75rem;
 }
 
+#single-restaurant-page .img-restaurant-container {
+  height: 300px;
+  width: 100%;
+}
+
 #single-restaurant-page .img-restaurant {
-  width: auto;
-  height: 200px;
-  background-image: url("https://www.dinky.milano.it/wp-content/uploads/2017/12/primi-piatti-ristorante-dinky.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
+  width: 100%;
+  height: inherit;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 #single-restaurant-page .plate-img {
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
+  max-height: 10rem;
 }
 
 #single-restaurant-page .price-btn {
@@ -11112,6 +11117,8 @@ header .navbar {
 
 #single-restaurant-page .card:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  transform: translatey(-5px);
+  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);
+  color: inherit;
 }
 
