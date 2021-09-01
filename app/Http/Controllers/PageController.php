@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Order;
 use App\Restaurant;
 use App\Plate;
 use Illuminate\Http\Request;
@@ -22,4 +22,8 @@ class PageController extends Controller
         return view('restaurants.show', compact('restaurant', 'plates'));
     }
 
+    public function showCart(Order $order) 
+    {
+        return view('cart', compact('order'));
+    }
 }
