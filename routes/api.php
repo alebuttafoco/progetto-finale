@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('restaurants', 'Api\RestaurantController');
+Route::apiResource('categories', 'Api\CategoryController');
