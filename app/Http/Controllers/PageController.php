@@ -16,4 +16,5 @@ class PageController extends Controller
     {
         return view('restaurants.show', compact('restaurant'));
     }
+
 }
