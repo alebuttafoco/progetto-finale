@@ -1,15 +1,13 @@
-<div class="d-flex flex-wrap align-items-center justify-content-center">
-    <div class="container d-flex flex-wrap align-items-center justify-content-around">
+<div class="navbar d-flex flex-wrap align-items-center justify-content-center">
+    <div class="d-flex flex-wrap align-items-center justify-content-around">
 
         <a id="logo" class="d-flex align-items-center mb-md-0 text-decoration-none" href="{{ url('/') }}">
             <img src="{{ asset('img/logo_secondary.png') }}" alt="Logo DeliveBoo">
         </a>
 
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" class="link">I nostri ristoranti</a></li>
-            <li><a href="#" class="link">Riders</a></li>
-            <li><a href="#" class="link">FAQs</a></li>
-            <li><a href="#" class="link">Contattaci</a></li>
+        {{-- INSERISCI LINK NELLA NAV --}}
+        <ul class="nav d-none d-md-block">
+            {{-- <li><a href="#" class="link"></a></li> --}}
         </ul>
 
         <div class="btn_div d-flex justify-content-end">
