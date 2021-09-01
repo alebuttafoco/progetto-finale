@@ -1,47 +1,50 @@
 <template>
-<div class="bg-white">
-    <div class="jumbo">
-        <!-- <video autoplay muted loop id="HomeVideo">
-            <source src="img/video.mp4" type="video/mp4">
-        </video> -->
-        
-        <!-- RICERCA DEL RISTORANTE -->
-        <!-- <div class="overlay d-flex flex-column align-items-center justify-content-center">
+<div>
+    <!-- <video autoplay muted loop id="HomeVideo">
+        <source src="img/video.mp4" type="video/mp4">
+    </video> -->
+
+    <!-- RICERCA DEL RISTORANTE -->
+    <div :class=" isVisibleRestaurants ? '' : 'search_center' ">
+        <div class="search_restaurants text-center">
             <h1>Ordina su DeliveBoo!</h1>
-            <div class="search_div">
-
-                <form action="#" method="post" novalidate="novalidate">
-                    <div class="search_form d-flex align-items-center justify-content-center">
-                        <div>
-                            <input type="text" class="form-control search-slt" placeholder="Città / CAP">
-                        </div>
-                        <div>
-                            <input type="text" class="form-control search-slt" placeholder="Ristorante">
-                        </div>
-                        <div>
-                            <select class="form-control search-slt" id="Selector1">
-                                <option disabled selected>Seleziona</option>
-                                <option>Street Food</option>
-                                <option>Pasta</option>
-
-                            </select>
-                        </div>
-                        <div>
-                            <button @click="isVisibleRestaurants = true" type="button" class="bttn">Cerca</button>
-                        </div>
+            <span @click="isVisibleRestaurants = true, selectedCategory = '' " class="category card px-4 py-2 m-2 bg-success">Visualizza tutti i Ristoranti</span>
+            <h4>Oppure seleziona una categoria per iniziare</h4>
+        </div>
+        
+        <div class="search_div d-flex flex-wrap justify-content-center">
+            <!-- <form action="#" method="post" novalidate="novalidate">
+                <div class="search_form d-flex align-items-center justify-content-center">
+                    <div>
+                        <input type="text" class="form-control search-slt" placeholder="Città / CAP">
                     </div>
-                </form>
+                    <div>
+                        <input type="text" class="form-control search-slt" placeholder="Ristorante">
+                    </div>
+                    <div>
+                        <select class="form-control search-slt" id="Selector1">
+                            <option selected>Seleziona</option>
+                            <option value="" v-for="category in categories" :key='category.id'> {{category.name}} </option>
 
+                        </select>
+                    </div>
+                    <div>
+                        <button @click="isVisibleRestaurants = true" type="button" class="bttn">Cerca</button>
+                    </div>
+                </div>
+            </form> -->
+            <div class="category card px-4 py-2 m-2 bg-white" v-for="category in categories" :key='category.id'>
+                <span @click="isVisibleRestaurants = true, selectedCategory = category.id">{{category.name}}</span>
             </div>
-        </div> -->
+        </div>
     </div>
 
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
     <div class="restaurants" v-if="isVisibleRestaurants">
-        <div class="card" v-for="restaurant in restaurants" :key='restaurant.id'>
-            <img :src="restaurant.image" alt="">
+        <div class="my_card" v-for="restaurant in restaurants" :key='restaurant.id'>
 
-            <div class="details">
+            <img v-if="restaurant.category_id == selectedCategory || selectedCategory == '' " :src="restaurant.image" alt="">
+            <div v-if="restaurant.category_id == selectedCategory || selectedCategory == '' " class="details">
                 <h3> {{restaurant.name}} </h3>
             </div>
         </div>
@@ -55,8 +58,10 @@ import Axios from 'axios';
 export default {
     data() {
         return{
-            isVisibleRestaurants: true,
+            isVisibleRestaurants: false,
             restaurants: '',
+            categories: '',
+            selectedCategory: '',
         }
     },
     methods: {
@@ -68,23 +73,67 @@ export default {
             .catch(e => {
                 console.error(e);
             })
-        }
+        },
+        callCategories(){
+            Axios.get('./api/categories')
+            .then(resp => {
+                this.categories = resp.data.data;
+            })
+            .catch(e => {
+                console.error(e);
+            })
+        },
     },
     mounted(){
         this.callRestaurants();
+        this.callCategories();
     }
 
 }
 </script>
 
 <style lang="scss" scoped>
+#HomeVideo {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -999;
+}
+
+.search_center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search_restaurants, .search_div {
+    padding: 2rem;
+    background-color: white;
+}
+
+.search_div{
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+// .search_form > * {
+//     margin: 0.3rem;
+// }
+
+.category {
+    cursor: pointer;
+}
+
 .restaurants {
     width: 80%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
 
-    .card {
+    .my_card {
         flex-grow: 1;
         width: calc(100% / 5);
         min-width: 250px;
