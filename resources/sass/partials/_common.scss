@@ -32,6 +32,10 @@ h2 {
     line-height: 5rem;
 }
 
+h4 {
+    margin: 0;
+}
+
 
 // CLASSES
 .container {
@@ -44,24 +48,35 @@ h2 {
     @include d-flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    border-radius: 5px;
     font-weight: $txt_normal;
-    background-color: $secondary;
-    border: 0px solid;
     padding: 8px;
     border: 1px solid transparent;
-
-
-    & * {
-        margin: 0px 5px;
-    }
+    background-color: $secondary;
+    color: white;
 
     &:hover {
         cursor: pointer;
-        background-color: white;
         border: 1px solid $secondary;
+        background-color: white;
         color: $secondary;
+    }
+}
+
+.bttn_reverse {
+    @include d-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: $txt_normal;
+    padding: 8px;
+    border: 1px solid $secondary;
+    background-color: white;
+    color: $secondary;
+    
+    &:hover {
+        cursor: pointer;
+        border: 1px solid transparent;
+        background-color: $secondary;
+        color: white;
     }
 }
 
