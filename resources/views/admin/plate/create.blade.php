@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="card-body">
-        <form method="POST" action="{{ route('admin.plate.store') }}">
+        <form method="POST" action="{{ route('admin.plate.store') }}" enctype="multipart/form-data">
             @csrf
 
             {{-- Name --}}

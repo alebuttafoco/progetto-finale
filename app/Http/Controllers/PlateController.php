@@ -41,7 +41,7 @@ class PlateController extends Controller
      */
     public function store(Request $request)
     {
-
+        //validation
         $validated_data = $request->validate([
             'name' => 'required',
             'image' => 'required|max:50',
@@ -49,18 +49,16 @@ class PlateController extends Controller
             'price' => 'required|numeric',
             'type'=> 'required',
             'visible' => 'required|boolean',
-
         ]);
         
-        
-        
+        //take restaurant id
         $id = Auth::user()->id;
         $restaurant_id = Restaurant::find($id)->id;
         $validated_data['restaurant_id']= $restaurant_id;
         
+        //image
         $file_path = Storage::put('plate_images', $validated_data['image']);
         $validated_data['image'] = $file_path;
-        //ddd($validated_data);
 
 
         Plate::create($validated_data);
