@@ -137,15 +137,12 @@ export default {
 @keyframes slide_up {
     from{
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 400px;
         opacity: 0;
     }
     to{
         position: sticky;
         top: 0;
-        z-index: 9999;
         opacity: 1;
     }
 }
