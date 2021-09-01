@@ -58,9 +58,6 @@ class RestaurantController extends Controller
             // Se esiste l'immagine spostala nello spazio web dedicato all'archiviazione
             $file_path = Storage::put('restaurant_images', $validatedData['img']);
             $validatedData['image'] = $file_path;
-
-            $cover_img = Storage::disk('public')->put('PERCORSO', $request->img);
-            $validatedData['img'] = $cover_img;
         } else {
             // se non esiste, usa l'immagine dentro l'asset e valida i dati nuovamente
             $validatedData = $request->validate([
