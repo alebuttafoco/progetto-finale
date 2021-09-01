@@ -27,7 +27,10 @@
         <header>
             @include('components.navbar')
         </header>
-        @yield('content')
+
+        <main>
+            @yield('content')
+        </main>
     </div>
 </body>
 
