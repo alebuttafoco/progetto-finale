@@ -1,15 +1,16 @@
 // NAVBAR TOP MENU
 header {
     font-weight: $txt_normal;
-}
+    z-index: 9999;
 
-#logo {
-    & > * {
-        width: 10rem;
+    #logo {
+        & > * {
+            width: 10rem;
+        }
     }
-}
-
-.navbar {
-    width: 80%;
-    margin: auto;
+    
+    .navbar {
+        width: 80%;
+        margin: auto;
+    }
 }
