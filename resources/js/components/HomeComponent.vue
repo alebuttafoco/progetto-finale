@@ -50,7 +50,7 @@
     </div>
 
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
-    <div class="restaurants" v-if="isVisibleRestaurants">
+    <div class="restaurants row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" v-if="isVisibleRestaurants">
         <a :href="'./restaurants/' + selectedRestaurant " @click="selectedRestaurant = restaurant.id" class="my_card" v-for="restaurant in restaurants" :key='restaurant.id'>
             <div>
                 <img v-if="restaurant.category_id == selectedCategory || selectedCategory == '' " :src="restaurant.image" alt="">
@@ -150,25 +150,13 @@ export default {
 .restaurants {
     width: 80%;
     margin: auto;
-    display: flex;
-    flex-wrap: wrap;
     animation: show .5s .5s ease;
     animation-fill-mode: backwards;
 
     .my_card {
-        flex-grow: 1;
-        width: calc(100% / 5);
-        min-width: 250px;
-        margin: 1rem;
         background-color: rgb(240, 240, 240);
         text-decoration: none;
         transition: .2s ease;
-
-        &:hover{
-            transform: translatey(-5px);
-            box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);
-            color: inherit;
-        }
 
         img {
             width: 100%;
@@ -176,6 +164,12 @@ export default {
 
         .details {
             padding: 1rem;
+        }
+
+        &:hover{
+            transform: translatey(-5px);
+            box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);
+            color: inherit;
         }
     }
 }
