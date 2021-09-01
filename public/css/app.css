@@ -1,5 +1,30 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+.vertical-snap {
+  margin: 0 auto;
+  display: grid;
+  grid-auto-flow: row;
+  gap: 1rem;
+  width: calc(21.875rem + 1rem);
+  padding: 1rem;
+  height: 480px;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -ms-scroll-snap-type: y mandatory;
+      scroll-snap-type: y mandatory;
+}
+
+.vertical-snap > a {
+  scroll-snap-align: center;
+}
+
+.vertical-snap img {
+  width: 21.875rem;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 1rem;
+}
+
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -11101,36 +11126,5 @@ header .btn_div > * {
 
 .overlay .search_form > * {
   margin: 0.3rem;
-}
-
-main {
-  background-color: #F8B735;
-  padding-top: 50px;
-}
-
-main hr {
-  margin: 200px 0;
-}
-
-main h2 {
-  margin: 100px 0;
-  text-align: center;
-  font-weight: 600;
-}
-
-.rabbit_1,
-.rabbit_2 {
-  text-align: center;
-}
-
-.col3 {
-  display: flex;
-  display: -ms-flexbox;
-  justify-content: space-between;
-  margin: 100px 0px;
-}
-
-.col3 img {
-  height: 150px;
 }
 

@@ -1,11 +1,12 @@
 // Fonts
-@import 'partials/variables';
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import "partials/variables";
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
+@import "cart/cart";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
-@import 'partials/mixin';
-@import 'partials/common';
-@import 'home/home'
+@import "partials/mixin";
+@import "partials/common";
+@import "home/home" 
