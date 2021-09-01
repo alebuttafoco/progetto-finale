@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Plate;
+use App\Restaurant;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PlateController extends Controller
 {
@@ -37,7 +41,31 @@ class PlateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validated_data = $request->validate([
+            'name' => 'required',
+            'image' => 'required|max:50',
+            'description' => 'required',
+            'price' => 'required|numeric',
+            'type'=> 'required',
+            'visible' => 'required|boolean',
+
+        ]);
+        
+        
+        
+        $id = Auth::user()->id;
+        $restaurant_id = Restaurant::find($id)->id;
+        $validated_data['restaurant_id']= $restaurant_id;
+        
+        $file_path = Storage::put('plate_images', $validated_data['image']);
+        $validated_data['image'] = $file_path;
+        //ddd($validated_data);
+
+
+        Plate::create($validated_data);
+        return redirect()->route('admin.plate.index');
+        /**/
     }
 
     /**
