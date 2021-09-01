@@ -11087,11 +11087,6 @@ header {
   font-size: 0.7rem;
 }
 
-#single-restaurant-page .container {
-  background-color: white !important;
-  padding: 0px !important;
-}
-
 #single-restaurant-page .address {
   font-size: 0.75rem;
 }
@@ -11113,5 +11108,15 @@ header {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
+  width: 5rem;
+}
+
+#single-restaurant-page .card {
+  transition: all 0.2s ease-in-out;
+}
+
+#single-restaurant-page .card:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 

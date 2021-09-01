@@ -4,11 +4,6 @@
         font-size: 0.7rem;
     }
 
-    .container {
-        background-color: white !important;
-        padding: 0px !important;
-    }
-
     .address {
         font-size: 0.75rem;
     }
@@ -30,6 +25,16 @@
         position: absolute;
         bottom: 1rem;
         right: 1rem;
+        width: 5rem;
+    }
+
+    .card {
+        transition: all .2s ease-in-out;
+    }
+
+    .card:hover{
+        cursor: pointer;
+        transform: scale(1.1); 
     }
 }
 
