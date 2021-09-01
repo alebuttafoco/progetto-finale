@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
 {
