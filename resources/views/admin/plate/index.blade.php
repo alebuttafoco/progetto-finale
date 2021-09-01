@@ -33,7 +33,7 @@
                     <tr>
                         <th>{{ $plate->id }}</th>
                         <td>{{ $plate->restaurant_id }}</td>
-                        <td><img height="80px" src="{{ $plate->image }}" alt=""></td>
+                        <td><img width="100" src="{{ asset('storage/' . $plate->image) }}" alt=""></td>
                         <td>{{ $plate->name }}</td>
                         <td>{{ $plate->price }}</td>
                         <td>{{ $plate->type }}</td>
