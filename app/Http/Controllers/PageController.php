@@ -21,4 +21,5 @@ class PageController extends Controller
         //ddd($plates);
         return view('restaurants.show', compact('restaurant', 'plates'));
     }
+
 }
