@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Restaurant;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
@@ -15,7 +17,10 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::all();
+
+        $id = Auth::user()->id;
+        $restaurant_id = Restaurant::find($id)->id;
+        $restaurants = Restaurant::where('user_id', $restaurant_id)->get();
         return view('admin.restaurant.index', compact('restaurants'));
     }
 
@@ -48,12 +53,11 @@ class RestaurantController extends Controller
             'piva' => 'required | digits:11',
         ]);
 
-        //ddd($validatedData);
 
         if (in_array('img', $validatedData)) {
             // Se esiste l'immagine spostala nello spazio web dedicato all'archiviazione
-            $cover_img = Storage::disk('public')->put('PERCORSO', $request->img);
-            $validatedData['img'] = $cover_img;
+            $file_path = Storage::put('restaurant_images', $validatedData['img']);
+            $validatedData['image'] = $file_path;
         } else {
             // se non esiste, usa l'immagine dentro l'asset e valida i dati nuovamente
             $validatedData = $request->validate([
@@ -68,8 +72,11 @@ class RestaurantController extends Controller
             ]);
         }
 
+        $id_utente = Auth::user()->id;
+        $validatedData['user_id'] = $id_utente;
+
         $restaurant = Restaurant::create($validatedData);
-        return redirect()->route('restaurant.show', $restaurant->id);
+        return redirect()->route('admin.restaurant.show', $restaurant->id);
     }
 
     /**
@@ -137,6 +144,7 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-        //
+        Restaurant::destroy($restaurant->id);
+        return redirect()->route('admin.restaurant.index');
     }
 }
