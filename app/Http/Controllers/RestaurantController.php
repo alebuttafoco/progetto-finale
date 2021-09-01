@@ -14,7 +14,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        return view('admin.restaurant.index');
+        $restaurants = Restaurant::all();
+        return view('admin.restaurant.index', compact('restaurants'));
     }
 
     /**
@@ -25,7 +26,6 @@ class RestaurantController extends Controller
     public function create()
     {
         return view('admin.restaurant.create');
-        
     }
 
     /**
@@ -36,7 +36,39 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'category_id' => 'nullable | exists:categories,id',
+            'name' => 'required | max:255',
+            'description' => 'required | max:255',
+            'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
+            'address' => 'max:255',
+            'city' => 'required | max:255',
+            'cap' => 'required | digits:5',
+            'piva' => 'required | digits:11',
+        ]);
+
+        //ddd($validatedData);
+
+        if (in_array('img', $validatedData)) {
+            // Se esiste l'immagine spostala nello spazio web dedicato all'archiviazione
+            $cover_img = Storage::disk('public')->put('PERCORSO', $request->img);
+            $validatedData['img'] = $cover_img;
+        } else {
+            // se non esiste, usa l'immagine dentro l'asset e valida i dati nuovamente
+            $validatedData = $request->validate([
+                'category_id' => 'nullable | exists:categories,id',
+                'name' => 'required | max:255',
+                'description' => 'required | max:255',
+                'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
+                'address' => 'max:255',
+                'city' => 'required | max:255',
+                'cap' => 'required | digits:5',
+                'piva' => 'required | digits:11',
+            ]);
+        }
+
+        $restaurant = Restaurant::create($validatedData);
+        return redirect()->route('restaurant.show', $restaurant->id);
     }
 
     /**
@@ -47,8 +79,7 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        //
-        
+        return view('admin.restaurant.show', compact('restaurant'));
     }
 
     /**
@@ -59,8 +90,7 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        return view('admin.restaurant.edit');
-        
+        return view('admin.restaurant.edit', compact('restaurant'));
     }
 
     /**
@@ -72,7 +102,30 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-        //
+        $validatedData = $request->validate([
+            'category_id' => 'nullable | exists:categories,id',
+            'name' => 'required | max:255',
+            'description' => 'required | max:255',
+            'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
+            'address' => 'max:255',
+            'city' => 'required | max:255',
+            'cap' => 'required | digits:5',
+            'piva' => 'required | digits:11',
+        ]);
+
+        /* 
+        Se "img" ovvero l'array di modifica è vuoto, ovvero falso, non fare nulla
+        se è vero, quindi nuova immagine, esegui il codice
+         */
+        if (array_key_exists('img', $validatedData)) {
+
+            Storage::disk('public')->delete($restaurant->img);
+            $cover_img = Storage::disk('public')->put('PERCORSO', $request->img);
+            $validatedData['img'] = $cover_img;
+        }
+
+        $restaurant->update($validatedData);
+        return redirect()->route('restaurant.show', $restaurant->id);
     }
 
     /**
