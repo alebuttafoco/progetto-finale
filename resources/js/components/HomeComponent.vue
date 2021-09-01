@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="home_wrapper">
     <!-- <video autoplay muted loop id="HomeVideo">
         <source src="img/video.mp4" type="video/mp4">
     </video> -->
@@ -51,12 +51,14 @@
 
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
     <div class="restaurants" v-if="isVisibleRestaurants">
-        <div class="my_card" v-for="restaurant in restaurants" :key='restaurant.id'>
-            <img v-if="restaurant.category_id == selectedCategory || selectedCategory == '' " :src="restaurant.image" alt="">
-            <div v-if="restaurant.category_id == selectedCategory || selectedCategory == '' " class="details">
-                <h3> {{restaurant.name}} </h3>
+        <a :href="'./restaurants/' + selectedRestaurant " @click="selectedRestaurant = restaurant.id" class="my_card" v-for="restaurant in restaurants" :key='restaurant.id'>
+            <div>
+                <img v-if="restaurant.category_id == selectedCategory || selectedCategory == '' " :src="restaurant.image" alt="">
+                <div v-if="restaurant.category_id == selectedCategory || selectedCategory == '' " class="details">
+                    <h3> {{restaurant.name}} </h3>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 </div>
 </template>
@@ -71,6 +73,7 @@ export default {
             categories: '',
             isVisibleRestaurants: false,
             selectedCategory: '',
+            selectedRestaurant: '',
         }
     },
     methods: {
@@ -110,29 +113,41 @@ export default {
     z-index: -999;
 }
 
-.search_center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
 .search_restaurants, .search_div {
     padding: 1rem;
     background-color: white;
 }
 
+.search_center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 1s;
+}
+
 .sticky {
     position: sticky;
     top: 0;
+    z-index: 9999;
+    animation: slide_up .5s ease;
 }
 
-// .search_form > * {
-//     margin: 0.3rem;
-// }
-
-.category {
-    cursor: pointer;
+// ANIMAZIONE CATEGORIE
+@keyframes slide_up {
+    from{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+    }
+    to{
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        opacity: 1;
+    }
 }
 
 .restaurants {
@@ -140,6 +155,8 @@ export default {
     margin: auto;
     display: flex;
     flex-wrap: wrap;
+    animation: show .5s .5s ease;
+    animation-fill-mode: backwards;
 
     .my_card {
         flex-grow: 1;
@@ -147,12 +164,32 @@ export default {
         min-width: 250px;
         margin: 1rem;
         background-color: rgb(240, 240, 240);
+        text-decoration: none;
+        transition: .2s ease;
+
+        &:hover{
+            transform: translatey(-5px);
+            box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);
+            color: inherit;
+        }
+
         img {
-        width: 100%;
+            width: 100%;
         }
+
         .details {
-        padding: 1rem;
+            padding: 1rem;
         }
+    }
+}
+
+// ANIMAZIONE RISTORANTI
+@keyframes show {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
     }
 }
 </style>
