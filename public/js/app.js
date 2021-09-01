@@ -1965,11 +1965,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      isVisibleRestaurants: false
+      isVisibleRestaurants: true,
+      restaurants: ''
     };
   },
-  methods: {},
-  mouted: function mouted() {}
+  methods: {
+    callRestaurants: function callRestaurants() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('./api/restaurants').then(function (resp) {
+        _this.restaurants = resp.data.data;
+      })["catch"](function (e) {
+        console.error(e);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.callRestaurants();
+  }
 });
 
 /***/ }),
@@ -6428,7 +6441,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".restaurants[data-v-782dcf83] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.restaurants .card[data-v-782dcf83] {\n  flex-grow: 1;\n  width: calc(100% / 5);\n  min-width: 250px;\n  margin: 1rem;\n  background-color: white;\n}\n.restaurants .card img[data-v-782dcf83] {\n  width: 100%;\n}\n.restaurants .card .details[data-v-782dcf83] {\n  padding: 1rem;\n}", ""]);
+exports.push([module.i, ".restaurants[data-v-782dcf83] {\n  width: 80%;\n  margin: auto;\n  display: flex;\n  flex-wrap: wrap;\n}\n.restaurants .card[data-v-782dcf83] {\n  flex-grow: 1;\n  width: calc(100% / 5);\n  min-width: 250px;\n  margin: 1rem;\n  background-color: #f0f0f0;\n}\n.restaurants .card img[data-v-782dcf83] {\n  width: 100%;\n}\n.restaurants .card .details[data-v-782dcf83] {\n  padding: 1rem;\n}", ""]);
 
 // exports
 
@@ -38280,81 +38293,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "jumbo" }, [
-      _c(
-        "video",
-        {
-          attrs: { autoplay: "", muted: "", loop: "", id: "HomeVideo" },
-          domProps: { muted: true }
-        },
-        [_c("source", { attrs: { src: "img/video.mp4", type: "video/mp4" } })]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "overlay d-flex flex-column align-items-center justify-content-center"
-        },
-        [
-          _c("h1", [_vm._v("Ordina su DeliveBoo!")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "search_div" }, [
-            _c(
-              "form",
-              {
-                attrs: { action: "#", method: "post", novalidate: "novalidate" }
-              },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "search_form d-flex align-items-center justify-content-center"
-                  },
-                  [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _vm._m(2),
-                    _vm._v(" "),
-                    _c("div", [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "bttn",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              _vm.isVisibleRestaurants = true
-                            }
-                          }
-                        },
-                        [_vm._v("Cerca")]
-                      )
-                    ])
-                  ]
-                )
-              ]
-            )
-          ])
-        ]
-      )
-    ]),
+  return _c("div", { staticClass: "bg-white" }, [
+    _c("div", { staticClass: "jumbo" }),
     _vm._v(" "),
     _vm.isVisibleRestaurants
       ? _c(
           "div",
           { staticClass: "restaurants" },
-          _vm._l(10, function(restaurant) {
+          _vm._l(_vm.restaurants, function(restaurant) {
             return _c("div", { key: restaurant.id, staticClass: "card" }, [
-              _c("img", {
-                attrs: { src: "https://picsum.photos/536/354", alt: "" }
-              }),
+              _c("img", { attrs: { src: restaurant.image, alt: "" } }),
               _vm._v(" "),
-              _vm._m(3, true)
+              _c("div", { staticClass: "details" }, [
+                _c("h3", [_vm._v(" " + _vm._s(restaurant.name) + " ")])
+              ])
             ])
           }),
           0
@@ -38362,58 +38314,7 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("input", {
-        staticClass: "form-control search-slt",
-        attrs: { type: "text", placeholder: "Città / CAP" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("input", {
-        staticClass: "form-control search-slt",
-        attrs: { type: "text", placeholder: "Ristorante" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "select",
-        { staticClass: "form-control search-slt", attrs: { id: "Selector1" } },
-        [
-          _c("option", { attrs: { disabled: "", selected: "" } }, [
-            _vm._v("Seleziona")
-          ]),
-          _vm._v(" "),
-          _c("option", [_vm._v("Street Food")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("Pasta")])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "details" }, [
-      _c("h3", [_vm._v("NOME RISTORANTE")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
