@@ -1,6 +1,4 @@
-<div class="navbar d-flex flex-wrap align-items-center justify-content-center">
-    <div class="d-flex flex-wrap align-items-center justify-content-around">
-
+<div class="navbar">
         <a id="logo" class="d-flex align-items-center mb-md-0 text-decoration-none" href="{{ url('/') }}">
             <img src="{{ asset('img/logo_secondary.png') }}" alt="Logo DeliveBoo">
         </a>
@@ -24,10 +22,10 @@
                         {{ Auth::user()->name }}
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('user') }}">{{ __('Profilo') }}</a>
+                    <div class="dropdown-menu p-0 " aria-labelledby="navbarDropdown">
+                        <a class="bttn_reverse dropdown-item" href="{{ route('user') }}">{{ __('Profilo') }}</a>
 
-                        <a class="dropdown-item bttn" href="{{ route('logout') }}"
+                        <a class="bttn_reverse dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
@@ -40,5 +38,4 @@
                 </div>
             @endguest
         </div>
-    </div>
 </div>
