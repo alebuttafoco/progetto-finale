@@ -13,9 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             OrderSeeder::class,
-            RestaurantSeeder::class,
+            /* RestaurantSeeder::class, */
             CategorySeeder::class,
-            PlateSeeder::class,
+            /* PlateSeeder::class, */
         ]);
     }
 }

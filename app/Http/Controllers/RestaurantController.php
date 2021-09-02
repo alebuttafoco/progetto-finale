@@ -27,13 +27,10 @@ class RestaurantController extends Controller
         if (($restaurants->count() === 0)) {
             $restaurants = false;
             //View::share('layouts.admin', $restaurants);
-            return view('admin.restaurant.index', compact('restaurants')); 
+            return view('admin.restaurant.index', compact('restaurants'));
         }
-        $restaurants = $restaurants->count();
+        //$restaurants = $restaurants->count();
         return view('admin.restaurant.index', compact('restaurants'));
-
-
-
     }
 
     /**
@@ -101,7 +98,8 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        return view('admin.restaurant.edit', compact('restaurant'));
+        $categories = Category::all();
+        return view('admin.restaurant.edit', compact('restaurant', 'categories'));
     }
 
     /**
