@@ -43,8 +43,9 @@ class PlateController extends Controller
         
         //take restaurant id
         $id = Auth::user()->id;
-        $restaurant_id = Restaurant::find($id)->id;
-        $validated_data['restaurant_id']= $restaurant_id;
+        //$restaurant_id = Restaurant::find($id)->id;
+        //$validated_data['restaurant_id']= $restaurant_id;
+        $validated_data['restaurant_id']= 1;
         
         //image
         $file_path = Storage::put('plate_images', $validated_data['image']);
@@ -96,7 +97,7 @@ class PlateController extends Controller
 
         $plate->update($validated_data);
 
-        return redirect()->route('admin.plate.index');
+        return redirect()->route('admin.plate.show', $plate->id);
 
 
     }
