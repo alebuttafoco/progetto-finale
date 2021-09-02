@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Restaurant;
 use App\User;
 use Illuminate\Http\Request;
@@ -39,7 +40,8 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        return view('admin.restaurant.create');
+        $categories = Category::all();
+        return view('admin.restaurant.create', compact('categories'));
     }
 
     /**
@@ -51,39 +53,29 @@ class RestaurantController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'category_id' => 'nullable | exists:categories,id',
+            'categories' => 'required | exists:categories,id',
             'name' => 'required | max:255',
             'description' => 'required | max:255',
             'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
-            'address' => 'max:255',
+            'address' => 'required | max:255',
             'city' => 'required | max:255',
             'cap' => 'required | digits:5',
             'piva' => 'required | digits:11',
         ]);
 
-
         if (in_array('img', $validatedData)) {
-            // Se esiste l'immagine spostala nello spazio web dedicato all'archiviazione
+            // Se si sta caricando l'immagine spostala nello spazio web dedicato all'archiviazione
             $file_path = Storage::put('restaurant_images', $validatedData['img']);
-            $validatedData['image'] = $file_path;
+            $validatedData['img'] = $file_path;
         } else {
-            // se non esiste, usa l'immagine dentro l'asset e valida i dati nuovamente
-            $validatedData = $request->validate([
-                'category_id' => 'nullable | exists:categories,id',
-                'name' => 'required | max:255',
-                'description' => 'required | max:255',
-                'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
-                'address' => 'max:255',
-                'city' => 'required | max:255',
-                'cap' => 'required | digits:5',
-                'piva' => 'required | digits:11',
-            ]);
+            // se non esiste, usa l'immagine dentro l'asset
         }
 
         $id_utente = Auth::user()->id;
         $validatedData['user_id'] = $id_utente;
 
         $restaurant = Restaurant::create($validatedData);
+        $restaurant->categories()->attach($validatedData['categories']);
         return redirect()->route('admin.restaurant.show', $restaurant->id);
     }
 
@@ -119,11 +111,11 @@ class RestaurantController extends Controller
     public function update(Request $request, Restaurant $restaurant)
     {
         $validatedData = $request->validate([
-            'category_id' => 'nullable | exists:categories,id',
+            'categories' => 'required | exists:categories,id',
             'name' => 'required | max:255',
             'description' => 'required | max:255',
             'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
-            'address' => 'max:255',
+            'address' => 'required | max:255',
             'city' => 'required | max:255',
             'cap' => 'required | digits:5',
             'piva' => 'required | digits:11',
@@ -136,8 +128,8 @@ class RestaurantController extends Controller
         if (array_key_exists('img', $validatedData)) {
 
             Storage::disk('public')->delete($restaurant->img);
-            $cover_img = Storage::disk('public')->put('PERCORSO', $request->img);
-            $validatedData['img'] = $cover_img;
+            $file_path = Storage::put('restaurant_images', $validatedData['img']);
+            $validatedData['img'] = $file_path;
         }
 
         $restaurant->update($validatedData);
