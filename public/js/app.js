@@ -1975,6 +1975,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1982,25 +1984,36 @@ __webpack_require__.r(__webpack_exports__);
       restaurants: '',
       categories: '',
       isVisibleRestaurants: false,
-      selectedCategory: '',
+      selectedCategory: [],
       selectedRestaurant: ''
     };
   },
   methods: {
-    callRestaurants: function callRestaurants() {
+    activeCategory: function activeCategory(restaurant) {
       var _this = this;
 
+      restaurant.forEach(function (category) {
+        if (_this.selectedCategory.includes(category.id)) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+    },
+    callRestaurants: function callRestaurants() {
+      var _this2 = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('./api/restaurants').then(function (resp) {
-        _this.restaurants = resp.data.data;
+        _this2.restaurants = resp.data.data;
       })["catch"](function (e) {
         console.error(e);
       });
     },
     callCategories: function callCategories() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('./api/categories').then(function (resp) {
-        _this2.categories = resp.data.data;
+        _this3.categories = resp.data.data;
       })["catch"](function (e) {
         console.error(e);
       });
@@ -38347,7 +38360,7 @@ var render = function() {
                   on: {
                     click: function($event) {
                       ;(_vm.isVisibleRestaurants = true),
-                        (_vm.selectedCategory = "")
+                        (_vm.selectedCategory = [])
                     }
                   }
                 },
@@ -38369,11 +38382,11 @@ var render = function() {
                   "div",
                   {
                     staticClass: "px-4 py-2 m-2",
-                    class: _vm.selectedCategory == "" ? "bttn" : "bttn_reverse",
+                    class: _vm.selectedCategory == [] ? "bttn" : "bttn_reverse",
                     on: {
                       click: function($event) {
                         ;(_vm.isVisibleRestaurants = true),
-                          (_vm.selectedCategory = "")
+                          (_vm.selectedCategory = [])
                       }
                     }
                   },
@@ -38398,7 +38411,7 @@ var render = function() {
                   on: {
                     click: function($event) {
                       ;(_vm.isVisibleRestaurants = true),
-                        (_vm.selectedCategory = category.id)
+                        _vm.selectedCategory.push(category.id)
                     }
                   }
                 },
@@ -38435,19 +38448,26 @@ var render = function() {
                 }
               },
               [
-                _c("div", [
-                  restaurant.category_id == _vm.selectedCategory ||
-                  _vm.selectedCategory == ""
-                    ? _c("img", { attrs: { src: restaurant.image, alt: "" } })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  restaurant.category_id == _vm.selectedCategory ||
-                  _vm.selectedCategory == ""
-                    ? _c("div", { staticClass: "details" }, [
-                        _c("h3", [_vm._v(" " + _vm._s(restaurant.name) + " ")])
+                _vm.activeCategory(restaurant.categories)
+                  ? _c("div", [
+                      _c("img", { attrs: { src: restaurant.image, alt: "" } }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "details" }, [
+                        _c("h3", [_vm._v(" " + _vm._s(restaurant.name) + " ")]),
+                        _vm._v(" "),
+                        _c("h3", [
+                          _vm._v(
+                            " " + _vm._s(restaurant.categories[0].id) + " "
+                          )
+                        ])
                       ])
-                    : _vm._e()
-                ])
+                    ])
+                  : _vm._e(),
+                _vm._v(
+                  "\r\n                " +
+                    _vm._s(restaurant.categories) +
+                    "\r\n        "
+                )
               ]
             )
           }),
