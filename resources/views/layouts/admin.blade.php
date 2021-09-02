@@ -29,6 +29,7 @@
             @include('components.navbar')
         </header>
 
+
         <div class="container dashboard">
             <div class="row">
                 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse" style="">
@@ -41,24 +42,34 @@
                                     Home
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.plate.index') }}">
-                                    <i class="fas fa-utensils fa-lg"></i>
-                                    Piatti
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.ordini') }}">
-                                    <i class="fas fa-shopping-cart fa-lg"></i>
-                                    Ordini
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.statistiche') }}">
-                                    <i class="fas fa-chart-line fa-lg"></i>
-                                    Dashboard
-                                </a>
-                            </li>
+
+
+                            {{-- {{ ddd($menuvisibile) }} --}}
+                            @if (true)
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.plate.index') }}">
+                                        <i class="fas fa-utensils fa-lg"></i>
+                                        Piatti
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.ordini') }}">
+                                        <i class="fas fa-shopping-cart fa-lg"></i>
+                                        Ordini
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.statistiche') }}">
+                                        <i class="fas fa-chart-line fa-lg"></i>
+                                        Dashboard
+                                    </a>
+                                </li>
+
+                            @endif
+
+
                         </ul>
                     </div>
                 </nav>
