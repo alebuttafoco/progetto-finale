@@ -29,6 +29,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        View::composer('layouts.admin', function ($view) {
+            $id = Auth::user()->id;
+            $restaurants = Restaurant::where('user_id', $id)->get();
+
+            $view->with('restaurants',$restaurants );
+        });
         
     }
 }

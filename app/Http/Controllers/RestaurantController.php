@@ -21,19 +21,12 @@ class RestaurantController extends Controller
     {
 
         $id = Auth::user()->id;
-        //$restaurant_id = Restaurant::find($id);
         $restaurants = Restaurant::where('user_id', $id)->get();
-        //ddd($restaurants->count());
         if (($restaurants->count() === 0)) {
             $restaurants = false;
-            //View::share('layouts.admin', $restaurants);
             return view('admin.restaurant.index', compact('restaurants')); 
         }
-        $restaurants = $restaurants->count();
         return view('admin.restaurant.index', compact('restaurants'));
-
-
-
     }
 
     /**
