@@ -44,8 +44,8 @@
                             </li>
 
 
-                            {{-- {{ ddd($menuvisibile) }} --}}
-                            @if (true)
+
+                            @if ($restaurants->count() != 0)
 
 
                                 <li class="nav-item">
