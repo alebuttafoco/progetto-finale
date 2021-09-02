@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Restaurant;
 use App\User;
+use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -24,8 +25,10 @@ class RestaurantController extends Controller
         //ddd($restaurants->count());
         if (($restaurants->count() === 0)) {
             $restaurants = false;
+            //View::share('layouts.admin', $restaurants);
             return view('admin.restaurant.index', compact('restaurants')); 
         }
+        $restaurants = $restaurants->count();
         return view('admin.restaurant.index', compact('restaurants'));
 
 

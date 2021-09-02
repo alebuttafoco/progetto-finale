@@ -15,10 +15,17 @@ class PlateController extends Controller
     public function index()
     {
         $id = Auth::user()->id;
+        //ddd(Restaurant::find($id));
+        if (Restaurant::find($id) === null) {
+            $plates = false;
+            return view('admin.plate.index', compact('plates'));
+        }
+        //ddd(Restaurant::find($id));
         $restaurant_id = Restaurant::find($id)->id;
         
         $plates= Plate::where('restaurant_id', $restaurant_id)->get();
         return view('admin.plate.index', compact('plates'));
+
     }
 
     
@@ -43,9 +50,10 @@ class PlateController extends Controller
         
         //take restaurant id
         $id = Auth::user()->id;
-        //$restaurant_id = Restaurant::find($id)->id;
-        //$validated_data['restaurant_id']= $restaurant_id;
-        $validated_data['restaurant_id']= 1;
+        //ddd(Restaurant::find($id), $id);
+        $restaurant_id = Restaurant::find($id)->id;
+        $validated_data['restaurant_id']= $restaurant_id;
+        //$validated_data['restaurant_id']= 1;
         
         //image
         $file_path = Storage::put('plate_images', $validated_data['image']);
