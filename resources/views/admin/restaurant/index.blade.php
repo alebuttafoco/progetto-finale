@@ -22,13 +22,14 @@
             </tr>
         </thead>
         <tbody>
-            @if (!($restaurants == null))
+
+            @if (!($restaurants === false))
 
                 @foreach ($restaurants as $restaurant)
                     <tr>
                         <th>{{ $restaurant->id }}</th>
                         <td>{{ $restaurant->name }}</td>
-                        <td><img height="80px" src="{{ $restaurant->image }}" alt=""></td>
+                        <td><img width="100" src="{{ asset('storage/' . $restaurant->image) }}" alt=""></td>
                         <td>{{ $restaurant->address }} <br> {{ $restaurant->city }} <br> {{ $restaurant->cap }}</td>
                         <td>{{ $restaurant->description }}</td>
                         <td>{{ $restaurant->piva }}</td>
@@ -83,13 +84,14 @@
 
                 @endforeach
             @endif
-            @if ($restaurants == null)
+            @if ($restaurants === false)
                 <a class="btn btn-success mb-3" href="{{ route('admin.restaurant.create') }}">
                     <i class="fas fa-plus"></i>
                     Nuovo Ristorante
                 </a>
                 <h1>no ristoranti</h1>
             @endif
+
 
 
 
