@@ -9,7 +9,7 @@
         <div id="border" class="card-cart">
 
       <section>
-        <img class="image_border" src="./images/illustration-hero.svg" alt="">
+        <img class="image_border">
         <h1>
           Order Summary
         </h1>
@@ -17,8 +17,7 @@
 
       <div class="container">
         <p>
-          You can now listen to millions of songs, audiobooks, and podcasts on any
-          device anywhere you like!
+           
         </p>
       </div>
 
@@ -26,7 +25,7 @@
       <div class="grid">
         <button class="flex-container">
           <div class="flex-item">
-            <img src="./images/icon-music.svg" alt="">
+            
           </div>
           <div class="flex-item">
             <h3>Annual Plan</h2>
