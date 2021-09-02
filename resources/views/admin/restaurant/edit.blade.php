@@ -45,7 +45,7 @@
                 <option disabled> - Seleziona una categoria - </option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}"
-                        {{ $category->id == old('category_id', $restaurant->category_id) ? 'selected' : '' }}>
+                        {{ $restaurant->categories->contains($category->id) ? 'selected' : '' }}>
                         {{ $category->name }}</option>
                 @endforeach
             </select>
