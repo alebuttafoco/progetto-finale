@@ -39,6 +39,18 @@
             <small id="ImgHelp" class="form-text text-muted">Max. 1 MB</small>
         </div>
 
+        <div class="form-group">
+            <label for="categories">Categoria</label>
+            <select class="form-control" name="categories[]" id="categories" multiple required>
+                <option disabled> - Seleziona una categoria - </option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}"
+                        {{ $category->id == old('category_id', $restaurant->category_id) ? 'selected' : '' }}>
+                        {{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="form-group d-flex">
             <div class="address">
                 <label for="address">Indirizzo</label>
