@@ -17,8 +17,9 @@ class PlateController extends Controller
         $id = Auth::user()->id;
         $restaurant_id = Restaurant::find($id)->id;
         
-        $plates= Plate::where('restaurant_id', $restaurant_id)->get();
+        $plates= Plate::where('restaurant_id', $restaurant_id)->orderBy('name', 'ASC')->get();
         return view('admin.plate.index', compact('plates'));
+
     }
 
     
