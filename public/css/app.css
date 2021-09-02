@@ -11122,12 +11122,6 @@ header .navbar {
   color: inherit;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
 .vertical-snap {
   margin: 0 auto;
   display: grid;
