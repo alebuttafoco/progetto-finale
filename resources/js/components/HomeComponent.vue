@@ -1,8 +1,8 @@
 <template>
 <div class="home_wrapper">
-    <!-- <video autoplay muted loop id="HomeVideo">
+    <video v-if="!isVisibleRestaurants" autoplay muted loop id="HomeVideo">
         <source src="img/video.mp4" type="video/mp4">
-    </video> -->
+    </video>
 
     <!-- RICERCA DEL RISTORANTE -->
     <div :class=" isVisibleRestaurants ? 'sticky' : 'search_center' ">
@@ -50,7 +50,7 @@
     </div>
 
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
-    <div class="restaurants row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" v-if="isVisibleRestaurants">
+    <div class="restaurants p-5" v-if="isVisibleRestaurants">
         <a :href="'./restaurants/' + selectedRestaurant " @click="selectedRestaurant = restaurant.id" class="my_card" v-for="restaurant in restaurants" :key='restaurant.id'>
             <div>
                 <img v-if="restaurant.category_id == selectedCategory || selectedCategory == '' " :src="restaurant.image" alt="">
@@ -111,6 +111,7 @@ export default {
     height: 100vh;
     object-fit: cover;
     z-index: -999;
+    filter: brightness(50%);
 }
 
 .search_restaurants, .search_div {
@@ -149,11 +150,34 @@ export default {
 
 .restaurants {
     width: 80%;
+    @media screen and (max-width:991.98px) {
+        width: 98%;
+    }
+
     margin: auto;
     animation: show .5s .5s ease;
     animation-fill-mode: backwards;
-
+    display: flex;
+    flex-wrap: wrap;
+    // display: grid;
+    // place-items: center;
+    // grid-template-columns: 1fr 1fr 1fr; 
     .my_card {
+        width: calc(100% / 4 - 2rem);
+        margin: 1rem;
+        @media screen and (max-width:1199.98px) {
+            width: calc(100% / 3 - 2rem);
+        }
+        @media screen and (max-width:991.98px) {
+            width: calc(100% / 3 - 2rem);
+        }
+        @media screen and (max-width:767.98px) {
+            width: calc(100% / 2 - 2rem);
+        }
+        @media screen and (max-width:575.98px) {
+            width: calc(100% - 2rem);
+        }
+
         background-color: rgb(240, 240, 240);
         text-decoration: none;
         transition: .2s ease;
