@@ -22,7 +22,7 @@ class PageController extends Controller
         return view('restaurants.show', compact('restaurant', 'plates'));
     }
 
-    public function showCart(Order $order) 
+    public function showCart(Order $order) //Ricordarsi di cambiare il modello dall'ordine "into" carrello
     {
         return view('cart', compact('order'));
     }
