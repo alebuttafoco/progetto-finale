@@ -83,8 +83,8 @@
                     </tr>
 
                 @endforeach
-            @endif
-            @if ($restaurants === false)
+
+            @else
                 <a class="btn btn-success mb-3" href="{{ route('admin.restaurant.create') }}">
                     <i class="fas fa-plus"></i>
                     Nuovo Ristorante
