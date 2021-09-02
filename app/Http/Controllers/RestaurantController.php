@@ -24,8 +24,7 @@ class RestaurantController extends Controller
         //ddd($restaurants->count());
         if (($restaurants->count() === 0)) {
             $restaurants = false;
-            return view('admin.restaurant.index', compact('restaurants'));
-            
+            return view('admin.restaurant.index', compact('restaurants')); 
         }
         return view('admin.restaurant.index', compact('restaurants'));
 
