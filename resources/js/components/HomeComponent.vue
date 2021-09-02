@@ -8,7 +8,7 @@
     <div :class=" isVisibleRestaurants ? 'sticky' : 'search_center' ">
         <div v-if="!isVisibleRestaurants" class="search_restaurants text-center">
             <h1>Ordina su DeliveBoo!</h1>
-            <span @click="isVisibleRestaurants = true, selectedCategory = '' " class="bttn px-4 py-2 m-2">Visualizza tutti i Ristoranti</span>
+            <span @click="isVisibleRestaurants = true, selectedCategory = [] " class="bttn px-4 py-2 m-2">Visualizza tutti i Ristoranti</span>
             <h4 class="mt-5">Oppure seleziona una categoria per iniziare</h4>
         </div>
         
@@ -34,15 +34,15 @@
                 </div>
             </form> -->
             <div v-if="isVisibleRestaurants" 
-                @click="isVisibleRestaurants = true, selectedCategory = '' " 
+                @click="isVisibleRestaurants = true, selectedCategory = [] " 
                 class="px-4 py-2 m-2"
-                :class="selectedCategory == '' ? 'bttn' : 'bttn_reverse' ">
+                :class="selectedCategory == [] ? 'bttn' : 'bttn_reverse' ">
                 Visualizza tutti i Ristoranti
             </div>
 
             <div class="px-4 py-2 m-2" 
                 :class="selectedCategory == category.id ? 'bttn' : 'bttn_reverse' "
-                @click="isVisibleRestaurants = true, selectedCategory = category.id" 
+                @click="isVisibleRestaurants = true, selectedCategory.push(category.id)" 
                 v-for="category in categories" :key='category.id'>
                 {{category.name}}
             </div>
@@ -52,12 +52,14 @@
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
     <div class="restaurants p-5" v-if="isVisibleRestaurants">
         <a :href="'./restaurants/' + selectedRestaurant " @click="selectedRestaurant = restaurant.id" class="my_card" v-for="restaurant in restaurants" :key='restaurant.id'>
-            <div>
-                <img v-if="restaurant.category_id == selectedCategory || selectedCategory == '' " :src="restaurant.image" alt="">
-                <div v-if="restaurant.category_id == selectedCategory || selectedCategory == '' " class="details">
+            <div v-if="activeCategory(restaurant.categories)">
+                <img  :src="restaurant.image" alt="">
+                <div class="details">
                     <h3> {{restaurant.name}} </h3>
+                    <h3> {{restaurant.categories[0].id}} </h3>
                 </div>
             </div>
+                {{restaurant.categories}}
         </a>
     </div>
 </div>
@@ -72,11 +74,21 @@ export default {
             restaurants: '',
             categories: '',
             isVisibleRestaurants: false,
-            selectedCategory: '',
+            selectedCategory: [],
             selectedRestaurant: '',
         }
     },
     methods: {
+        activeCategory(restaurant){
+            restaurant.forEach(category => {
+                if (this.selectedCategory.includes(category.id)) {
+                    return true;
+                }else {
+                    return false;
+                }
+            });
+
+        },
         callRestaurants(){
             Axios.get('./api/restaurants')
             .then(resp => {
