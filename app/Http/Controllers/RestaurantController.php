@@ -19,7 +19,6 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-
         $id = Auth::user()->id;
         //$restaurant_id = Restaurant::find($id);
         $restaurants = Restaurant::where('user_id', $id)->get();
@@ -75,7 +74,7 @@ class RestaurantController extends Controller
         $validatedData['user_id'] = $id_utente;
 
         $restaurant = Restaurant::create($validatedData);
-        $restaurant->categories()->attach($validatedData['categories']);
+        $restaurant->categories()->sync($validatedData['categories']);
         return redirect()->route('admin.restaurant.show', $restaurant->id);
     }
 
@@ -134,7 +133,8 @@ class RestaurantController extends Controller
         }
 
         $restaurant->update($validatedData);
-        return redirect()->route('restaurant.show', $restaurant->id);
+        $restaurant->categories()->attach($validatedData['categories']);
+        return redirect()->route('admin.restaurant.show', $restaurant->id);;
     }
 
     /**
