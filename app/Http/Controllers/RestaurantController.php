@@ -64,7 +64,7 @@ class RestaurantController extends Controller
         if (in_array('img', $validatedData)) {
             // Se si sta caricando l'immagine spostala nello spazio web dedicato all'archiviazione
             $file_path = Storage::put('restaurant_images', $validatedData['img']);
-            $validatedData['img'] = $file_path;
+            $validatedData['image'] = $file_path;
         } else {
             // se non esiste, usa l'immagine dentro l'asset
         }
@@ -100,8 +100,13 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        $categories = Category::all();
-        return view('admin.restaurant.edit', compact('restaurant', 'categories'));
+        //ddd($restaurant->user_id, );
+
+        if ($restaurant->user_id === Auth::id()) {
+            $categories = Category::all();
+            return view('admin.restaurant.edit', compact('restaurant', 'categories'));
+        }
+        return route('home');
     }
 
     /**
