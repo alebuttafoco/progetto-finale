@@ -11122,31 +11122,6 @@ header .navbar {
   color: inherit;
 }
 
-.vertical-snap {
-  margin: 0 auto;
-  display: grid;
-  grid-auto-flow: row;
-  gap: 1rem;
-  width: calc(21.875rem + 1rem);
-  padding: 1rem;
-  height: 480px;
-  overflow-y: auto;
-  overscroll-behavior-y: contain;
-  -ms-scroll-snap-type: y mandatory;
-      scroll-snap-type: y mandatory;
-}
-
-.vertical-snap > a {
-  scroll-snap-align: center;
-}
-
-.vertical-snap img {
-  width: 21.875rem;
-  -o-object-fit: contain;
-     object-fit: contain;
-  border-radius: 1rem;
-}
-
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
