@@ -14,18 +14,17 @@ class PlateController extends Controller
     
     public function index()
     {
-        $id = Auth::user()->id;
-        
+        $id = Auth::user()->id;  
         $restaurants = Restaurant::where('user_id', $id)->get();
         
-        if (($restaurants->count() === 0)) {
-            $plates = false;
-            return view('admin.plate.index', compact('plates'));
-        }
         
         $restaurant_id = $restaurants[0]->id;
         $plates= Plate::where('restaurant_id', $restaurant_id)->orderBy('name', 'ASC')->get();
         
+        if (($plates->count() === 0)) {
+            $plates = false;
+            return view('admin.plate.index', compact('plates'));
+        }
         return view('admin.plate.index', compact('plates'));
 
     }

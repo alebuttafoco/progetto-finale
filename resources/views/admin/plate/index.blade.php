@@ -14,24 +14,24 @@
         </a>
 
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">image</th>
-                    <th scope="col">name</th>
-                    <th scope="col">price</th>
-                    <th scope="col">type</th>
-                    <th scope="col">visible</th>
-                    <th scope="col">Azioni</th>
-                </tr>
-            </thead>
-            <tbody>
 
-                @if ($plates === false)
-                    <h1>Nessun piatto</h1>
-                @else
-                    @foreach ($plates as $plate)
+        @if ($plates === false)
+            <h1>Aggiungi il tuo primo piatto!</h1>
+        @else
+            @foreach ($plates as $plate)
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">image</th>
+                            <th scope="col">name</th>
+                            <th scope="col">price</th>
+                            <th scope="col">type</th>
+                            <th scope="col">visible</th>
+                            <th scope="col">Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         <tr>
                             <th>{{ $plate->id }}</th>
                             <td><img width="100" src="{{ asset('storage/' . $plate->image) }}" alt=""></td>
@@ -87,9 +87,9 @@
                             </td>
                         </tr>
 
-                    @endforeach
-                @endif
-            </tbody>
+            @endforeach
+        @endif
+        </tbody>
         </table>
 
 

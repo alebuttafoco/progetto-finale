@@ -9,7 +9,7 @@
     <div>
 
         <div>
-            <img src="{{ asset('storage/' . $plate->image) }}" alt="">
+            <img height="200px" src="{{ asset('storage/' . $plate->image) }}" alt="">
         </div>
         <div class="my-3">
             <h3>Description:</h3>
