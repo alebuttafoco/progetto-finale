@@ -18,20 +18,20 @@
         @if ($plates === false)
             <h1>Aggiungi il tuo primo piatto!</h1>
         @else
-            @foreach ($plates as $plate)
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">image</th>
-                            <th scope="col">name</th>
-                            <th scope="col">price</th>
-                            <th scope="col">type</th>
-                            <th scope="col">visible</th>
-                            <th scope="col">Azioni</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">image</th>
+                        <th scope="col">name</th>
+                        <th scope="col">price</th>
+                        <th scope="col">type</th>
+                        <th scope="col">visible</th>
+                        <th scope="col">Azioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($plates as $plate)
                         <tr>
                             <th>{{ $plate->id }}</th>
                             <td><img width="100" src="{{ asset('storage/' . $plate->image) }}" alt=""></td>
@@ -87,7 +87,7 @@
                             </td>
                         </tr>
 
-            @endforeach
+                    @endforeach
         @endif
         </tbody>
         </table>
