@@ -23,7 +23,7 @@ Route::get('/cart', 'PageController@showCart')->name('cart');
 Auth::routes();
 
 Route::get('/user', 'HomeController@user')->name('user');
-Route::middleware('auth')->middleware('AuthResource')->prefix('admin')->name('admin.')->group(function () {
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     
     Route::resource('restaurant', RestaurantController::class);
     Route::resource('plate', PlateController::class);

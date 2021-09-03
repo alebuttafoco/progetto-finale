@@ -106,7 +106,7 @@ class RestaurantController extends Controller
             $categories = Category::all();
             return view('admin.restaurant.edit', compact('restaurant', 'categories'));
         }
-        return route('home');
+        return view('home');
     }
 
     /**

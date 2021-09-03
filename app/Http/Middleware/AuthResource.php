@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Restaurant;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,11 +17,17 @@ class AuthResource
      */
     public function handle($request, Closure $next)
     {
-        //ddd( Auth::id());
-        if ($request->user()->id === Auth::id()) {
+        
+        $id = $request->user()->id;
+        $restaurants = Restaurant::where('user_id', $id)->get();
+        //ddd($restaurants[0]->user_id );
+        
+        $prova = $restaurants[0]->user_id;
+        if ($prova === Auth::id()) {
             return $next($request);
             
         }
-        return view('/');
+        return route('/cart');
+        
     }
 }
