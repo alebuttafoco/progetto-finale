@@ -15,15 +15,17 @@ class PlateController extends Controller
     public function index()
     {
         $id = Auth::user()->id;
-        //ddd(Restaurant::find($id));
-        if (Restaurant::find($id) === null) {
+        
+        $restaurants = Restaurant::where('user_id', $id)->get();
+        
+        if (($restaurants->count() === 0)) {
             $plates = false;
             return view('admin.plate.index', compact('plates'));
         }
-        //ddd(Restaurant::find($id));
-        $restaurant_id = Restaurant::find($id)->id;
         
+        $restaurant_id = $restaurants[0]->id;
         $plates= Plate::where('restaurant_id', $restaurant_id)->orderBy('name', 'ASC')->get();
+        
         return view('admin.plate.index', compact('plates'));
 
     }
@@ -50,16 +52,21 @@ class PlateController extends Controller
         
         //take restaurant id
         $id = Auth::user()->id;
-        //ddd(Restaurant::find($id), $id);
-        $restaurant_id = Restaurant::find($id)->id;
-        $validated_data['restaurant_id']= $restaurant_id;
-        //$validated_data['restaurant_id']= 1;
+
+        
+        $restaurants = Restaurant::where('user_id', $id)->get();
+        if (!($restaurants->count() === 0)) {
+            $restaurant_id = $restaurants[0]->id;
+            $validated_data['restaurant_id']= $restaurant_id;
+        }
+        
         
         //image
         $file_path = Storage::put('plate_images', $validated_data['image']);
         $validated_data['image'] = $file_path;
 
 
+        //ddd($validated_data);
         Plate::create($validated_data);
         return redirect()->route('admin.plate.index');
         /**/
