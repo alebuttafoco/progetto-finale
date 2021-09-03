@@ -44,7 +44,7 @@
 
             <div class="px-4 py-2 m-2" 
                 :class="activeCategories.includes(category.id) ? 'bttn' : 'bttn_reverse' "
-                @click="isVisibleRestaurants = true, selectCategory(category.id)" 
+                @click="isVisibleRestaurants = true, selectCategory(category.id), showFilterRestaurants()" 
                 v-for="category in categories" :key='category.id'>
                 {{category.name}}
             </div>
@@ -52,15 +52,17 @@
     </div>
 
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
-    <div class="restaurants">
+    <div class="restaurants" v-if="isVisibleRestaurants">
 
         <a v-for="restaurant in restaurants" :key='restaurant.id' class="my_card"
             :href="'./restaurants/' + selectedRestaurant "
             @click="selectedRestaurant = restaurant.id">
 
-            <img v-if="showFilterRestaurants(restaurant)"  src="https://picsum.photos/536/354" alt="">
-            <div v-if="showFilterRestaurants(restaurant)" class="details">
-                <h3> {{restaurant.name}} </h3>
+            <div class="content">
+                <img src="https://picsum.photos/536/354" alt="">
+                <div class="details">
+                    <h3> {{restaurant.name}} </h3>
+                </div>
             </div>
         </a>
 
@@ -74,15 +76,26 @@ import Axios from 'axios';
 export default {
     data() {
         return{
-            restaurants: '',
-            categories: '',
+            restaurants: [],
+            categories: [],
+            filterRestaurants: [],
             isVisibleRestaurants: false,
             activeCategories: [],
             selectedRestaurant: '',
         }
     },
     methods: {
-        showFilterRestaurants(restaurant){
+        showFilterRestaurants(){
+            //fare chiamata api per avere tutti i ristoranti
+            // verificare i risoranti che hanno l'id in activeCategories 
+            //lasciare nell'array restaurants solo i ristoranti verificati in modo da stampare solo quelli
+                if (this.activeCategories.length == 0) {
+                    this.callCategories;
+                } else {
+                    this.restaurants = [];    
+                }
+        },
+        /* showFilterRestaurants(restaurant){
             let filter = [];
             restaurant.categories.forEach(category => {
                 if (this.activeCategories.includes(category.id) && !filter.includes(restaurant.id)) {
@@ -95,7 +108,7 @@ export default {
             } else if(this.isVisibleRestaurants && this.activeCategories == '') {
                 return true;
             }
-        },
+        }, */
         selectCategory(id){
             if (id == null) {
                 this.activeCategories = [];

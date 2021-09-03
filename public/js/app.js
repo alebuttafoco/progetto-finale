@@ -1980,37 +1980,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      restaurants: '',
-      categories: '',
+      restaurants: [],
+      categories: [],
+      filterRestaurants: [],
       isVisibleRestaurants: false,
       activeCategories: [],
       selectedRestaurant: ''
     };
   },
   methods: {
-    showFilterRestaurants: function showFilterRestaurants(restaurant) {
-      var _this = this;
-
-      var filter = [];
-      restaurant.categories.forEach(function (category) {
-        if (_this.activeCategories.includes(category.id) && !filter.includes(restaurant.id)) {
-          filter.push(restaurant.id);
-          console.log(filter);
-        }
-      });
-
-      if (this.isVisibleRestaurants && this.activeCategories != '') {
-        return filter.includes(restaurant.id);
-      } else if (this.isVisibleRestaurants && this.activeCategories == '') {
-        return true;
+    showFilterRestaurants: function showFilterRestaurants() {
+      //fare chiamata api per avere tutti i ristoranti
+      // verificare i risoranti che hanno l'id in activeCategories 
+      //lasciare nell'array restaurants solo i ristoranti verificati in modo da stampare solo quelli
+      if (this.activeCategories.length == 0) {
+        this.callCategories;
+      } else {
+        this.restaurants = [];
       }
     },
+
+    /* showFilterRestaurants(restaurant){
+        let filter = [];
+        restaurant.categories.forEach(category => {
+            if (this.activeCategories.includes(category.id) && !filter.includes(restaurant.id)) {
+                filter.push(restaurant.id);
+                console.log(filter);
+            }
+        })
+        if (this.isVisibleRestaurants && this.activeCategories != '') {
+            return filter.includes(restaurant.id);
+        } else if(this.isVisibleRestaurants && this.activeCategories == '') {
+            return true;
+        }
+    }, */
     selectCategory: function selectCategory(id) {
-      var _this2 = this;
+      var _this = this;
 
       if (id == null) {
         this.activeCategories = [];
@@ -2019,25 +2030,25 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.activeCategories.forEach(function (category, index) {
           if (id == category) {
-            _this2.activeCategories.splice(index, 1);
+            _this.activeCategories.splice(index, 1);
           }
         });
       }
     },
     callRestaurants: function callRestaurants() {
-      var _this3 = this;
+      var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('./api/restaurants').then(function (resp) {
-        _this3.restaurants = resp.data.data;
+        _this2.restaurants = resp.data.data;
       })["catch"](function (e) {
         console.error(e);
       });
     },
     callCategories: function callCategories() {
-      var _this4 = this;
+      var _this3 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('./api/categories').then(function (resp) {
-        _this4.categories = resp.data.data;
+        _this3.categories = resp.data.data;
       })["catch"](function (e) {
         console.error(e);
       });
@@ -38436,7 +38447,8 @@ var render = function() {
                   on: {
                     click: function($event) {
                       ;(_vm.isVisibleRestaurants = true),
-                        _vm.selectCategory(category.id)
+                        _vm.selectCategory(category.id),
+                        _vm.showFilterRestaurants()
                     }
                   }
                 },
@@ -38455,39 +38467,39 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "restaurants" },
-      _vm._l(_vm.restaurants, function(restaurant) {
-        return _c(
-          "a",
-          {
-            key: restaurant.id,
-            staticClass: "my_card",
-            attrs: { href: "./restaurants/" + _vm.selectedRestaurant },
-            on: {
-              click: function($event) {
-                _vm.selectedRestaurant = restaurant.id
-              }
-            }
-          },
-          [
-            _vm.showFilterRestaurants(restaurant)
-              ? _c("img", {
-                  attrs: { src: "https://picsum.photos/536/354", alt: "" }
-                })
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.showFilterRestaurants(restaurant)
-              ? _c("div", { staticClass: "details" }, [
-                  _c("h3", [_vm._v(" " + _vm._s(restaurant.name) + " ")])
+    _vm.isVisibleRestaurants
+      ? _c(
+          "div",
+          { staticClass: "restaurants" },
+          _vm._l(_vm.restaurants, function(restaurant) {
+            return _c(
+              "a",
+              {
+                key: restaurant.id,
+                staticClass: "my_card",
+                attrs: { href: "./restaurants/" + _vm.selectedRestaurant },
+                on: {
+                  click: function($event) {
+                    _vm.selectedRestaurant = restaurant.id
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "content" }, [
+                  _c("img", {
+                    attrs: { src: "https://picsum.photos/536/354", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "details" }, [
+                    _c("h3", [_vm._v(" " + _vm._s(restaurant.name) + " ")])
+                  ])
                 ])
-              : _vm._e()
-          ]
+              ]
+            )
+          }),
+          0
         )
-      }),
-      0
-    )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
