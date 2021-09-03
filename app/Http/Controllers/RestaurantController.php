@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
