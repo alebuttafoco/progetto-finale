@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Plate;
 use App\Restaurant;
 use App\User;
 use Illuminate\Support\Facades\View;
@@ -82,7 +83,11 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        return view('admin.restaurant.show', compact('restaurant'));
+        $id = Auth::user()->id;
+        $restaurants = Restaurant::where('user_id', $id)->get();
+        $restaurant_id = $restaurants[0]->id;
+        $plates = Plate::where('restaurant_id', $restaurant_id)->get();
+        return view('admin.restaurant.show', compact('restaurant', 'plates'));
     }
 
     /**

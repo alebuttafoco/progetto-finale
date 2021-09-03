@@ -44,6 +44,11 @@
 
         <div class="form-group">
             <label for="img">Immagine di copertina</label>
+            <div class="p-0 w-100">
+                <img class="img-restaurant w-25 h-25"
+                    src="{{ $restaurant->image == null ? asset('img/cover_restaurant.jpg') : 'Link immagine db' }}"
+                    alt="Copertina immagine ristorante">
+            </div>
             <input type="file" class="form-control-file" name="img" id="img"
                 placeholder="Carica la copertina per il tuo ristorante" aria-describedby="ImgHelp">
             <small id="ImgHelp" class="form-text text-muted">Max. 1 MB</small>
