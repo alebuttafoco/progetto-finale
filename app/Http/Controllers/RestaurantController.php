@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Plate;
 use App\Restaurant;
 use App\User;
 use Illuminate\Support\Facades\View;
@@ -50,7 +51,7 @@ class RestaurantController extends Controller
         $validatedData = $request->validate([
             'categories' => 'required | exists:categories,id',
             'name' => 'required | max:255',
-            'description' => 'required',
+            'description' => 'required | max:1000',
             'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
             'address' => 'required | max:255',
             'city' => 'required | max:255',
@@ -82,7 +83,11 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        return view('admin.restaurant.show', compact('restaurant'));
+        $id = Auth::user()->id;
+        $restaurants = Restaurant::where('user_id', $id)->get();
+        $restaurant_id = $restaurants[0]->id;
+        $plates = Plate::where('restaurant_id', $restaurant_id)->get();
+        return view('admin.restaurant.show', compact('restaurant', 'plates'));
     }
 
     /**
@@ -109,7 +114,7 @@ class RestaurantController extends Controller
         $validatedData = $request->validate([
             'categories' => 'required | exists:categories,id',
             'name' => 'required | max:255',
-            'description' => 'required',
+            'description' => 'required | max:1000',
             'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
             'address' => 'required | max:255',
             'city' => 'required | max:255',
@@ -141,6 +146,8 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
+        $plates = Plate::where('restaurant_id', $restaurant->id)->get();
+        Plate::destroy($plates);
         Restaurant::destroy($restaurant->id);
         return redirect()->route('admin.restaurant.index');
     }
