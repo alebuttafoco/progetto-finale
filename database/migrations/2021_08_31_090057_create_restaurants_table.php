@@ -39,6 +39,10 @@ class CreateRestaurantsTable extends Migration
      */
     public function down()
     {
+        Schema::table('plates', function (Blueprint $table) {
+            $table->dropForeign('plates_category_id_foreign');
+            $table->dropColumn('restaurant_id');
+        });
         Schema::dropIfExists('restaurants');
     }
 }
