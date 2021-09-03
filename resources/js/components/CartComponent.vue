@@ -18,14 +18,39 @@
               <button class="plus-btn" type="button" name="button">
                 <i class="fas fa-plus"></i>
               </button>
-              <input type="text" name="name" value="1">
+              <input class="input" type="text" name="name" value="1">
               <button class="minus-btn" type="button" name="button">
                 <i class="fas fa-minus"></i>
               </button>
             </div>
 
           </div>
-          <hr>
+
+          <div class="item">
+            <div class="image">
+              <img src="#" alt=""> 
+            </div>
+
+            <div class="description">
+              <span>Pasta alla norma di Giuse</span>
+            </div>
+
+            <div class="quantity">
+              <button class="plus-btn" type="button" name="button">
+                <i class="fas fa-plus"></i>
+              </button>
+              <input class="input" type="text" name="name" value="1">
+              <button class="minus-btn" type="button" name="button">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+
+          </div>
+
+          <div class="d-flex price-border">
+              <span class="p-4">Totale</span>
+              <span class="full-price p-4">12,3 €</span>
+          </div>
         </div>
         
     </div>
@@ -39,7 +64,24 @@ import Axios from 'axios';
 export default {
     data() {
         return{
-            
+            cart: [
+                [
+                    prezzo=12,
+                    nome="carbonara",
+                    quantità=1,
+                ],
+                [
+                    prezzo=10,
+                    nome="lasagne",
+                    quantità=1,
+                ],
+                [
+                    prezzo=9,
+                    nome="pizza",
+                    quantità=1,
+                ],
+            ],
+
         }
     },
     methods: {
@@ -66,8 +108,9 @@ export default {
 }
 .item {
     padding: 20px 30px;
-    height: 3.125rem;
+    /* height: 3.125rem; */
     display: flex;
+    /* margin-bottom: 1rem; */
   }
 .buttons {
     position: relative;
@@ -82,4 +125,16 @@ export default {
 .quantity{
     margin-left: auto;
 }
+
+.full-price{
+    margin-left: auto;
+}
+.input{
+    width: 2rem;
+    text-align: right;
+}
+.price-border{
+    border-top: 1px solid black;
+}
+
 </style>
