@@ -50,7 +50,7 @@ class RestaurantController extends Controller
         $validatedData = $request->validate([
             'categories' => 'required | exists:categories,id',
             'name' => 'required | max:255',
-            'description' => 'required | max:255',
+            'description' => 'required',
             'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
             'address' => 'required | max:255',
             'city' => 'required | max:255',
@@ -109,7 +109,7 @@ class RestaurantController extends Controller
         $validatedData = $request->validate([
             'categories' => 'required | exists:categories,id',
             'name' => 'required | max:255',
-            'description' => 'required | max:255',
+            'description' => 'required',
             'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
             'address' => 'required | max:255',
             'city' => 'required | max:255',
