@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AuthResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,9 +24,10 @@ Route::get('/cart', 'PageController@showCart')->name('cart');
 Auth::routes();
 
 Route::get('/user', 'HomeController@user')->name('user');
-Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+//Route::middleware(['auth', AuthResource::class])->prefix('admin')->name('admin.')->group(function () {
+    Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     
-    Route::resource('restaurant', RestaurantController::class);
+    Route::resource('restaurant', RestaurantController::class)->middleware(AuthResource::class, ['except' => ['index','show']]);
     Route::resource('plate', PlateController::class);
     
     Route::get('/ordini', 'HomeController@ordini' )->name('ordini');

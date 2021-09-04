@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Restaurant;
+use App\Plate;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,17 +18,15 @@ class AuthResource
      */
     public function handle($request, Closure $next)
     {
-        
-        $id = $request->user()->id;
-        $restaurants = Restaurant::where('user_id', $id)->get();
-        //ddd($restaurants[0]->user_id );
-        
-        $prova = $restaurants[0]->user_id;
-        if ($prova === Auth::id()) {
-            return $next($request);
-            
+        //ddd($request->route('restaurant')->user_id, Auth::id());
+        //7ddd($request->route('restaurant') );
+        if ($request->route('restaurant') != null) {
+            # code...
+            if (($request->route('restaurant')->user_id) !== (Auth::id())) {
+                abort(403, "Don't have the permision" );
+            }
         }
-        return route('/cart');
+        return $next($request);
         
     }
 }
