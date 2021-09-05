@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Middleware\AuthResource;
+use App\Http\Middleware\PlateMiddleware;
+use App\Http\Middleware\RestaurantMiddleware;
+use App\Http\Middleware\UserControllMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,11 +26,13 @@ Route::get('/cart', 'PageController@showCart')->name('cart');
 
 Auth::routes();
 
+//rotta da vedere se tenere o cancellare, e la rotta che prima riconduceva dopo il login e la registrazione
 Route::get('/user', 'HomeController@user')->name('user');
-Route::middleware('auth')->middleware('AuthResource')->prefix('admin')->name('admin.')->group(function () {
+
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     
-    Route::resource('restaurant', RestaurantController::class);
-    Route::resource('plate', PlateController::class);
+    Route::resource('restaurant', RestaurantController::class)->middleware(RestaurantMiddleware::class);
+    Route::resource('plate', PlateController::class)->middleware(PlateMiddleware::class);
     
     Route::get('/ordini', 'HomeController@ordini' )->name('ordini');
     Route::get('/statistiche', 'HomeController@statistiche' )->name('statistiche');

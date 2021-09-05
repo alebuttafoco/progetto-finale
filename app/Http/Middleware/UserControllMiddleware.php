@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class AuthResource
+class UserControllMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,11 @@ class AuthResource
      */
     public function handle($request, Closure $next)
     {
-        //ddd( Auth::id());
-        if ($request->user()->id === Auth::id()) {
-            return $next($request);
-            
-        }
-        return view('/');
+
+
+        /*
+        da fare in un secondo momento quando passeremo alla pagina ordini e statistiche i dati del ristorante 
+        e dovremmo verificare se lo Auth::id() sara uguale al 'user_id' appartenente al ristorante
+        */
     }
 }
