@@ -2,12 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Restaurant;
-use App\Plate;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class AuthResource
+class RestaurantMiddleware
 {
     /**
      * Handle an incoming request.
@@ -18,11 +16,6 @@ class AuthResource
      */
     public function handle($request, Closure $next)
     {
-        
-
-        
-        
-        
         /*
             vado a verificare se nella richiesta c'è un ristorante quindi se ce vado a fare la verifica dopo
             altrimenti gli ritorno la richiesta
@@ -39,6 +32,5 @@ class AuthResource
             }
         }
         return $next($request);
-        
     }
 }

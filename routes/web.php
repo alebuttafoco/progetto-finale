@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\AuthResource;
 use App\Http\Middleware\PlateMiddleware;
+use App\Http\Middleware\RestaurantMiddleware;
 use App\Http\Middleware\UserControllMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +31,7 @@ Route::get('/user', 'HomeController@user')->name('user');
 
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     
-    Route::resource('restaurant', RestaurantController::class)->middleware(AuthResource::class);
+    Route::resource('restaurant', RestaurantController::class)->middleware(RestaurantMiddleware::class);
     Route::resource('plate', PlateController::class)->middleware(PlateMiddleware::class);
     
     Route::get('/ordini', 'HomeController@ordini' )->name('ordini');
