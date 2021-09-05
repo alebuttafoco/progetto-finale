@@ -44,7 +44,7 @@
 
             <div class="px-4 py-2 m-2" 
                 :class="activeCategories.includes(category.id) ? 'bttn' : 'bttn_reverse' "
-                @click="isVisibleRestaurants = true, selectCategory(category.id), showFilterRestaurants()" 
+                @click="isVisibleRestaurants = true, selectCategory(category.id)" 
                 v-for="category in categories" :key='category.id'>
                 {{category.name}}
             </div>
@@ -53,8 +53,10 @@
 
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
     <div class="restaurants" v-if="isVisibleRestaurants">
+        
+        <h4 class="bg-white mt-5 mx-auto" v-if="filterRestaurants.length == 0">Nessun ristorante da visualizzare per questa categoria 😪</h4>
 
-        <a v-for="restaurant in restaurants" :key='restaurant.id' class="my_card"
+        <a v-for="restaurant in filterRestaurants" :key='restaurant.id' class="my_card"
             :href="'./restaurants/' + selectedRestaurant "
             @click="selectedRestaurant = restaurant.id">
 
@@ -85,30 +87,6 @@ export default {
         }
     },
     methods: {
-        showFilterRestaurants(){
-            //fare chiamata api per avere tutti i ristoranti
-            // verificare i risoranti che hanno l'id in activeCategories 
-            //lasciare nell'array restaurants solo i ristoranti verificati in modo da stampare solo quelli
-                if (this.activeCategories.length == 0) {
-                    this.callCategories;
-                } else {
-                    this.restaurants = [];    
-                }
-        },
-        /* showFilterRestaurants(restaurant){
-            let filter = [];
-            restaurant.categories.forEach(category => {
-                if (this.activeCategories.includes(category.id) && !filter.includes(restaurant.id)) {
-                    filter.push(restaurant.id);
-                    console.log(filter);
-                }
-            })
-            if (this.isVisibleRestaurants && this.activeCategories != '') {
-                return filter.includes(restaurant.id);
-            } else if(this.isVisibleRestaurants && this.activeCategories == '') {
-                return true;
-            }
-        }, */
         selectCategory(id){
             if (id == null) {
                 this.activeCategories = [];
@@ -117,10 +95,29 @@ export default {
             } else {
                 this.activeCategories.forEach((category, index) => {
                     if (id == category) {
-                        this.activeCategories.splice(index, 1)
+                        this.activeCategories.splice(index, 1);
                     }
                 });
             }
+
+            let filter = [];
+            this.restaurants.forEach(restaurant => {
+                restaurant.categories.forEach(category => {
+                    if (this.activeCategories.includes(category.id) && !filter.includes(restaurant.id)) {
+                        filter.push(restaurant.id);
+                    }
+                })
+            })
+
+            this.filterRestaurants = [];
+            this.restaurants.forEach((restaurant, index) => {
+                if (this.activeCategories.length == 0) {
+                    this.filterRestaurants.push(restaurant);
+                } else if (filter.includes(restaurant.id)) {
+                    console.log('ristorante visibile ', restaurant.name, index);
+                    this.filterRestaurants.push(restaurant);
+                }
+            })
         },
         callRestaurants(){
             Axios.get('./api/restaurants')

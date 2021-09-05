@@ -1982,6 +1982,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1995,31 +1997,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    showFilterRestaurants: function showFilterRestaurants() {
-      //fare chiamata api per avere tutti i ristoranti
-      // verificare i risoranti che hanno l'id in activeCategories 
-      //lasciare nell'array restaurants solo i ristoranti verificati in modo da stampare solo quelli
-      if (this.activeCategories.length == 0) {
-        this.callCategories;
-      } else {
-        this.restaurants = [];
-      }
-    },
-
-    /* showFilterRestaurants(restaurant){
-        let filter = [];
-        restaurant.categories.forEach(category => {
-            if (this.activeCategories.includes(category.id) && !filter.includes(restaurant.id)) {
-                filter.push(restaurant.id);
-                console.log(filter);
-            }
-        })
-        if (this.isVisibleRestaurants && this.activeCategories != '') {
-            return filter.includes(restaurant.id);
-        } else if(this.isVisibleRestaurants && this.activeCategories == '') {
-            return true;
-        }
-    }, */
     selectCategory: function selectCategory(id) {
       var _this = this;
 
@@ -2034,6 +2011,25 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
+
+      var filter = [];
+      this.restaurants.forEach(function (restaurant) {
+        restaurant.categories.forEach(function (category) {
+          if (_this.activeCategories.includes(category.id) && !filter.includes(restaurant.id)) {
+            filter.push(restaurant.id);
+          }
+        });
+      });
+      this.filterRestaurants = [];
+      this.restaurants.forEach(function (restaurant, index) {
+        if (_this.activeCategories.length == 0) {
+          _this.filterRestaurants.push(restaurant);
+        } else if (filter.includes(restaurant.id)) {
+          console.log('ristorante visibile ', restaurant.name, index);
+
+          _this.filterRestaurants.push(restaurant);
+        }
+      });
     },
     callRestaurants: function callRestaurants() {
       var _this2 = this;
@@ -38447,8 +38443,7 @@ var render = function() {
                   on: {
                     click: function($event) {
                       ;(_vm.isVisibleRestaurants = true),
-                        _vm.selectCategory(category.id),
-                        _vm.showFilterRestaurants()
+                        _vm.selectCategory(category.id)
                     }
                   }
                 },
@@ -38471,33 +38466,43 @@ var render = function() {
       ? _c(
           "div",
           { staticClass: "restaurants" },
-          _vm._l(_vm.restaurants, function(restaurant) {
-            return _c(
-              "a",
-              {
-                key: restaurant.id,
-                staticClass: "my_card",
-                attrs: { href: "./restaurants/" + _vm.selectedRestaurant },
-                on: {
-                  click: function($event) {
-                    _vm.selectedRestaurant = restaurant.id
-                  }
-                }
-              },
-              [
-                _c("div", { staticClass: "content" }, [
-                  _c("img", {
-                    attrs: { src: "https://picsum.photos/536/354", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "details" }, [
-                    _c("h3", [_vm._v(" " + _vm._s(restaurant.name) + " ")])
-                  ])
+          [
+            _vm.filterRestaurants.length == 0
+              ? _c("h4", { staticClass: "bg-white mt-5 mx-auto" }, [
+                  _vm._v(
+                    "Nessun ristorante da visualizzare per questa categoria 😪"
+                  )
                 ])
-              ]
-            )
-          }),
-          0
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._l(_vm.filterRestaurants, function(restaurant) {
+              return _c(
+                "a",
+                {
+                  key: restaurant.id,
+                  staticClass: "my_card",
+                  attrs: { href: "./restaurants/" + _vm.selectedRestaurant },
+                  on: {
+                    click: function($event) {
+                      _vm.selectedRestaurant = restaurant.id
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "content" }, [
+                    _c("img", {
+                      attrs: { src: "https://picsum.photos/536/354", alt: "" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "details" }, [
+                      _c("h3", [_vm._v(" " + _vm._s(restaurant.name) + " ")])
+                    ])
+                  ])
+                ]
+              )
+            })
+          ],
+          2
         )
       : _vm._e()
   ])
@@ -50908,8 +50913,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\demat\Desktop\progetto-finale\progetto-finale\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\demat\Desktop\progetto-finale\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ale\Desktop\progetto-finale\progetto-finale\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ale\Desktop\progetto-finale\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
