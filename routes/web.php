@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PageController@home')->name('home');
-Route::get('restaurants/{id}', 'PageController@showRestaurant')->name('restaurant.show');
+Route::get('restaurants/{id}', 'PageController@home')->name('home');
+// Route::get('restaurants/{id}', 'PageController@showRestaurant')->name('restaurant.show');
 
 Route::get('/cart', 'PageController@showCart')->name('cart');
 
