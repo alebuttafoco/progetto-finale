@@ -53,9 +53,10 @@
 
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
     <div class="restaurants" v-if="isVisibleRestaurants">
-        
+        <!-- messaggio ristorante non trovato con il filtro di categoria -->
         <h4 class="bg-white mt-5 mx-auto" v-if="filterRestaurants.length == 0">Nessun ristorante da visualizzare per questa categoria 😪</h4>
 
+        <!-- ristorante visualizzato -->
         <a v-for="restaurant in filterRestaurants" :key='restaurant.id' class="my_card"
             :href="'./restaurants/' + selectedRestaurant "
             @click="selectedRestaurant = restaurant.id">
