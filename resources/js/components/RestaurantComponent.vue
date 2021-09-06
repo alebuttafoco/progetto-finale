@@ -3,38 +3,38 @@
 
         <div class="img-restaurant-container">
             <h1>Immagine Ristorante</h1>
+            <img :src="'../storage/' + restaurant.image" alt="">
         </div>
 
-        <h1 class="p-2 pl-3">{{ restaurants[0].name }}</h1>
+        <h1 class="p-2 pl-3">{{ restaurant.name }}</h1>
 
         <p class="p-2 pl-3">
-            {{ restaurants[0].description }}
+            {{ restaurant.description }}
         </p>
-        <div class="address p-2 pl-3">{{ restaurants[0].address }}, {{ restaurants[0].city }}, {{ restaurants[0].cap }}</div>
+        <div class="address p-2 pl-3">{{ restaurant.address }}, {{ restaurant.city }}, {{ restaurant.cap }}</div>
 
         <ul class="list-inline text-secondary p-2 pl-3">
-            <li class="list-inline-item">Categoria 1 </li>
-            <li class="list-inline-item">Categoria 2 </li>
-            <li class="list-inline-item">Categoria 3 </li>
+            <li class="list-inline-item" v-for="category in restaurant.categories" :key="category.id"> 
+                {{category.name}}
+            </li>
         </ul>
 
 
         <div class="menu p-2">
             <h3 class="p-3">Tipo 1</h3>
 
-            <!-- <div class="d-flex flex-wrap">
-                @foreach ($plates as $plate)
-                    <div class="card m-3 position-relative" style="width: 15rem;">
-                        <img class="card-img-top plate-img" src="{{ $plate->image }}" alt="{{ $plate->name }}">
+            <div class="d-flex flex-wrap">
+
+                    <div class="card m-3 position-relative" style="width: 15rem;" v-for="plate in restaurant.plates" :key="plate.id">
+                        <img class="card-img-top plate-img" :src=" '../storage/' + plate.image " :alt="plate.name">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $plate->name }}</h5>
-                            <p class="card-text mb-5">{{ $plate->description }}</p>
-                            <a href="#" class="btn btn-primary price-btn"><strong>{{ $plate->price }} €</strong></a>
+                            <h5 class="card-title">{{ plate.name }}</h5>
+                            <p class="card-text mb-5">{{ plate.description }}</p>
+                            <a href="#" class="btn btn-primary price-btn"><strong>{{ plate.price }} €</strong></a>
                         </div>
                     </div>
-                @endforeach
 
-            </div> -->
+            </div>
         </div>
         <div class="menu p-2">
             <h3 class="p-3">Tipo 2</h3>
@@ -52,18 +52,15 @@ import Axios from 'axios';
 export default {
     data(){ 
         return {
-            restaurants: '',
-            plates: '',
-            categories: '',
+            restaurant: '',
         }
     },
 
     methods: {
         callRestaurants(){
-            Axios.get('http://127.0.0.1:8000/api/restaurants')
+            Axios.get('/api/restaurants/' + this.$route.params.id)
             .then(resp => {
-                console.log(resp.data.data);
-                this.restaurants = resp.data.data;
+                this.restaurant = resp.data.data;
             })
             .catch(e => {
                 console.error(e);
