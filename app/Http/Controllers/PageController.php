@@ -13,14 +13,14 @@ class PageController extends Controller
         return view('home');
     }
 
-    public function showRestaurant(Request $request)
-    {
-        //ddd($request->id);
-        $restaurant=Restaurant::find($request->id);
-        $plates=Plate::all();
-        //ddd($plates);
-        return view('restaurants.show', compact('restaurant', 'plates'));
-    }
+    // public function showRestaurant(Request $request)
+    // {
+    //     //ddd($request->id);
+    //     $restaurant=Restaurant::find($request->id);
+    //     $plates=Plate::all();
+    //     //ddd($plates);
+    //     return view('restaurants.show', compact('restaurant', 'plates'));
+    // }
 
     public function showCart(Order $order) //Ricordarsi di cambiare il modello dall'ordine "into" carrello
     {
