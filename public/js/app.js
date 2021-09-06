@@ -2000,6 +2000,7 @@ __webpack_require__.r(__webpack_exports__);
     selectCategory: function selectCategory(id) {
       var _this = this;
 
+      // INSERISCE ED ELIMINA DALL'ARRAY LE CATEGORIE SELEZIONATE
       if (id == null) {
         this.activeCategories = [];
       } else if (!this.activeCategories.includes(id)) {
@@ -2010,24 +2011,23 @@ __webpack_require__.r(__webpack_exports__);
             _this.activeCategories.splice(index, 1);
           }
         });
-      }
+      } // CREA ARRAY CHE CONTIENE SOLO L'ID DEI RISTORANTI DA VISUALIZZARE
+      // INSERISCE I RISTORANTI DA VISUALIZZARE IN UN NUOVO ARRAY CHE SARA' UTILIZZATO PER CICLARE E STAMPARE I DATI A SCHERMO
+
 
       var filter = [];
-      this.restaurants.forEach(function (restaurant) {
-        restaurant.categories.forEach(function (category) {
-          if (_this.activeCategories.includes(category.id) && !filter.includes(restaurant.id)) {
-            filter.push(restaurant.id);
-          }
-        });
-      });
       this.filterRestaurants = [];
-      this.restaurants.forEach(function (restaurant, index) {
+      this.restaurants.forEach(function (restaurant) {
         if (_this.activeCategories.length == 0) {
           _this.filterRestaurants.push(restaurant);
-        } else if (filter.includes(restaurant.id)) {
-          console.log('ristorante visibile ', restaurant.name, index);
+        } else {
+          restaurant.categories.forEach(function (category) {
+            if (_this.activeCategories.includes(category.id) && !filter.includes(restaurant.id)) {
+              filter.push(restaurant.id);
 
-          _this.filterRestaurants.push(restaurant);
+              _this.filterRestaurants.push(restaurant);
+            }
+          });
         }
       });
     },

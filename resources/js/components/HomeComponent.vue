@@ -88,6 +88,8 @@ export default {
     },
     methods: {
         selectCategory(id){
+
+            // INSERISCE ED ELIMINA DALL'ARRAY LE CATEGORIE SELEZIONATE
             if (id == null) {
                 this.activeCategories = [];
             } else if (!this.activeCategories.includes(id)){
@@ -100,22 +102,20 @@ export default {
                 });
             }
 
+            // CREA ARRAY CHE CONTIENE SOLO L'ID DEI RISTORANTI DA VISUALIZZARE
+            // INSERISCE I RISTORANTI DA VISUALIZZARE IN UN NUOVO ARRAY CHE SARA' UTILIZZATO PER CICLARE E STAMPARE I DATI A SCHERMO
             let filter = [];
-            this.restaurants.forEach(restaurant => {
-                restaurant.categories.forEach(category => {
-                    if (this.activeCategories.includes(category.id) && !filter.includes(restaurant.id)) {
-                        filter.push(restaurant.id);
-                    }
-                })
-            })
-
             this.filterRestaurants = [];
-            this.restaurants.forEach((restaurant, index) => {
+            this.restaurants.forEach(restaurant => {
                 if (this.activeCategories.length == 0) {
                     this.filterRestaurants.push(restaurant);
-                } else if (filter.includes(restaurant.id)) {
-                    console.log('ristorante visibile ', restaurant.name, index);
-                    this.filterRestaurants.push(restaurant);
+                } else {
+                    restaurant.categories.forEach(category => {
+                        if (this.activeCategories.includes(category.id) && !filter.includes(restaurant.id)) {
+                            filter.push(restaurant.id);
+                            this.filterRestaurants.push(restaurant);
+                        }
+                    })
                 }
             })
         },
