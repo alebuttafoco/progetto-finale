@@ -42,11 +42,11 @@
         </div>
 
         <div class="form-group">
-            <label for="img">Immagine di copertina</label>
-            <input type="file" class="form-control-file" name="img" id="img"
-                placeholder="Carica la copertina per il tuo ristorante" aria-describedby="ImgHelp">
+            <label for="image">Immagine di copertina</label>
+            <input type="file" class="form-control-file" name="image" id="image"
+                placeholder="Carica la copertina per il tuo ristorante" aria-describedby="ImageHelp">
             <small id="ImgHelp" class="form-text text-muted">Max. 1 MB</small>
-            @error('img')
+            @error('image')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

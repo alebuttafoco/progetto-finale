@@ -54,16 +54,16 @@ class RestaurantController extends Controller
             'categories' => 'required | exists:categories,id',
             'name' => 'required | max:255',
             'description' => 'required | max:1000',
-            'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
+            'image' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
             'address' => 'required | max:255',
             'city' => 'required | max:255',
             'cap' => 'required | digits:5',
             'piva' => 'required | digits:11',
         ]);
 
-        if (in_array('img', $validatedData)) {
+        if (in_array('image', $validatedData)) {
             // Se si sta caricando l'immagine spostala nello spazio web dedicato all'archiviazione
-            $file_path = Storage::put('restaurant_images', $validatedData['img']);
+            $file_path = Storage::put('restaurant_images', $validatedData['image']);
             $validatedData['image'] = $file_path;
         } else {
             // se non esiste, usa l'immagine dentro l'asset
@@ -104,13 +104,13 @@ class RestaurantController extends Controller
         $categories = Category::all();
         return view('admin.restaurant.edit', compact('restaurant', 'categories'));
 
-        
+
         // if ($restaurant->user_id === Auth::id()) {
         //     $categories = Category::all();
         //     return view('admin.restaurant.edit', compact('restaurant', 'categories'));
         // }
         // return view('home');
-        
+
     }
 
     /**
