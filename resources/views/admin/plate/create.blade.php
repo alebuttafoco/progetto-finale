@@ -9,13 +9,26 @@
         <i class="fas fa-chevron-left"></i>
         Indietro
     </a>
+
+    @include('components.error')
+
+    {{-- Alert per campi obbligatori --}}
+    <div class="alert alert-warning alert-dismissible fade show mt-5" role="alert">
+        <i class="fas fa-info-circle"></i>
+        Completa i <strong>campi obbligatori *</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
     <div class="card-body">
         <form method="POST" action="{{ route('admin.plate.store') }}" enctype="multipart/form-data">
             @csrf
 
             {{-- Name --}}
             <div class="form-group row">
-                <label for="name" class="col-md-1 col-form-label text-md-right">{{ __('Name') }}</label>
+                <label for="name" class="col-md-1 col-form-label text-md-right">{{ __('Nome') }}</label>
+                <small class="text-danger bigtxt">*</small>
 
                 <div class="col-md-11">
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
@@ -31,7 +44,8 @@
 
             {{-- Image --}}
             <div class="form-group row">
-                <label for="image" class="col-md-1 col-form-label text-md-right">{{ __('Image') }}</label>
+                <label for="image" class="col-md-1 col-form-label text-md-right">{{ __('Immagine') }}</label>
+                <small class="text-danger bigtxt">*</small>
 
                 <div class="col-md-11">
                     <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image"
@@ -47,12 +61,13 @@
 
             {{-- Description --}}
             <div class="form-group row">
-                <label for="description" class="col-md-1 col-form-label text-md-right">{{ __('Description') }}</label>
+                <label for="description" class="col-md-1 col-form-label text-md-right">{{ __('Descrizione') }}</label>
+                <small class="text-danger bigtxt">*</small>
 
                 <div class="col-md-11">
                     <textarea class="form-control" id="description"
-                        class="form-control @error('description') is-invalid @enderror" rows="3" name="description"
-                        required autocomplete="description" autofocus>{{ old('description') }}</textarea>
+                        class="form-control @error('description') is-invalid @enderror" rows="3" name="description" required
+                        autocomplete="description" autofocus>{{ old('description') }}</textarea>
 
                     @error('description')
                         <span class="invalid-feedback" role="alert">
@@ -64,7 +79,8 @@
 
             {{-- Price --}}
             <div class="form-group row">
-                <label for="price" class="col-md-1 col-form-label text-md-right">{{ __('Price') }}</label>
+                <label for="price" class="col-md-1 col-form-label text-md-right">{{ __('Prezzo') }}</label>
+                <small class="text-danger bigtxt">*</small>
 
                 <div class="col-md-11">
                     <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price"
@@ -80,7 +96,8 @@
 
             {{-- Type --}}
             <div class="form-group row">
-                <label for="type" class="col-md-1 col-form-label text-md-right">{{ __('Type') }}</label>
+                <label for="type" class="col-md-1 col-form-label text-md-right">{{ __('Tipo') }}</label>
+                <small class="text-danger bigtxt">*</small>
 
                 <div class="col-md-11">
                     <select id="type" name="type" class="form-control @error('type') is-invalid @enderror">
@@ -103,9 +120,10 @@
             {{-- Visible --}}
             <div class="form-group row">
                 <label for="visible" class="col-md-1 col-form-label text-md-right">{{ __('Visible') }}</label>
+                <small class="text-danger bigtxt">*</small>
 
                 <div class="col-md-11">
-                    <input type="radio" name="visible" required id="visible" value="1">
+                    <input type="radio" name="visible" required checked id="visible" value="1">
                     <span class="mr-3">Visible</span>
                     <input type="radio" name="visible" required id="visible" value="0">
                     <span>No Visible</span>
@@ -122,7 +140,7 @@
             <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-4">
                     <button type="submit" class="btn btn-success">
-                        {{ __('Add Plate') }}
+                        {{ __('Aggiungi') }}
                     </button>
                 </div>
             </div>

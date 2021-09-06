@@ -16,7 +16,15 @@
 
 
         @if ($plates === false)
-            <h1>Aggiungi il tuo primo piatto!</h1>
+            {{-- Badge di informazioni --}}
+            <div class="alert alert-secondary alert-dismissible fade show mt-1" role="alert">
+                I tuoi ristoranti sono vuoti...
+                <br>
+                Forse sarebbe meglio inserire qualche piatto!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         @else
             <table class="table table-striped">
                 <thead>
