@@ -8,7 +8,9 @@
     <div :class=" isVisibleRestaurants ? 'sticky' : 'search_center' ">
         <div v-if="!isVisibleRestaurants" class="search_restaurants text-center">
             <h1>Ordina su DeliveBoo!</h1>
-            <span @click="isVisibleRestaurants = true, selectedCategory = [] " class="bttn px-4 py-2 m-2">Visualizza tutti i Ristoranti</span>
+            <span @click="isVisibleRestaurants = true,  selectCategory() " class="bttn px-4 py-2 m-2">
+                Visualizza tutti i Ristoranti
+            </span>
             <h4 class="mt-5">Oppure seleziona una categoria per iniziare</h4>
         </div>
         
@@ -34,15 +36,15 @@
                 </div>
             </form> -->
             <div v-if="isVisibleRestaurants" 
-                @click="isVisibleRestaurants = true, selectedCategory = [] " 
+                @click="isVisibleRestaurants = true, selectCategory()" 
                 class="px-4 py-2 m-2"
-                :class="selectedCategory == [] ? 'bttn' : 'bttn_reverse' ">
+                :class="activeCategories == '' ? 'bttn' : 'bttn_reverse' ">
                 Visualizza tutti i Ristoranti
             </div>
 
             <div class="px-4 py-2 m-2" 
-                :class="selectedCategory == category.id ? 'bttn' : 'bttn_reverse' "
-                @click="isVisibleRestaurants = true, selectedCategory.push(category.id)" 
+                :class="activeCategories.includes(category.id) ? 'bttn' : 'bttn_reverse' "
+                @click="isVisibleRestaurants = true, selectCategory(category.id)" 
                 v-for="category in categories" :key='category.id'>
                 {{category.name}}
             </div>
@@ -50,17 +52,23 @@
     </div>
 
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
-    <div class="restaurants p-5" v-if="isVisibleRestaurants">
-        <a :href="'./restaurants/' + selectedRestaurant " @click="selectedRestaurant = restaurant.id" class="my_card" v-for="restaurant in restaurants" :key='restaurant.id'>
-            <div v-if="activeCategory(restaurant.categories)">
-                <img  :src="restaurant.image" alt="">
+    <div class="restaurants" v-if="isVisibleRestaurants">
+        <!-- messaggio ristorante non trovato con il filtro di categoria -->
+        <h4 class="bg-white mt-5 mx-auto" v-if="filterRestaurants.length == 0">Nessun ristorante da visualizzare per questa categoria 😪</h4>
+
+        <!-- ristorante visualizzato -->
+        <a v-for="restaurant in filterRestaurants" :key='restaurant.id' class="my_card"
+            :href="'./restaurants/' + selectedRestaurant "
+            @click="selectedRestaurant = restaurant.id">
+
+            <div class="content">
+                <img src="https://picsum.photos/536/354" alt="">
                 <div class="details">
-                    <h3> {{restaurant.name}} </h3>
-                    <h3> {{restaurant.categories[0].id}} </h3>
+                    <h5> {{restaurant.name}} </h5>
                 </div>
             </div>
-                {{restaurant.categories}}
         </a>
+
     </div>
 </div>
 </template>
@@ -71,23 +79,46 @@ import Axios from 'axios';
 export default {
     data() {
         return{
-            restaurants: '',
-            categories: '',
+            restaurants: [],
+            categories: [],
+            filterRestaurants: [],
             isVisibleRestaurants: false,
-            selectedCategory: [],
+            activeCategories: [],
             selectedRestaurant: '',
         }
     },
     methods: {
-        activeCategory(restaurant){
-            restaurant.forEach(category => {
-                if (this.selectedCategory.includes(category.id)) {
-                    return true;
-                }else {
-                    return false;
-                }
-            });
+        selectCategory(id){
 
+            // INSERISCE ED ELIMINA DALL'ARRAY LE CATEGORIE SELEZIONATE
+            if (id == null) {
+                this.activeCategories = [];
+            } else if (!this.activeCategories.includes(id)){
+                this.activeCategories.push(id);
+            } else {
+                this.activeCategories.forEach((category, index) => {
+                    if (id == category) {
+                        this.activeCategories.splice(index, 1);
+                    }
+                });
+            }
+
+            // CREA ARRAY CHE CONTIENE SOLO L'ID DEI RISTORANTI DA VISUALIZZARE
+            // INSERISCE I RISTORANTI DA VISUALIZZARE IN UN NUOVO ARRAY CHE SARA' UTILIZZATO PER CICLARE E STAMPARE I DATI A SCHERMO
+            let filter = [];
+            this.filterRestaurants = [];
+            this.restaurants.forEach(restaurant => {
+                if (this.activeCategories.length == 0) {
+                    this.filterRestaurants.push(restaurant);
+                } else {
+                    restaurant.categories.forEach(category => {
+                        if (this.activeCategories.includes(category.id) && !filter.includes(restaurant.id)) {
+                            filter.push(restaurant.id);
+                            this.filterRestaurants.push(restaurant);
+                        }
+                    })
+                }
+            })
         },
         callRestaurants(){
             Axios.get('./api/restaurants')
@@ -165,15 +196,12 @@ export default {
     @media screen and (max-width:991.98px) {
         width: 98%;
     }
-
     margin: auto;
     animation: show .5s .5s ease;
     animation-fill-mode: backwards;
     display: flex;
     flex-wrap: wrap;
-    // display: grid;
-    // place-items: center;
-    // grid-template-columns: 1fr 1fr 1fr; 
+
     .my_card {
         width: calc(100% / 4 - 2rem);
         margin: 1rem;
@@ -189,7 +217,6 @@ export default {
         @media screen and (max-width:575.98px) {
             width: calc(100% - 2rem);
         }
-
         background-color: rgb(240, 240, 240);
         text-decoration: none;
         transition: .2s ease;

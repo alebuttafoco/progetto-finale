@@ -54,19 +54,17 @@ class RestaurantController extends Controller
             'categories' => 'required | exists:categories,id',
             'name' => 'required | max:255',
             'description' => 'required | max:1000',
-            'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
+            'image' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
             'address' => 'required | max:255',
             'city' => 'required | max:255',
             'cap' => 'required | digits:5',
             'piva' => 'required | digits:11',
         ]);
 
-        if (in_array('img', $validatedData)) {
+        if ($request->hasFile('image')) {
             // Se si sta caricando l'immagine spostala nello spazio web dedicato all'archiviazione
-            $file_path = Storage::put('restaurant_images', $validatedData['img']);
+            $file_path = Storage::put('restaurant_images', $validatedData['image']);
             $validatedData['image'] = $file_path;
-        } else {
-            // se non esiste, usa l'immagine dentro l'asset
         }
 
         $id_utente = Auth::user()->id;
@@ -104,13 +102,13 @@ class RestaurantController extends Controller
         $categories = Category::all();
         return view('admin.restaurant.edit', compact('restaurant', 'categories'));
 
-        
+
         // if ($restaurant->user_id === Auth::id()) {
         //     $categories = Category::all();
         //     return view('admin.restaurant.edit', compact('restaurant', 'categories'));
         // }
         // return view('home');
-        
+
     }
 
     /**
@@ -126,7 +124,7 @@ class RestaurantController extends Controller
             'categories' => 'required | exists:categories,id',
             'name' => 'required | max:255',
             'description' => 'required | max:1000',
-            'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
+            'image' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
             'address' => 'required | max:255',
             'city' => 'required | max:255',
             'cap' => 'required | digits:5',
@@ -137,15 +135,15 @@ class RestaurantController extends Controller
         Se "img" ovvero l'array di modifica è vuoto, ovvero falso, non fare nulla
         se è vero, quindi nuova immagine, esegui il codice
          */
-        if (array_key_exists('img', $validatedData)) {
+        if ($request->hasFile('image')) {
 
             Storage::disk('public')->delete($restaurant->img);
-            $file_path = Storage::put('restaurant_images', $validatedData['img']);
-            $validatedData['img'] = $file_path;
+            $file_path = Storage::put('restaurant_images', $validatedData['image']);
+            $validatedData['image'] = $file_path;
         }
 
         $restaurant->update($validatedData);
-        $restaurant->categories()->attach($validatedData['categories']);
+        $restaurant->categories()->sync($validatedData['categories']);
         return redirect()->route('admin.restaurant.show', $restaurant->id);;
     }
 

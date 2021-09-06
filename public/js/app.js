@@ -2034,26 +2034,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      restaurants: '',
-      categories: '',
+      restaurants: [],
+      categories: [],
+      filterRestaurants: [],
       isVisibleRestaurants: false,
-      selectedCategory: [],
+      activeCategories: [],
       selectedRestaurant: ''
     };
   },
   methods: {
-    activeCategory: function activeCategory(restaurant) {
+    selectCategory: function selectCategory(id) {
       var _this = this;
 
-      restaurant.forEach(function (category) {
-        if (_this.selectedCategory.includes(category.id)) {
-          return true;
+      // INSERISCE ED ELIMINA DALL'ARRAY LE CATEGORIE SELEZIONATE
+      if (id == null) {
+        this.activeCategories = [];
+      } else if (!this.activeCategories.includes(id)) {
+        this.activeCategories.push(id);
+      } else {
+        this.activeCategories.forEach(function (category, index) {
+          if (id == category) {
+            _this.activeCategories.splice(index, 1);
+          }
+        });
+      } // CREA ARRAY CHE CONTIENE SOLO L'ID DEI RISTORANTI DA VISUALIZZARE
+      // INSERISCE I RISTORANTI DA VISUALIZZARE IN UN NUOVO ARRAY CHE SARA' UTILIZZATO PER CICLARE E STAMPARE I DATI A SCHERMO
+
+
+      var filter = [];
+      this.filterRestaurants = [];
+      this.restaurants.forEach(function (restaurant) {
+        if (_this.activeCategories.length == 0) {
+          _this.filterRestaurants.push(restaurant);
         } else {
-          return false;
+          restaurant.categories.forEach(function (category) {
+            if (_this.activeCategories.includes(category.id) && !filter.includes(restaurant.id)) {
+              filter.push(restaurant.id);
+
+              _this.filterRestaurants.push(restaurant);
+            }
+          });
         }
       });
     },
@@ -38540,12 +38572,15 @@ var render = function() {
                   staticClass: "bttn px-4 py-2 m-2",
                   on: {
                     click: function($event) {
-                      ;(_vm.isVisibleRestaurants = true),
-                        (_vm.selectedCategory = [])
+                      ;(_vm.isVisibleRestaurants = true), _vm.selectCategory()
                     }
                   }
                 },
-                [_vm._v("Visualizza tutti i Ristoranti")]
+                [
+                  _vm._v(
+                    "\r\n                Visualizza tutti i Ristoranti\r\n            "
+                  )
+                ]
               ),
               _vm._v(" "),
               _c("h4", { staticClass: "mt-5" }, [
@@ -38563,11 +38598,10 @@ var render = function() {
                   "div",
                   {
                     staticClass: "px-4 py-2 m-2",
-                    class: _vm.selectedCategory == [] ? "bttn" : "bttn_reverse",
+                    class: _vm.activeCategories == "" ? "bttn" : "bttn_reverse",
                     on: {
                       click: function($event) {
-                        ;(_vm.isVisibleRestaurants = true),
-                          (_vm.selectedCategory = [])
+                        ;(_vm.isVisibleRestaurants = true), _vm.selectCategory()
                       }
                     }
                   },
@@ -38585,14 +38619,13 @@ var render = function() {
                 {
                   key: category.id,
                   staticClass: "px-4 py-2 m-2",
-                  class:
-                    _vm.selectedCategory == category.id
-                      ? "bttn"
-                      : "bttn_reverse",
+                  class: _vm.activeCategories.includes(category.id)
+                    ? "bttn"
+                    : "bttn_reverse",
                   on: {
                     click: function($event) {
                       ;(_vm.isVisibleRestaurants = true),
-                        _vm.selectedCategory.push(category.id)
+                        _vm.selectCategory(category.id)
                     }
                   }
                 },
@@ -38614,45 +38647,44 @@ var render = function() {
     _vm.isVisibleRestaurants
       ? _c(
           "div",
-          { staticClass: "restaurants p-5" },
-          _vm._l(_vm.restaurants, function(restaurant) {
-            return _c(
-              "a",
-              {
-                key: restaurant.id,
-                staticClass: "my_card",
-                attrs: { href: "./restaurants/" + _vm.selectedRestaurant },
-                on: {
-                  click: function($event) {
-                    _vm.selectedRestaurant = restaurant.id
+          { staticClass: "restaurants" },
+          [
+            _vm.filterRestaurants.length == 0
+              ? _c("h4", { staticClass: "bg-white mt-5 mx-auto" }, [
+                  _vm._v(
+                    "Nessun ristorante da visualizzare per questa categoria 😪"
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._l(_vm.filterRestaurants, function(restaurant) {
+              return _c(
+                "a",
+                {
+                  key: restaurant.id,
+                  staticClass: "my_card",
+                  attrs: { href: "./restaurants/" + _vm.selectedRestaurant },
+                  on: {
+                    click: function($event) {
+                      _vm.selectedRestaurant = restaurant.id
+                    }
                   }
-                }
-              },
-              [
-                _vm.activeCategory(restaurant.categories)
-                  ? _c("div", [
-                      _c("img", { attrs: { src: restaurant.image, alt: "" } }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "details" }, [
-                        _c("h3", [_vm._v(" " + _vm._s(restaurant.name) + " ")]),
-                        _vm._v(" "),
-                        _c("h3", [
-                          _vm._v(
-                            " " + _vm._s(restaurant.categories[0].id) + " "
-                          )
-                        ])
-                      ])
+                },
+                [
+                  _c("div", { staticClass: "content" }, [
+                    _c("img", {
+                      attrs: { src: "https://picsum.photos/536/354", alt: "" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "details" }, [
+                      _c("h5", [_vm._v(" " + _vm._s(restaurant.name) + " ")])
                     ])
-                  : _vm._e(),
-                _vm._v(
-                  "\r\n                " +
-                    _vm._s(restaurant.categories) +
-                    "\r\n        "
-                )
-              ]
-            )
-          }),
-          0
+                  ])
+                ]
+              )
+            })
+          ],
+          2
         )
       : _vm._e()
   ])

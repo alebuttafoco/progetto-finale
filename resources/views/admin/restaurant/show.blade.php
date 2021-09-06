@@ -13,7 +13,7 @@
     <div class="container p-0 w-auto" id="single-restaurant-page">
         <div class="img-restaurant-container">
             <img class="img-restaurant"
-                src="{{ $restaurant->image == null ? asset('img/cover_restaurant.jpg') : 'Link immagine db' }}"
+                src="{{ $restaurant->image == null ? asset('img/cover_restaurant.jpg') : asset('storage/' . $restaurant->image) }}"
                 alt="Copertina immagine ristorante">
         </div>
 
