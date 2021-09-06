@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\RestaurantResource;
-use App\Restaurant;
+use App\Http\Resources\PlateResource;
+use App\Plate;
 use Illuminate\Http\Request;
 
-class RestaurantController extends Controller
+class PlateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        return RestaurantResource::collection(Restaurant::orderBy('id', 'DESC')->with('categories', 'user', 'plates')->get());
+        return PlateResource::collection(Plate::orderBy('id', 'DESC')->with('restaurant')->paginate(10));
     }
 
 }
