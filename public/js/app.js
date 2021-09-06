@@ -1965,13 +1965,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1980,7 +1973,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {},
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    var contenutoArchiviato = JSON.parse(localStorage.getItem("cart"));
+    console.log(contenutoArchiviato.plates[0].name);
+  }
 });
 
 /***/ }),
@@ -2204,25 +2200,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      restaurants: '',
-      plates: '',
-      categories: ''
+      restaurants: "",
+      plates: "",
+      categories: "",
+      cart: ""
     };
   },
   methods: {
     callRestaurants: function callRestaurants() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/restaurants').then(function (resp) {
-        console.log(resp.data.data);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/restaurants").then(function (resp) {
         _this.restaurants = resp.data.data;
+        _this.cart = resp.data.data[1];
+        console.log(resp.data.data[1]);
       })["catch"](function (e) {
         console.error(e);
       });
+    },
+    storageCart: function storageCart() {
+      var parsed = JSON.stringify(this.cart);
+      localStorage.setItem("cart", parsed);
     }
   },
   mounted: function mounted() {
@@ -6686,7 +6689,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* */\n.shopping-cart[data-v-e7ab8a3c] {\n  /* width: 46.875rem; */\n  height: 25rem;\n  margin: 5rem auto;\n  background: #FFFFFF;\n  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);\n  border-radius: 0.375rem;\n  display: flex;\n  flex-direction: column;\n}\n.item[data-v-e7ab8a3c] {\n  padding: 20px 30px;\n  /* height: 3.125rem; */\n  display: flex;\n  /* margin-bottom: 1rem; */\n}\n.buttons[data-v-e7ab8a3c] {\n  position: relative;\n  padding-top: 1.875rem;\n}\n.plus-btn[data-v-e7ab8a3c], .minus-btn[data-v-e7ab8a3c] {\n  border-radius: 3px;\n  width: 23px;\n  background-color: white;\n  border: 1px solid black;\n}\n.quantity[data-v-e7ab8a3c] {\n  margin-left: auto;\n}\n.full-price[data-v-e7ab8a3c] {\n  margin-left: auto;\n}\n.input[data-v-e7ab8a3c] {\n  width: 2rem;\n  text-align: right;\n}\n.price-border[data-v-e7ab8a3c] {\n  border-top: 1px solid black;\n}", ""]);
+exports.push([module.i, "/* */\n.shopping-cart[data-v-e7ab8a3c] {\n  /* width: 46.875rem; */\n  height: 25rem;\n  margin: 5rem auto;\n  background: #ffffff;\n  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);\n  border-radius: 0.375rem;\n  display: flex;\n  flex-direction: column;\n}\n.item[data-v-e7ab8a3c] {\n  padding: 20px 30px;\n  /* height: 3.125rem; */\n  display: flex;\n  /* margin-bottom: 1rem; */\n}\n.buttons[data-v-e7ab8a3c] {\n  position: relative;\n  padding-top: 1.875rem;\n}\n.plus-btn[data-v-e7ab8a3c],\n.minus-btn[data-v-e7ab8a3c] {\n  border-radius: 3px;\n  width: 23px;\n  background-color: white;\n  border: 1px solid black;\n}\n.quantity[data-v-e7ab8a3c] {\n  margin-left: auto;\n}\n.full-price[data-v-e7ab8a3c] {\n  margin-left: auto;\n}\n.input[data-v-e7ab8a3c] {\n  width: 2rem;\n  text-align: right;\n}\n.price-border[data-v-e7ab8a3c] {\n  border-top: 1px solid black;\n}", ""]);
 
 // exports
 
@@ -38923,33 +38926,41 @@ var render = function() {
       attrs: { id: "single-restaurant-page" }
     },
     [
-      _vm._m(0),
+      _c("div", { staticClass: "img-restaurant-container" }, [
+        _c("h1", [_vm._v("Immagine Ristorante")]),
+        _vm._v(" "),
+        _c("button", { on: { click: _vm.storageCart } }, [
+          _vm._v("STorage Cart")
+        ])
+      ]),
       _vm._v(" "),
       _c("h1", { staticClass: "p-2 pl-3" }, [
         _vm._v(_vm._s(_vm.restaurants[0].name))
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "p-2 pl-3" }, [
-        _vm._v("\n        " + _vm._s(_vm.restaurants[0].description) + "\n    ")
+        _vm._v("\n    " + _vm._s(_vm.restaurants[0].description) + "\n  ")
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "address p-2 pl-3" }, [
         _vm._v(
-          _vm._s(_vm.restaurants[0].address) +
+          "\n    " +
+            _vm._s(_vm.restaurants[0].address) +
             ", " +
             _vm._s(_vm.restaurants[0].city) +
-            ", " +
-            _vm._s(_vm.restaurants[0].cap)
+            ",\n    " +
+            _vm._s(_vm.restaurants[0].cap) +
+            "\n  "
         )
       ]),
+      _vm._v(" "),
+      _vm._m(0),
       _vm._v(" "),
       _vm._m(1),
       _vm._v(" "),
       _vm._m(2),
       _vm._v(" "),
-      _vm._m(3),
-      _vm._v(" "),
-      _vm._m(4)
+      _vm._m(3)
     ]
   )
 }
@@ -38958,20 +38969,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "img-restaurant-container" }, [
-      _c("h1", [_vm._v("Immagine Ristorante")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "list-inline text-secondary p-2 pl-3" }, [
-      _c("li", { staticClass: "list-inline-item" }, [_vm._v("Categoria 1 ")]),
+      _c("li", { staticClass: "list-inline-item" }, [_vm._v("Categoria 1")]),
       _vm._v(" "),
-      _c("li", { staticClass: "list-inline-item" }, [_vm._v("Categoria 2 ")]),
+      _c("li", { staticClass: "list-inline-item" }, [_vm._v("Categoria 2")]),
       _vm._v(" "),
-      _c("li", { staticClass: "list-inline-item" }, [_vm._v("Categoria 3 ")])
+      _c("li", { staticClass: "list-inline-item" }, [_vm._v("Categoria 3")])
     ])
   },
   function() {
@@ -51580,8 +51583,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\php\progetto-finale\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\php\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Programmi\MAMP\htdocs\php\progetto-finale\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Programmi\MAMP\htdocs\php\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
