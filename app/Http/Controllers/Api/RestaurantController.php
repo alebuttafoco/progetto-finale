@@ -16,7 +16,12 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        return RestaurantResource::collection(Restaurant::orderBy('id', 'DESC')->with('categories', 'user', 'plates')->get());
+        return RestaurantResource::collection(Restaurant::orderBy('id', 'DESC')->get());
+    }
+
+    public function show(Restaurant $restaurant)
+    {
+        return new RestaurantResource($restaurant);
     }
 
 }
