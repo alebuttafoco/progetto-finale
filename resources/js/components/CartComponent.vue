@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <nav>
+
+  
     <div class="container">
         <h1 class="p-3">Carrello</h1>
 
@@ -12,6 +12,7 @@
 
             <div class="description">
               <span>Carbonara di Andrei</span>
+              <span>5,8</span>
             </div>
 
             <div class="quantity">
@@ -33,6 +34,7 @@
 
             <div class="description">
               <span>Pasta alla norma di Giuse</span>
+              <span>13,4</span>
             </div>
 
             <div class="quantity">
@@ -54,8 +56,8 @@
         </div>
         
     </div>
-</nav>
-    </div>
+
+
 </template>
 
 <script>
@@ -81,7 +83,6 @@ export default {
                     quantità=1,
                 ],
             ],
-
         }
     },
     methods: {
@@ -96,7 +97,7 @@ export default {
 <style lang="scss" scoped>
 /* */ 
 .shopping-cart {
-    width: 46.875rem;
+    /* width: 46.875rem; */ 
     height: 25rem;
     margin: 5rem auto;
     background: #FFFFFF;
