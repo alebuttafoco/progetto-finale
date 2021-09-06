@@ -55,7 +55,7 @@
             <label for="image">Immagine di copertina</label>
             <div class="p-0 w-100">
                 <img class="img-restaurant w-25 h-25"
-                    src="{{ $restaurant->image == null ? asset('img/cover_restaurant.jpg') : 'Link immagine db' }}"
+                    src="{{ $restaurant->image == null ? asset('img/cover_restaurant.jpg') : asset('storage/' . $restaurant->image) }}"
                     alt="Copertina immagine ristorante">
             </div>
             <input type="file" class="form-control-file" name="image" id="image"
