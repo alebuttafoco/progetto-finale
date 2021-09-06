@@ -11048,6 +11048,11 @@ h4 {
   color: white !important;
 }
 
+.bigtxt {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
 header {
   font-weight: 600;
   z-index: 9999;
@@ -11076,6 +11081,13 @@ header .navbar {
 .dashboard li a:hover {
   color: #2B898B !important;
   border-color: #2B898B !important;
+}
+
+.img-restaurant {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 /*!
@@ -22113,5 +22125,10 @@ h4 {
 
 .link:hover {
   color: white !important;
+}
+
+.bigtxt {
+  font-size: 1rem;
+  font-weight: 800;
 }
 

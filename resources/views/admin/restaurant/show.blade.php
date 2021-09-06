@@ -24,9 +24,9 @@
         <div class="address p-2 pl-3">{{ $restaurant->address }}, {{ $restaurant->city }}, {{ $restaurant->cap }}</div>
 
         <ul class="list-inline text-secondary p-2 pl-3">
-            <li class="list-inline-item">Categoria 1 </li>
-            <li class="list-inline-item">Categoria 2 </li>
-            <li class="list-inline-item">Categoria 3 </li>
+            @foreach ($restaurant->categories as $category)
+                <li class="list-inline-item">{{ $category->name }}</li>
+            @endforeach
         </ul>
 
 

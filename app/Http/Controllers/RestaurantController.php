@@ -87,7 +87,10 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::where('user_id', $id)->get();
         $restaurant_id = $restaurants[0]->id;
         $plates = Plate::where('restaurant_id', $restaurant_id)->get();
-        return view('admin.restaurant.show', compact('restaurant', 'plates'));
+
+        $categories = Restaurant::with('categories')->get();
+        //ddd($categories);
+        return view('admin.restaurant.show', compact('restaurant', 'plates', 'categories'));
     }
 
     /**
