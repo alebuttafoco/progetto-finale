@@ -11078,50 +11078,6 @@ header .navbar {
   border-color: #2B898B !important;
 }
 
-#single-restaurant-page .address {
-  font-size: 0.7rem;
-}
-
-#single-restaurant-page .address {
-  font-size: 0.75rem;
-}
-
-#single-restaurant-page .img-restaurant-container {
-  height: 300px;
-  width: 100%;
-}
-
-#single-restaurant-page .img-restaurant {
-  width: 100%;
-  height: inherit;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-#single-restaurant-page .plate-img {
-  border-bottom-left-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
-  max-height: 10rem;
-}
-
-#single-restaurant-page .price-btn {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  width: 5rem;
-}
-
-#single-restaurant-page .card {
-  transition: all 0.2s ease-in-out;
-}
-
-#single-restaurant-page .card:hover {
-  cursor: pointer;
-  transform: translatey(-5px);
-  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);
-  color: inherit;
-}
-
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
