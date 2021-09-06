@@ -16,6 +16,13 @@ class RestaurantMiddleware
      */
     public function handle($request, Closure $next)
     {
+
+        /*
+
+        findOrfail -> potrebbe essere utile ?
+        first ?
+        */
+
         /*
             vado a verificare se nella richiesta c'è un ristorante quindi se ce vado a fare la verifica dopo
             altrimenti gli ritorno la richiesta
