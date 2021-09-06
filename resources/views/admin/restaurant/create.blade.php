@@ -12,16 +12,26 @@
     </div>
     @include('components.error')
 
+    {{-- Alert per campi obbligatori --}}
+    <div class="alert alert-warning alert-dismissible fade show mt-5" role="alert">
+        <i class="fas fa-info-circle"></i>
+        Completa i <strong>campi obbligatori *</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
     <form class="mt-5" action="{{ route('admin.restaurant.store') }}" method="post"
         enctype="multipart/form-data">
         @csrf
 
         <div class="form-group">
-            <label for="name">Nome Ristorante</label>
+            <label for="name">Nome Ristorante</label><small class="text-danger bigtxt">*</small>
             <input type="text" name="name" id="name" class="form-control"
                 placeholder="Inserisci il nome del tuo ristorante" aria-describedby="titleHelp" maxlength="255" required
                 value="{{ old('name') }}">
             <small id="titleHelp" class="text-muted">Lunghezza massima: 255 caratteri</small>
+
             @error('name')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -30,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            <label for="description">Descrizione</label>
+            <label for="description">Descrizione</label><small class="text-danger bigtxt">*</small>
             <textarea class="form-control" name="description" id="description" rows="5" maxlength="1000"
                 required>{{ old('description') }}</textarea>
             <small id="titleHelp" class="text-muted">Lunghezza massima: 1000 caratteri</small>
@@ -54,7 +64,7 @@
         </div>
 
         <div class="form-group">
-            <label for="categories">Categoria</label>
+            <label for="categories">Categoria</label><small class="text-danger bigtxt">*</small>
             <select class="form-control" name="categories[]" id="categories" multiple required>
                 <option disabled selected> - Seleziona una categoria - </option>
                 @foreach ($categories as $category)
@@ -70,7 +80,7 @@
 
         <div class="form-group d-flex">
             <div class="address">
-                <label for="address">Indirizzo</label>
+                <label for="address">Indirizzo</label><small class="text-danger bigtxt">*</small>
                 <input type="text" name="address" id="address" class="form-control" placeholder="Indirizzo Via / Viale"
                     aria-describedby="titleHelp" maxlength="255" required value="{{ old('address') }}">
                 @error('address')
@@ -81,7 +91,7 @@
             </div>
 
             <div class="city">
-                <label for="city">Città</label>
+                <label for="city">Città</label><small class="text-danger bigtxt">*</small>
                 <input type="text" name="city" id="city" class="form-control" placeholder="Città"
                     aria-describedby="titleHelp" maxlength="255" required value="{{ old('city') }}">
                 @error('city')
@@ -92,7 +102,7 @@
             </div>
 
             <div class="cap">
-                <label for="cap">CAP</label>
+                <label for="cap">CAP</label><small class="text-danger bigtxt">*</small>
                 <input type="text" name="cap" id="cap" class="form-control" placeholder="CAP" aria-describedby="titleHelp"
                     maxlength="5" required value="{{ old('cap') }}">
                 @error('cap')
@@ -104,7 +114,7 @@
         </div>
 
         <div class="form-group">
-            <label for="piva">P. IVA</label>
+            <label for="piva">P. IVA</label><small class="text-danger bigtxt">*</small>
             <input type="text" name="piva" id="piva" class="form-control" placeholder="Ex. 0000000-000"
                 aria-describedby="titleHelp" maxlength="11" required value="{{ old('piva') }}">
             <small id="titleHelp" class="text-muted">Lunghezza massima: 11 caratteri</small>

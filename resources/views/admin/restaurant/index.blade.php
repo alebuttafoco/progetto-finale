@@ -8,22 +8,22 @@
 
 
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Image</th>
-                <th scope="col">Indirizzo</th>
-                <th scope="col">Descrizione</th>
-                <th scope="col">P. IVA</th>
-                <th scope="col">Azioni</th>
+    @if (!($restaurants === false))
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Indirizzo</th>
+                    <th scope="col">Descrizione</th>
+                    <th scope="col">P. IVA</th>
+                    <th scope="col">Azioni</th>
 
-            </tr>
-        </thead>
-        <tbody>
+                </tr>
+            </thead>
+            <tbody>
 
-            @if (!($restaurants === false))
 
                 @foreach ($restaurants as $restaurant)
                     <tr>
@@ -85,17 +85,27 @@
                 @endforeach
 
             @else
+                {{-- Cosa appare se non hai un ristorante --}}
                 <a class="btn btn-success mb-3" href="{{ route('admin.restaurant.create') }}">
                     <i class="fas fa-plus"></i>
                     Nuovo Ristorante
                 </a>
-                <h1>no ristoranti</h1>
-            @endif
+
+                {{-- Badge di informazioni --}}
+                <div class="alert alert-secondary alert-dismissible fade show mt-1" role="alert">
+                    Non hai nessun ristorante collegato a questo account.
+                    <br>
+                    Che aspetti a crearne uno?
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+    @endif
 
 
 
 
 
-        </tbody>
+    </tbody>
     </table>
 @endsection
