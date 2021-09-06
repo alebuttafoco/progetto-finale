@@ -64,7 +64,7 @@
             <div class="content">
                 <img src="https://picsum.photos/536/354" alt="">
                 <div class="details">
-                    <h3> {{restaurant.name}} </h3>
+                    <h5> {{restaurant.name}} </h5>
                 </div>
             </div>
         </a>

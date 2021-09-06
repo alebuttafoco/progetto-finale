@@ -38496,7 +38496,7 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("div", { staticClass: "details" }, [
-                      _c("h3", [_vm._v(" " + _vm._s(restaurant.name) + " ")])
+                      _c("h5", [_vm._v(" " + _vm._s(restaurant.name) + " ")])
                     ])
                   ])
                 ]
