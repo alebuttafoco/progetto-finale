@@ -76,7 +76,7 @@
                 <div class="col-md-11">
                     <textarea class="form-control" id="description"
                         class="form-control @error('description') is-invalid @enderror" rows="3" name="description" required
-                        autocomplete="description" autofocus>{{ $plate->description }}</textarea>
+                        autocomplete="description" autofocus maxlength="1000">{{ $plate->description }}</textarea>
 
                     @error('description')
                         <span class="invalid-feedback" role="alert">
