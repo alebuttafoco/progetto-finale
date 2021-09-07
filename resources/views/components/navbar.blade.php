@@ -1,14 +1,13 @@
 <div class="navbar">
-    <a id="logo" class="d-flex align-items-center mb-md-0 text-decoration-none" href="{{ url('/') }}">
+    <a id="logo" href="{{ url('/') }}">
         <img src="{{ asset('img/logo_secondary.png') }}" alt="Logo DeliveBoo">
     </a>
 
     {{-- INSERISCI LINK NELLA NAV --}}
-    <ul class="nav d-none d-md-block">
-        {{-- <li><a href="#" class="link"></a></li> --}}
-    </ul>
-
-    <div class="btn_div d-flex justify-content-end">
+    {{-- <ul class="center_nav nav">
+        <li><a href="#" class="link"></a></li>
+    </ul> --}}
+    <div class="right_nav">
         @guest
             <a class="nav-link bttn" href="{{ route('login') }}">{{ __('Login') }}</a>
 

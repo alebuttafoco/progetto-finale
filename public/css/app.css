@@ -10948,6 +10948,30 @@ a.text-dark:focus {
   margin: 0;
 }
 
+@media screen and (max-width: 1199.98px) {
+  html {
+    font-size: 98%;
+  }
+}
+
+@media screen and (max-width: 991.98px) {
+  html {
+    font-size: 94%;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media screen and (max-width: 575.98px) {
+  html {
+    font-size: 85%;
+  }
+}
+
 body {
   background-color: #F8B735 !important;
   color: #252525;
@@ -11053,6 +11077,12 @@ header {
   z-index: 9999;
 }
 
+header #logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
 header #logo > * {
   width: 10rem;
 }
@@ -11060,6 +11090,24 @@ header #logo > * {
 header .navbar {
   width: 80%;
   margin: auto;
+}
+
+@media screen and (max-width: 575.98px) {
+  header .navbar {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+header .right_nav {
+  display: flex;
+}
+
+@media screen and (max-width: 575.98px) {
+  header .right_nav {
+    margin-top: 0.1rem;
+    flex-grow: 1;
+  }
 }
 
 .dashboard {
@@ -22013,6 +22061,30 @@ a.text-dark:focus {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+@media screen and (max-width: 1199.98px) {
+  html {
+    font-size: 98%;
+  }
+}
+
+@media screen and (max-width: 991.98px) {
+  html {
+    font-size: 94%;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media screen and (max-width: 575.98px) {
+  html {
+    font-size: 85%;
+  }
 }
 
 body {
