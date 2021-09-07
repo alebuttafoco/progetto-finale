@@ -58,7 +58,7 @@
 
                 <div class="col-md-11">
                     <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image"
-                        value="{{ $plate->image }}" autocomplete="image" autofocus>
+                        autofocus>
 
                     @error('image')
                         <span class="invalid-feedback" role="alert">
