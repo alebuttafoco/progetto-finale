@@ -2241,13 +2241,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      restaurant: ''
+      restaurant: '',
+      plates: []
     };
   },
   methods: {
@@ -2259,10 +2258,45 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (e) {
         console.error(e);
       });
+    },
+    storagePlate: function storagePlate(plate, index) {
+      //incrementa il numero dinamicamente dopo il refresh della pagina
+      var foodInCart = [];
+      this.plates.forEach(function (food) {
+        foodInCart.push(food.id);
+      });
+
+      if (foodInCart.includes(plate.id)) {
+        this.plates.forEach(function (food) {
+          if (food.id == plate.id) {
+            food.qty++;
+          }
+        });
+      } else {
+        foodInCart.push(plate.id);
+        plate.qty = 1;
+        this.plates.unshift(plate);
+      }
+
+      this.savePlates();
+    },
+    savePlates: function savePlates() {
+      var parsed = JSON.stringify(this.plates);
+      localStorage.setItem('plates', parsed);
+    },
+    removePlate: function removePlate(i) {
+      this.plates.splice(i, 1);
+      this.savePlates();
+    },
+    getPlates: function getPlates() {
+      if (this.plates != null) {
+        this.plates = JSON.parse(localStorage.getItem('plates'));
+      }
     }
   },
   mounted: function mounted() {
     this.callRestaurants();
+    this.getPlates();
   }
 });
 
@@ -6760,7 +6794,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#single-restaurant-page .address[data-v-78e2f7b6] {\n  font-size: 0.7rem;\n}\n#single-restaurant-page .address[data-v-78e2f7b6] {\n  font-size: 0.75rem;\n}\n#single-restaurant-page .img-restaurant-container[data-v-78e2f7b6] {\n  height: 300px;\n  width: 100%;\n}\n#single-restaurant-page .img-restaurant[data-v-78e2f7b6] {\n  width: 100%;\n  height: inherit;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n#single-restaurant-page .plate-img[data-v-78e2f7b6] {\n  border-bottom-left-radius: 0.25rem;\n  border-bottom-right-radius: 0.25rem;\n  max-height: 10rem;\n}\n#single-restaurant-page .price-btn[data-v-78e2f7b6] {\n  position: absolute;\n  bottom: 1rem;\n  right: 1rem;\n  width: 5rem;\n}\n#single-restaurant-page .card[data-v-78e2f7b6] {\n  transition: all 0.2s ease-in-out;\n}\n#single-restaurant-page .card[data-v-78e2f7b6]:hover {\n  cursor: pointer;\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}", ""]);
+exports.push([module.i, ".cart[data-v-78e2f7b6] {\n  width: 20%;\n  height: 40rem;\n  margin: 1rem;\n  padding: 1rem;\n  background-color: white;\n}\n.cart .content[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin: 2rem 0;\n  font-weight: bold;\n  font-size: 1.1rem;\n}\n.cart .content .fa-trash-alt[data-v-78e2f7b6] {\n  cursor: pointer;\n  font-size: 1.4rem;\n}\n.wrapper[data-v-78e2f7b6] {\n  width: 80%;\n  margin: auto;\n  display: flex;\n}\n.restaurant[data-v-78e2f7b6] {\n  width: 80%;\n}\n.address[data-v-78e2f7b6] {\n  font-size: 0.7rem;\n}\n.img-restaurant-container[data-v-78e2f7b6] {\n  height: 300px;\n  width: 100%;\n}\n.img-restaurant[data-v-78e2f7b6] {\n  width: 100%;\n  height: inherit;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.plate-img[data-v-78e2f7b6] {\n  border-bottom-left-radius: 0.25rem;\n  border-bottom-right-radius: 0.25rem;\n  max-height: 10rem;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.price-btn[data-v-78e2f7b6] {\n  position: absolute;\n  bottom: 1rem;\n  right: 1rem;\n  width: 5rem;\n}\n.card[data-v-78e2f7b6] {\n  transition: all 0.2s ease-in-out;\n}\n.card[data-v-78e2f7b6]:hover {\n  cursor: pointer;\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}", ""]);
 
 // exports
 
@@ -39023,17 +39057,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "container bg-white p-0",
-      attrs: { id: "single-restaurant-page" }
-    },
-    [
+  return _c("div", { staticClass: "wrapper py-5" }, [
+    _c("div", { staticClass: "restaurant bg-white p-0" }, [
       _c("div", { staticClass: "img-restaurant-container" }, [
-        _c("h1", [_vm._v("Immagine Ristorante")]),
-        _vm._v(" "),
         _c("img", {
+          staticClass: "img-restaurant",
           attrs: { src: "../storage/" + _vm.restaurant.image, alt: "" }
         })
       ]),
@@ -39043,16 +39071,18 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "p-2 pl-3" }, [
-        _vm._v("\n          " + _vm._s(_vm.restaurant.description) + "\n      ")
+        _vm._v(_vm._s(_vm.restaurant.description))
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "address p-2 pl-3" }, [
         _vm._v(
-          _vm._s(_vm.restaurant.address) +
+          "\r\n            " +
+            _vm._s(_vm.restaurant.address) +
             ", " +
             _vm._s(_vm.restaurant.city) +
             ", " +
-            _vm._s(_vm.restaurant.cap)
+            _vm._s(_vm.restaurant.cap) +
+            "\r\n        "
         )
       ]),
       _vm._v(" "),
@@ -39065,7 +39095,9 @@ var render = function() {
             { key: category.id, staticClass: "list-inline-item" },
             [
               _vm._v(
-                " \n              " + _vm._s(category.name) + "\n          "
+                " \r\n                " +
+                  _vm._s(category.name) +
+                  "\r\n            "
               )
             ]
           )
@@ -39073,25 +39105,28 @@ var render = function() {
         0
       ),
       _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
       _c("div", { staticClass: "menu p-2" }, [
-        _c("h3", { staticClass: "p-3" }, [_vm._v("Tipo 1")]),
+        _c("h3", { staticClass: "p-3" }, [_vm._v("Menu")]),
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "d-flex flex-wrap" },
-          _vm._l(_vm.restaurant.plates, function(plate) {
+          { staticClass: "plate d-flex flex-wrap" },
+          _vm._l(_vm.restaurant.plates, function(plate, index) {
             return _c(
               "div",
               {
                 key: plate.id,
                 staticClass: "card m-3 position-relative",
-                staticStyle: { width: "15rem" }
+                staticStyle: { width: "15rem" },
+                on: {
+                  click: function($event) {
+                    return _vm.storagePlate(plate, index)
+                  }
+                }
               },
               [
                 _c("img", {
-                  staticClass: "card-img-top plate-img",
+                  staticClass: "plate-img",
                   attrs: { src: "../storage/" + plate.image, alt: plate.name }
                 }),
                 _vm._v(" "),
@@ -39118,41 +39153,46 @@ var render = function() {
           }),
           0
         )
-      ]),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _vm._m(2)
-    ]
-  )
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "cart" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._l(_vm.plates, function(plate, index) {
+          return _c("div", { key: plate.id, staticClass: "content" }, [
+            _c("span", [
+              _vm._v(
+                " " + _vm._s(plate.name) + "  (" + _vm._s(plate.qty) + ") "
+              )
+            ]),
+            _vm._v(" "),
+            _c("i", {
+              staticClass: "fas fa-trash-alt text-danger",
+              on: {
+                click: function($event) {
+                  return _vm.removePlate(index)
+                }
+              }
+            })
+          ])
+        })
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "list-inline text-secondary p-2 pl-3" }, [
-      _c("li", { staticClass: "list-inline-item" }, [_vm._v("Categoria 1")]),
-      _vm._v(" "),
-      _c("li", { staticClass: "list-inline-item" }, [_vm._v("Categoria 2")]),
-      _vm._v(" "),
-      _c("li", { staticClass: "list-inline-item" }, [_vm._v("Categoria 3")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "menu p-2" }, [
-      _c("h3", { staticClass: "p-3" }, [_vm._v("Tipo 2")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "menu p-2" }, [
-      _c("h3", { staticClass: "p-3" }, [_vm._v("Tipo 3")])
+    return _c("h4", [
+      _vm._v("CARRELLO "),
+      _c("i", { staticClass: "fas fa-shopping-cart" })
     ])
   }
 ]

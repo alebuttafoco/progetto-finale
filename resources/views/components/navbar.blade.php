@@ -5,8 +5,9 @@
 
     {{-- INSERISCI LINK NELLA NAV --}}
     {{-- <ul class="center_nav nav">
-        <li><a href="#" class="link"></a></li>
+        <li></li>
     </ul> --}}
+
     <div class="right_nav">
         @guest
             <a class="nav-link bttn" href="{{ route('login') }}">{{ __('Login') }}</a>
