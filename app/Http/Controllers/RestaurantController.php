@@ -58,7 +58,7 @@ class RestaurantController extends Controller
             'address' => 'required | max:255',
             'city' => 'required | max:255',
             'cap' => 'required | digits:5',
-            'piva' => 'required | digits:11',
+            'piva' => 'required | digits:11 | unique:restaurants,piva',
         ]);
 
         if ($request->hasFile('image')) {
@@ -131,7 +131,7 @@ class RestaurantController extends Controller
             'address' => 'required | max:255',
             'city' => 'required | max:255',
             'cap' => 'required | digits:5',
-            'piva' => 'required | digits:11',
+            'piva' => 'required | digits:11 | unique:restaurants,piva',
         ]);
 
         /* 
