@@ -1,17 +1,17 @@
 <template>
-    <div class="container bg-white p-0" id="single-restaurant-page">
-
+<div class="wrapper py-5">
+    <div class="restaurant bg-white p-0">
         <div class="img-restaurant-container">
-            <h1>Immagine Ristorante</h1>
-            <img :src="'../storage/' + restaurant.image" alt="">
+            <img class="img-restaurant" :src="'../storage/' + restaurant.image" alt="">
         </div>
 
         <h1 class="p-2 pl-3">{{ restaurant.name }}</h1>
 
-        <p class="p-2 pl-3">
-            {{ restaurant.description }}
-        </p>
-        <div class="address p-2 pl-3">{{ restaurant.address }}, {{ restaurant.city }}, {{ restaurant.cap }}</div>
+        <p class="p-2 pl-3">{{ restaurant.description }}</p>
+
+        <div class="address p-2 pl-3">
+            {{ restaurant.address }}, {{ restaurant.city }}, {{ restaurant.cap }}
+        </div>
 
         <ul class="list-inline text-secondary p-2 pl-3">
             <li class="list-inline-item" v-for="category in restaurant.categories" :key="category.id"> 
@@ -19,19 +19,13 @@
             </li>
         </ul>
 
-    <ul class="list-inline text-secondary p-2 pl-3">
-      <li class="list-inline-item">Categoria 1</li>
-      <li class="list-inline-item">Categoria 2</li>
-      <li class="list-inline-item">Categoria 3</li>
-    </ul>
+        <div class="menu p-2">
+            <h3 class="p-3">Menu</h3>
+            <!-- PIATTO SINGOLO -->
+            <div class="plate d-flex flex-wrap" >
 
-    <div class="menu p-2">
-      <h3 class="p-3">Tipo 1</h3>
-
-            <div class="d-flex flex-wrap">
-
-                <div class="card m-3 position-relative" style="width: 15rem;" v-for="plate in restaurant.plates" :key="plate.id">
-                    <img class="card-img-top plate-img" :src=" '../storage/' + plate.image " :alt="plate.name">
+                <div @click="storagePlate(plate)" class="card m-3 position-relative" style="width: 15rem;" v-for="plate in restaurant.plates" :key="plate.id">
+                    <img class="plate-img" :src=" '../storage/' + plate.image " :alt="plate.name">
                     <div class="card-body">
                         <h5 class="card-title">{{ plate.name }}</h5>
                         <p class="card-text mb-5">{{ plate.description }}</p>
@@ -40,14 +34,18 @@
                 </div>
 
             </div>
+        </div>  
     </div>
-    <div class="menu p-2">
-      <h3 class="p-3">Tipo 2</h3>
+
+    <div class="cart">
+        <h4>CARRELLO <i class="fas fa-shopping-cart"></i></h4>
+        <div class="content" v-for="(plate, index) in plates" :key='plate.id'>    
+            <p> {{plate.name}}  ({{plate.qty}}) </p>
+            <i @click="removePlate(index)" class="fas fa-trash-alt text-danger"></i>
+        </div>
     </div>
-    <div class="menu p-2">
-      <h3 class="p-3">Tipo 3</h3>
-    </div>
-  </div>
+
+</div>
 </template>
 
 <script>
@@ -57,6 +55,7 @@ export default {
     data(){ 
         return {
             restaurant: '',
+            plates : [],
         }
     },
     methods: {
@@ -69,57 +68,99 @@ export default {
                 console.error(e);
             })
         },
+        storagePlate(plate) {
+            if (this.plates.includes(plate)) {
+                plate['qty'] += 1;
+            } else {
+                plate['qty'] = 1;
+                this.plates.unshift(plate);
+            }
+            this.savePlates();
+        },
+        savePlates() {
+            const parsed = JSON.stringify(this.plates);
+            localStorage.setItem('plates', parsed);
+        },
+        removePlate(i){
+            this.plates.splice(i, 1);
+            this.savePlates();
+        },
+        getPlates(){
+            if (this.plates != null) {
+                this.plates = JSON.parse(localStorage.getItem('plates'));
+            }
+        },
     },
   mounted() {
-    this.callRestaurants()
+    this.callRestaurants();
+    this.getPlates();
   },
 }
 </script>
 
 <style lang="scss" scoped>
-#single-restaurant-page {
-  .address {
-    font-size: 0.7rem;
-  }
+.cart {
+    width: 20%;
+    height: 40rem;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: white;
 
-  .address {
-    font-size: 0.75rem;
-  }
+    .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
 
-  .img-restaurant-container {
-    height: 300px;
-    width: 100%;
-  }
+.wrapper{
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
 
-  .img-restaurant {
-    width: 100%;
-    height: inherit;
-    object-fit: cover;
-  }
+.restaurant{
+    width: 80%;
+}
 
-  .plate-img {
-    border-bottom-left-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
-    max-height: 10rem;
-  }
+.address {
+  font-size: 0.7rem;
+}
 
-  .price-btn {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    width: 5rem;
-  }
+.img-restaurant-container {
+  height: 300px;
+  width: 100%;
+}
 
-  .card {
-    transition: all 0.2s ease-in-out;
-  }
+.img-restaurant {
+  width: 100%;
+  height: inherit;
+  object-fit: cover;
+}
 
-  .card:hover {
-    cursor: pointer;
-    transform: translatey(-5px);
-    box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);
-    color: inherit;
-  }
+.plate-img {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  max-height: 10rem;
+  object-fit: cover;
+}
+
+.price-btn {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 5rem;
+}
+
+.card {
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: translatey(-5px);
+  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);
+  color: inherit;
 }
 </style>>
 
