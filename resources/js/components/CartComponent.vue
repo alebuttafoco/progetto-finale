@@ -93,13 +93,6 @@
           </button>
         </div>
       </div>
-
-      <div class="d-flex price-border">
-        <span class="p-4">Totale</span>
-        <!-- <span class="full-price p-4">12,3 €</span> -->
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>

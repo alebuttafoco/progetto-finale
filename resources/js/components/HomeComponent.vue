@@ -7,34 +7,14 @@
     <!-- RICERCA DEL RISTORANTE -->
     <div :class=" isVisibleRestaurants ? 'sticky' : 'search_center' ">
         <div v-if="!isVisibleRestaurants" class="search_restaurants text-center">
-            <h1>Ordina su DeliveBoo!</h1>
             <span @click="isVisibleRestaurants = true,  selectCategory() " class="bttn px-4 py-2 m-2">
                 Visualizza tutti i Ristoranti
             </span>
             <h4 class="mt-5">Oppure seleziona una categoria per iniziare</h4>
         </div>
         
-        <div class="search_div d-flex flex-wrap justify-content-center">
-            <!-- <form action="#" method="post" novalidate="novalidate">
-                <div class="search_form d-flex align-items-center justify-content-center">
-                    <div>
-                        <input type="text" class="form-control search-slt" placeholder="Città / CAP">
-                    </div>
-                    <div>
-                        <input type="text" class="form-control search-slt" placeholder="Ristorante">
-                    </div>
-                    <div>
-                        <select class="form-control search-slt" id="Selector1">
-                            <option selected>Seleziona</option>
-                            <option value="" v-for="category in categories" :key='category.id'> {{category.name}} </option>
+        <div class="search_div">
 
-                        </select>
-                    </div>
-                    <div>
-                        <button @click="isVisibleRestaurants = true" type="button" class="bttn">Cerca</button>
-                    </div>
-                </div>
-            </form> -->
             <div v-if="isVisibleRestaurants" 
                 @click="isVisibleRestaurants = true, selectCategory()" 
                 class="px-4 py-2 m-2"
@@ -57,7 +37,6 @@
         <h4 class="bg-white mt-5 mx-auto" v-if="filterRestaurants.length == 0">Nessun ristorante da visualizzare per questa categoria 😪</h4>
 
         <!-- ristorante visualizzato -->
-            <!-- :href="'./restaurants/' + selectedRestaurant " -->
         <router-link v-for="restaurant in filterRestaurants" :key='restaurant.id' class="my_card"
             :to="{name: 'restaurants.show', params: {id: restaurant.id} }"
             @click="selectedRestaurant = restaurant.id">
@@ -163,12 +142,36 @@ export default {
     background-color: white;
 }
 
+.search_div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    @media screen and (max-width:575.98px) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 .search_center {
+    width: 60%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: 1s;
+    @media screen and (max-width:1199.98px) {
+        width: 70%;
+    }
+    @media screen and (max-width:991.98px) {
+        width: 75%;
+    }
+    @media screen and (max-width:767.98px) {
+        width: 80%;
+    }
+    @media screen and (max-width:575.98px) {
+        width: 90%;
+    }
 }
 
 .sticky {
