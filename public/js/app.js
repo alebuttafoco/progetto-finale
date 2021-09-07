@@ -2259,11 +2259,22 @@ __webpack_require__.r(__webpack_exports__);
         console.error(e);
       });
     },
-    storagePlate: function storagePlate(plate) {
-      if (this.plates.includes(plate)) {
-        plate['qty'] += 1;
+    storagePlate: function storagePlate(plate, index) {
+      //incrementa il numero dinamicamente dopo il refresh della pagina
+      var foodInCart = [];
+      this.plates.forEach(function (food) {
+        foodInCart.push(food.id);
+      });
+
+      if (foodInCart.includes(plate.id)) {
+        this.plates.forEach(function (food) {
+          if (food.id == plate.id) {
+            food.qty++;
+          }
+        });
       } else {
-        plate['qty'] = 1;
+        foodInCart.push(plate.id);
+        plate.qty = 1;
         this.plates.unshift(plate);
       }
 
@@ -6783,7 +6794,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".cart[data-v-78e2f7b6] {\n  width: 20%;\n  height: 40rem;\n  margin: 1rem;\n  padding: 1rem;\n  background-color: white;\n}\n.cart .content[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.wrapper[data-v-78e2f7b6] {\n  width: 80%;\n  margin: auto;\n  display: flex;\n}\n.restaurant[data-v-78e2f7b6] {\n  width: 80%;\n}\n.address[data-v-78e2f7b6] {\n  font-size: 0.7rem;\n}\n.img-restaurant-container[data-v-78e2f7b6] {\n  height: 300px;\n  width: 100%;\n}\n.img-restaurant[data-v-78e2f7b6] {\n  width: 100%;\n  height: inherit;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.plate-img[data-v-78e2f7b6] {\n  border-bottom-left-radius: 0.25rem;\n  border-bottom-right-radius: 0.25rem;\n  max-height: 10rem;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.price-btn[data-v-78e2f7b6] {\n  position: absolute;\n  bottom: 1rem;\n  right: 1rem;\n  width: 5rem;\n}\n.card[data-v-78e2f7b6] {\n  transition: all 0.2s ease-in-out;\n}\n.card[data-v-78e2f7b6]:hover {\n  cursor: pointer;\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}", ""]);
+exports.push([module.i, ".cart[data-v-78e2f7b6] {\n  width: 20%;\n  height: 40rem;\n  margin: 1rem;\n  padding: 1rem;\n  background-color: white;\n}\n.cart .content[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin: 2rem 0;\n  font-weight: bold;\n  font-size: 1.1rem;\n}\n.cart .content .fa-trash-alt[data-v-78e2f7b6] {\n  cursor: pointer;\n  font-size: 1.4rem;\n}\n.wrapper[data-v-78e2f7b6] {\n  width: 80%;\n  margin: auto;\n  display: flex;\n}\n.restaurant[data-v-78e2f7b6] {\n  width: 80%;\n}\n.address[data-v-78e2f7b6] {\n  font-size: 0.7rem;\n}\n.img-restaurant-container[data-v-78e2f7b6] {\n  height: 300px;\n  width: 100%;\n}\n.img-restaurant[data-v-78e2f7b6] {\n  width: 100%;\n  height: inherit;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.plate-img[data-v-78e2f7b6] {\n  border-bottom-left-radius: 0.25rem;\n  border-bottom-right-radius: 0.25rem;\n  max-height: 10rem;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.price-btn[data-v-78e2f7b6] {\n  position: absolute;\n  bottom: 1rem;\n  right: 1rem;\n  width: 5rem;\n}\n.card[data-v-78e2f7b6] {\n  transition: all 0.2s ease-in-out;\n}\n.card[data-v-78e2f7b6]:hover {\n  cursor: pointer;\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}", ""]);
 
 // exports
 
@@ -39100,7 +39111,7 @@ var render = function() {
         _c(
           "div",
           { staticClass: "plate d-flex flex-wrap" },
-          _vm._l(_vm.restaurant.plates, function(plate) {
+          _vm._l(_vm.restaurant.plates, function(plate, index) {
             return _c(
               "div",
               {
@@ -39109,7 +39120,7 @@ var render = function() {
                 staticStyle: { width: "15rem" },
                 on: {
                   click: function($event) {
-                    return _vm.storagePlate(plate)
+                    return _vm.storagePlate(plate, index)
                   }
                 }
               },
@@ -39153,7 +39164,7 @@ var render = function() {
         _vm._v(" "),
         _vm._l(_vm.plates, function(plate, index) {
           return _c("div", { key: plate.id, staticClass: "content" }, [
-            _c("p", [
+            _c("span", [
               _vm._v(
                 " " + _vm._s(plate.name) + "  (" + _vm._s(plate.qty) + ") "
               )

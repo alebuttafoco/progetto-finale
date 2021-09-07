@@ -24,7 +24,7 @@
             <!-- PIATTO SINGOLO -->
             <div class="plate d-flex flex-wrap" >
 
-                <div @click="storagePlate(plate)" class="card m-3 position-relative" style="width: 15rem;" v-for="plate in restaurant.plates" :key="plate.id">
+                <div @click="storagePlate(plate, index)" class="card m-3 position-relative" style="width: 15rem;" v-for="(plate, index) in restaurant.plates" :key="plate.id">
                     <img class="plate-img" :src=" '../storage/' + plate.image " :alt="plate.name">
                     <div class="card-body">
                         <h5 class="card-title">{{ plate.name }}</h5>
@@ -40,7 +40,7 @@
     <div class="cart">
         <h4>CARRELLO <i class="fas fa-shopping-cart"></i></h4>
         <div class="content" v-for="(plate, index) in plates" :key='plate.id'>    
-            <p> {{plate.name}}  ({{plate.qty}}) </p>
+            <span> {{plate.name}}  ({{plate.qty}}) </span>
             <i @click="removePlate(index)" class="fas fa-trash-alt text-danger"></i>
         </div>
     </div>
@@ -68,11 +68,22 @@ export default {
                 console.error(e);
             })
         },
-        storagePlate(plate) {
-            if (this.plates.includes(plate)) {
-                plate['qty'] += 1;
+        storagePlate(plate, index) {
+            //incrementa il numero dinamicamente dopo il refresh della pagina
+
+            let foodInCart = [];
+            this.plates.forEach(food => {
+                foodInCart.push(food.id);
+            })
+            if (foodInCart.includes(plate.id)) {
+                this.plates.forEach(food => {
+                    if (food.id == plate.id) {
+                        food.qty++;
+                    }
+                })
             } else {
-                plate['qty'] = 1;
+                foodInCart.push(plate.id)
+                plate.qty = 1;
                 this.plates.unshift(plate);
             }
             this.savePlates();
@@ -110,6 +121,15 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin: 2rem 0;
+
+        font-weight: bold;
+        font-size: 1.1rem;
+
+        .fa-trash-alt {
+            cursor: pointer;
+            font-size: 1.4rem;
+        }
     }
 }
 
