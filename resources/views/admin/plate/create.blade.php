@@ -26,124 +26,103 @@
             @csrf
 
             {{-- Name --}}
-            <div class="form-group row">
-                <label for="name" class="col-md-1 col-form-label text-md-right">{{ __('Nome') }}</label>
+            <div class="form-group">
+                <label for="name">Nome</label>
                 <small class="text-danger bigtxt">*</small>
 
-                <div class="col-md-11">
-                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                    value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                    @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
+                @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
 
             {{-- Image --}}
-            <div class="form-group row">
-                <label for="image" class="col-md-1 col-form-label text-md-right">{{ __('Immagine') }}</label>
+            <div class="form-group">
+                <label for="image">Immagine</label>
                 <small class="text-danger bigtxt">*</small>
 
-                <div class="col-md-11">
-                    <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image"
-                        value="{{ old('image') }}" required autocomplete="image" autofocus>
+                <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image"
+                    value="{{ old('image') }}" required autocomplete="image" autofocus>
 
-                    @error('image')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
+                @error('image')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+
             </div>
 
             {{-- Description --}}
-            <div class="form-group row">
-                <label for="description" class="col-md-1 col-form-label text-md-right">{{ __('Descrizione') }}</label>
+            <div class="form-group">
+                <label for="description">Descrizione</label>
                 <small class="text-danger bigtxt">*</small>
 
-                <div class="col-md-11">
-                    <textarea class="form-control" id="description"
-                        class="form-control @error('description') is-invalid @enderror" rows="3" name="description" required
-                        autocomplete="description" autofocus>{{ old('description') }}</textarea>
+                <textarea class="form-control" id="description"
+                    class="form-control @error('description') is-invalid @enderror" rows="3" name="description" required
+                    autocomplete="description" autofocus maxlength="1000">{{ old('description') }}</textarea>
 
-                    @error('description')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
+                @error('description')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
 
             {{-- Price --}}
-            <div class="form-group row">
-                <label for="price" class="col-md-1 col-form-label text-md-right">{{ __('Prezzo') }}</label>
+            <div class="form-group">
+                <label for="price">Prezzo</label>
                 <small class="text-danger bigtxt">*</small>
 
-                <div class="col-md-11">
-                    <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price"
-                        value="{{ old('price') }}" required autocomplete="price" step="0.01">
-
-                    @error('price')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
+                <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price"
+                    value="{{ old('price') }}" required autocomplete="price" step="0.01">
+                @error('price')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
 
             {{-- Type --}}
-            <div class="form-group row">
-                <label for="type" class="col-md-1 col-form-label text-md-right">{{ __('Tipo') }}</label>
+            <div class="form-group">
+                <label for="type">Tipo</label>
                 <small class="text-danger bigtxt">*</small>
 
-                <div class="col-md-11">
-                    <select id="type" name="type" class="form-control @error('type') is-invalid @enderror">
-                        <option selected>Choose...</option>
-                        <option value="primo">Primo</option>
-                        <option value="secondo">Secondo</option>
-                        <option value="contorni">Contorni</option>
-                        <option value="bevande">Bevande</option>
-                    </select>
+                <select id="type" name="type" class="form-control @error('type') is-invalid @enderror">
+                    <option selected>Scegli tipo</option>
+                    <option value="primo">Primo</option>
+                    <option value="secondo">Secondo</option>
+                    <option value="contorni">Contorni</option>
+                    <option value="bevande">Bevande</option>
+                </select>
 
-                    @error('type')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
+                @error('type')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
 
             </div>
 
             {{-- Visible --}}
-            <div class="form-group row">
-                <label for="visible" class="col-md-1 col-form-label text-md-right">{{ __('Visible') }}</label>
+            <div class="form-group">
+                <label for="visible">Visibilità</label>
                 <small class="text-danger bigtxt">*</small>
 
-                <div class="col-md-11">
+                <div>
                     <input type="radio" name="visible" required checked id="visible" value="1">
-                    <span class="mr-3">Visible</span>
+                    <span class="mr-3">Visibile</span>
                     <input type="radio" name="visible" required id="visible" value="0">
-                    <span>No Visible</span>
-
+                    <span>Nascondi</span>
                 </div>
-
-
-
             </div>
 
             <div class="form-check">
             </div>
-
-            <div class="form-group row mb-0">
-                <div class="col-md-6 offset-md-4">
-                    <button type="submit" class="btn btn-success">
-                        {{ __('Aggiungi') }}
-                    </button>
-                </div>
-            </div>
+            <button type="submit" class="btn btn-block btn-primary">Aggiungi</button>
         </form>
     </div>
 @endsection

@@ -21,135 +21,113 @@
         </button>
     </div>
 
-    <div class="card-body">
-        <form method="POST" action="{{ route('admin.plate.update', $plate->id) }}" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
+    <form class="mt-5" method="POST" action="{{ route('admin.plate.update', $plate->id) }}"
+        enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
 
-            {{-- Name --}}
-            <div class="form-group row">
-                <label for="name" class="col-md-1 col-form-label text-md-right">{{ __('Nome') }}</label>
-                <small class="text-danger bigtxt">*</small>
+        {{-- Name --}}
+        <div class="form-group">
+            <label for="name">Nome</label><small class="text-danger bigtxt">*</small>
+            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                value="{{ $plate->name }}" required autocomplete="name" autofocus>
 
-                <div class="col-md-11">
-                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                        value="{{ $plate->name }}" required autocomplete="name" autofocus>
+            @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
 
-                    @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
+        {{-- Current Image --}}
+        <div class="form-group">
+            <label for="image">Immagine attuale</label>
+            <div>
+                <img width="100" src="{{ asset('storage/' . $plate->image) }}" alt="">
             </div>
+        </div>
 
-            {{-- Current Image --}}
-            <div class="form-group row">
-                <label for="image" class="col-md-1 col-form-label text-md-right">{{ __('Immagine attuale') }}</label>
+        {{-- Image --}}
+        <div class="form-group">
+            <label for="image">Image</label>
 
-                <div class="col-md-11">
-                    <img width="100" src="{{ asset('storage/' . $plate->image) }}" alt="">
-                </div>
-            </div>
+            <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" autofocus>
 
-            {{-- Image --}}
-            <div class="form-group row">
-                <label for="image" class="col-md-1 col-form-label text-md-right">{{ __('Image') }}</label>
+            @error('image')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
 
-                <div class="col-md-11">
-                    <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image"
-                        value="{{ $plate->image }}" autocomplete="image" autofocus>
+        </div>
 
-                    @error('image')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
+        {{-- Description --}}
+        <div class="form-group">
+            <label for="description">Descrizione</label>
+            <small class="text-danger bigtxt">*</small>
 
-            {{-- Description --}}
-            <div class="form-group row">
-                <label for="description" class="col-md-1 col-form-label text-md-right">{{ __('Descrizione') }}</label>
-                <small class="text-danger bigtxt">*</small>
+            <textarea class="form-control" id="description"
+                class="form-control @error('description') is-invalid @enderror" rows="3" name="description" required
+                autocomplete="description" autofocus maxlength="1000">{{ $plate->description }}</textarea>
 
-                <div class="col-md-11">
-                    <textarea class="form-control" id="description"
-                        class="form-control @error('description') is-invalid @enderror" rows="3" name="description" required
-                        autocomplete="description" autofocus>{{ $plate->description }}</textarea>
+            @error('description')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
 
-                    @error('description')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
-
-            {{-- Price --}}
-            <div class="form-group row">
-                <label for="price" class="col-md-1 col-form-label text-md-right">{{ __('Prezzo') }}</label>
-                <small class="text-danger bigtxt">*</small>
-
-                <div class="col-md-11">
-                    <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price"
-                        value="{{ $plate->price }}" required autocomplete="price" step="0.01">
-
-                    @error('price')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
-
-            {{-- Type --}}
-            <div class="form-group row">
-                <label for="type" class="col-md-1 col-form-label text-md-right">{{ __('Tipo') }}</label>
-                <small class="text-danger bigtxt">*</small>
-
-                <div class="col-md-11">
-                    <select id="type" name="type" class="form-control @error('type') is-invalid @enderror">
-                        <option>Choose...</option>
-                        <option value="primo" @if ($plate->type == 'primo') selected @endif>Primo</option>
-                        <option value="secondo" @if ($plate->type == 'secondo') selected @endif>Secondo</option>
-                        <option value="contorni" @if ($plate->type == 'contorni') selected @endif>Contorni</option>
-                        <option value="bevande" @if ($plate->type == 'bevande') selected @endif>Bevande</option>
-                    </select>
-
-                    @error('type')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-
-            </div>
-
-            {{-- Visible --}}
-            <div class="form-group row">
-                <label for="visible" class="col-md-1 col-form-label text-md-right">{{ __('Visibile') }}</label>
-                <small class="text-danger bigtxt">*</small>
-
-                <div class="col-md-11">
-                    <input type="radio" name="visible" required id="visible" value="1" @if ($plate->visible === 0) checked @endif>
-                    <span class="mr-3">Visible</span>
-                    <input type="radio" name="visible" required id="visible" value="0" @if ($plate->visible === 1) checked @endif>
-                    <span>No Visible</span>
-
-                </div>
+        {{-- Price --}}
+        <div class="form-group">
+            <label for="price">Prezzo</label>
+            <small class="text-danger bigtxt">*</small>
 
 
+            <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price"
+                value="{{ $plate->price }}" required autocomplete="price" step="0.01">
 
-            </div>
+            @error('price')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
 
-            <div class="form-group row mb-0">
-                <div class="col-md-6 offset-md-4">
-                    <button type="submit" class="btn btn-success">
-                        {{ __('Aggiorna Piatto') }}
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
+        </div>
+
+        {{-- Type --}}
+        <div class="form-group">
+            <label for="type">Tipo</label>
+            <small class="text-danger bigtxt">*</small>
+
+            <select id="type" name="type" class="form-control @error('type') is-invalid @enderror">
+                <option>Scegli tipo</option>
+                <option value="primo" @if ($plate->type == 'primo') selected @endif>Primo</option>
+                <option value="secondo" @if ($plate->type == 'secondo') selected @endif>Secondo</option>
+                <option value="contorni" @if ($plate->type == 'contorni') selected @endif>Contorni</option>
+                <option value="bevande" @if ($plate->type == 'bevande') selected @endif>Bevande</option>
+            </select>
+
+            @error('type')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+
+        </div>
+
+        {{-- Visible --}}
+        <div class="form-group">
+            <label for="visible">Visibile</label>
+            <small class="text-danger bigtxt">*</small>
+
+            <input type="radio" name="visible" required id="visible" value="1" @if ($plate->visible === 0) checked @endif>
+            <span class="mr-3">Visibile</span>
+            <input type="radio" name="visible" required id="visible" value="0" @if ($plate->visible === 1) checked @endif>
+            <span>Non Visibile</span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-block btn-primary">Aggiorna Piatto</button>
+        </div>
+    </form>
 @endsection

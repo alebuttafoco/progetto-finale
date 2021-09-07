@@ -87,7 +87,7 @@ class PlateController extends Controller
 
         $validated_data = $request->validate([
             'name' => 'required | max:255',
-            'image' => 'required | mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:50',
+            'image' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:50',
             'description' => 'required | max:1000',
             'price' => 'required | numeric | between: 0,999',
             'type' => 'required',
@@ -95,8 +95,12 @@ class PlateController extends Controller
         ]);
 
         //take restaurant id
+        /* $id = Auth::user()->id;
+        $restaurant_id = Restaurant::find($id)->id; */
         $id = Auth::user()->id;
-        $restaurant_id = Restaurant::find($id)->id;
+        $restaurants = Restaurant::where('user_id', $id)->get();
+        $restaurant_id = $restaurants[0]->id;
+
         $validated_data['restaurant_id'] = $restaurant_id;
 
         //controll image
