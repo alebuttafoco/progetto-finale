@@ -1,105 +1,47 @@
 <template>
-  <div class="container">
-    <h1 class="p-3">Carrello</h1>
-
-    <div class="shopping-cart">
-      <div class="item">
-        <div class="image">
-          <img src="#" alt="" />
-        </div>
-
-        <div class="description">
-          <span>Carbonara di Andrei</span>
-          <span>5,8</span>
-        </div>
-
-        <div class="quantity">
-          <button class="plus-btn" type="button" name="button">
-            <i class="fas fa-plus"></i>
-          </button>
-          <input class="input" type="text" name="name" value="1" />
-          <button class="minus-btn" type="button" name="button">
-            <i class="fas fa-minus"></i>
-          </button>
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="image">
-          <img src="#" alt="" />
-        </div>
-
-          <div class="d-flex price-border">
-              <span class="p-4">Totale</span>
-              <!-- <span class="full-price p-4">12,3 €</span> -->
-          </div>
-        </div>
-        
-
-        <!-- box del riepilogo del carrello -->
-        <div class="cart-box">
-          <div class="cart-header">
-            <h5 class="cart-heading">Riepilogo ordine</h5>
-            <!-- <h5>Rimuovi tutto</h5> -->
-          </div>
-          <div class="cart-items">
-            <!-- <div class="image-box">
-              <img src="#" alt="">
-            </div> -->
-            <div class="description">
-              <span class="plate-name"></span>
-            </div>
-            <div class="item-counter">
-              <!-- numero dei piatti ordinati -->
-              <div class="btn">+</div>
-              <div class="count">1</div>
-              <div class="btn">-</div>
-            </div>
-            <div class="price">
-              <!-- inserisci prezzo intero // prima del coupon -->
-              <div class="amount">1.99€</div>
-              <div class="save">Salva per dopo</div>
-              <div class="remove">Rimuovi</div>
-            </div>
-          </div>
-          <hr>
-          <div class="checkout">
-            <div class="total">
-
-              <div>
-                <div class="subtotal">3.99€</div>
-                <div class="items-number">1</div>
-              </div>
-
-              <div class="full-price">3.99€</div>
-            </div> <button>Conferma e paga</button>
-          </div>
-          
-          
-        </div>
+<div class="container">
+  <div class="shopping-cart">
+    <div class="labels">
+      <span class="d-flex justify-content-center">Il tuo carrello</span>
     </div>
-        <div class="description">
-          <span>Pasta alla norma di Giuse</span>
-          <span>13,4</span>
-        </div>
 
-        <div class="quantity">
-          <button class="plus-btn" type="button" name="button">
-            <i class="fas fa-plus"></i>
-          </button>
-          <input class="input" type="text" name="name" value="1" />
-          <button class="minus-btn" type="button" name="button">
-            <i class="fas fa-minus"></i>
-          </button>
+    <div class="product">
+      <div class="product-image ml-2"></div>
+      <div class="product-details ml-2">Pizza</div>
+      <div class="product-price ml-2">8€</div>
+      <div class="d-flex ml-auto">
+        <div class="product-quantity ml-2">
+          <i class="far fa-plus-square"></i>
+          <span>1</span>
+          <i class="far fa-minus-square"></i>
         </div>
-      </div>
-
-      <div class="d-flex price-border">
-        <span class="p-4">Totale</span>
-        <!-- <span class="full-price p-4">12,3 €</span> -->
+        <div class="product-removal ml-2"><i class="fas fa-times"></i></div>
       </div>
     </div>
+
+    <div class="product">
+      <div class="product-image ml-2"></div>
+      <div class="product-details ml-2">Carbonara</div>
+      <div class="product-price ml-2">10€</div>
+      <div class="d-flex ml-auto">
+        <div class="product-quantity ml-2">
+          <i class="far fa-plus-square"></i>
+          <span>1</span>
+          <i class="far fa-minus-square"></i>
+        </div>
+        <div class="product-removal ml-2"><i class="fas fa-times"></i></div>
+      </div>
+    </div>
+
+    <div class="totals">
+      <div class="totals-item totals-item-final">
+        <label>Prezzo Finale</label>
+        <div class="totals-value">100€</div>
+      </div>
+    </div>
+    <button id="submit-button" class="button button--small button--green">Conferma e Paga</button>
   </div>
+</div>
 </template>
 
 <script>
@@ -108,11 +50,7 @@ import Axios from "axios";
 export default {
   data() {
     return {
-      cart: [
-        [(prezzo = 12), (nome = "carbonara"), (quantità = 1)],
-        [(prezzo = 10), (nome = "lasagne"), (quantità = 1)],
-        [(prezzo = 9), (nome = "pizza"), (quantità = 1)],
-      ],
+      cart: [],
     };
   },
   methods: {},
@@ -124,81 +62,54 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/* */
 .shopping-cart {
-  /* width: 46.875rem; */
-  height: 25rem;
   margin: 5rem auto;
   background: #ffffff;
   box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);
   border-radius: 0.375rem;
-
   display: flex;
   flex-direction: column;
 }
-.item {
-  padding: 20px 30px;
-  /* height: 3.125rem; */
+.product{
   display: flex;
-  /* margin-bottom: 1rem; */
 }
-.buttons {
+.totals{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+}
+/* Pulsante Verde */
+.button {
+  cursor: pointer;
+  font-weight: 500;
+  left: 3px;
+  line-height: inherit;
   position: relative;
-  padding-top: 1.875rem;
-}
-.plus-btn,
-.minus-btn {
+  text-decoration: none;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
   border-radius: 3px;
-  width: 23px;
-  background-color: white;
-  border: 1px solid black;
+  display: inline-block;
 }
-.quantity {
-  margin-left: auto;
+#submit-button{
+  margin-top: auto;
+  width: fit-content;
+  align-self: center;
 }
-
-.full-price {
-  margin-left: auto;
+.button--small {
+  padding: 10px 20px;
+  font-size: 0.875rem;
 }
-.input {
-  width: 2rem;
-  text-align: right;
+.button--green {
+  outline: none;
+  background-color: #64d18a;
+  border-color: #64d18a;
+  color: white;
+  transition: all 200ms ease;
 }
-.price-border {
-  border-top: 1px solid black;
-}
-
-.cart-box{
-  width: 25%;
-  height: 25%;
-  background-color: #fff;
-  border-radius: 20px;
-  /* box-shadow: 0 25px 40px; */
-}
-.cart-header{
-  margin: auto;
-  width: 90%;
-  height: 10%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.cart-heading{
-  font-size: 20px;
-  font-family: 'Open Sans';
-  font-weight: 600;
-}
-.cart-items{
-  margin: auto;
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.description{
-  height: 100%;
-}
-.plate-name{
-  
+.button--green:hover {
+  background-color: #8bdda8;
+  color: white;
 }
 </style>

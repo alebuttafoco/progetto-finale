@@ -1956,72 +1956,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-<<<<<<< HEAD
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-=======
->>>>>>> 372aaeb6b1d5ccb771341edc9c6e45d1e765a91f
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      cart: [[prezzo = 12, nome = "carbonara", quantità = 1], [prezzo = 10, nome = "lasagne", quantità = 1], [prezzo = 9, nome = "pizza", quantità = 1]]
+      cart: []
     };
   },
   methods: {},
@@ -6741,11 +6680,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-<<<<<<< HEAD
-exports.push([module.i, "/* */\n.shopping-cart[data-v-e7ab8a3c] {\n  /* width: 46.875rem; */\n  height: 25rem;\n  margin: 5rem auto;\n  background: #FFFFFF;\n  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);\n  border-radius: 0.375rem;\n  display: flex;\n  flex-direction: column;\n}\n.item[data-v-e7ab8a3c] {\n  padding: 20px 30px;\n  /* height: 3.125rem; */\n  display: flex;\n  /* margin-bottom: 1rem; */\n}\n.buttons[data-v-e7ab8a3c] {\n  position: relative;\n  padding-top: 1.875rem;\n}\n.plus-btn[data-v-e7ab8a3c], .minus-btn[data-v-e7ab8a3c] {\n  border-radius: 3px;\n  width: 23px;\n  background-color: white;\n  border: 1px solid black;\n}\n.quantity[data-v-e7ab8a3c] {\n  margin-left: auto;\n}\n.full-price[data-v-e7ab8a3c] {\n  margin-left: auto;\n}\n.input[data-v-e7ab8a3c] {\n  width: 2rem;\n  text-align: right;\n}\n.price-border[data-v-e7ab8a3c] {\n  border-top: 1px solid black;\n}\n.cart-box[data-v-e7ab8a3c] {\n  width: 25%;\n  height: 25%;\n  background-color: #fff;\n  border-radius: 20px;\n  /* box-shadow: 0 25px 40px; */\n}\n.cart-header[data-v-e7ab8a3c] {\n  margin: auto;\n  width: 90%;\n  height: 10%;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n}\n.cart-heading[data-v-e7ab8a3c] {\n  font-size: 20px;\n  font-family: \"Open Sans\";\n  font-weight: 600;\n}", ""]);
-=======
-exports.push([module.i, "/* */\n.shopping-cart[data-v-e7ab8a3c] {\n  /* width: 46.875rem; */\n  height: 25rem;\n  margin: 5rem auto;\n  background: #ffffff;\n  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);\n  border-radius: 0.375rem;\n  display: flex;\n  flex-direction: column;\n}\n.item[data-v-e7ab8a3c] {\n  padding: 20px 30px;\n  /* height: 3.125rem; */\n  display: flex;\n  /* margin-bottom: 1rem; */\n}\n.buttons[data-v-e7ab8a3c] {\n  position: relative;\n  padding-top: 1.875rem;\n}\n.plus-btn[data-v-e7ab8a3c],\n.minus-btn[data-v-e7ab8a3c] {\n  border-radius: 3px;\n  width: 23px;\n  background-color: white;\n  border: 1px solid black;\n}\n.quantity[data-v-e7ab8a3c] {\n  margin-left: auto;\n}\n.full-price[data-v-e7ab8a3c] {\n  margin-left: auto;\n}\n.input[data-v-e7ab8a3c] {\n  width: 2rem;\n  text-align: right;\n}\n.price-border[data-v-e7ab8a3c] {\n  border-top: 1px solid black;\n}", ""]);
->>>>>>> 372aaeb6b1d5ccb771341edc9c6e45d1e765a91f
+exports.push([module.i, ".shopping-cart[data-v-e7ab8a3c] {\n  margin: 5rem auto;\n  background: #ffffff;\n  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);\n  border-radius: 0.375rem;\n  display: flex;\n  flex-direction: column;\n}\n.product[data-v-e7ab8a3c] {\n  display: flex;\n}\n.totals[data-v-e7ab8a3c] {\n  flex-direction: row;\n  display: flex;\n  justify-content: flex-end;\n}\n\n/* Pulsante Verde */\n.button[data-v-e7ab8a3c] {\n  cursor: pointer;\n  font-weight: 500;\n  left: 3px;\n  line-height: inherit;\n  position: relative;\n  text-decoration: none;\n  text-align: center;\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 3px;\n  display: inline-block;\n}\n#submit-button[data-v-e7ab8a3c] {\n  margin-top: auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  align-self: center;\n}\n.button--small[data-v-e7ab8a3c] {\n  padding: 10px 20px;\n  font-size: 0.875rem;\n}\n.button--green[data-v-e7ab8a3c] {\n  outline: none;\n  background-color: #64d18a;\n  border-color: #64d18a;\n  color: white;\n  transition: all 200ms ease;\n}\n.button--green[data-v-e7ab8a3c]:hover {\n  background-color: #8bdda8;\n  color: white;\n}", ""]);
 
 // exports
 
@@ -38703,185 +38638,75 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
-      _c("h1", { staticClass: "p-3" }, [_vm._v("Carrello")]),
-      _vm._v(" "),
       _c("div", { staticClass: "shopping-cart" }, [
-        _c("div", { staticClass: "item" }, [
-          _c("div", { staticClass: "image" }, [
-            _c("img", { attrs: { src: "#", alt: "" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "description" }, [
-            _c("span", [_vm._v("Carbonara di Andrei")]),
-            _vm._v(" "),
-            _c("span", [_vm._v("5,8")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "quantity" }, [
-            _c(
-              "button",
-              {
-                staticClass: "plus-btn",
-                attrs: { type: "button", name: "button" }
-              },
-              [_c("i", { staticClass: "fas fa-plus" })]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "input",
-              attrs: { type: "text", name: "name", value: "1" }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "minus-btn",
-                attrs: { type: "button", name: "button" }
-              },
-              [_c("i", { staticClass: "fas fa-minus" })]
-            )
+        _c("div", { staticClass: "labels" }, [
+          _c("span", { staticClass: "d-flex justify-content-center" }, [
+            _vm._v("Il tuo carrello")
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "item" }, [
-          _c("div", { staticClass: "image" }, [
-            _c("img", { attrs: { src: "#", alt: "" } })
-          ]),
+        _c("div", { staticClass: "product" }, [
+          _c("div", { staticClass: "product-image ml-2" }),
           _vm._v(" "),
-          _c("div", { staticClass: "description" }, [
-            _c("span", [_vm._v("Pasta alla norma di Giuse")]),
-            _vm._v(" "),
-            _c("span", [_vm._v("13,4")])
-          ]),
+          _c("div", { staticClass: "product-details ml-2" }, [_vm._v("Pizza")]),
           _vm._v(" "),
-          _c("div", { staticClass: "quantity" }, [
-            _c(
-              "button",
-              {
-                staticClass: "plus-btn",
-                attrs: { type: "button", name: "button" }
-              },
-              [_c("i", { staticClass: "fas fa-plus" })]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "input",
-              attrs: { type: "text", name: "name", value: "1" }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "minus-btn",
-                attrs: { type: "button", name: "button" }
-              },
-              [_c("i", { staticClass: "fas fa-minus" })]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "d-flex price-border" }, [
-          _c("span", { staticClass: "p-4" }, [_vm._v("Totale")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "cart-box" }, [
-        _c("div", { staticClass: "cart-header" }, [
-          _c("h5", { staticClass: "cart-heading" }, [
-            _vm._v("Riepilogo ordine")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "cart-items" }, [
-          _c("div", { staticClass: "description" }, [
-            _c("span", { staticClass: "plate-name" })
-          ]),
+          _c("div", { staticClass: "product-price ml-2" }, [_vm._v("8€")]),
           _vm._v(" "),
-          _c("div", { staticClass: "item-counter" }, [
-            _c("div", { staticClass: "btn" }, [_vm._v("+")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "count" }, [_vm._v("1")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "btn" }, [_vm._v("-")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "price" }, [
-            _c("div", { staticClass: "amount" }, [_vm._v("1.99€")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "save" }, [_vm._v("Salva per dopo")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "remove" }, [_vm._v("Rimuovi")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _c("div", { staticClass: "checkout" }, [
-          _c("div", { staticClass: "total" }, [
-            _c("div", [
-              _c("div", { staticClass: "subtotal" }, [_vm._v("3.99€")]),
+          _c("div", { staticClass: "d-flex ml-auto" }, [
+            _c("div", { staticClass: "product-quantity ml-2" }, [
+              _c("i", { staticClass: "far fa-plus-square" }),
               _vm._v(" "),
-              _c("div", { staticClass: "items-number" }, [_vm._v("1")])
+              _c("span", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("i", { staticClass: "far fa-minus-square" })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "full-price" }, [_vm._v("3.99€")])
-          ]),
-          _vm._v(" "),
-          _c("button", [_vm._v("Conferma e paga")])
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "minus-btn",
-                attrs: { type: "button", name: "button" }
-              },
-              [_c("i", { staticClass: "fas fa-minus" })]
-            )
+            _c("div", { staticClass: "product-removal ml-2" }, [
+              _c("i", { staticClass: "fas fa-times" })
+            ])
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "item" }, [
-          _c("div", { staticClass: "image" }, [
-            _c("img", { attrs: { src: "#", alt: "" } })
+        _c("div", { staticClass: "product" }, [
+          _c("div", { staticClass: "product-image ml-2" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "product-details ml-2" }, [
+            _vm._v("Carbonara")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "description" }, [
-            _c("span", [_vm._v("Pasta alla norma di Giuse")]),
-            _vm._v(" "),
-            _c("span", [_vm._v("13,4")])
-          ]),
+          _c("div", { staticClass: "product-price ml-2" }, [_vm._v("10€")]),
           _vm._v(" "),
-          _c("div", { staticClass: "quantity" }, [
-            _c(
-              "button",
-              {
-                staticClass: "plus-btn",
-                attrs: { type: "button", name: "button" }
-              },
-              [_c("i", { staticClass: "fas fa-plus" })]
-            ),
+          _c("div", { staticClass: "d-flex ml-auto" }, [
+            _c("div", { staticClass: "product-quantity ml-2" }, [
+              _c("i", { staticClass: "far fa-plus-square" }),
+              _vm._v(" "),
+              _c("span", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("i", { staticClass: "far fa-minus-square" })
+            ]),
             _vm._v(" "),
-            _c("input", {
-              staticClass: "input",
-              attrs: { type: "text", name: "name", value: "1" }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "minus-btn",
-                attrs: { type: "button", name: "button" }
-              },
-              [_c("i", { staticClass: "fas fa-minus" })]
-            )
+            _c("div", { staticClass: "product-removal ml-2" }, [
+              _c("i", { staticClass: "fas fa-times" })
+            ])
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "d-flex price-border" }, [
-          _c("span", { staticClass: "p-4" }, [_vm._v("Totale")]),
-          _vm._v(" "),
-          _c("span", { staticClass: "full-price p-4" }, [_vm._v("12,3 €")])
-        ])
+        _c("div", { staticClass: "totals" }, [
+          _c("div", { staticClass: "totals-item totals-item-final" }, [
+            _c("label", [_vm._v("Prezzo Finale")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "totals-value" }, [_vm._v("100€")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "button button--small button--green",
+            attrs: { id: "submit-button" }
+          },
+          [_vm._v("Conferma e Paga")]
+        )
       ])
     ])
   }
@@ -51736,8 +51561,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Programmi\MAMP\htdocs\php\progetto-finale\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Programmi\MAMP\htdocs\php\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Mike\Desktop\BOOLEAN\progetto-finale\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Mike\Desktop\BOOLEAN\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
