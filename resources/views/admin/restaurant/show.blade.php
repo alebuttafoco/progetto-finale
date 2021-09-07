@@ -34,11 +34,12 @@
             <h3 class="p-3">Menù e i tuoi piatti</h3>
 
             <div class="d-flex flex-wrap">
-                @if (empty($plates))
+                @if (!empty($plates))
 
                     @foreach ($plates as $plate)
                         <div class="card m-3 position-relative" style="width: 15rem;">
-                            <img class="card-img-top plate-img" src="{{ $plate->image }}" alt="{{ $plate->name }}">
+                            <img class="card-img-top plate-img" src="{{ asset('storage/' . $plate->image) }}"
+                                alt="{{ $plate->name }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $plate->name }}</h5>
                                 <p class="card-text mb-5">{{ $plate->description }}</p>
