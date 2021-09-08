@@ -5,38 +5,27 @@
       <span class="d-flex justify-content-center">Il tuo carrello</span>
     </div>
 
-    <div class="product">
-      <div class="product-image ml-2"></div>
-      <div class="product-details ml-2">Pizza</div>
-      <div class="product-price ml-2">8€</div>
-      <div class="d-flex ml-auto m-2">
-        <div class="product-quantity ml-2">
-          <i class="far fa-plus-square"></i>
-          <span>1</span>
-          <i class="far fa-minus-square"></i>
-        </div>
-        <div class="product-removal ml-2"><i class="fas fa-times"></i></div>
-      </div>
-    </div>
+    <div class="product" v-for="(plate, index) in plates" :key='plate.id'>
+      <img width="80" :src="'storage/' + plate.image" alt="">
+      <div class="product-details ml-2">{{plate.name}}</div>
+      <div class="product-price ml-2">{{plate.price}}</div>
 
-    <div class="product">
-      <div class="product-image ml-2"></div>
-      <div class="product-details ml-2">Carbonara</div>
-      <div class="product-price ml-2">10€</div>
       <div class="d-flex ml-auto m-2">
         <div class="product-quantity ml-2">
-          <i class="far fa-plus-square"></i>
-          <span>1</span>
-          <i class="far fa-minus-square"></i>
+          <i @click="storagePlate(plate)" class="fas fa-plus-circle text-success"></i>
+          <span>{{plate.qty}}</span>
+          <i @click="minusPlate(plate)" class="fas fa-minus-circle text-danger"></i>
         </div>
-        <div class="product-removal ml-2"><i class="fas fa-times"></i></div>
+
+        <div @click="removePlate(index)" class="product-removal ml-2"><i class="fas fa-times"></i></div>
       </div>
+
     </div>
 
     <div class="totals">
       <div class="totals-item totals-item-final m-2">
         <label>Prezzo Finale</label>
-        <div class="totals-value">100€</div>
+        <div class="totals-value">{{cart_price()}} €</div>
       </div>
     </div>
     <button id="submit-button" class="button button--small button--green">Conferma e Paga</button>
@@ -50,15 +39,74 @@ import Axios from "axios";
 export default {
   data() {
     return {
-      cart: [],
-    };
+      plates: [],
+    }
   },
-  methods: {},
+
+  methods: {
+    cart_price(){
+      let totalPrice = 0;
+      this.plates.forEach(plate => {
+          totalPrice += plate.price * plate.qty;
+      })
+      return totalPrice;
+    },
+    storagePlate(plate) {
+      let foodInCart = [];
+      this.plates.forEach(food => {
+          foodInCart.push(food.id);
+      })
+      if (foodInCart.includes(plate.id)) {
+          this.plates.forEach(food => {
+              if (food.id == plate.id) {
+                  food.qty++;
+              }
+          })
+      } else {
+          foodInCart.push(plate.id)
+          this.plates.unshift(plate);
+      }
+      this.savePlates();
+    },
+    savePlates() {
+      const parsed = JSON.stringify(this.plates);
+      localStorage.setItem('plates', parsed);
+    },
+    minusPlate(plate){
+      let foodInCart = [];
+      this.plates.forEach(food => {
+          foodInCart.push(food.id);
+      })
+      if (foodInCart.includes(plate.id)) {
+          this.plates.forEach(food => {
+              if (food.id == plate.id) {
+                  if (food.qty == 1) {
+                      this.removePlate();
+                  } else {
+                      food.qty--;
+                  }
+              }
+          })
+      }
+      this.savePlates();
+    },
+    removePlate(i){
+      this.plates.splice(i, 1);
+      this.savePlates();
+    },
+    getPlates(){
+      if (this.plates != null) {
+          this.plates = JSON.parse(localStorage.getItem('plates'));
+          console.log(this.plates);
+      }
+    },
+  },
+
   mounted() {
-    const contenutoArchiviato = JSON.parse(localStorage.getItem("cart"));
-    console.log(contenutoArchiviato.plates[0].name);
+    this.getPlates();
   },
-};
+
+}
 </script>
 
 <style lang="scss" scoped>
