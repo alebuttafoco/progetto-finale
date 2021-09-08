@@ -2,7 +2,7 @@
 <div class="wrapper py-5">
     <div class="restaurant bg-white p-0">
         <div class="img-restaurant-container">
-            <img class="img-restaurant" :src="'../storage/' + restaurant.image" alt="">
+            <img :src="'../storage/' + restaurant.image" alt="">
         </div>
 
         <h1 class="p-2 pl-3">{{ restaurant.name }}</h1>
@@ -38,10 +38,24 @@
     </div>
 
     <div class="cart">
-        <h4>CARRELLO <i class="fas fa-shopping-cart"></i></h4>
-        <div class="content" v-for="(plate, index) in plates" :key='plate.id'>    
-            <span> {{plate.name}}  ({{plate.qty}}) </span>
-            <i @click="removePlate(index)" class="fas fa-trash-alt text-danger"></i>
+        <div class="cart_heading btn_large">
+            <i class="fas fa-shopping-cart"></i>
+            <span>totale  {{cart_price()}} €</span>
+        </div>
+
+        <div class="content">
+            <div class="cart_item" v-for="(plate, index) in plates" :key='plate.id'>    
+                <span>{{plate.name}}</span>
+                <!-- <i @click="removePlate(index)" class="fas fa-trash-alt text-danger"></i> -->
+                <div class="actions">
+                    <i @click="storagePlate(plate, index)" class="fas fa-plus-circle text-success"></i>
+                    <span>{{plate.qty}}</span>
+                    <i @click="minusPlate(plate, index)" class="fas fa-minus-circle text-danger"></i>
+                </div>
+            </div>
+            <span v-if="plates.length > 0" @click="emptyCart()" class="empty_cart bg-danger text-white">Svuota il carrello <i class="fas fa-trash-alt"></i></span>
+
+            <a class="checkout_link btn btn-success" href="../cart">Vai alla cassa</a>
         </div>
     </div>
 
@@ -59,6 +73,13 @@ export default {
         }
     },
     methods: {
+        cart_price(){
+            let totalPrice = 0;
+            this.plates.forEach(plate => {
+                totalPrice += plate.price * plate.qty;
+            })
+            return totalPrice;
+        },
         callRestaurants(){
             Axios.get('/api/restaurants/' + this.$route.params.id)
             .then(resp => {
@@ -68,9 +89,7 @@ export default {
                 console.error(e);
             })
         },
-        storagePlate(plate, index) {
-            //incrementa il numero dinamicamente dopo il refresh della pagina
-
+        storagePlate(plate) {
             let foodInCart = [];
             this.plates.forEach(food => {
                 foodInCart.push(food.id);
@@ -83,7 +102,6 @@ export default {
                 })
             } else {
                 foodInCart.push(plate.id)
-                plate.qty = 1;
                 this.plates.unshift(plate);
             }
             this.savePlates();
@@ -92,8 +110,30 @@ export default {
             const parsed = JSON.stringify(this.plates);
             localStorage.setItem('plates', parsed);
         },
+        minusPlate(plate, index){
+            let foodInCart = [];
+            this.plates.forEach(food => {
+                foodInCart.push(food.id);
+            })
+            if (foodInCart.includes(plate.id)) {
+                this.plates.forEach(food => {
+                    if (food.id == plate.id) {
+                        if (food.qty == 1) {
+                            this.removePlate();
+                        } else {
+                            food.qty--;
+                        }
+                    }
+                })
+            }
+            this.savePlates();
+        },
         removePlate(i){
             this.plates.splice(i, 1);
+            this.savePlates();
+        },
+        emptyCart(){
+            this.plates = [];
             this.savePlates();
         },
         getPlates(){
@@ -111,26 +151,50 @@ export default {
 
 <style lang="scss" scoped>
 .cart {
+    height: fit-content;
     width: 20%;
-    height: 40rem;
-    margin: 1rem;
-    padding: 1rem;
+    margin: 0 1rem;
     background-color: white;
+    border-radius: 1rem;
+    position: sticky;
+    top: 0;
 
     .content {
+        min-height: 30rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .cart_heading {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .cart_item {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 2rem 0;
-
-        font-weight: bold;
         font-size: 1.1rem;
-
-        .fa-trash-alt {
-            cursor: pointer;
-            font-size: 1.4rem;
-        }
+        padding: .3rem;
+        border-bottom: 1px solid rgb(245, 245, 245);
     }
+
+    .empty_cart{
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        padding: .3rem;
+    }
+
+    .checkout_link {
+        margin-top: auto;
+    }
+}
+
+.fas {
+    cursor: pointer;
+    font-size: 1.4rem;
 }
 
 .wrapper{
@@ -150,13 +214,13 @@ export default {
 .img-restaurant-container {
   height: 300px;
   width: 100%;
+    img {
+        width: 100%;
+        height: inherit;
+        object-fit: cover;
+    }
 }
 
-.img-restaurant {
-  width: 100%;
-  height: inherit;
-  object-fit: cover;
-}
 
 .plate-img {
   border-bottom-left-radius: 0.25rem;
@@ -182,6 +246,4 @@ export default {
   box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);
   color: inherit;
 }
-</style>>
-
 </style>

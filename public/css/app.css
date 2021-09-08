@@ -11042,19 +11042,9 @@ h4 {
 }
 
 .btn_large {
-  padding: 8px 5px;
-  border: 1px solid #2c4792;
-  color: #2c4792;
-  background-color: white;
-}
-
-.btn_large * {
-  margin: 0px 5px;
-}
-
-.btn_large:hover {
-  background-color: #2c4792;
+  padding: 1rem;
   color: white;
+  background-color: #2c4792;
 }
 
 .icona {
@@ -22169,19 +22159,9 @@ h4 {
 }
 
 .btn_large {
-  padding: 8px 5px;
-  border: 1px solid #2c4792;
-  color: #2c4792;
-  background-color: white;
-}
-
-.btn_large * {
-  margin: 0px 5px;
-}
-
-.btn_large:hover {
-  background-color: #2c4792;
+  padding: 1rem;
   color: white;
+  background-color: #2c4792;
 }
 
 .icona {
