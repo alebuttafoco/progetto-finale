@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlateOrderTable extends Migration
+class CreateOrderPlateTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePlateOrderTable extends Migration
      */
     public function up()
     {
-        Schema::create('plate_order', function (Blueprint $table) {
+        Schema::create('order_plate', function (Blueprint $table) {
             $table->id();
             $table->smallInteger('quantity');
             $table->unsignedBigInteger('plate_id')->nullable();
@@ -30,6 +30,6 @@ class CreatePlateOrderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plate_order');
+        Schema::dropIfExists('order_plate');
     }
 }

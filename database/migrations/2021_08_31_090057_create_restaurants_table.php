@@ -26,7 +26,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('cap'); //come stringa perche' Faker lo genera AAAAA-AAAA
             $table->string('city');
             $table->text('description')->nullable();
-            $table->bigInteger('piva'); //11 cifre
+            $table->bigInteger('piva')->unique(); //11 cifre
 
             $table->timestamps();
         });
