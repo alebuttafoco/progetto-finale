@@ -14,6 +14,7 @@ class Plate extends Model
         'description',
         'price',
         'type',
+        'qty',
         'visible',
     ];
 
