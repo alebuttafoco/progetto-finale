@@ -9,7 +9,7 @@
       <div class="product-image ml-2"></div>
       <div class="product-details ml-2">Pizza</div>
       <div class="product-price ml-2">8€</div>
-      <div class="d-flex ml-auto">
+      <div class="d-flex ml-auto m-2">
         <div class="product-quantity ml-2">
           <i class="far fa-plus-square"></i>
           <span>1</span>
@@ -23,7 +23,7 @@
       <div class="product-image ml-2"></div>
       <div class="product-details ml-2">Carbonara</div>
       <div class="product-price ml-2">10€</div>
-      <div class="d-flex ml-auto">
+      <div class="d-flex ml-auto m-2">
         <div class="product-quantity ml-2">
           <i class="far fa-plus-square"></i>
           <span>1</span>
@@ -34,7 +34,7 @@
     </div>
 
     <div class="totals">
-      <div class="totals-item totals-item-final">
+      <div class="totals-item totals-item-final m-2">
         <label>Prezzo Finale</label>
         <div class="totals-value">100€</div>
       </div>

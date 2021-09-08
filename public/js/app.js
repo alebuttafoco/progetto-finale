@@ -38652,7 +38652,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("div", { staticClass: "product-price ml-2" }, [_vm._v("8€")]),
           _vm._v(" "),
-          _c("div", { staticClass: "d-flex ml-auto" }, [
+          _c("div", { staticClass: "d-flex ml-auto m-2" }, [
             _c("div", { staticClass: "product-quantity ml-2" }, [
               _c("i", { staticClass: "far fa-plus-square" }),
               _vm._v(" "),
@@ -38676,7 +38676,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("div", { staticClass: "product-price ml-2" }, [_vm._v("10€")]),
           _vm._v(" "),
-          _c("div", { staticClass: "d-flex ml-auto" }, [
+          _c("div", { staticClass: "d-flex ml-auto m-2" }, [
             _c("div", { staticClass: "product-quantity ml-2" }, [
               _c("i", { staticClass: "far fa-plus-square" }),
               _vm._v(" "),
@@ -38692,7 +38692,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "totals" }, [
-          _c("div", { staticClass: "totals-item totals-item-final" }, [
+          _c("div", { staticClass: "totals-item totals-item-final m-2" }, [
             _c("label", [_vm._v("Prezzo Finale")]),
             _vm._v(" "),
             _c("div", { staticClass: "totals-value" }, [_vm._v("100€")])
