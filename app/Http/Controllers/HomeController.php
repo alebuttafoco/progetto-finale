@@ -32,7 +32,6 @@ class HomeController extends Controller
 
         //ddd($plates[0]->orders[0]->pivot->quantity, $plates[0]->orders[0]->id, Order::find(1)->plates);
         //ddd(count($plates));
-        
         //$plates -> contiene i piatti del ristorante
         //$plates[0]->orders -> prendo il primo piatto e vado a vedere gli ordini che ha associati
         //$plates[0]->orders[0]->pivot -> vado a prendere il primo ordine del piatto e vado a prenedre le tabelle pivot collegate
@@ -49,10 +48,22 @@ class HomeController extends Controller
         $unique_id = array_unique($order_id);
 
         $orders = Order::whereIn('id', $unique_id)->get();
-        //ddd($orders);
+        //ddd($orders[0]->id);
         
         return view('admin.ordini', compact('orders'));
     }
+
+
+
+    public function showOrdini($id)
+    {
+        $order = Order::find($id);
+        return view('admin.showOrdini', compact('order'));
+    }
+
+
+
+
 
     public function statistiche()
     {

@@ -35,7 +35,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('restaurant', RestaurantController::class)->middleware(RestaurantMiddleware::class);
     Route::resource('plate', PlateController::class)->middleware(PlateMiddleware::class);
     
-    Route::get('/ordini', 'HomeController@ordini' )->name('ordini');
+    Route::get('ordini', 'HomeController@ordini' )->name('ordini');
+    Route::get('ordini/{id}', 'HomeController@showOrdini' )->name('ordini.show');
+
+
     Route::get('/statistiche', 'HomeController@statistiche' )->name('statistiche');
 
 });
