@@ -199,11 +199,20 @@ export default {
         this.plates = JSON.parse(localStorage.getItem("plates"));
       }
     },
+
+    getRestaurantOrder() {
+      if (this.saveRestaurantOrder != null) {
+        this.saveRestaurantOrder = JSON.parse(
+          localStorage.getItem("restaurant")
+        );
+      }
+    },
   },
 
   mounted() {
     this.callRestaurants();
     this.getPlates();
+    this.getRestaurantOrder();
   },
 };
 </script>
