@@ -1962,6 +1962,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
+=======
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+>>>>>>> michele
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -38808,6 +38822,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+<<<<<<< HEAD
   return _c("div", { staticClass: "container" }, [
     _c(
       "div",
@@ -38864,6 +38879,65 @@ var render = function() {
                 },
                 [_c("i", { staticClass: "fas fa-times" })]
               )
+=======
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "shopping-cart" }, [
+        _c("div", { staticClass: "labels" }, [
+          _c("span", { staticClass: "d-flex justify-content-center" }, [
+            _vm._v("Il tuo carrello")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "product" }, [
+          _c("div", { staticClass: "product-image ml-2" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "product-details ml-2" }, [_vm._v("Pizza")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "product-price ml-2" }, [_vm._v("8€")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-flex ml-auto m-2" }, [
+            _c("div", { staticClass: "product-quantity ml-2" }, [
+              _c("i", { staticClass: "far fa-plus-square" }),
+              _vm._v(" "),
+              _c("span", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("i", { staticClass: "far fa-minus-square" })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "product-removal ml-2" }, [
+              _c("i", { staticClass: "fas fa-times" })
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "product" }, [
+          _c("div", { staticClass: "product-image ml-2" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "product-details ml-2" }, [
+            _vm._v("Carbonara")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "product-price ml-2" }, [_vm._v("10€")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-flex ml-auto m-2" }, [
+            _c("div", { staticClass: "product-quantity ml-2" }, [
+              _c("i", { staticClass: "far fa-plus-square" }),
+              _vm._v(" "),
+              _c("span", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("i", { staticClass: "far fa-minus-square" })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "product-removal ml-2" }, [
+              _c("i", { staticClass: "fas fa-times" })
+>>>>>>> michele
             ])
           ])
         }),
@@ -38886,6 +38960,7 @@ var render = function() {
           },
           [_vm._v("Conferma e Paga")]
         )
+<<<<<<< HEAD
       ],
       2
     )
@@ -38899,6 +38974,8 @@ var staticRenderFns = [
     return _c("div", { staticClass: "labels" }, [
       _c("span", { staticClass: "d-flex justify-content-center" }, [
         _vm._v("Il tuo carrello")
+=======
+>>>>>>> michele
       ])
     ])
   }
