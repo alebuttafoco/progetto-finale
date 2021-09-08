@@ -16,6 +16,7 @@ class RestaurantController extends Controller
      */
     public function index(Request $request)
     {
+        ddd($request);
         $request_categories = explode(',', $request->categories);
         //ddd($request_categories);
 
@@ -42,7 +43,7 @@ class RestaurantController extends Controller
         }
 
         ddd($restaurants_array);
-        return array_unique($restaurants_array);
+        return $restaurants_array;
         
     }
 
