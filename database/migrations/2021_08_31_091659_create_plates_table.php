@@ -22,6 +22,7 @@ class CreatePlatesTable extends Migration
             $table->text('description')->nullable();
             $table->float('price');
             $table->string('type')->nullable();
+            $table->tinyInteger('qty')->default(1);
             $table->boolean('visible');
             $table->timestamps();
         });
