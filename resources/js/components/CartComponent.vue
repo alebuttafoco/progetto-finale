@@ -1,79 +1,90 @@
 <template>
-  <div class="container">
+<div class="container">
     <h1 class="p-3">Carrello</h1>
 
     <div class="shopping-cart">
-      <div class="item">
-        <div class="image">
-          <img src="#" alt="" />
-        </div>
-
-        <div class="description">
-          <span>Carbonara di Andrei</span>
-          <span>5,8</span>
-        </div>
-
-        <div class="quantity">
-          <button class="plus-btn" type="button" name="button">
-            <i class="fas fa-plus"></i>
-          </button>
-          <input class="input" type="text" name="name" value="1" />
-          <button class="minus-btn" type="button" name="button">
-            <i class="fas fa-minus"></i>
-          </button>
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="image">
-          <img src="#" alt="" />
-        </div>
-
-        <div class="d-flex price-border">
-          <span class="p-4">Totale</span>
-          <!-- <span class="full-price p-4">12,3 €</span> -->
-        </div>
-      </div>
-
-      <!-- box del riepilogo del carrello -->
-      <div class="cart-box">
-        <div class="cart-header">
-          <h5 class="cart-heading">Riepilogo ordine</h5>
-          <!-- <h5>Rimuovi tutto</h5> -->
-        </div>
-        <div class="cart-items">
-          <!-- <div class="image-box">
-              <img src="#" alt="">
-            </div> -->
-          <div class="description">
-            <span class="plate-name"></span>
-          </div>
-          <div class="item-counter">
-            <!-- numero dei piatti ordinati -->
-            <div class="btn">+</div>
-            <div class="count">1</div>
-            <div class="btn">-</div>
-          </div>
-          <div class="price">
-            <!-- inserisci prezzo intero // prima del coupon -->
-            <div class="amount">1.99€</div>
-            <div class="save">Salva per dopo</div>
-            <div class="remove">Rimuovi</div>
-          </div>
-        </div>
-        <hr />
-        <div class="checkout">
-          <div class="total">
-            <div>
-              <div class="subtotal">3.99€</div>
-              <div class="items-number">1</div>
+        <div class="item">
+            <div class="image">
+              <img src="#" alt="" />
             </div>
 
-            <div class="full-price">3.99€</div>
-          </div>
-          <button>Conferma e paga</button>
+            <div class="description">
+              <span>Carbonara di Andrei</span>
+              <span>5,8</span>
+            </div>
+
+            <div class="quantity">
+                <button class="plus-btn" type="button" name="button">
+                  <i class="fas fa-plus"></i>
+                </button>
+                <input class="input" type="text" name="name" value="1" />
+                <button class="minus-btn" type="button" name="button">
+                  <i class="fas fa-minus"></i>
+                </button>
+            </div>
         </div>
-      </div>
+
+        <div class="item">
+            <div class="image">
+              <img src="#" alt="" />
+            </div>
+
+            <div class="d-flex price-border">
+                <span class="p-4">Totale</span>
+                <!-- <span class="full-price p-4">12,3 €</span> -->
+            </div>
+        </div>
+
+        <!-- box del riepilogo del carrello -->
+        <div class="cart-box">
+            <div class="cart-header">
+                <h5 class="cart-heading">Riepilogo ordine</h5>
+                <!-- <h5>Rimuovi tutto</h5> -->
+            </div>
+
+            <div class="cart-items">
+              <!-- <div class="image-box">
+                  <img src="#" alt="">
+                </div> -->
+                <div class="description">
+                  <span class="plate-name"></span>
+                </div>
+
+                <div class="item-counter">
+                  <!-- numero dei piatti ordinati -->
+                  <div class="btn">+</div>
+                  <div class="count">1</div>
+                  <div class="btn">-</div>
+                </div>
+
+                <div class="price">
+                  <!-- inserisci prezzo intero // prima del coupon -->
+                  <div class="amount">1.99€</div>
+                  <div class="save">Salva per dopo</div>
+                  <div class="remove">Rimuovi</div>
+                </div>
+
+            </div>
+
+            <hr />
+
+            <div class="checkout">
+                <div class="total">
+                    <div>
+                      <div class="subtotal">3.99€</div>
+                      <div class="items-number">1</div>
+                    </div>
+
+                    <div class="full-price">3.99€</div>
+                </div>
+
+                <button>Conferma e paga</button>
+            </div>
+
+        </div>
+    </div>
+    
+</div>
 </template>
 
 <script>

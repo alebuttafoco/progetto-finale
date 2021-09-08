@@ -2016,14 +2016,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2106,6 +2098,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2115,7 +2127,7 @@ __webpack_require__.r(__webpack_exports__);
       filterRestaurants: [],
       isVisibleRestaurants: false,
       activeCategories: [],
-      selectedRestaurant: ''
+      selectedRestaurant: ""
     };
   },
   methods: {
@@ -2156,7 +2168,7 @@ __webpack_require__.r(__webpack_exports__);
     callRestaurants: function callRestaurants() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('./api/restaurants').then(function (resp) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("./api/restaurants").then(function (resp) {
         _this2.restaurants = resp.data.data;
       })["catch"](function (e) {
         console.error(e);
@@ -2165,7 +2177,7 @@ __webpack_require__.r(__webpack_exports__);
     callCategories: function callCategories() {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('./api/categories').then(function (resp) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("./api/categories").then(function (resp) {
         _this3.categories = resp.data.data;
       })["catch"](function (e) {
         console.error(e);
@@ -6820,7 +6832,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#HomeVideo[data-v-782dcf83] {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  -o-object-fit: cover;\n     object-fit: cover;\n  z-index: -999;\n  filter: brightness(50%);\n}\n.search_restaurants[data-v-782dcf83], .search_div[data-v-782dcf83] {\n  padding: 1rem;\n  background-color: white;\n}\n.search_div[data-v-782dcf83] {\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n@media screen and (max-width: 575.98px) {\n.search_div[data-v-782dcf83] {\n    display: flex;\n    flex-direction: column;\n}\n}\n.search_center[data-v-782dcf83] {\n  width: 60%;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  transition: 1s;\n}\n@media screen and (max-width: 1199.98px) {\n.search_center[data-v-782dcf83] {\n    width: 70%;\n}\n}\n@media screen and (max-width: 991.98px) {\n.search_center[data-v-782dcf83] {\n    width: 75%;\n}\n}\n@media screen and (max-width: 767.98px) {\n.search_center[data-v-782dcf83] {\n    width: 80%;\n}\n}\n@media screen and (max-width: 575.98px) {\n.search_center[data-v-782dcf83] {\n    width: 90%;\n}\n}\n.sticky[data-v-782dcf83] {\n  position: sticky;\n  top: 0;\n  z-index: 999;\n  -webkit-animation: slide_up-data-v-782dcf83 0.5s ease;\n          animation: slide_up-data-v-782dcf83 0.5s ease;\n}\n@-webkit-keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n@keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n.restaurants[data-v-782dcf83] {\n  width: 80%;\n  margin: auto;\n  -webkit-animation: show-data-v-782dcf83 0.5s 0.5s ease;\n          animation: show-data-v-782dcf83 0.5s 0.5s ease;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n  display: flex;\n  flex-wrap: wrap;\n}\n@media screen and (max-width: 991.98px) {\n.restaurants[data-v-782dcf83] {\n    width: 98%;\n}\n}\n.restaurants .my_card[data-v-782dcf83] {\n  width: calc(100% / 4 - 2rem);\n  margin: 1rem;\n  background-color: #f0f0f0;\n  text-decoration: none;\n  transition: 0.2s ease;\n}\n@media screen and (max-width: 1199.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 991.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 767.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 2 - 2rem);\n}\n}\n@media screen and (max-width: 575.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% - 2rem);\n}\n}\n.restaurants .my_card img[data-v-782dcf83] {\n  width: 100%;\n}\n.restaurants .my_card .details[data-v-782dcf83] {\n  padding: 1rem;\n}\n.restaurants .my_card[data-v-782dcf83]:hover {\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}\n@-webkit-keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}", ""]);
+exports.push([module.i, "#HomeVideo[data-v-782dcf83] {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  -o-object-fit: cover;\n     object-fit: cover;\n  z-index: -999;\n  filter: brightness(50%);\n}\n.search_restaurants[data-v-782dcf83],\n.search_div[data-v-782dcf83] {\n  padding: 1rem;\n  background-color: white;\n}\n.search_div[data-v-782dcf83] {\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n@media screen and (max-width: 575.98px) {\n.search_div[data-v-782dcf83] {\n    display: flex;\n    flex-direction: column;\n}\n}\n.search_center[data-v-782dcf83] {\n  width: 60%;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  transition: 1s;\n}\n@media screen and (max-width: 1199.98px) {\n.search_center[data-v-782dcf83] {\n    width: 70%;\n}\n}\n@media screen and (max-width: 991.98px) {\n.search_center[data-v-782dcf83] {\n    width: 75%;\n}\n}\n@media screen and (max-width: 767.98px) {\n.search_center[data-v-782dcf83] {\n    width: 80%;\n}\n}\n@media screen and (max-width: 575.98px) {\n.search_center[data-v-782dcf83] {\n    width: 90%;\n}\n}\n.sticky[data-v-782dcf83] {\n  position: sticky;\n  top: 0;\n  z-index: 999;\n  -webkit-animation: slide_up-data-v-782dcf83 0.5s ease;\n          animation: slide_up-data-v-782dcf83 0.5s ease;\n}\n@-webkit-keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n@keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n.restaurants[data-v-782dcf83] {\n  width: 80%;\n  margin: auto;\n  -webkit-animation: show-data-v-782dcf83 0.5s 0.5s ease;\n          animation: show-data-v-782dcf83 0.5s 0.5s ease;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n  display: flex;\n  flex-wrap: wrap;\n}\n@media screen and (max-width: 991.98px) {\n.restaurants[data-v-782dcf83] {\n    width: 98%;\n}\n}\n.restaurants .my_card[data-v-782dcf83] {\n  width: calc(100% / 4 - 2rem);\n  margin: 1rem;\n  background-color: #f0f0f0;\n  text-decoration: none;\n  transition: 0.2s ease;\n}\n@media screen and (max-width: 1199.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 991.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 767.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 2 - 2rem);\n}\n}\n@media screen and (max-width: 575.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% - 2rem);\n}\n}\n.restaurants .my_card img[data-v-782dcf83] {\n  width: 100%;\n}\n.restaurants .my_card .details[data-v-782dcf83] {\n  padding: 1rem;\n}\n.restaurants .my_card[data-v-782dcf83]:hover {\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}\n@-webkit-keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}", ""]);
 
 // exports
 
@@ -38878,37 +38890,6 @@ var staticRenderFns = [
             _c("button", [_vm._v("Conferma e paga")])
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "description" }, [
-        _c("span", [_vm._v("Pasta alla norma di Giuse")]),
-        _vm._v(" "),
-        _c("span", [_vm._v("13,4")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "quantity" }, [
-        _c(
-          "button",
-          {
-            staticClass: "plus-btn",
-            attrs: { type: "button", name: "button" }
-          },
-          [_c("i", { staticClass: "fas fa-plus" })]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "input",
-          attrs: { type: "text", name: "name", value: "1" }
-        }),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "minus-btn",
-            attrs: { type: "button", name: "button" }
-          },
-          [_c("i", { staticClass: "fas fa-minus" })]
-        )
       ])
     ])
   }
@@ -39069,6 +39050,44 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "details" }, [
                       _c("h5", [_vm._v(" " + _vm._s(restaurant.name) + " ")])
+                    ])
+                  ])
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.filterRestaurants, function(restaurant) {
+              return _c(
+                "router-link",
+                {
+                  key: restaurant.id,
+                  staticClass: "my_card",
+                  attrs: {
+                    to: {
+                      name: "restaurants.show",
+                      params: { id: restaurant.id }
+                    }
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.selectedRestaurant = restaurant.id
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "content" }, [
+                    _c("img", {
+                      attrs: {
+                        src:
+                          restaurant.image == null
+                            ? "img/cover_restaurant.jpg"
+                            : "storage/" + restaurant.image,
+                        alt: ""
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "details" }, [
+                      _c("h5", [_vm._v(_vm._s(restaurant.name))])
                     ])
                   ])
                 ]

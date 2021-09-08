@@ -1,7 +1,8 @@
 <template>
-  <div class="home_wrapper">
+<div class="home_wrapper">
+
     <video v-if="!isVisibleRestaurants" autoplay muted loop id="HomeVideo">
-      <source src="img/video.mp4" type="video/mp4" />
+        <source src="img/video.mp4" type="video/mp4" />
     </video>
 
     <!-- RICERCA DEL RISTORANTE -->
@@ -28,20 +29,9 @@
                 v-for="category in categories" :key='category.id'>
                 {{category.name}}
             </div>
+            
         </div>
 
-        <div
-          class="px-4 py-2 m-2"
-          :class="
-            activeCategories.includes(category.id) ? 'bttn' : 'bttn_reverse'
-          "
-          @click="(isVisibleRestaurants = true), selectCategory(category.id)"
-          v-for="category in categories"
-          :key="category.id"
-        >
-          {{ category.name }}
-        </div>
-      </div>
     </div>
 
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
@@ -62,31 +52,25 @@
             </div>
         </router-link>
 
-      <!-- ristorante visualizzato -->
-      <!-- :href="'./restaurants/' + selectedRestaurant " -->
-      <router-link
+        <!-- ristorante visualizzato -->
+        <router-link
         v-for="restaurant in filterRestaurants"
         :key="restaurant.id"
         class="my_card"
         :to="{ name: 'restaurants.show', params: { id: restaurant.id } }"
-        @click="selectedRestaurant = restaurant.id"
-      >
+        @click="selectedRestaurant = restaurant.id">
+
         <div class="content">
-          <img
-            :src="
-              restaurant.image == null
-                ? 'img/cover_restaurant.jpg'
-                : 'storage/' + restaurant.image
-            "
-            alt=""
-          />
-          <div class="details">
-            <h5>{{ restaurant.name }}</h5>
-          </div>
+            <img :src=" restaurant.image == null ? 'img/cover_restaurant.jpg' : 'storage/' + restaurant.image" alt="" />
+            <div class="details">
+                <h5>{{ restaurant.name }}</h5>
+            </div>
         </div>
-      </router-link>
+        </router-link>
+
     </div>
-  </div>
+
+</div>
 </template>
 
 <script>
