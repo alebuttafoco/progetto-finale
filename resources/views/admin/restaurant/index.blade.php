@@ -29,7 +29,9 @@
                     <tr>
                         <th>{{ $restaurant->id }}</th>
                         <td>{{ $restaurant->name }}</td>
-                        <td><img width="100" src="{{ asset('storage/' . $restaurant->image) }}" alt=""></td>
+                        <td><img width="100"
+                                src="{{ $restaurant->image == null ? asset('img/cover_restaurant.jpg') : asset('storage/' . $restaurant->image) }}"
+                                alt=""></td>
                         <td>{{ $restaurant->address }} <br> {{ $restaurant->city }} <br> {{ $restaurant->cap }}</td>
                         <td>{{ $restaurant->description }}</td>
                         <td>{{ $restaurant->piva }}</td>

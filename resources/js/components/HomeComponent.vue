@@ -1,63 +1,83 @@
 <template>
-<div class="home_wrapper">
-
-    <video v-if="!isVisibleRestaurants" autoplay muted loop id="HomeVideo">
+  <div class="home_wrapper">
+    <div class="box_video">
+      <video v-if="!isVisibleRestaurants" autoplay muted loop id="HomeVideo">
         <source src="img/video.mp4" type="video/mp4" />
-    </video>
+      </video>
+    </div>
 
     <!-- RICERCA DEL RISTORANTE -->
-    <div :class=" isVisibleRestaurants ? 'sticky' : 'search_center' ">
-        <div v-if="!isVisibleRestaurants" class="search_restaurants text-center">
-            <span @click="isVisibleRestaurants = true,  selectCategory() " class="bttn px-4 py-2 m-2">
-                Visualizza tutti i Ristoranti
-            </span>
-            <h4 class="mt-5">Oppure seleziona una categoria per iniziare</h4>
+    <div class="box_ricerca">
+      <div :class="isVisibleRestaurants ? 'sticky' : 'search_center'">
+        <div
+          v-if="!isVisibleRestaurants"
+          class="search_restaurants text-center"
+        >
+          <span
+            @click="(isVisibleRestaurants = true), selectCategory()"
+            class="bttn px-4 py-2 m-2"
+          >
+            Visualizza tutti i Ristoranti
+          </span>
+          <h4 class="mt-5">Oppure seleziona una categoria per iniziare</h4>
         </div>
-        
+
         <div class="search_div">
+          <div
+            v-if="isVisibleRestaurants"
+            @click="(isVisibleRestaurants = true), selectCategory()"
+            class="px-4 py-2 m-2"
+            :class="activeCategories == '' ? 'bttn' : 'bttn_reverse'"
+          >
+            Visualizza tutti i Ristoranti
+          </div>
 
-            <div v-if="isVisibleRestaurants" 
-                @click="isVisibleRestaurants = true, selectCategory()" 
-                class="px-4 py-2 m-2"
-                :class="activeCategories == '' ? 'bttn' : 'bttn_reverse' ">
-                Visualizza tutti i Ristoranti
-            </div>
-
-            <div class="px-4 py-2 m-2" 
-                :class="activeCategories.includes(category.id) ? 'bttn' : 'bttn_reverse' "
-                @click="isVisibleRestaurants = true, selectCategory(category.id)" 
-                v-for="category in categories" :key='category.id'>
-                {{category.name}}
-            </div>
-            
+          <div
+            class="px-4 py-2 m-2"
+            :class="
+              activeCategories.includes(category.id) ? 'bttn' : 'bttn_reverse'
+            "
+            @click="(isVisibleRestaurants = true), selectCategory(category.id)"
+            v-for="category in categories"
+            :key="category.id"
+          >
+            {{ category.name }}
+          </div>
         </div>
-
+      </div>
     </div>
 
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
     <div class="restaurants" v-if="isVisibleRestaurants">
-        <!-- messaggio ristorante non trovato con il filtro di categoria -->
-        <h4 class="bg-white mt-5 mx-auto" v-if="filterRestaurants.length == 0">Nessun ristorante da visualizzare per questa categoria 😪</h4>
+      <!-- messaggio ristorante non trovato con il filtro di categoria -->
+      <h4 class="bg-white mt-5 mx-auto" v-if="filterRestaurants.length == 0">
+        Nessun ristorante da visualizzare per questa categoria 😪
+      </h4>
 
-        <!-- ristorante visualizzato -->
-        <router-link
+      <!-- ristorante visualizzato -->
+      <router-link
         v-for="restaurant in filterRestaurants"
         :key="restaurant.id"
         class="my_card"
         :to="{ name: 'restaurants.show', params: { id: restaurant.id } }"
-        @click="selectedRestaurant = restaurant.id">
-
+        @click="selectedRestaurant = restaurant.id"
+      >
         <div class="content">
-            <img :src=" restaurant.image == null ? 'img/cover_restaurant.jpg' : 'storage/' + restaurant.image" alt="" />
-            <div class="details">
-                <h5>{{ restaurant.name }}</h5>
-            </div>
+          <img
+            :src="
+              restaurant.image == null
+                ? 'img/cover_restaurant.jpg'
+                : 'storage/' + restaurant.image
+            "
+            alt=""
+          />
+          <div class="details">
+            <h5>{{ restaurant.name }}</h5>
+          </div>
         </div>
-        </router-link>
-
+      </router-link>
     </div>
-
-</div>
+  </div>
 </template>
 
 <script>
@@ -162,12 +182,17 @@ export default {
   }
 }
 
+.box_ricerca {
+  display: flex;
+  justify-content: center;
+}
+
 .search_center {
-  width: 60%;
-  position: absolute;
+  /*   width: 60%;
+  position: fixed;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 50%; */
+  transform: translateY(50%);
   transition: 1s;
   @media screen and (max-width: 1199.98px) {
     width: 70%;
@@ -180,6 +205,7 @@ export default {
   }
   @media screen and (max-width: 575.98px) {
     width: 90%;
+    margin: -55%;
   }
 }
 
