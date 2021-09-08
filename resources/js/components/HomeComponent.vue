@@ -40,19 +40,6 @@
         <h4 class="bg-white mt-5 mx-auto" v-if="filterRestaurants.length == 0">Nessun ristorante da visualizzare per questa categoria 😪</h4>
 
         <!-- ristorante visualizzato -->
-        <router-link v-for="restaurant in filterRestaurants" :key='restaurant.id' class="my_card"
-            :to="{name: 'restaurants.show', params: {id: restaurant.id} }"
-            @click="selectedRestaurant = restaurant.id">
-
-            <div class="content">
-                <img src="https://picsum.photos/536/354" alt="">
-                <div class="details">
-                    <h5> {{restaurant.name}} </h5>
-                </div>
-            </div>
-        </router-link>
-
-        <!-- ristorante visualizzato -->
         <router-link
         v-for="restaurant in filterRestaurants"
         :key="restaurant.id"
