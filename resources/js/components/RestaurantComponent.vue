@@ -78,7 +78,7 @@ export default {
     return {
       restaurant: "",
       plates: [],
-      restaurantOrder: null,
+      restaurantOrder: [],
     };
   },
 

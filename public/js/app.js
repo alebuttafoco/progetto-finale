@@ -2271,7 +2271,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       restaurant: "",
       plates: [],
-      restaurantOrder: null
+      restaurantOrder: []
     };
   },
   methods: {
