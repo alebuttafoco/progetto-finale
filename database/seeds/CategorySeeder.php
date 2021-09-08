@@ -13,9 +13,13 @@ class CategorySeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+
+
+
+        $category= ['pizza', 'pasta', 'vegetariano', 'carne', 'indiano', 'sushi', 'kebab', 'messicano', 'carne', 'vegano'];
         for ($i=0; $i < 10; $i++) { 
             $category = new Category();
-            $category->name = $faker->word();
+            $category->name = $category[$i];
             $category->image = "https://picsum.photos/seed/picsum/536/354";
             $category->save();
         }

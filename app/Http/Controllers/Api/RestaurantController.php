@@ -14,10 +14,45 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return RestaurantResource::collection(Restaurant::orderBy('id', 'DESC')->get());
+        ddd($request);
+        $request_categories = explode(',', $request->categories);
+        //ddd($request_categories);
+
+        //tutti i ristoranti 
+        $restaurants = RestaurantResource::collection(Restaurant::orderBy('id', 'DESC')->get());
+
+        //se contiene 'all' allora torno tutti i ristoranti
+        if (in_array("all", $request_categories)) {
+            return $restaurants;
+        }
+
+        //va a verificare se 
+        $restaurants_array = [];
+        foreach ($restaurants as $restaurant) {
+            $categories = $restaurant->categories;
+            foreach ($categories as $category) {
+                //ddd($category->name);
+                if (in_array($category->name, $request_categories) ) {
+                    if (!in_array($restaurant, $restaurants_array)) {
+                        array_push($restaurants_array, $restaurant);
+                    }
+                }
+            }
+        }
+
+        ddd($restaurants_array);
+        return $restaurants_array;
+        
     }
+
+
+
+
+
+
+
 
     public function show(Restaurant $restaurant)
     {
