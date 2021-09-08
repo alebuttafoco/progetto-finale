@@ -46,7 +46,7 @@
         <div class="content">
             <div class="cart_item" v-for="(plate, index) in plates" :key='plate.id'>    
                 <span>{{plate.name}}</span>
-                <!-- <i @click="removePlate(index)" class="fas fa-trash-alt text-danger"></i> -->
+
                 <div class="actions">
                     <i @click="storagePlate(plate, index)" class="fas fa-plus-circle text-success"></i>
                     <span>{{plate.qty}}</span>
@@ -70,6 +70,7 @@ export default {
         return {
             restaurant: '',
             plates : [],
+            restaurantOrder : null,
         }
     },
     methods: {
@@ -102,9 +103,22 @@ export default {
                 })
             } else {
                 foodInCart.push(plate.id)
-                this.plates.unshift(plate);
+                if (this.restaurantOrder != plate.restaurant_id) {
+                    console.log('ristorante diverso');
+                    this.emptyCart();
+                    this.plates.unshift(plate);
+                    this.restaurantOrder = plate.restaurant_id;
+                } else {
+                    console.log('aggiungi ordini');
+                    this.plates.unshift(plate);
+                }
             }
             this.savePlates();
+            this.saveRestaurantOrder();
+        },
+        saveRestaurantOrder() {
+            const parsed = JSON.stringify(this.restaurantOrder);
+            localStorage.setItem('restaurant', parsed);
         },
         savePlates() {
             const parsed = JSON.stringify(this.plates);
@@ -133,8 +147,10 @@ export default {
             this.savePlates();
         },
         emptyCart(){
+            this.restaurantOrder = [];
             this.plates = [];
             this.savePlates();
+            this.saveRestaurantOrder();
         },
         getPlates(){
             if (this.plates != null) {

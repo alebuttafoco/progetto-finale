@@ -10973,7 +10973,6 @@ a.text-dark:focus {
 }
 
 body {
-  background-color: #F8B735 !important;
   color: #252525;
   font-family: "Roboto", sans-serif;
 }
@@ -11068,8 +11067,8 @@ h4 {
 }
 
 header {
+  background-color: #F8B735;
   font-weight: 600;
-  z-index: 9999;
 }
 
 header #logo {
@@ -22090,7 +22089,6 @@ a.text-dark:focus {
 }
 
 body {
-  background-color: #F8B735 !important;
   color: #252525;
   font-family: "Roboto", sans-serif;
 }

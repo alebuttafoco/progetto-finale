@@ -2267,7 +2267,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       restaurant: '',
-      plates: []
+      plates: [],
+      restaurantOrder: null
     };
   },
   methods: {
@@ -2301,10 +2302,24 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else {
         foodInCart.push(plate.id);
-        this.plates.unshift(plate);
+
+        if (this.restaurantOrder != plate.restaurant_id) {
+          console.log('ristorante diverso');
+          this.emptyCart();
+          this.plates.unshift(plate);
+          this.restaurantOrder = plate.restaurant_id;
+        } else {
+          console.log('aggiungi ordini');
+          this.plates.unshift(plate);
+        }
       }
 
       this.savePlates();
+      this.saveRestaurantOrder();
+    },
+    saveRestaurantOrder: function saveRestaurantOrder() {
+      var parsed = JSON.stringify(this.restaurantOrder);
+      localStorage.setItem('restaurant', parsed);
     },
     savePlates: function savePlates() {
       var parsed = JSON.stringify(this.plates);
@@ -2337,8 +2352,10 @@ __webpack_require__.r(__webpack_exports__);
       this.savePlates();
     },
     emptyCart: function emptyCart() {
+      this.restaurantOrder = [];
       this.plates = [];
       this.savePlates();
+      this.saveRestaurantOrder();
     },
     getPlates: function getPlates() {
       if (this.plates != null) {
