@@ -2,10 +2,13 @@
 
 @section('titolo')
     <h1>{{ $plate->name }}</h1>
-
+    
 @endsection
 
 @section('content')
+<div>
+    <a class="btn btn-success mb-4" href="{{URL::previous()}}">Indietro</a>
+</div>
     <div>
 
         <div>
@@ -27,9 +30,6 @@
         </div>
         <div>
 
-            <a class="btn btn-success" href="{{ route('admin.plate.destroy', $plate->id) }}">
-                <i class="fas fa-eye"></i>
-            </a>
             <a href="{{ route('admin.plate.edit', $plate->id) }}" class="btn btn-secondary">
                 <i class="fas fa-edit"></i>
             </a>
