@@ -20,7 +20,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function datiOrdini()
+    public function datiOrdini($type)
     {
         $user_id = Auth::id();
         $restaurant = Restaurant::where('user_id', $user_id)->first();
@@ -37,8 +37,12 @@ class HomeController extends Controller
 
         $unique_id = array_unique($order_id);
 
-        $orders = Order::whereIn('id', $unique_id)->paginate(10);
-        return $orders;
+        if ($type == 'all') {
+         return $orders = Order::whereIn('id', $unique_id)->get();
+            
+        }
+        
+        return $orders = Order::whereIn('id', $unique_id)->paginate(10);
     }
     
     public function user()
@@ -48,7 +52,7 @@ class HomeController extends Controller
 
     public function ordini()
     {
-        $orders = $this->datiOrdini();
+        $orders = $this->datiOrdini("paginate");
         //ddd($orders);
         return view('admin.ordini', compact('orders'));
     }
@@ -68,7 +72,8 @@ class HomeController extends Controller
     public function statistiche()
     {
 
-        $orders = $this->datiOrdini();
+        $orders = $this->datiOrdini("all");
+        //ddd($orders);
         $all_profit = 0;
         $order_count = count($orders);
         $month_order = 0;
