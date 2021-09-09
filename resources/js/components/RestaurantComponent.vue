@@ -83,7 +83,7 @@
           </div>
         </div>
         <span
-          v-if="plates != null"
+          v-if="plates.length != 0"
           @click="emptyCart()"
           class="empty_cart bg-danger text-white"
           >Svuota il carrello <i class="fas fa-trash-alt"></i

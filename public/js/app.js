@@ -2316,18 +2316,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       restaurant: "",
       plates: [],
-<<<<<<< HEAD
-      restaurantOrder: null
-<<<<<<< HEAD
-=======
-=======
-      restaurant: '',
-      plates: []
->>>>>>> andrei
-=======
       restaurantOrder: []
->>>>>>> alessandro
->>>>>>> 50912532d9c22b20b1b363830e980c2ae4663d8e
     };
   },
   methods: {
@@ -2370,7 +2359,7 @@ __webpack_require__.r(__webpack_exports__);
           if (this.plates.length == 0) {
             this.plates.unshift(plate);
             this.restaurantOrder = plate.restaurant_id;
-          } else if (confirm('Attenzione, cambiando ristorante perderai gli ordini attuali!')) {
+          } else if (confirm("Attenzione, cambiando ristorante perderai gli ordini attuali!")) {
             this.emptyCart();
             this.plates.unshift(plate);
             this.restaurantOrder = plate.restaurant_id;
@@ -39327,7 +39316,7 @@ var render = function() {
             ])
           }),
           _vm._v(" "),
-          _vm.plates != null
+          _vm.plates.length != 0
             ? _c(
                 "span",
                 {
