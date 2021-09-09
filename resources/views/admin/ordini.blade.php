@@ -18,6 +18,7 @@
             </thead>
             <tbody>
 
+              {{-- {{ddd($orders)}} --}}
                 @foreach ($orders as $order)
 
                 {{-- {{ddd($order)}} --}}
@@ -34,5 +35,6 @@
               
             </tbody>
           </table>
+          {{$orders->links()}}
 
 @endsection

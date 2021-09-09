@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Plate;
 use App\Restaurant;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Factory;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -33,7 +37,7 @@ class HomeController extends Controller
 
         $unique_id = array_unique($order_id);
 
-        $orders = Order::whereIn('id', $unique_id)->get();
+        $orders = Order::whereIn('id', $unique_id)->paginate(10);
         return $orders;
     }
     
@@ -44,8 +48,8 @@ class HomeController extends Controller
 
     public function ordini()
     {
-        
         $orders = $this->datiOrdini();
+        //ddd($orders);
         return view('admin.ordini', compact('orders'));
     }
 
@@ -65,11 +69,26 @@ class HomeController extends Controller
     {
 
         $orders = $this->datiOrdini();
+        $all_profit = 0;
+        $order_count = count($orders);
+        $month_order = 0;
+        $year_order = 0;
+        foreach ($orders as $order) {
+            //all profit 
+            $all_profit += $order->total_price;
+            //order on this month
+            if ((Carbon::parse($order->date)->format('m') === (Carbon::now()->format('m')))) {
+                $month_order += 1;
+            }
+            //order on this year
+            if ((Carbon::parse($order->date)->format('y') === (Carbon::now()->format('y')))) {
+                $year_order += 1;
+            }
+        }
         
+        //ddd($orders, Carbon::parse($orders[1]->date)->format('y'), Carbon::now()->format('y'));
 
-
-
-        return view('admin.statistiche');
+        return view('admin.statistiche', compact('all_profit', 'order_count', 'month_order', 'year_order'));
     }
 
 }

@@ -19,7 +19,7 @@ class PlateController extends Controller
 
 
         $restaurant_id = $restaurants[0]->id;
-        $plates = Plate::where('restaurant_id', $restaurant_id)->orderBy('name', 'ASC')->get();
+        $plates = Plate::where('restaurant_id', $restaurant_id)->orderBy('name', 'ASC')->paginate(10);
 
         if (($plates->count() === 0)) {
             $plates = false;
