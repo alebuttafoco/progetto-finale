@@ -16,10 +16,11 @@ class CategorySeeder extends Seeder
 
 
 
-        $category= ['pizza', 'pasta', 'vegetariano', 'carne', 'indiano', 'sushi', 'kebab', 'messicano', 'carne', 'vegano'];
-        for ($i=0; $i < 10; $i++) { 
+        $categories= ['pizza', 'pasta', 'vegetariano', 'carne', 'indiano', 'sushi', 'kebab', 'messicano', 'bevande', 'vegano'];
+        
+        foreach ($categories as $cat) {
             $category = new Category();
-            $category->name = $category[$i];
+            $category->name = $cat;
             $category->image = "https://picsum.photos/seed/picsum/536/354";
             $category->save();
         }
