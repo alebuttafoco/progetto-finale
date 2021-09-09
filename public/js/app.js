@@ -2307,12 +2307,15 @@ __webpack_require__.r(__webpack_exports__);
         foodInCart.push(plate.id);
 
         if (this.restaurantOrder != plate.restaurant_id) {
-          console.log("ristorante diverso");
-          this.emptyCart();
-          this.plates.unshift(plate);
-          this.restaurantOrder = plate.restaurant_id;
+          if (this.plates.length == 0) {
+            this.plates.unshift(plate);
+            this.restaurantOrder = plate.restaurant_id;
+          } else if (confirm('Attenzione, cambiando ristorante perderai gli ordini attuali!')) {
+            this.emptyCart();
+            this.plates.unshift(plate);
+            this.restaurantOrder = plate.restaurant_id;
+          }
         } else {
-          console.log("aggiungi ordini");
           this.plates.unshift(plate);
         }
       }
@@ -2328,7 +2331,7 @@ __webpack_require__.r(__webpack_exports__);
       var parsed = JSON.stringify(this.plates);
       localStorage.setItem("plates", parsed);
     },
-    minusPlate: function minusPlate(plate, index) {
+    minusPlate: function minusPlate(plate) {
       var _this2 = this;
 
       var foodInCart = [];
@@ -2361,14 +2364,18 @@ __webpack_require__.r(__webpack_exports__);
       this.saveRestaurantOrder();
     },
     getPlates: function getPlates() {
-      if (this.plates != null) {
-        this.plates = JSON.parse(localStorage.getItem("plates"));
+      if (localStorage.getItem("plates") == null) {
+        this.savePlates();
       }
+
+      this.plates = JSON.parse(localStorage.getItem("plates"));
     },
     getRestaurantOrder: function getRestaurantOrder() {
-      if (this.restaurantOrder != null) {
-        this.restaurantOrder = JSON.parse(localStorage.getItem("restaurant"));
+      if (localStorage.getItem("restaurant") == null) {
+        this.saveRestaurantOrder();
       }
+
+      this.restaurantOrder = JSON.parse(localStorage.getItem("restaurant"));
     }
   },
   mounted: function mounted() {
@@ -6872,7 +6879,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".cart[data-v-78e2f7b6] {\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  width: 20%;\n  margin: 0 1rem;\n  background-color: white;\n  border-radius: 1rem;\n  position: sticky;\n  top: 0;\n}\n.cart .content[data-v-78e2f7b6] {\n  min-height: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n}\n.cart .cart_heading[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n}\n.cart .cart_item[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  font-size: 1.1rem;\n  padding: 0.3rem;\n  border-bottom: 1px solid whitesmoke;\n}\n.cart .empty_cart[data-v-78e2f7b6] {\n  cursor: pointer;\n  display: flex;\n  justify-content: space-between;\n  padding: 0.3rem;\n}\n.cart .checkout_link[data-v-78e2f7b6] {\n  margin-top: auto;\n}\n.fas[data-v-78e2f7b6] {\n  cursor: pointer;\n  font-size: 1.4rem;\n}\n.wrapper[data-v-78e2f7b6] {\n  width: 80%;\n  margin: auto;\n  display: flex;\n}\n.restaurant[data-v-78e2f7b6] {\n  width: 80%;\n}\n.address[data-v-78e2f7b6] {\n  font-size: 0.7rem;\n}\n.img-restaurant-container[data-v-78e2f7b6] {\n  height: 300px;\n  width: 100%;\n}\n.img-restaurant-container img[data-v-78e2f7b6] {\n  width: 100%;\n  height: inherit;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.plate-img[data-v-78e2f7b6] {\n  border-bottom-left-radius: 0.25rem;\n  border-bottom-right-radius: 0.25rem;\n  max-height: 10rem;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.price-btn[data-v-78e2f7b6] {\n  position: absolute;\n  bottom: 1rem;\n  right: 1rem;\n  width: 5rem;\n}\n.card[data-v-78e2f7b6] {\n  transition: all 0.2s ease-in-out;\n}\n.card[data-v-78e2f7b6]:hover {\n  cursor: pointer;\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}", ""]);
+exports.push([module.i, ".cart[data-v-78e2f7b6] {\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  width: 20%;\n  margin: 0 1rem;\n  background-color: white;\n  border-radius: 1rem;\n  position: sticky;\n  top: 0;\n}\n.cart .content[data-v-78e2f7b6] {\n  min-height: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n}\n.cart .cart_heading[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n}\n.cart .cart_item[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.3rem;\n  border-bottom: 1px solid whitesmoke;\n}\n.cart .empty_cart[data-v-78e2f7b6] {\n  cursor: pointer;\n  display: flex;\n  justify-content: space-between;\n  padding: 0.3rem;\n}\n.cart .checkout_link[data-v-78e2f7b6] {\n  margin-top: auto;\n}\n.fas[data-v-78e2f7b6] {\n  cursor: pointer;\n  font-size: 1.4rem;\n}\n.wrapper[data-v-78e2f7b6] {\n  width: 80%;\n  margin: auto;\n  display: flex;\n}\n.restaurant[data-v-78e2f7b6] {\n  width: 80%;\n}\n.address[data-v-78e2f7b6] {\n  font-size: 0.7rem;\n}\n.img-restaurant-container[data-v-78e2f7b6] {\n  height: 300px;\n  width: 100%;\n}\n.img-restaurant-container img[data-v-78e2f7b6] {\n  width: 100%;\n  height: inherit;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.plate-img[data-v-78e2f7b6] {\n  border-bottom-left-radius: 0.25rem;\n  border-bottom-right-radius: 0.25rem;\n  max-height: 10rem;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.price-btn[data-v-78e2f7b6] {\n  position: absolute;\n  bottom: 1rem;\n  right: 1rem;\n  width: 5rem;\n}\n.card[data-v-78e2f7b6] {\n  transition: all 0.2s ease-in-out;\n}\n.card[data-v-78e2f7b6]:hover {\n  cursor: pointer;\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}", ""]);
 
 // exports
 
