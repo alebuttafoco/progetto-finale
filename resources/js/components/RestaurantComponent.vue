@@ -68,9 +68,10 @@
       </div>
 
     </div>
+
     <!-- CARRELLO -->
     <div class="cart">
-      <div class="cart_heading btn_large">
+      <div class="cart_heading">
         <i class="fas fa-shopping-cart"></i>
         <span>totale {{ cart_price() }} €</span>
       </div>
@@ -81,7 +82,7 @@
 
           <div class="actions">
             <i @click="minusPlate(plate, index)" class="fas fa-minus-circle text-danger" ></i>
-            <span>{{ plate.qty }}</span>
+            <span class="mx-2">{{ plate.qty }}</span>
             <i @click="storagePlate(plate, index)" class="fas fa-plus-circle text-success" ></i>
           </div>
         </div>
@@ -98,7 +99,7 @@
       <div v-else class="cart_modal">
         <div class="cart_heading btn_large">
           <span>totale {{ cart_price() }} €</span>
-          <span @click="showMobileCart()">chiudi</span>
+          <span @click="showMobileCart()"><i class="fas fa-times"></i></span>
         </div>
 
         <div class="content">
@@ -396,6 +397,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-radius: .5rem;
 
     animation: show .3s ease-in-out;
     @keyframes show {
@@ -429,6 +431,8 @@ export default {
       position: relative;
 
       img {
+        border-top-left-radius: .5rem;
+        border-top-right-radius: .5rem;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -455,9 +459,11 @@ export default {
   width: 20%;
   margin: 0 1rem;
   background-color: white;
-  border-radius: 1rem;
   position: sticky;
   top: 0;
+  box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.089);
+  border-bottom-left-radius: .5rem;
+  border-bottom-right-radius: .5rem;
 
   .content {
     min-height: 30rem;
@@ -467,8 +473,13 @@ export default {
   }
 
   .cart_heading {
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
     display: flex;
     justify-content: space-between;
+    padding: 1rem;
+    background-color: #2B898B;
+    color: white;
   }
 
   .cart_item {
@@ -477,6 +488,11 @@ export default {
     align-items: center;
     padding: 0.3rem;
     border-bottom: 1px solid rgb(245, 245, 245);
+
+    .actions {
+      display: flex;
+      align-items: center;
+    }
   }
 
   .empty_cart {
@@ -497,9 +513,8 @@ export default {
 
 .mobile_cart {
   @media screen and (min-width:1199.98px) {
-    display: none;
+      display: none;
   }
-
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -507,49 +522,73 @@ export default {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  background-color: white;
-  // border-radius: 50%;
-  // padding: 2rem;
-  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.418);
-  width: 70%;
-  max-width: 20rem;
 
+  .fa-shopping-bag {
+    font-size: 2rem;
+    padding: 2rem;
+    border-radius: 50%;
+    color: #2B898B;
+    background-color: #F8B735;
+    animation: show .3s ease-in-out;
+    @keyframes show {
+      from{
+        transform: scale(.1);
+        opacity: 0;
+      }
+      to{
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  }
+  
   .cart_modal {
     width: 100%;
-  }
-
-  .cart_heading {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-
-      .cart_item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.3rem;
-        border-bottom: 1px solid rgb(245, 245, 245);
+    overflow: hidden;
+    animation: slide_up .3s ease-in-out;
+    @keyframes slide_up {
+      from{
+          height: 0;
       }
-
-      .empty_cart {
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        padding: 0.3rem;
+      to{
+          height: 13.3rem;
       }
+    }
+    box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.418);
+    width: 20rem;
+    border-radius: .8rem;
 
-      .checkout_link {
-        margin-top: auto;
-      }
-  }
+    .cart_heading {
+      display: flex;
+      justify-content: space-between;
+    }
 
-  .fas {
-    font-size: 2rem;
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: 10rem;
+      background-color: white;
+
+        .cart_item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.3rem;
+          border-bottom: 1px solid rgb(245, 245, 245);
+        }
+
+        .empty_cart {
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          padding: 0.3rem;
+        }
+
+        .checkout_link {
+          margin-top: auto;
+        }
+    }
   }
 }
 
