@@ -51,8 +51,11 @@ class RestaurantController extends Controller
 
         if ($request->id != null) {
             // $restaurant = Restaurant::find($request->id)->with('orders')->get();
-            $restaurant = Restaurant::where('id', $request->id)->with('plates')->get();
-            return $restaurant;
+           //$restaurant = Restaurant::where('id', $request->id)->with('plates')->get();
+            $restaurant = Restaurant::find($request->id);
+            // return $restaurant;
+        return new RestaurantResource($restaurant);
+
         }
         
     }

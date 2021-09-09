@@ -2334,8 +2334,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/restaurants?id=" + this.$route.params.id).then(function (resp) {
-        _this.restaurant = resp.data[0];
-        console.log(resp.data[0]);
+        _this.restaurant = resp.data.data;
+        console.log(resp.data.data);
       })["catch"](function (e) {
         console.error(e);
       });

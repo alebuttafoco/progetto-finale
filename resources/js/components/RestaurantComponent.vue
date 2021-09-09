@@ -122,8 +122,8 @@ export default {
     callRestaurants() {
       Axios.get("/api/restaurants?id=" + this.$route.params.id)
         .then((resp) => {
-          this.restaurant = resp.data[0];
-          console.log(resp.data[0]);
+          this.restaurant = resp.data.data;
+          console.log(resp.data.data);
         })
         .catch((e) => {
           console.error(e);
