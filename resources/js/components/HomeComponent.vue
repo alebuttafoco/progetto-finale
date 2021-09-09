@@ -9,50 +9,19 @@
     <!-- RICERCA DEL RISTORANTE -->
     <div class="box_ricerca">
       <div :class="isVisibleRestaurants ? 'sticky' : 'search_center'">
-        <div
-          v-if="!isVisibleRestaurants"
-          class="search_restaurants text-center"
-        >
-          <span
-            @click="
-              (isVisibleRestaurants = true),
-                filterCategory('all'),
-                callRestaurants()
-            "
-            class="bttn px-4 py-2 m-2"
-          >
+        <div v-if="!isVisibleRestaurants" class="search_restaurants text-center"  >
+          <span @click="(isVisibleRestaurants = true),  filterCategory('all'), callRestaurants() " class="bttn px-4 py-2 m-2">
             Visualizza tutti i Ristoranti
           </span>
           <h4 class="mt-5">Oppure seleziona una categoria per iniziare</h4>
         </div>
 
         <div class="search_div">
-          <div
-            v-if="isVisibleRestaurants"
-            @click="
-              (isVisibleRestaurants = true),
-                filterCategory('all'),
-                callRestaurants()
-            "
-            class="px-4 py-2 m-2"
-            :class="categories_array.includes('all') ? 'bttn' : 'bttn_reverse'"
-          >
+          <div v-if="isVisibleRestaurants" @click=" (isVisibleRestaurants = true), filterCategory('all'), callRestaurants() " class="px-4 py-2 m-2" :class="categories_array.includes('all') ? 'bttn' : 'bttn_reverse'" >
             Visualizza tutti i Ristoranti
           </div>
 
-          <div
-            class="px-4 py-2 m-2"
-            :class="
-              categories_array.includes(category.name) ? 'bttn' : 'bttn_reverse'
-            "
-            @click="
-              (isVisibleRestaurants = true),
-                filterCategory(category.name),
-                callRestaurants()
-            "
-            v-for="category in categories"
-            :key="category.name"
-          >
+          <div class="px-4 py-2 m-2" :class=" categories_array.includes(category.name) ? 'bttn' : 'bttn_reverse' "  @click=" (isVisibleRestaurants = true), filterCategory(category.name), callRestaurants()" v-for="category in categories" :key="category.name" >
             {{ category.name }}
           </div>
         </div>
@@ -60,29 +29,16 @@
     </div>
 
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
-    <div class="restaurants" v-if="isVisibleRestaurants">
+    <div class="restaurants my_container" v-if="isVisibleRestaurants">
       <!-- messaggio ristorante non trovato con il filtro di categoria -->
       <h4 class="bg-white mt-5 mx-auto" v-if="!(restaurants.length != 0)">
         Nessun ristorante da visualizzare per questa categoria 😪
       </h4>
 
       <!-- ristorante visualizzato -->
-      <router-link
-        v-for="restaurant in restaurants"
-        :key="restaurant.id"
-        class="my_card"
-        :to="{ name: 'restaurants.show', params: { id: restaurant.id } }"
-        @click="selectedRestaurant = restaurant.id"
-      >
+      <router-link v-for="restaurant in restaurants" :key="restaurant.id" class="my_card" :to="{ name: 'restaurants.show', params: { id: restaurant.id } }" @click="selectedRestaurant = restaurant.id">
         <div class="content">
-          <img
-            :src="
-              restaurant.image == null
-                ? 'img/cover_restaurant.jpg'
-                : 'storage/' + restaurant.image
-            "
-            alt=""
-          />
+          <img :src=" restaurant.image == null  ? 'img/cover_restaurant.jpg' : 'storage/' + restaurant.image" alt="" />
 
           <div class="details">
             <h5>{{ restaurant.name }}</h5>
@@ -183,13 +139,13 @@ export default {
 }
 
 .search_center {
-  /*   width: 60%;
-  position: fixed;
-  top: 50%;
-  left: 50%; */
+  width: 60%;
+  // position: fixed;
+  // top: 50%;
+  // left: 50%;
   transform: translateY(50%);
   transition: 1s;
-  @media screen and (max-width: 1199.98px) {
+  @media screen and (max-width: 1399.98px) {
     width: 70%;
   }
   @media screen and (max-width: 991.98px) {
@@ -226,11 +182,12 @@ export default {
 }
 
 .restaurants {
-  width: 80%;
-  @media screen and (max-width: 991.98px) {
-    width: 98%;
-  }
-  margin: auto;
+  // width: 80%;
+  // margin: auto;
+  // @media screen and (max-width: 991.98px) {
+  //   width: 98%;
+  // }
+
   animation: show 0.5s 0.5s ease;
   animation-fill-mode: backwards;
   display: flex;
@@ -239,7 +196,7 @@ export default {
   .my_card {
     width: calc(100% / 4 - 2rem);
     margin: 1rem;
-    @media screen and (max-width: 1199.98px) {
+    @media screen and (max-width: 1399.98px) {
       width: calc(100% / 3 - 2rem);
     }
     @media screen and (max-width: 991.98px) {
