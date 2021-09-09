@@ -1,73 +1,100 @@
 <template>
-<div class="wrapper py-5">
-
+  <div class="wrapper py-5">
     <div class="restaurant bg-white p-0">
-        <div class="img-restaurant-container">
-            <img :src=" restaurant.image == null ? '../img/cover_restaurant.jpg' : '../storage/' + restaurant.image" alt="" />
-        </div>
+      <div class="img-restaurant-container">
+        <img
+          :src="
+            restaurant.image == null
+              ? '../img/cover_restaurant.jpg'
+              : '../storage/' + restaurant.image
+          "
+          alt=""
+        />
+      </div>
 
-        <h1 class="p-2 pl-3">{{ restaurant.name }}</h1>
+      <h1 class="p-2 pl-3">{{ restaurant.name }}</h1>
 
-        <p class="p-2 pl-3">{{ restaurant.description }}</p>
+      <p class="p-2 pl-3">{{ restaurant.description }}</p>
 
-        <div class="address p-2 pl-3">
-            {{ restaurant.address }}, {{ restaurant.city }}, {{ restaurant.cap }}
-        </div>
+      <div class="address p-2 pl-3">
+        {{ restaurant.address }}, {{ restaurant.city }}, {{ restaurant.cap }}
+      </div>
 
-        <ul class="list-inline text-secondary p-2 pl-3">
-            <li class="list-inline-item" v-for="category in restaurant.categories" :key="category.id" >
-                {{ category.name }}
-            </li>
-        </ul>
+      <ul class="list-inline text-secondary p-2 pl-3">
+        <li
+          class="list-inline-item"
+          v-for="category in restaurant.categories"
+          :key="category.id"
+        >
+          {{ category.name }}
+        </li>
+      </ul>
 
-        <div class="menu p-2">
+      <div class="menu p-2">
+        <button @click="callRestaurants()">premi</button>
+        <h3 class="p-3">Menu</h3>
+        <!-- PIATTO SINGOLO -->
+        <div class="plate d-flex flex-wrap">
+          <div
+            @click="storagePlate(plate, index)"
+            class="card m-3 position-relative"
+            style="width: 15rem"
+            v-for="(plate, index) in restaurant.plates"
+            :key="plate.id"
+          >
+            <img
+              class="plate-img"
+              :src="'../storage/' + plate.image"
+              :alt="plate.name"
+            />
 
-            <h3 class="p-3">Menu</h3>
-            <!-- PIATTO SINGOLO -->
-            <div class="plate d-flex flex-wrap">
-                <div @click="storagePlate(plate, index)" class="card m-3 position-relative" style="width: 15rem"  v-for="(plate, index) in restaurant.plates" :key="plate.id" >
-                    <img class="plate-img" :src="'../storage/' + plate.image" :alt="plate.name" />
-
-                    <div class="card-body">
-                        <h5 class="card-title">{{ plate.name }}</h5>
-                        <p class="card-text mb-5">{{ plate.description }}</p>
-                        <a href="#" class="btn btn-primary price-btn"><strong>{{ plate.price }} €</strong></a>
-                    </div>
-                </div>
+            <div class="card-body">
+              <h5 class="card-title">{{ plate.name }}</h5>
+              <p class="card-text mb-5">{{ plate.description }}</p>
+              <a href="#" class="btn btn-primary price-btn"
+                ><strong>{{ plate.price }} €</strong></a
+              >
             </div>
-
+          </div>
         </div>
+      </div>
     </div>
 
     <div class="cart">
-        <div class="cart_heading btn_large">
-            <i class="fas fa-shopping-cart"></i>
-            <span>totale {{ cart_price() }} €</span>
+      <div class="cart_heading btn_large">
+        <i class="fas fa-shopping-cart"></i>
+        <span>totale {{ cart_price() }} €</span>
+      </div>
+
+      <div class="content">
+        <div class="cart_item" v-for="(plate, index) in plates" :key="plate.id">
+          <span>{{ plate.name }}</span>
+
+          <div class="actions">
+            <i
+              @click="storagePlate(plate, index)"
+              class="fas fa-plus-circle text-success"
+            ></i>
+            <span>{{ plate.qty }}</span>
+            <i
+              @click="minusPlate(plate, index)"
+              class="fas fa-minus-circle text-danger"
+            ></i>
+          </div>
         </div>
+        <span
+          v-if="plates != null"
+          @click="emptyCart()"
+          class="empty_cart bg-danger text-white"
+          >Svuota il carrello <i class="fas fa-trash-alt"></i
+        ></span>
 
-        <div class="content">
-                <div class="cart_item" v-for="(plate, index) in plates" :key="plate.id">
-                    <span>{{ plate.name }}</span>
-
-                    <div class="actions">
-                        <i
-                        @click="storagePlate(plate, index)"
-                        class="fas fa-plus-circle text-success"
-                        ></i>
-                        <span>{{ plate.qty }}</span>
-                        <i
-                        @click="minusPlate(plate, index)"
-                        class="fas fa-minus-circle text-danger"
-                        ></i>
-                    </div>
-                </div>
-                <span v-if="plates.length > 0" @click="emptyCart()" class="empty_cart bg-danger text-white" >Svuota il carrello <i class="fas fa-trash-alt"></i></span>
-
-                <a class="checkout_link btn btn-success" href="../cart">Vai alla cassa</a>
-        </div>
+        <a class="checkout_link btn btn-success" href="../cart"
+          >Vai alla cassa</a
+        >
+      </div>
     </div>
-
-</div>
+  </div>
 </template>
 
 <script>
@@ -85,15 +112,18 @@ export default {
   methods: {
     cart_price() {
       let totalPrice = 0;
-      this.plates.forEach((plate) => {
-        totalPrice += plate.price * plate.qty;
-      });
-      return totalPrice;
+      if (this.plates != null) {
+        this.plates.forEach((plate) => {
+          totalPrice += plate.price * plate.qty;
+        });
+        return totalPrice;
+      }
     },
     callRestaurants() {
-      Axios.get("/api/restaurants/" + this.$route.params.id)
+      Axios.get("/api/restaurants?id=" + this.$route.params.id)
         .then((resp) => {
           this.restaurant = resp.data.data;
+          console.log(resp.data.data);
         })
         .catch((e) => {
           console.error(e);
@@ -169,9 +199,7 @@ export default {
 
     getRestaurantOrder() {
       if (this.restaurantOrder != null) {
-        this.restaurantOrder = JSON.parse(
-          localStorage.getItem("restaurant")
-        );
+        this.restaurantOrder = JSON.parse(localStorage.getItem("restaurant"));
       }
     },
   },
