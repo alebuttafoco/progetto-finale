@@ -14,7 +14,11 @@
           class="search_restaurants text-center"
         >
           <span
-            @click="(isVisibleRestaurants = true), selectCategory()"
+            @click="
+              (isVisibleRestaurants = true),
+                filterCategory('all'),
+                callRestaurants()
+            "
             class="bttn px-4 py-2 m-2"
           >
             Visualizza tutti i Ristoranti
@@ -25,9 +29,13 @@
         <div class="search_div">
           <div
             v-if="isVisibleRestaurants"
-            @click="(isVisibleRestaurants = true), selectCategory()"
+            @click="
+              (isVisibleRestaurants = true),
+                filterCategory('all'),
+                callRestaurants()
+            "
             class="px-4 py-2 m-2"
-            :class="activeCategories == '' ? 'bttn' : 'bttn_reverse'"
+            :class="categories_array.includes('all') ? 'bttn' : 'bttn_reverse'"
           >
             Visualizza tutti i Ristoranti
           </div>
@@ -35,11 +43,15 @@
           <div
             class="px-4 py-2 m-2"
             :class="
-              activeCategories.includes(category.id) ? 'bttn' : 'bttn_reverse'
+              categories_array.includes(category.name) ? 'bttn' : 'bttn_reverse'
             "
-            @click="(isVisibleRestaurants = true), selectCategory(category.id)"
+            @click="
+              (isVisibleRestaurants = true),
+                filterCategory(category.name),
+                callRestaurants()
+            "
             v-for="category in categories"
-            :key="category.id"
+            :key="category.name"
           >
             {{ category.name }}
           </div>
@@ -50,13 +62,13 @@
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
     <div class="restaurants" v-if="isVisibleRestaurants">
       <!-- messaggio ristorante non trovato con il filtro di categoria -->
-      <h4 class="bg-white mt-5 mx-auto" v-if="filterRestaurants.length == 0">
+      <h4 class="bg-white mt-5 mx-auto" v-if="!(restaurants.length != 0)">
         Nessun ristorante da visualizzare per questa categoria 😪
       </h4>
 
       <!-- ristorante visualizzato -->
       <router-link
-        v-for="restaurant in filterRestaurants"
+        v-for="restaurant in restaurants"
         :key="restaurant.id"
         class="my_card"
         :to="{ name: 'restaurants.show', params: { id: restaurant.id } }"
@@ -91,50 +103,18 @@ export default {
       categories: [],
       filterRestaurants: [],
       isVisibleRestaurants: false,
-      activeCategories: [],
       selectedRestaurant: "",
       categories_array: [],
     };
   },
   methods: {
-    selectCategory(id) {
-      // INSERISCE ED ELIMINA DALL'ARRAY LE CATEGORIE SELEZIONATE
-      if (id == null) {
-        this.activeCategories = [];
-      } else if (!this.activeCategories.includes(id)) {
-        this.activeCategories.push(id);
-      } else {
-        this.activeCategories.forEach((category, index) => {
-          if (id == category) {
-            this.activeCategories.splice(index, 1);
-          }
-        });
-      }
-
-      // CREA ARRAY CHE CONTIENE SOLO L'ID DEI RISTORANTI DA VISUALIZZARE
-      // INSERISCE I RISTORANTI DA VISUALIZZARE IN UN NUOVO ARRAY CHE SARA' UTILIZZATO PER CICLARE E STAMPARE I DATI A SCHERMO
-      let filter = [];
-      this.filterRestaurants = [];
-      this.restaurants.forEach((restaurant) => {
-        if (this.activeCategories.length == 0) {
-          this.filterRestaurants.push(restaurant);
-        } else {
-          restaurant.categories.forEach((category) => {
-            if (
-              this.activeCategories.includes(category.id) &&
-              !filter.includes(restaurant.id)
-            ) {
-              filter.push(restaurant.id);
-              this.filterRestaurants.push(restaurant);
-            }
-          });
-        }
-      });
-    },
-
     filterCategory(name) {
-      if (this.categories_array.include(name)) {
-        this.categories_array.splice(name, 1);
+      console.log(this.categories_array.includes(name));
+      if (this.categories_array.includes(name)) {
+        console.log(this.categories_array.indexOf(name));
+        let index_name = this.categories_array.indexOf(name);
+        this.categories_array.splice(index_name, 1);
+        // this.categories_array.splice((indexOF(name), 1));
       } else {
         this.categories_array.push(name);
       }
@@ -142,15 +122,12 @@ export default {
     },
 
     callRestaurants() {
+      let string_categories = this.categories_array.toString();
       Axios.get(
-        "http://127.0.0.1:8000/api/restaurants?categories=" +
-          this.categories_array.forEach((element) => {
-            element.name + ",";
-          })
+        "http://127.0.0.1:8000/api/restaurants?categories=" + string_categories
       )
         .then((resp) => {
-          this.restaurants = resp.data.data;
-          console.log(resp);
+          this.restaurants = resp.data;
         })
         .catch((e) => {
           console.error(e);
