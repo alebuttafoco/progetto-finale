@@ -7,7 +7,7 @@
 
 @section('content')
 <div>
-    <a class="btn btn-success mb-4" href="{{URL::previous()}}">Indietro</a>
+    <a class="btn btn-success mb-4" href="{{URL::previous()}}"> <i class="fas fa-chevron-left"></i> Indietro</a>
 </div>
     <div>
 
