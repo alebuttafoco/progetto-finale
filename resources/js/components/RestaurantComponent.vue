@@ -105,7 +105,7 @@ export default {
     return {
       restaurant: "",
       plates: [],
-      restaurantOrder: null,
+      restaurantOrder: [],
     };
   },
 
@@ -143,12 +143,19 @@ export default {
       } else {
         foodInCart.push(plate.id);
         if (this.restaurantOrder != plate.restaurant_id) {
-          console.log("ristorante diverso");
-          this.emptyCart();
-          this.plates.unshift(plate);
-          this.restaurantOrder = plate.restaurant_id;
+          if (this.plates.length == 0) {
+            this.plates.unshift(plate);
+            this.restaurantOrder = plate.restaurant_id;
+          } else if (
+            confirm(
+              "Attenzione, cambiando ristorante perderai gli ordini attuali!"
+            )
+          ) {
+            this.emptyCart();
+            this.plates.unshift(plate);
+            this.restaurantOrder = plate.restaurant_id;
+          }
         } else {
-          console.log("aggiungi ordini");
           this.plates.unshift(plate);
         }
       }
@@ -163,7 +170,7 @@ export default {
       const parsed = JSON.stringify(this.plates);
       localStorage.setItem("plates", parsed);
     },
-    minusPlate(plate, index) {
+    minusPlate(plate) {
       let foodInCart = [];
       this.plates.forEach((food) => {
         foodInCart.push(food.id);
@@ -192,15 +199,17 @@ export default {
       this.saveRestaurantOrder();
     },
     getPlates() {
-      if (this.plates != null) {
-        this.plates = JSON.parse(localStorage.getItem("plates"));
+      if (localStorage.getItem("plates") == null) {
+        this.savePlates();
       }
+      this.plates = JSON.parse(localStorage.getItem("plates"));
     },
 
     getRestaurantOrder() {
-      if (this.restaurantOrder != null) {
-        this.restaurantOrder = JSON.parse(localStorage.getItem("restaurant"));
+      if (localStorage.getItem("restaurant") == null) {
+        this.saveRestaurantOrder();
       }
+      this.restaurantOrder = JSON.parse(localStorage.getItem("restaurant"));
     },
   },
 
@@ -238,7 +247,6 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.1rem;
     padding: 0.3rem;
     border-bottom: 1px solid rgb(245, 245, 245);
   }
