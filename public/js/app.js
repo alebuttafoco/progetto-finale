@@ -2160,24 +2160,33 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     filterCategory: function filterCategory(name) {
-      console.log(this.categories_array.includes(name));
-
-      if (this.categories_array.includes(name)) {
-        console.log(this.categories_array.indexOf(name));
-        var index_name = this.categories_array.indexOf(name);
-        this.categories_array.splice(index_name, 1); // this.categories_array.splice((indexOF(name), 1));
+      if (name === "all") {
+        this.categories_array = [];
+        this.categories_array.push("all");
       } else {
-        this.categories_array.push(name);
-      }
+        if (this.categories_array.includes("all")) {
+          this.categories_array.splice(this.categories_array.indexOf("all"), 1);
+        }
 
-      console.log(this.categories_array);
+        if (this.categories_array.includes(name)) {
+          var index_name = this.categories_array.indexOf(name);
+          this.categories_array.splice(index_name, 1);
+        } else {
+          this.categories_array.push(name);
+        }
+      } //console.log(this.categories_array);
+
+
+      if (this.categories_array.length == 0) {
+        this.categories_array.push("all");
+      }
     },
     callRestaurants: function callRestaurants() {
       var _this = this;
 
       var string_categories = this.categories_array.toString();
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/restaurants?categories=" + string_categories).then(function (resp) {
-        _this.restaurants = resp.data;
+        _this.restaurants = resp.data.data; //console.log(resp.data.data);
       })["catch"](function (e) {
         console.error(e);
       });

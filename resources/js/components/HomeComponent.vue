@@ -109,16 +109,24 @@ export default {
   },
   methods: {
     filterCategory(name) {
-      console.log(this.categories_array.includes(name));
-      if (this.categories_array.includes(name)) {
-        console.log(this.categories_array.indexOf(name));
-        let index_name = this.categories_array.indexOf(name);
-        this.categories_array.splice(index_name, 1);
-        // this.categories_array.splice((indexOF(name), 1));
+      if (name === "all") {
+        this.categories_array = [];
+        this.categories_array.push("all");
       } else {
-        this.categories_array.push(name);
+        if (this.categories_array.includes("all")) {
+          this.categories_array.splice(this.categories_array.indexOf("all"), 1);
+        }
+        if (this.categories_array.includes(name)) {
+          let index_name = this.categories_array.indexOf(name);
+          this.categories_array.splice(index_name, 1);
+        } else {
+          this.categories_array.push(name);
+        }
       }
-      console.log(this.categories_array);
+      //console.log(this.categories_array);
+      if (this.categories_array.length == 0) {
+        this.categories_array.push("all");
+      }
     },
 
     callRestaurants() {
@@ -127,7 +135,8 @@ export default {
         "http://127.0.0.1:8000/api/restaurants?categories=" + string_categories
       )
         .then((resp) => {
-          this.restaurants = resp.data;
+          this.restaurants = resp.data.data;
+          //console.log(resp.data.data);
         })
         .catch((e) => {
           console.error(e);
