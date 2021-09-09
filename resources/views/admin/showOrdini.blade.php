@@ -36,8 +36,7 @@
             <br>
   <h5>Lista Piatti</h5>
   @foreach ($order->plates as $plate)
-  
-      <p>{{$plate->name}}</p>
+      <p>{{$plate->name}} x {{$plate->pivot->quantity}}</p>
   @endforeach
 </div>
 
