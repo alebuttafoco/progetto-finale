@@ -9,23 +9,15 @@
       </div>
 
       <!-- informazioni del ristorante -->
-      <div>
-          <p class="p-2 pl-3">{{ restaurant.description }}</p>
-
-          <div class="address p-2 pl-3">
-            {{ restaurant.address }}, {{ restaurant.city }}, {{ restaurant.cap }}
-          </div>
-
-          <ul class="list-inline text-secondary p-2 pl-3">
-            <li class="list-inline-item" v-for="category in restaurant.categories" :key="category.id" >
-              {{ category.name }}
-            </li>
-          </ul>
+      <div class="restaurant_details">
+          <p class="">{{ restaurant.description }}</p>
+          <span class="categories" v-for="category in restaurant.categories" :key="category.id" >#{{ category.name }}</span>
+          <div class="address"><i class="fas fa-map-marker-alt"></i> {{ restaurant.address }}, {{ restaurant.city }}, {{ restaurant.cap }}</div>
       </div>
 
       <!-- MENU -->
-      <div class="menu p-2">
-        <h3 class="p-3">Menu</h3>
+      <div class="menu">
+        <h3 class="menu_title">Menu</h3>
 
         <!-- PIATTO SINGOLO -->
         <div class="plates">
@@ -286,13 +278,25 @@ export default {
 
 .restaurant {
   width: 80%;
-
   @media screen and (max-width:1199.98px) {
     width: 100%;
   }
 
+  .restaurant_details{
+    margin-top: 1rem;
+    padding: 4rem;
+    font-size: 1.1rem;
+    border: 1px solid black;
+
+  }
+
+  .categories {
+    padding: 0 1rem;
+  }
+
   .address {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
+    margin-top: 1rem;
   }
 
   .img-restaurant-container {
@@ -318,6 +322,18 @@ export default {
       width: 100%;
       height: inherit;
       object-fit: cover;
+    }
+  }
+
+  .menu {
+    margin-top: 1rem;
+
+    .menu_title {
+      background-color: #F8B735;
+      padding: 1rem;
+      color: #2B898B;
+      font-weight: bold;
+      border-radius: .5rem;
     }
   }
 
