@@ -7,43 +7,53 @@
     </div>
 
     <!-- RICERCA DEL RISTORANTE -->
-    <div class="box_ricerca">
-      <div :class="isVisibleRestaurants ? 'sticky' : 'search_center'">
-        <div v-if="!isVisibleRestaurants" class="search_restaurants text-center"  >
-          <span @click="(isVisibleRestaurants = true),  filterCategory('all'), callRestaurants() " class="bttn px-4 py-2 m-2">
-            Visualizza tutti i Ristoranti
-          </span>
-          <h4 class="mt-5">Oppure seleziona una categoria per iniziare</h4>
+    <div v-if="!isVisibleRestaurants" class="search_center">
+        <div class="search_container">
+            <!-- visualizza tutti i ristoranti HOME PAGE -->
+            <div v-if="!isVisibleRestaurants" class="search_restaurants text-center"  >
+                <span @click="(isVisibleRestaurants = true),  filterCategory('all'), callRestaurants() " class="bttn px-4 py-2 m-2">Visualizza tutti i Ristoranti</span>
+                <h4 class="mt-5">Oppure seleziona una categoria per iniziare</h4>
+            </div>
+
+            <div class="search_div">
+                <!-- visualizza tutti i ristoranti RISTORANTI VISIBILI -->
+                <div v-if="isVisibleRestaurants" @click=" (isVisibleRestaurants = true), filterCategory('all'), callRestaurants() " class="px-4 py-2 m-2" :class="categories_array.includes('all') ? 'bttn' : 'bttn_reverse'" >
+                  Visualizza tutti i Ristoranti
+                </div>
+
+                <!-- LISTA DELLE CATEGORIE -->
+                <div class="px-4 py-2 m-2" :class=" categories_array.includes(category.name) ? 'bttn' : 'bttn_reverse' "  @click=" (isVisibleRestaurants = true), filterCategory(category.name), callRestaurants()" v-for="category in categories" :key="category.name" >
+                  {{ category.name }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- categorie (ristoranti visibili) -->
+    <div v-else class="search_div sticky">
+        <!-- visualizza tutti i ristoranti RISTORANTI VISIBILI -->
+        <div v-if="isVisibleRestaurants" @click=" (isVisibleRestaurants = true), filterCategory('all'), callRestaurants() " class="px-4 py-2 m-2" :class="categories_array.includes('all') ? 'bttn' : 'bttn_reverse'" >
+          Visualizza tutti i Ristoranti
         </div>
 
-        <div class="search_div">
-          <div v-if="isVisibleRestaurants" @click=" (isVisibleRestaurants = true), filterCategory('all'), callRestaurants() " class="px-4 py-2 m-2" :class="categories_array.includes('all') ? 'bttn' : 'bttn_reverse'" >
-            Visualizza tutti i Ristoranti
-          </div>
-
-          <div class="px-4 py-2 m-2" :class=" categories_array.includes(category.name) ? 'bttn' : 'bttn_reverse' "  @click=" (isVisibleRestaurants = true), filterCategory(category.name), callRestaurants()" v-for="category in categories" :key="category.name" >
-            {{ category.name }}
-          </div>
+        <!-- LISTA DELLE CATEGORIE -->
+        <div class="px-4 py-2 m-2" :class=" categories_array.includes(category.name) ? 'bttn' : 'bttn_reverse' "  @click=" (isVisibleRestaurants = true), filterCategory(category.name), callRestaurants()" v-for="category in categories" :key="category.name" >
+          {{ category.name }}
         </div>
-      </div>
     </div>
 
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
     <div class="restaurants my_container" v-if="isVisibleRestaurants">
       <!-- messaggio ristorante non trovato con il filtro di categoria -->
-      <h4 class="bg-white mt-5 mx-auto" v-if="!(restaurants.length != 0)">
+      <h4 class="bg-white mt-5 p-4 mx-auto shadow" v-if="!(restaurants.length != 0)">
         Nessun ristorante da visualizzare per questa categoria 😪
       </h4>
 
       <!-- ristorante visualizzato -->
       <router-link v-for="restaurant in restaurants" :key="restaurant.id" class="my_card" :to="{ name: 'restaurants.show', params: { id: restaurant.id } }" @click="selectedRestaurant = restaurant.id">
-        <div class="content">
           <img :src=" restaurant.image == null  ? 'img/cover_restaurant.jpg' : 'storage/' + restaurant.image" alt="" />
 
-          <div class="details">
-            <h5>{{ restaurant.name }}</h5>
-          </div>
-        </div>
+          <span class="details">{{ restaurant.name }}</span>
       </router-link>
     </div>
   </div>
@@ -84,7 +94,6 @@ export default {
         this.categories_array.push("all");
       }
     },
-
     callRestaurants() {
       let string_categories = this.categories_array.toString();
       Axios.get(
@@ -131,6 +140,27 @@ export default {
   background-color: white;
 }
 
+.search_center {
+  height: 90vh;
+  min-height: 300px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .search_container{
+    @media screen and (min-width: 575.99px) {
+      width: 80%;
+    }
+    @media screen and (max-width: 575.98px) {
+      position: sticky;
+      top: 0;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
 .search_div {
   display: flex;
   justify-content: center;
@@ -142,38 +172,12 @@ export default {
   }
 }
 
-.box_ricerca {
-  display: flex;
-  justify-content: center;
-}
-
-.search_center {
-  width: 60%;
-  // position: fixed;
-  // top: 50%;
-  // left: 50%;
-  transform: translateY(50%);
-  transition: 1s;
-  @media screen and (max-width: 1399.98px) {
-    width: 70%;
-  }
-  @media screen and (max-width: 991.98px) {
-    width: 75%;
-  }
-  @media screen and (max-width: 767.98px) {
-    width: 80%;
-  }
-  @media screen and (max-width: 575.98px) {
-    width: 90%;
-    margin: -55%;
-  }
-}
-
 .sticky {
   position: sticky;
   top: 0;
   z-index: 999;
   animation: slide_up 0.5s ease;
+  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.13);
 }
 
 // ANIMAZIONE CATEGORIE
@@ -191,12 +195,6 @@ export default {
 }
 
 .restaurants {
-  // width: 80%;
-  // margin: auto;
-  // @media screen and (max-width: 991.98px) {
-  //   width: 98%;
-  // }
-
   animation: show 0.5s 0.5s ease;
   animation-fill-mode: backwards;
   display: flex;
@@ -204,7 +202,14 @@ export default {
 
   .my_card {
     width: calc(100% / 4 - 2rem);
+    border-radius: .5rem;
     margin: 1rem;
+    overflow: hidden;
+    height: 16rem;
+    background-color: rgb(240, 240, 240);
+    text-decoration: none;
+    transition: 0.2s ease;
+
     @media screen and (max-width: 1399.98px) {
       width: calc(100% / 3 - 2rem);
     }
@@ -217,17 +222,23 @@ export default {
     @media screen and (max-width: 575.98px) {
       width: calc(100% - 2rem);
     }
-    background-color: rgb(240, 240, 240);
-    text-decoration: none;
-    transition: 0.2s ease;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     img {
+      height: 75%;
       width: 100%;
+      object-fit: cover;
     }
 
     .details {
+      height: 25%;
       padding: 1rem;
+      font-size: 1.1rem;
     }
+
 
     &:hover {
       transform: translatey(-5px);
