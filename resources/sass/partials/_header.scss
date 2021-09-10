@@ -13,8 +13,7 @@ header {
     }
     
     .navbar {
-        width: 80%;
-        margin: auto;
+        
         @media screen and (max-width:575.98px) {
             display: flex;
             flex-direction: column;

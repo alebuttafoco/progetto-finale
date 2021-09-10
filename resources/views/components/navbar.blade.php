@@ -1,4 +1,4 @@
-<div class="navbar">
+<div class="navbar my_container">
     <a id="logo" href="{{ url('/') }}">
         <img src="{{ asset('img/logo_secondary.png') }}" alt="Logo DeliveBoo">
     </a>
