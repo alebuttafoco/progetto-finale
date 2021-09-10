@@ -34,6 +34,9 @@
             @yield('content')
         </main>
     </div>
+    <footer>
+        @yield('script')
+    </footer>
 </body>
 
 </html>

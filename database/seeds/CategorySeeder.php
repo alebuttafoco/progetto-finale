@@ -16,8 +16,8 @@ class CategorySeeder extends Seeder
 
 
 
-        $categories= ['pizza', 'pasta', 'vegetariano', 'carne', 'indiano', 'sushi', 'kebab', 'messicano', 'bevande', 'vegano'];
-        
+        $categories = ['pizza', 'pasta', 'vegetariano', 'carne', 'indiano', 'sushi', 'kebab', 'messicano', 'bevande', 'vegano'];
+
         foreach ($categories as $cat) {
             $category = new Category();
             $category->name = $cat;

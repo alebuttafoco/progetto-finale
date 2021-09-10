@@ -6,6 +6,7 @@ use App\Http\Middleware\RestaurantMiddleware;
 use App\Http\Middleware\UserControllMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 
 /*
@@ -24,20 +25,20 @@ Route::get('restaurants/{id}', 'PageController@home')->name('home');
 
 Route::get('/cart', 'PageController@showCart')->name('cart');
 
+Route::get('/checkout', 'CheckoutController@generate')->name('checkout');
+Route::post('/pay', 'CheckoutController@checkout')->name('checkout');
 Auth::routes();
 
 //rotta da vedere se tenere o cancellare, e la rotta che prima riconduceva dopo il login e la registrazione
 Route::get('/user', 'HomeController@user')->name('user');
-
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
-    
+
     Route::resource('restaurant', RestaurantController::class)->middleware(RestaurantMiddleware::class);
     Route::resource('plate', PlateController::class)->middleware(PlateMiddleware::class);
-    
-    Route::get('ordini', 'HomeController@ordini' )->name('ordini');
-    Route::get('ordini/{id}', 'HomeController@showOrdini' )->name('ordini.show');
+
+    Route::get('ordini', 'HomeController@ordini')->name('ordini');
+    Route::get('ordini/{id}', 'HomeController@showOrdini')->name('ordini.show');
 
 
-    Route::get('/statistiche', 'HomeController@statistiche' )->name('statistiche');
-
+    Route::get('/statistiche', 'HomeController@statistiche')->name('statistiche');
 });
