@@ -7,7 +7,7 @@ header {
         display: flex;
         align-items: center;
         text-decoration: none;
-        
+
         img {
             width: 10rem;
         }
@@ -17,6 +17,12 @@ header {
     }
 
     .right_nav {
+    }
+
+    .dropdown-menu {
+        top: 70% !important;
+        right: 0 !important;
+        left: auto !important;
     }
     
 }
