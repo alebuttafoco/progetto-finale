@@ -100,6 +100,6 @@
         </tbody>
         </table>
 
-
+{{$plates->links()}}
     </div>
 @endsection

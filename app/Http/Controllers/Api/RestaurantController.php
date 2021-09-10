@@ -18,10 +18,8 @@ class RestaurantController extends Controller
     {
 
         if ($request->categories != null) {
-            //ddd($request);
+            //trasformo i valori della richiesta in un array
             $request_categories = explode(',', $request->categories);
-            //ddd($request_categories);
-    
             //tutti i ristoranti 
             $restaurants = RestaurantResource::collection(Restaurant::orderBy('id', 'DESC')->get());
     
@@ -30,7 +28,7 @@ class RestaurantController extends Controller
                 return $restaurants;
             }
     
-            //va a verificare se 
+            //va a verificare se i ristoranti contengono una delle categorie e lo aggiunge all'array da passare
             $restaurants_array = [];
             foreach ($restaurants as $restaurant) {
                 $categories = $restaurant->categories;
@@ -44,18 +42,13 @@ class RestaurantController extends Controller
                 }
             }
     
-            //ddd($restaurants_array);
-            return $restaurants_array;
+            return ['data' => $restaurants_array];
             
         }
 
         if ($request->id != null) {
-            // $restaurant = Restaurant::find($request->id)->with('orders')->get();
-           //$restaurant = Restaurant::where('id', $request->id)->with('plates')->get();
             $restaurant = Restaurant::find($request->id);
-            // return $restaurant;
-        return new RestaurantResource($restaurant);
-
+            return new RestaurantResource($restaurant);
         }
         
     }

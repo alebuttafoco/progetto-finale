@@ -18,6 +18,7 @@
             </thead>
             <tbody>
 
+              {{-- {{ddd($orders)}} --}}
                 @foreach ($orders as $order)
 
                 {{-- {{ddd($order)}} --}}
@@ -25,7 +26,7 @@
                     <th scope="row">1</th>
                     <td>{{$order->customer_name}}</td>
                     <td>{{$order->status}}</td>
-                    <td>{{$order->total_price}}- {{$order->id}}</td>
+                    <td>{{$order->total_price}}</td>
                     <td><a href="{{route('admin.ordini.show', $order->id)}}" class="btn btn-success">View order</a></td>
                   </tr>
                 @endforeach
@@ -34,5 +35,6 @@
               
             </tbody>
           </table>
+          {{$orders->links()}}
 
 @endsection

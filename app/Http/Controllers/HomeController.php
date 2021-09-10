@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Plate;
 use App\Restaurant;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Factory;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -16,26 +20,12 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    
-    public function user()
-    {
-        return view('user');
-    }
-
-    public function ordini()
+    public function datiOrdini($type)
     {
         $user_id = Auth::id();
         $restaurant = Restaurant::where('user_id', $user_id)->first();
         $restaurant_id = $restaurant->id;
         $plates = Plate::where('restaurant_id', $restaurant_id)->with('orders')->get(); //qui ho i piatti del ristorante del utente
-
-
-        //ddd($plates[0]->orders[0]->pivot->quantity, $plates[0]->orders[0]->id, Order::find(1)->plates);
-        //ddd(count($plates));
-        //$plates -> contiene i piatti del ristorante
-        //$plates[0]->orders -> prendo il primo piatto e vado a vedere gli ordini che ha associati
-        //$plates[0]->orders[0]->pivot -> vado a prendere il primo ordine del piatto e vado a prenedre le tabelle pivot collegate
-        //$plates[0]->orders[0]->pivot->quantity dalla tabella pivot prendo il valore della quantita
 
         $order_id = [];
 
@@ -47,9 +37,23 @@ class HomeController extends Controller
 
         $unique_id = array_unique($order_id);
 
-        $orders = Order::whereIn('id', $unique_id)->get();
-        //ddd($orders[0]->id);
+        if ($type == 'all') {
+         return $orders = Order::whereIn('id', $unique_id)->get();
+            
+        }
         
+        return $orders = Order::whereIn('id', $unique_id)->paginate(10);
+    }
+    
+    public function user()
+    {
+        return view('user');
+    }
+
+    public function ordini()
+    {
+        $orders = $this->datiOrdini("paginate");
+        //ddd($orders);
         return view('admin.ordini', compact('orders'));
     }
 
@@ -67,7 +71,29 @@ class HomeController extends Controller
 
     public function statistiche()
     {
-        return view('admin.statistiche');
+
+        $orders = $this->datiOrdini("all");
+        //ddd($orders);
+        $all_profit = 0;
+        $order_count = count($orders);
+        $month_order = 0;
+        $year_order = 0;
+        foreach ($orders as $order) {
+            //all profit 
+            $all_profit += $order->total_price;
+            //order on this month
+            if ((Carbon::parse($order->date)->format('m') === (Carbon::now()->format('m')))) {
+                $month_order += 1;
+            }
+            //order on this year
+            if ((Carbon::parse($order->date)->format('y') === (Carbon::now()->format('y')))) {
+                $year_order += 1;
+            }
+        }
+        
+        //ddd($orders, Carbon::parse($orders[1]->date)->format('y'), Carbon::now()->format('y'));
+
+        return view('admin.statistiche', compact('all_profit', 'order_count', 'month_order', 'year_order'));
     }
 
 }
