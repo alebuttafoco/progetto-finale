@@ -97,7 +97,7 @@
       <i v-if="mobileCart == false" @click="showMobileCart()" class="fas fa-shopping-bag"></i>
 
       <div v-else class="cart_modal">
-        <div class="cart_heading btn_large">
+        <div class="cart_heading">
           <span>totale {{ cart_price() }} €</span>
           <span @click="showMobileCart()"><i class="fas fa-times"></i></span>
         </div>
@@ -108,7 +108,7 @@
 
                 <div class="actions">
                   <i @click="minusPlate(plate, index)" class="fas fa-minus-circle text-danger" ></i>
-                  <span>{{ plate.qty }}</span>
+                  <span class="px-1">{{ plate.qty }}</span>
                   <i @click="storagePlate(plate, index)" class="fas fa-plus-circle text-success" ></i>
                 </div>
             </div>
@@ -391,9 +391,21 @@ export default {
   align-items: center;
 
   .plate_modal{
+    @media screen and (max-width:1399.98px) {
+        width: 40%;
+    }
+    @media screen and (max-width:991.98px) {
+        width: 50%;
+    }
+    @media screen and (max-width:767.98px) {
+        width: 60%;
+    }
+    @media screen and (max-width:575.98px) {
+        width: 80%;
+    }
     background-color: white;
     width: 30%;
-    height: 80%;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -530,6 +542,7 @@ export default {
     color: #2B898B;
     background-color: #F8B735;
     animation: show .3s ease-in-out;
+
     @keyframes show {
       from{
         transform: scale(.1);
@@ -548,7 +561,9 @@ export default {
     animation: slide_up .3s ease-in-out;
     @keyframes slide_up {
       from{
-          height: 0;
+          border-radius: 50%;
+          width: 5rem;
+          height: 5rem;
       }
       to{
           height: 13.3rem;
@@ -561,6 +576,19 @@ export default {
     .cart_heading {
       display: flex;
       justify-content: space-between;
+      padding: 1rem;
+      background-color: #2B898B;
+      color: white;
+      animation: opacity .5s .1s ease-in-out;
+      animation-fill-mode: backwards;
+      @keyframes opacity {
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
+      }
     }
 
     .content {
@@ -569,6 +597,8 @@ export default {
       justify-content: flex-start;
       min-height: 10rem;
       background-color: white;
+      animation: opacity .5s .1s ease-in-out;
+      animation-fill-mode: backwards;
 
         .cart_item {
           display: flex;
@@ -576,6 +606,11 @@ export default {
           align-items: center;
           padding: 0.3rem;
           border-bottom: 1px solid rgb(245, 245, 245);
+
+          .actions {
+            display: flex;
+            align-items: center;
+          }
         }
 
         .empty_cart {
