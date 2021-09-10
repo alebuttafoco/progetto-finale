@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+header('Access-Control-Allow-Origin:  *');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -21,3 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResource('restaurants', 'Api\RestaurantController');
 Route::apiResource('categories', 'Api\CategoryController');
 Route::apiResource('plates', 'Api\PlateController');
+
+Route::get('orders/generate', 'CheckoutController@generate');
+Route::post('orders/checkout', 'CheckoutController@checkout');
