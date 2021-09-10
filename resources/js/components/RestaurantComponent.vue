@@ -1,29 +1,23 @@
 <template>
-  <div class="my_container py-5">
+  <div class="my_container py-4">
 
     <!-- RIRSTORANTE -->
-    <div class="restaurant bg-white p-0">
+    <div class="restaurant">
       <div class="img-restaurant-container">
         <img :src=" restaurant.image == null ? '../img/cover_restaurant.jpg' : '../storage/' + restaurant.image" alt="" />
+        <h1 class="restaurant_title">{{ restaurant.name }}</h1>
       </div>
 
-      <h1 class="p-2 pl-3">{{ restaurant.name }}</h1>
-
-      <p class="p-2 pl-3">{{ restaurant.description }}</p>
-
-      <div class="address p-2 pl-3">
-        {{ restaurant.address }}, {{ restaurant.city }}, {{ restaurant.cap }}
+      <!-- informazioni del ristorante -->
+      <div class="restaurant_details">
+          <p class="">{{ restaurant.description }}</p>
+          <span class="categories" v-for="category in restaurant.categories" :key="category.id" >#{{ category.name }}</span>
+          <div class="address"><i class="fas fa-map-marker-alt"></i> {{ restaurant.address }}, {{ restaurant.city }}, {{ restaurant.cap }}</div>
       </div>
-
-      <ul class="list-inline text-secondary p-2 pl-3">
-        <li class="list-inline-item" v-for="category in restaurant.categories" :key="category.id" >
-          {{ category.name }}
-        </li>
-      </ul>
 
       <!-- MENU -->
-      <div class="menu p-2">
-        <h3 class="p-3">Menu</h3>
+      <div class="menu">
+        <h3 class="menu_title">Menu</h3>
 
         <!-- PIATTO SINGOLO -->
         <div class="plates">
@@ -73,16 +67,17 @@
     <div class="cart">
       <div class="cart_heading">
         <i class="fas fa-shopping-cart"></i>
-        <span>totale {{ cart_price() }} €</span>
+        <span class="total_price">totale {{ cart_price() }} €</span>
       </div>
 
       <div class="content">
+        <div class="text-center mt-5" v-if="plates.length == 0">Il carrello è vuoto! <br> Seleziona un piatto per visualizzarlo QUI 👇</div>
         <div class="cart_item" v-for="(plate, index) in plates" :key="plate.id">
           <span>{{ plate.name }}</span>
 
           <div class="actions">
             <i @click="minusPlate(plate, index)" class="fas fa-minus-circle text-danger" ></i>
-            <span class="mx-2">{{ plate.qty }}</span>
+            <span class="item_price">{{ plate.qty }}</span>
             <i @click="storagePlate(plate, index)" class="fas fa-plus-circle text-success" ></i>
           </div>
         </div>
@@ -98,17 +93,18 @@
 
       <div v-else class="cart_modal">
         <div class="cart_heading">
-          <span>totale {{ cart_price() }} €</span>
+          <span class="total_price">totale {{ cart_price() }} €</span>
           <span @click="showMobileCart()"><i class="fas fa-times"></i></span>
         </div>
 
         <div class="content">
+            <div class="text-center mt-4" v-if="plates.length == 0">Il carrello è vuoto! <br> Seleziona un piatto per visualizzarlo QUI 👇</div>
             <div class="cart_item" v-for="(plate, index) in plates" :key="plate.id">
                 <span span>{{ plate.name }}</span>
 
                 <div class="actions">
                   <i @click="minusPlate(plate, index)" class="fas fa-minus-circle text-danger" ></i>
-                  <span class="px-1">{{ plate.qty }}</span>
+                  <span class="item_price">{{ plate.qty }}</span>
                   <i @click="storagePlate(plate, index)" class="fas fa-plus-circle text-success" ></i>
                 </div>
             </div>
@@ -160,7 +156,7 @@ export default {
         this.plates.forEach((plate) => {
           totalPrice += plate.price * plate.qty;
         });
-        return totalPrice;
+        return totalPrice.toFixed(2);
       }
     },
     callRestaurants() {
@@ -282,23 +278,62 @@ export default {
 
 .restaurant {
   width: 80%;
-
   @media screen and (max-width:1199.98px) {
     width: 100%;
   }
 
+  .restaurant_details{
+    margin-top: 1rem;
+    padding: 4rem;
+    font-size: 1.1rem;
+    border: 1px solid black;
+
+  }
+
+  .categories {
+    padding: 0 1rem;
+  }
+
   .address {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
+    margin-top: 1rem;
   }
 
   .img-restaurant-container {
     height: 300px;
     width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-top-left-radius: 300px;
+    border-bottom-right-radius: 300px;
+    @media screen and (max-width: 767.98px) {
+      border-radius: 2rem;
+    }
+  
+    .restaurant_title{
+      position: absolute;
+      bottom: .5rem;
+      padding-left: 7rem;
+      background-color: white;
+      width: 100%;
+    }
 
     img {
       width: 100%;
       height: inherit;
       object-fit: cover;
+    }
+  }
+
+  .menu {
+    margin-top: 1rem;
+
+    .menu_title {
+      background-color: #F8B735;
+      padding: 1rem;
+      color: #2B898B;
+      font-weight: bold;
+      border-radius: .5rem;
     }
   }
 
@@ -466,6 +501,7 @@ export default {
   }
 }
 
+//carrello
 .cart {
   height: fit-content;
   width: 20%;
@@ -477,63 +513,20 @@ export default {
   border-bottom-left-radius: .5rem;
   border-bottom-right-radius: .5rem;
 
-  .content {
-    min-height: 30rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-
-  .cart_heading {
-    border-top-left-radius: .5rem;
-    border-top-right-radius: .5rem;
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: #2B898B;
-    color: white;
-  }
-
-  .cart_item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.3rem;
-    border-bottom: 1px solid rgb(245, 245, 245);
-
-    .actions {
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  .empty_cart {
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    padding: 0.3rem;
-  }
-
-  .checkout_link {
-    margin-top: auto;
-  }
-
   @media screen and (max-width:1199.98px) {
     display: none;
   }
 }
-
 .mobile_cart {
-  @media screen and (min-width:1199.98px) {
-      display: none;
-  }
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+    @media screen and (min-width:1199.98px) {
+        display: none;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
 
   .fa-shopping-bag {
     font-size: 2rem;
@@ -574,11 +567,6 @@ export default {
     border-radius: .8rem;
 
     .cart_heading {
-      display: flex;
-      justify-content: space-between;
-      padding: 1rem;
-      background-color: #2B898B;
-      color: white;
       animation: opacity .5s .1s ease-in-out;
       animation-fill-mode: backwards;
       @keyframes opacity {
@@ -592,41 +580,64 @@ export default {
     }
 
     .content {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      min-height: 10rem;
-      background-color: white;
       animation: opacity .5s .1s ease-in-out;
       animation-fill-mode: backwards;
-
-        .cart_item {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 0.3rem;
-          border-bottom: 1px solid rgb(245, 245, 245);
-
-          .actions {
-            display: flex;
-            align-items: center;
-          }
-        }
-
-        .empty_cart {
-          cursor: pointer;
-          display: flex;
-          justify-content: space-between;
-          padding: 0.3rem;
-        }
-
-        .checkout_link {
-          margin-top: auto;
-        }
+      min-height: 10rem;
     }
   }
 }
+.cart_heading {
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #2B898B;
+  color: white;
 
+  .total_price{
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+}
+.content {
+  min-height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: white;
+  .cart_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem;
+    border-bottom: 1px solid rgb(245, 245, 245);
+  }
+  .empty_cart {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem;
+  }
+  .checkout_link {
+    margin-top: auto;
+  }
+}
+.actions {
+  display: flex;
+  align-items: center;
+  transition: .2s;
+  .item_price {
+  width: 1.3rem;
+  text-align: center;
+  font-weight: bold;
+  }
+  .fas:active {
+  transform: scale(.9);
+  }
+}
+
+//comune per tutte le icone
 .fas {
   cursor: pointer;
   font-size: 1.4rem;

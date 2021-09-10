@@ -16,13 +16,13 @@
                 <a class="nav-link bttn" href="{{ route('register') }}">{{ __('Registrati') }}</a>
             @endif
         @else
-            <div class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+            <div class="nav-item">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }}
                 </a>
 
-                <div class="dropdown-menu p-0 " aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu p-0" aria-labelledby="navbarDropdown">
                     <a class="bttn_reverse dropdown-item"
                         href="{{ route('admin.restaurant.index') }}">{{ __('Profilo') }}</a>
 
@@ -34,7 +34,6 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
-
                 </div>
             </div>
         @endguest
