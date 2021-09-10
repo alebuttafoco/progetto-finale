@@ -2102,6 +2102,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2111,31 +2124,49 @@ __webpack_require__.r(__webpack_exports__);
       filterRestaurants: [],
       isVisibleRestaurants: false,
       selectedRestaurant: "",
-      categories_array: []
+      categories_array: [],
+      visibleCatMobile: true
     };
   },
   methods: {
+    showCategoriesMobile: function showCategoriesMobile() {
+      if (this.visibleCatMobile) {
+        this.visibleCatMobile = false;
+      } else {
+        this.visibleCatMobile = true;
+      }
+    },
     filterCategory: function filterCategory(name) {
       if (name === "all") {
         this.categories_array = [];
         this.categories_array.push("all");
-      } else {
-        if (this.categories_array.includes("all")) {
-          this.categories_array.splice(this.categories_array.indexOf("all"), 1);
-        }
+        console.log(this.categories_array.includes(name));
 
         if (this.categories_array.includes(name)) {
+          /* console.log(this.categories_array.indexOf(name)); */
           var index_name = this.categories_array.indexOf(name);
-          this.categories_array.splice(index_name, 1);
+          this.categories_array.splice(index_name, 1); // this.categories_array.splice((indexOF(name), 1));
         } else {
-          this.categories_array.push(name);
+          if (this.categories_array.includes("all")) {
+            this.categories_array.splice(this.categories_array.indexOf("all"), 1);
+          }
+
+          if (this.categories_array.includes(name)) {
+            var _index_name = this.categories_array.indexOf(name);
+
+            this.categories_array.splice(_index_name, 1);
+          } else {
+            this.categories_array.push(name);
+          }
+        } //console.log(this.categories_array);
+
+
+        if (this.categories_array.length == 0) {
+          this.categories_array.push("all");
         }
-      } //console.log(this.categories_array);
-
-
-      if (this.categories_array.length == 0) {
-        this.categories_array.push("all");
       }
+      /* console.log(this.categories_array); */
+
     },
     callRestaurants: function callRestaurants() {
       var _this = this;
@@ -2176,10 +2207,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
 //
 //
 //
@@ -2341,7 +2368,7 @@ __webpack_require__.r(__webpack_exports__);
         this.plates.forEach(function (plate) {
           totalPrice += plate.price * plate.qty;
         });
-        return totalPrice;
+        return totalPrice.toFixed(2);
       }
     },
     callRestaurants: function callRestaurants() {
@@ -6929,7 +6956,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#HomeVideo[data-v-782dcf83] {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  -o-object-fit: cover;\n     object-fit: cover;\n  z-index: -999;\n  filter: brightness(50%);\n}\n.search_restaurants[data-v-782dcf83],\n.search_div[data-v-782dcf83] {\n  padding: 1rem;\n  background-color: white;\n}\n.search_div[data-v-782dcf83] {\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n@media screen and (max-width: 575.98px) {\n.search_div[data-v-782dcf83] {\n    display: flex;\n    flex-direction: column;\n}\n}\n.box_ricerca[data-v-782dcf83] {\n  display: flex;\n  justify-content: center;\n}\n.search_center[data-v-782dcf83] {\n  width: 60%;\n  transform: translateY(50%);\n  transition: 1s;\n}\n@media screen and (max-width: 1399.98px) {\n.search_center[data-v-782dcf83] {\n    width: 70%;\n}\n}\n@media screen and (max-width: 991.98px) {\n.search_center[data-v-782dcf83] {\n    width: 75%;\n}\n}\n@media screen and (max-width: 767.98px) {\n.search_center[data-v-782dcf83] {\n    width: 80%;\n}\n}\n@media screen and (max-width: 575.98px) {\n.search_center[data-v-782dcf83] {\n    width: 90%;\n    margin: -55%;\n}\n}\n.sticky[data-v-782dcf83] {\n  position: sticky;\n  top: 0;\n  z-index: 999;\n  -webkit-animation: slide_up-data-v-782dcf83 0.5s ease;\n          animation: slide_up-data-v-782dcf83 0.5s ease;\n}\n@-webkit-keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n@keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n.restaurants[data-v-782dcf83] {\n  -webkit-animation: show-data-v-782dcf83 0.5s 0.5s ease;\n          animation: show-data-v-782dcf83 0.5s 0.5s ease;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n  display: flex;\n  flex-wrap: wrap;\n}\n.restaurants .my_card[data-v-782dcf83] {\n  width: calc(100% / 4 - 2rem);\n  margin: 1rem;\n  background-color: #f0f0f0;\n  text-decoration: none;\n  transition: 0.2s ease;\n}\n@media screen and (max-width: 1399.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 991.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 767.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 2 - 2rem);\n}\n}\n@media screen and (max-width: 575.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% - 2rem);\n}\n}\n.restaurants .my_card img[data-v-782dcf83] {\n  width: 100%;\n}\n.restaurants .my_card .details[data-v-782dcf83] {\n  padding: 1rem;\n}\n.restaurants .my_card[data-v-782dcf83]:hover {\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}\n@-webkit-keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}", ""]);
+exports.push([module.i, "#HomeVideo[data-v-782dcf83] {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  -o-object-fit: cover;\n     object-fit: cover;\n  z-index: -999;\n  filter: brightness(50%);\n}\n.search_restaurants[data-v-782dcf83],\n.search_div[data-v-782dcf83] {\n  padding: 1rem;\n  background-color: white;\n}\n.search_center[data-v-782dcf83] {\n  height: 90vh;\n  min-height: 300px;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n@media screen and (min-width: 575.99px) {\n.search_center .search_container[data-v-782dcf83] {\n    width: 80%;\n}\n}\n@media screen and (max-width: 575.98px) {\n.search_center .search_container[data-v-782dcf83] {\n    position: sticky;\n    top: 0;\n    height: 100%;\n    width: 100%;\n}\n}\n.search_div[data-v-782dcf83] {\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n@media screen and (max-width: 575.98px) {\n.search_div[data-v-782dcf83] {\n    display: flex;\n    flex-direction: column;\n}\n.search_div .show_categories[data-v-782dcf83] {\n    display: flex;\n}\n}\n.show_categories[data-v-782dcf83] {\n  display: none;\n}\n@media screen and (max-width: 575.98px) {\n.show_categories[data-v-782dcf83] {\n    display: flex;\n    flex-direction: column;\n}\n.show_categories .show_categories[data-v-782dcf83] {\n    display: flex;\n}\n}\n.activeCategoriesMobile[data-v-782dcf83] {\n  display: flex;\n}\n.disableCategoriesMobile[data-v-782dcf83] {\n  display: none;\n}\n@media screen and (min-width: 575.98px) {\n.disableCategoriesMobile[data-v-782dcf83] {\n    display: flex;\n}\n}\n.sticky[data-v-782dcf83] {\n  position: sticky;\n  top: 0;\n  z-index: 999;\n  -webkit-animation: slide_up-data-v-782dcf83 0.5s ease;\n          animation: slide_up-data-v-782dcf83 0.5s ease;\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.13);\n}\n@-webkit-keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n@keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n.restaurants[data-v-782dcf83] {\n  -webkit-animation: show-data-v-782dcf83 0.5s 0.5s ease;\n          animation: show-data-v-782dcf83 0.5s 0.5s ease;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n  display: flex;\n  flex-wrap: wrap;\n}\n.restaurants .my_card[data-v-782dcf83] {\n  width: calc(100% / 4 - 2rem);\n  border-radius: 0.5rem;\n  margin: 1rem;\n  overflow: hidden;\n  height: 16rem;\n  background-color: white;\n  border: 1px solid #eeeeee;\n  text-decoration: none;\n  transition: 0.2s ease;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n@media screen and (max-width: 1399.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 991.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 767.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 2 - 2rem);\n}\n}\n@media screen and (max-width: 575.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% - 2rem);\n}\n}\n.restaurants .my_card img[data-v-782dcf83] {\n  height: 75%;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.restaurants .my_card .details[data-v-782dcf83] {\n  height: 25%;\n  padding: 1rem;\n  font-size: 1.1rem;\n}\n.restaurants .my_card[data-v-782dcf83]:hover {\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}\n@-webkit-keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}", ""]);
 
 // exports
 
@@ -6948,7 +6975,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".my_container[data-v-78e2f7b6] {\n  display: flex;\n}\n@media screen and (max-width: 1199.98px) {\n.my_container[data-v-78e2f7b6] {\n    display: block;\n}\n}\n.restaurant[data-v-78e2f7b6] {\n  width: 80%;\n}\n@media screen and (max-width: 1199.98px) {\n.restaurant[data-v-78e2f7b6] {\n    width: 100%;\n}\n}\n.restaurant .address[data-v-78e2f7b6] {\n  font-size: 0.7rem;\n}\n.restaurant .img-restaurant-container[data-v-78e2f7b6] {\n  height: 300px;\n  width: 100%;\n}\n.restaurant .img-restaurant-container img[data-v-78e2f7b6] {\n  width: 100%;\n  height: inherit;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.restaurant .plates[data-v-78e2f7b6] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.restaurant .plates .my_card[data-v-78e2f7b6] {\n  border-radius: 0.5rem;\n  overflow: hidden;\n  width: calc(100% / 4 - 2rem);\n  max-height: 25rem;\n  margin: 1rem;\n  border: 1px solid #eeeeee;\n  display: flex;\n  flex-direction: column;\n  transition: 0.3s ease-in-out;\n}\n@media screen and (max-width: 1399.98px) {\n.restaurant .plates .my_card[data-v-78e2f7b6] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 991.98px) {\n.restaurant .plates .my_card[data-v-78e2f7b6] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 767.98px) {\n.restaurant .plates .my_card[data-v-78e2f7b6] {\n    width: calc(100% / 2 - 2rem);\n}\n}\n@media screen and (max-width: 575.98px) {\n.restaurant .plates .my_card[data-v-78e2f7b6] {\n    width: calc(100% - 2rem);\n}\n}\n.restaurant .plates .my_card .plate-img[data-v-78e2f7b6] {\n  height: 40%;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.restaurant .plates .my_card .card_body[data-v-78e2f7b6] {\n  height: 60%;\n  padding: 1rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.restaurant .plates .my_card .card_body .card_text[data-v-78e2f7b6] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 4;\n  -webkit-box-orient: vertical;\n}\n.restaurant .plates .my_card .card_body .price_btn[data-v-78e2f7b6] {\n  text-align: end;\n}\n.restaurant .plates .my_card .add_plate[data-v-78e2f7b6] {\n  transform: translateY(4rem);\n  transition: all 0.2s ease-in-out;\n}\n.restaurant .plates .my_card[data-v-78e2f7b6]:hover {\n  cursor: pointer;\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}\n.restaurant .plates .my_card:hover .add_plate[data-v-78e2f7b6] {\n  transform: translateY(0);\n}\n.overlay_modal[data-v-78e2f7b6] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.466);\n  z-index: 999;\n  overflow: hidden;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.overlay_modal .plate_modal[data-v-78e2f7b6] {\n  background-color: white;\n  width: 30%;\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  border-radius: 0.5rem;\n  -webkit-animation: show-data-v-78e2f7b6 0.3s ease-in-out;\n          animation: show-data-v-78e2f7b6 0.3s ease-in-out;\n}\n@media screen and (max-width: 1399.98px) {\n.overlay_modal .plate_modal[data-v-78e2f7b6] {\n    width: 40%;\n}\n}\n@media screen and (max-width: 991.98px) {\n.overlay_modal .plate_modal[data-v-78e2f7b6] {\n    width: 50%;\n}\n}\n@media screen and (max-width: 767.98px) {\n.overlay_modal .plate_modal[data-v-78e2f7b6] {\n    width: 60%;\n}\n}\n@media screen and (max-width: 575.98px) {\n.overlay_modal .plate_modal[data-v-78e2f7b6] {\n    width: 80%;\n}\n}\n@-webkit-keyframes show-data-v-78e2f7b6 {\nfrom {\n    transform: scale(0.1);\n    opacity: 0;\n}\nto {\n    transform: scale(1);\n    opacity: 1;\n}\n}\n@keyframes show-data-v-78e2f7b6 {\nfrom {\n    transform: scale(0.1);\n    opacity: 0;\n}\nto {\n    transform: scale(1);\n    opacity: 1;\n}\n}\n.overlay_modal .plate_modal .bottom[data-v-78e2f7b6] {\n  height: 60%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.overlay_modal .plate_modal .bottom .details[data-v-78e2f7b6] {\n  padding: 2rem;\n}\n.overlay_modal .plate_modal .bottom .details .description[data-v-78e2f7b6] {\n  text-align: justify;\n}\n.overlay_modal .plate_modal .top[data-v-78e2f7b6] {\n  height: 40%;\n  background-color: blanchedalmond;\n  position: relative;\n}\n.overlay_modal .plate_modal .top img[data-v-78e2f7b6] {\n  border-top-left-radius: 0.5rem;\n  border-top-right-radius: 0.5rem;\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.overlay_modal .plate_modal .top .fa-times[data-v-78e2f7b6] {\n  position: absolute;\n  top: 1rem;\n  right: 1rem;\n  background-color: white;\n  border-radius: 50%;\n  width: 3rem;\n  height: 3rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.cart[data-v-78e2f7b6] {\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  width: 20%;\n  margin: 0 1rem;\n  background-color: white;\n  position: sticky;\n  top: 0;\n  box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.089);\n  border-bottom-left-radius: 0.5rem;\n  border-bottom-right-radius: 0.5rem;\n}\n.cart .content[data-v-78e2f7b6] {\n  min-height: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n}\n.cart .cart_heading[data-v-78e2f7b6] {\n  border-top-left-radius: 0.5rem;\n  border-top-right-radius: 0.5rem;\n  display: flex;\n  justify-content: space-between;\n  padding: 1rem;\n  background-color: #2B898B;\n  color: white;\n}\n.cart .cart_item[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.3rem;\n  border-bottom: 1px solid whitesmoke;\n}\n.cart .cart_item .actions[data-v-78e2f7b6] {\n  display: flex;\n  align-items: center;\n}\n.cart .empty_cart[data-v-78e2f7b6] {\n  cursor: pointer;\n  display: flex;\n  justify-content: space-between;\n  padding: 0.3rem;\n}\n.cart .checkout_link[data-v-78e2f7b6] {\n  margin-top: auto;\n}\n@media screen and (max-width: 1199.98px) {\n.cart[data-v-78e2f7b6] {\n    display: none;\n}\n}\n.mobile_cart[data-v-78e2f7b6] {\n  cursor: pointer;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: fixed;\n  bottom: 2rem;\n  right: 2rem;\n}\n@media screen and (min-width: 1199.98px) {\n.mobile_cart[data-v-78e2f7b6] {\n    display: none;\n}\n}\n.mobile_cart .fa-shopping-bag[data-v-78e2f7b6] {\n  font-size: 2rem;\n  padding: 2rem;\n  border-radius: 50%;\n  color: #2B898B;\n  background-color: #F8B735;\n  -webkit-animation: show-data-v-78e2f7b6 0.3s ease-in-out;\n          animation: show-data-v-78e2f7b6 0.3s ease-in-out;\n}\n@keyframes show-data-v-78e2f7b6 {\nfrom {\n    transform: scale(0.1);\n    opacity: 0;\n}\nto {\n    transform: scale(1);\n    opacity: 1;\n}\n}\n.mobile_cart .cart_modal[data-v-78e2f7b6] {\n  width: 100%;\n  overflow: hidden;\n  -webkit-animation: slide_up-data-v-78e2f7b6 0.3s ease-in-out;\n          animation: slide_up-data-v-78e2f7b6 0.3s ease-in-out;\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.418);\n  width: 20rem;\n  border-radius: 0.8rem;\n}\n@-webkit-keyframes slide_up-data-v-78e2f7b6 {\nfrom {\n    border-radius: 50%;\n    width: 5rem;\n    height: 5rem;\n}\nto {\n    height: 13.3rem;\n}\n}\n@keyframes slide_up-data-v-78e2f7b6 {\nfrom {\n    border-radius: 50%;\n    width: 5rem;\n    height: 5rem;\n}\nto {\n    height: 13.3rem;\n}\n}\n.mobile_cart .cart_modal .cart_heading[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n  padding: 1rem;\n  background-color: #2B898B;\n  color: white;\n  -webkit-animation: opacity-data-v-78e2f7b6 0.5s 0.1s ease-in-out;\n          animation: opacity-data-v-78e2f7b6 0.5s 0.1s ease-in-out;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n}\n@-webkit-keyframes opacity-data-v-78e2f7b6 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@keyframes opacity-data-v-78e2f7b6 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n.mobile_cart .cart_modal .content[data-v-78e2f7b6] {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  min-height: 10rem;\n  background-color: white;\n  -webkit-animation: opacity-data-v-78e2f7b6 0.5s 0.1s ease-in-out;\n          animation: opacity-data-v-78e2f7b6 0.5s 0.1s ease-in-out;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n}\n.mobile_cart .cart_modal .content .cart_item[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.3rem;\n  border-bottom: 1px solid whitesmoke;\n}\n.mobile_cart .cart_modal .content .cart_item .actions[data-v-78e2f7b6] {\n  display: flex;\n  align-items: center;\n}\n.mobile_cart .cart_modal .content .empty_cart[data-v-78e2f7b6] {\n  cursor: pointer;\n  display: flex;\n  justify-content: space-between;\n  padding: 0.3rem;\n}\n.mobile_cart .cart_modal .content .checkout_link[data-v-78e2f7b6] {\n  margin-top: auto;\n}\n.fas[data-v-78e2f7b6] {\n  cursor: pointer;\n  font-size: 1.4rem;\n}", ""]);
+exports.push([module.i, ".my_container[data-v-78e2f7b6] {\n  display: flex;\n}\n@media screen and (max-width: 1199.98px) {\n.my_container[data-v-78e2f7b6] {\n    display: block;\n}\n}\n.restaurant[data-v-78e2f7b6] {\n  width: 80%;\n}\n@media screen and (max-width: 1199.98px) {\n.restaurant[data-v-78e2f7b6] {\n    width: 100%;\n}\n}\n.restaurant .restaurant_details[data-v-78e2f7b6] {\n  margin-top: 1rem;\n  padding: 4rem;\n  font-size: 1.1rem;\n  border: 1px solid black;\n}\n.restaurant .categories[data-v-78e2f7b6] {\n  padding: 0 1rem;\n}\n.restaurant .address[data-v-78e2f7b6] {\n  font-size: 0.9rem;\n  margin-top: 1rem;\n}\n.restaurant .img-restaurant-container[data-v-78e2f7b6] {\n  height: 300px;\n  width: 100%;\n  position: relative;\n  overflow: hidden;\n  border-top-left-radius: 300px;\n  border-bottom-right-radius: 300px;\n}\n@media screen and (max-width: 767.98px) {\n.restaurant .img-restaurant-container[data-v-78e2f7b6] {\n    border-radius: 2rem;\n}\n}\n.restaurant .img-restaurant-container .restaurant_title[data-v-78e2f7b6] {\n  position: absolute;\n  bottom: 0.5rem;\n  padding-left: 7rem;\n  background-color: white;\n  width: 100%;\n}\n.restaurant .img-restaurant-container img[data-v-78e2f7b6] {\n  width: 100%;\n  height: inherit;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.restaurant .menu[data-v-78e2f7b6] {\n  margin-top: 1rem;\n}\n.restaurant .menu .menu_title[data-v-78e2f7b6] {\n  background-color: #F8B735;\n  padding: 1rem;\n  color: #2B898B;\n  font-weight: bold;\n  border-radius: 0.5rem;\n}\n.restaurant .plates[data-v-78e2f7b6] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.restaurant .plates .my_card[data-v-78e2f7b6] {\n  border-radius: 0.5rem;\n  overflow: hidden;\n  width: calc(100% / 4 - 2rem);\n  max-height: 25rem;\n  margin: 1rem;\n  border: 1px solid #eeeeee;\n  display: flex;\n  flex-direction: column;\n  transition: 0.3s ease-in-out;\n}\n@media screen and (max-width: 1399.98px) {\n.restaurant .plates .my_card[data-v-78e2f7b6] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 991.98px) {\n.restaurant .plates .my_card[data-v-78e2f7b6] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 767.98px) {\n.restaurant .plates .my_card[data-v-78e2f7b6] {\n    width: calc(100% / 2 - 2rem);\n}\n}\n@media screen and (max-width: 575.98px) {\n.restaurant .plates .my_card[data-v-78e2f7b6] {\n    width: calc(100% - 2rem);\n}\n}\n.restaurant .plates .my_card .plate-img[data-v-78e2f7b6] {\n  height: 40%;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.restaurant .plates .my_card .card_body[data-v-78e2f7b6] {\n  height: 60%;\n  padding: 1rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.restaurant .plates .my_card .card_body .card_text[data-v-78e2f7b6] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 4;\n  -webkit-box-orient: vertical;\n}\n.restaurant .plates .my_card .card_body .price_btn[data-v-78e2f7b6] {\n  text-align: end;\n}\n.restaurant .plates .my_card .add_plate[data-v-78e2f7b6] {\n  transform: translateY(4rem);\n  transition: all 0.2s ease-in-out;\n}\n.restaurant .plates .my_card[data-v-78e2f7b6]:hover {\n  cursor: pointer;\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}\n.restaurant .plates .my_card:hover .add_plate[data-v-78e2f7b6] {\n  transform: translateY(0);\n}\n.overlay_modal[data-v-78e2f7b6] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.466);\n  z-index: 999;\n  overflow: hidden;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.overlay_modal .plate_modal[data-v-78e2f7b6] {\n  background-color: white;\n  width: 30%;\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  border-radius: 0.5rem;\n  -webkit-animation: show-data-v-78e2f7b6 0.3s ease-in-out;\n          animation: show-data-v-78e2f7b6 0.3s ease-in-out;\n}\n@media screen and (max-width: 1399.98px) {\n.overlay_modal .plate_modal[data-v-78e2f7b6] {\n    width: 40%;\n}\n}\n@media screen and (max-width: 991.98px) {\n.overlay_modal .plate_modal[data-v-78e2f7b6] {\n    width: 50%;\n}\n}\n@media screen and (max-width: 767.98px) {\n.overlay_modal .plate_modal[data-v-78e2f7b6] {\n    width: 60%;\n}\n}\n@media screen and (max-width: 575.98px) {\n.overlay_modal .plate_modal[data-v-78e2f7b6] {\n    width: 80%;\n}\n}\n@-webkit-keyframes show-data-v-78e2f7b6 {\nfrom {\n    transform: scale(0.1);\n    opacity: 0;\n}\nto {\n    transform: scale(1);\n    opacity: 1;\n}\n}\n@keyframes show-data-v-78e2f7b6 {\nfrom {\n    transform: scale(0.1);\n    opacity: 0;\n}\nto {\n    transform: scale(1);\n    opacity: 1;\n}\n}\n.overlay_modal .plate_modal .bottom[data-v-78e2f7b6] {\n  height: 60%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.overlay_modal .plate_modal .bottom .details[data-v-78e2f7b6] {\n  padding: 2rem;\n}\n.overlay_modal .plate_modal .bottom .details .description[data-v-78e2f7b6] {\n  text-align: justify;\n}\n.overlay_modal .plate_modal .top[data-v-78e2f7b6] {\n  height: 40%;\n  background-color: blanchedalmond;\n  position: relative;\n}\n.overlay_modal .plate_modal .top img[data-v-78e2f7b6] {\n  border-top-left-radius: 0.5rem;\n  border-top-right-radius: 0.5rem;\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.overlay_modal .plate_modal .top .fa-times[data-v-78e2f7b6] {\n  position: absolute;\n  top: 1rem;\n  right: 1rem;\n  background-color: white;\n  border-radius: 50%;\n  width: 3rem;\n  height: 3rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.cart[data-v-78e2f7b6] {\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  width: 20%;\n  margin: 0 1rem;\n  background-color: white;\n  position: sticky;\n  top: 0;\n  box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.089);\n  border-bottom-left-radius: 0.5rem;\n  border-bottom-right-radius: 0.5rem;\n}\n@media screen and (max-width: 1199.98px) {\n.cart[data-v-78e2f7b6] {\n    display: none;\n}\n}\n.mobile_cart[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: fixed;\n  bottom: 2rem;\n  right: 2rem;\n}\n@media screen and (min-width: 1199.98px) {\n.mobile_cart[data-v-78e2f7b6] {\n    display: none;\n}\n}\n.mobile_cart .fa-shopping-bag[data-v-78e2f7b6] {\n  font-size: 2rem;\n  padding: 2rem;\n  border-radius: 50%;\n  color: #2B898B;\n  background-color: #F8B735;\n  -webkit-animation: show-data-v-78e2f7b6 0.3s ease-in-out;\n          animation: show-data-v-78e2f7b6 0.3s ease-in-out;\n}\n@keyframes show-data-v-78e2f7b6 {\nfrom {\n    transform: scale(0.1);\n    opacity: 0;\n}\nto {\n    transform: scale(1);\n    opacity: 1;\n}\n}\n.mobile_cart .cart_modal[data-v-78e2f7b6] {\n  width: 100%;\n  overflow: hidden;\n  -webkit-animation: slide_up-data-v-78e2f7b6 0.3s ease-in-out;\n          animation: slide_up-data-v-78e2f7b6 0.3s ease-in-out;\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.418);\n  width: 20rem;\n  border-radius: 0.8rem;\n}\n@-webkit-keyframes slide_up-data-v-78e2f7b6 {\nfrom {\n    border-radius: 50%;\n    width: 5rem;\n    height: 5rem;\n}\nto {\n    height: 13.3rem;\n}\n}\n@keyframes slide_up-data-v-78e2f7b6 {\nfrom {\n    border-radius: 50%;\n    width: 5rem;\n    height: 5rem;\n}\nto {\n    height: 13.3rem;\n}\n}\n.mobile_cart .cart_modal .cart_heading[data-v-78e2f7b6] {\n  -webkit-animation: opacity-data-v-78e2f7b6 0.5s 0.1s ease-in-out;\n          animation: opacity-data-v-78e2f7b6 0.5s 0.1s ease-in-out;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n}\n@-webkit-keyframes opacity-data-v-78e2f7b6 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@keyframes opacity-data-v-78e2f7b6 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n.mobile_cart .cart_modal .content[data-v-78e2f7b6] {\n  -webkit-animation: opacity-data-v-78e2f7b6 0.5s 0.1s ease-in-out;\n          animation: opacity-data-v-78e2f7b6 0.5s 0.1s ease-in-out;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n  min-height: 10rem;\n}\n.cart_heading[data-v-78e2f7b6] {\n  border-top-left-radius: 0.5rem;\n  border-top-right-radius: 0.5rem;\n  display: flex;\n  justify-content: space-between;\n  padding: 1rem;\n  background-color: #2B898B;\n  color: white;\n}\n.cart_heading .total_price[data-v-78e2f7b6] {\n  font-weight: bold;\n  font-size: 1.2rem;\n}\n.content[data-v-78e2f7b6] {\n  min-height: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  background-color: white;\n}\n.content .cart_item[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.3rem;\n  border-bottom: 1px solid whitesmoke;\n}\n.content .empty_cart[data-v-78e2f7b6] {\n  cursor: pointer;\n  display: flex;\n  justify-content: space-between;\n  padding: 0.3rem;\n}\n.content .checkout_link[data-v-78e2f7b6] {\n  margin-top: auto;\n}\n.actions[data-v-78e2f7b6] {\n  display: flex;\n  align-items: center;\n  transition: 0.2s;\n}\n.actions .item_price[data-v-78e2f7b6] {\n  width: 1.3rem;\n  text-align: center;\n  font-weight: bold;\n}\n.actions .fas[data-v-78e2f7b6]:active {\n  transform: scale(0.9);\n}\n.fas[data-v-78e2f7b6] {\n  cursor: pointer;\n  font-size: 1.4rem;\n}", ""]);
 
 // exports
 
@@ -39018,50 +39045,15 @@ var render = function() {
         : _vm._e()
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "box_ricerca" }, [
-      _c(
-        "div",
-        { class: _vm.isVisibleRestaurants ? "sticky" : "search_center" },
-        [
-          !_vm.isVisibleRestaurants
-            ? _c("div", { staticClass: "search_restaurants text-center" }, [
-                _c(
-                  "span",
-                  {
-                    staticClass: "bttn px-4 py-2 m-2",
-                    on: {
-                      click: function($event) {
-                        ;(_vm.isVisibleRestaurants = true),
-                          _vm.filterCategory("all"),
-                          _vm.callRestaurants()
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n          Visualizza tutti i Ristoranti\n        "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("h4", { staticClass: "mt-5" }, [
-                  _vm._v("Oppure seleziona una categoria per iniziare")
-                ])
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "search_div" },
-            [
-              _vm.isVisibleRestaurants
-                ? _c(
-                    "div",
+    !_vm.isVisibleRestaurants
+      ? _c("div", { staticClass: "search_center" }, [
+          _c("div", { staticClass: "search_container" }, [
+            !_vm.isVisibleRestaurants
+              ? _c("div", { staticClass: "search_restaurants text-center" }, [
+                  _c(
+                    "span",
                     {
-                      staticClass: "px-4 py-2 m-2",
-                      class: _vm.categories_array.includes("all")
-                        ? "bttn"
-                        : "bttn_reverse",
+                      staticClass: "bttn px-4 py-2 m-2",
                       on: {
                         click: function($event) {
                           ;(_vm.isVisibleRestaurants = true),
@@ -39070,13 +39062,126 @@ var render = function() {
                         }
                       }
                     },
+                    [_vm._v("Visualizza tutti i Ristoranti")]
+                  ),
+                  _vm._v(" "),
+                  _c("h4", { staticClass: "mt-5" }, [
+                    _vm._v("Oppure seleziona una categoria per iniziare")
+                  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "search_div" },
+              [
+                _vm.isVisibleRestaurants
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "px-4 py-2 m-2",
+                        class: _vm.categories_array.includes("all")
+                          ? "bttn"
+                          : "bttn_reverse",
+                        on: {
+                          click: function($event) {
+                            ;(_vm.isVisibleRestaurants = true),
+                              _vm.filterCategory("all"),
+                              _vm.callRestaurants()
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                Visualizza tutti i Ristoranti\n              "
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm._l(_vm.categories, function(category) {
+                  return _c(
+                    "div",
+                    {
+                      key: category.name,
+                      staticClass: "px-4 py-2 m-2",
+                      class: _vm.categories_array.includes(category.name)
+                        ? "bttn"
+                        : "bttn_reverse",
+                      on: {
+                        click: function($event) {
+                          ;(_vm.isVisibleRestaurants = true),
+                            _vm.filterCategory(category.name),
+                            _vm.callRestaurants()
+                        }
+                      }
+                    },
                     [
                       _vm._v(
-                        "\n          Visualizza tutti i Ristoranti\n        "
+                        "\n                " +
+                          _vm._s(category.name) +
+                          "\n              "
                       )
                     ]
                   )
-                : _vm._e(),
+                })
+              ],
+              2
+            )
+          ])
+        ])
+      : _c("div", { staticClass: "sticky" }, [
+          _c(
+            "div",
+            {
+              staticClass: "bttn show_categories",
+              on: {
+                click: function($event) {
+                  return _vm.showCategoriesMobile()
+                }
+              }
+            },
+            [
+              _vm._v(
+                _vm._s(
+                  _vm.visibleCatMobile
+                    ? "Nascondi Categorie"
+                    : "Visualizza Categorie"
+                )
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "search_div",
+              class: _vm.visibleCatMobile
+                ? "activeCategoriesMobile"
+                : "disableCategoriesMobile"
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "px-4 py-2 m-2",
+                  class: _vm.categories_array.includes("all")
+                    ? "bttn"
+                    : "bttn_reverse",
+                  on: {
+                    click: function($event) {
+                      ;(_vm.isVisibleRestaurants = true),
+                        _vm.filterCategory("all"),
+                        _vm.callRestaurants()
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n            Visualizza tutti i Ristoranti\n          "
+                  )
+                ]
+              ),
               _vm._v(" "),
               _vm._l(_vm.categories, function(category) {
                 return _c(
@@ -39097,7 +39202,7 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n          " + _vm._s(category.name) + "\n        "
+                      "\n            " + _vm._s(category.name) + "\n          "
                     )
                   ]
                 )
@@ -39105,9 +39210,7 @@ var render = function() {
             ],
             2
           )
-        ]
-      )
-    ]),
+        ]),
     _vm._v(" "),
     _vm.isVisibleRestaurants
       ? _c(
@@ -39115,7 +39218,7 @@ var render = function() {
           { staticClass: "restaurants my_container" },
           [
             !(_vm.restaurants.length != 0)
-              ? _c("h4", { staticClass: "bg-white mt-5 mx-auto" }, [
+              ? _c("h4", { staticClass: "bg-white mt-5 p-4 mx-auto shadow" }, [
                   _vm._v(
                     "\n      Nessun ristorante da visualizzare per questa categoria 😪\n    "
                   )
@@ -39141,20 +39244,18 @@ var render = function() {
                   }
                 },
                 [
-                  _c("div", { staticClass: "content" }, [
-                    _c("img", {
-                      attrs: {
-                        src:
-                          restaurant.image == null
-                            ? "img/cover_restaurant.jpg"
-                            : "storage/" + restaurant.image,
-                        alt: ""
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "details" }, [
-                      _c("h5", [_vm._v(_vm._s(restaurant.name))])
-                    ])
+                  _c("img", {
+                    attrs: {
+                      src:
+                        restaurant.image == null
+                          ? "img/cover_restaurant.jpg"
+                          : "storage/" + restaurant.image,
+                      alt: ""
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "details" }, [
+                    _vm._v(_vm._s(restaurant.name))
                   ])
                 ]
               )
@@ -39187,8 +39288,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "my_container py-5" }, [
-    _c("div", { staticClass: "restaurant bg-white p-0" }, [
+  return _c("div", { staticClass: "my_container py-4" }, [
+    _c("div", { staticClass: "restaurant" }, [
       _c("div", { staticClass: "img-restaurant-container" }, [
         _c("img", {
           attrs: {
@@ -39198,44 +39299,42 @@ var render = function() {
                 : "../storage/" + _vm.restaurant.image,
             alt: ""
           }
-        })
-      ]),
-      _vm._v(" "),
-      _c("h1", { staticClass: "p-2 pl-3" }, [
-        _vm._v(_vm._s(_vm.restaurant.name))
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "p-2 pl-3" }, [
-        _vm._v(_vm._s(_vm.restaurant.description))
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "address p-2 pl-3" }, [
-        _vm._v(
-          "\n      " +
-            _vm._s(_vm.restaurant.address) +
-            ", " +
-            _vm._s(_vm.restaurant.city) +
-            ", " +
-            _vm._s(_vm.restaurant.cap) +
-            "\n    "
-        )
+        }),
+        _vm._v(" "),
+        _c("h1", { staticClass: "restaurant_title" }, [
+          _vm._v(_vm._s(_vm.restaurant.name))
+        ])
       ]),
       _vm._v(" "),
       _c(
-        "ul",
-        { staticClass: "list-inline text-secondary p-2 pl-3" },
-        _vm._l(_vm.restaurant.categories, function(category) {
-          return _c(
-            "li",
-            { key: category.id, staticClass: "list-inline-item" },
-            [_vm._v("\n        " + _vm._s(category.name) + "\n      ")]
-          )
-        }),
-        0
+        "div",
+        { staticClass: "restaurant_details" },
+        [
+          _c("p", {}, [_vm._v(_vm._s(_vm.restaurant.description))]),
+          _vm._v(" "),
+          _vm._l(_vm.restaurant.categories, function(category) {
+            return _c("span", { key: category.id, staticClass: "categories" }, [
+              _vm._v("#" + _vm._s(category.name))
+            ])
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "address" }, [
+            _c("i", { staticClass: "fas fa-map-marker-alt" }),
+            _vm._v(
+              " " +
+                _vm._s(_vm.restaurant.address) +
+                ", " +
+                _vm._s(_vm.restaurant.city) +
+                ", " +
+                _vm._s(_vm.restaurant.cap)
+            )
+          ])
+        ],
+        2
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "menu p-2" }, [
-        _c("h3", { staticClass: "p-3" }, [_vm._v("Menu")]),
+      _c("div", { staticClass: "menu" }, [
+        _c("h3", { staticClass: "menu_title" }, [_vm._v("Menu")]),
         _vm._v(" "),
         _c(
           "div",
@@ -39360,13 +39459,23 @@ var render = function() {
       _c("div", { staticClass: "cart_heading" }, [
         _c("i", { staticClass: "fas fa-shopping-cart" }),
         _vm._v(" "),
-        _c("span", [_vm._v("totale " + _vm._s(_vm.cart_price()) + " €")])
+        _c("span", { staticClass: "total_price" }, [
+          _vm._v("totale " + _vm._s(_vm.cart_price()) + " €")
+        ])
       ]),
       _vm._v(" "),
       _c(
         "div",
         { staticClass: "content" },
         [
+          _vm.plates.length == 0
+            ? _c("div", { staticClass: "text-center mt-5" }, [
+                _vm._v("Il carrello è vuoto! "),
+                _c("br"),
+                _vm._v(" Seleziona un piatto per visualizzarlo QUI 👇")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _vm._l(_vm.plates, function(plate, index) {
             return _c("div", { key: plate.id, staticClass: "cart_item" }, [
               _c("span", [_vm._v(_vm._s(plate.name))]),
@@ -39381,7 +39490,7 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _c("span", { staticClass: "mx-2" }, [
+                _c("span", { staticClass: "item_price" }, [
                   _vm._v(_vm._s(plate.qty))
                 ]),
                 _vm._v(" "),
@@ -39440,7 +39549,9 @@ var render = function() {
           })
         : _c("div", { staticClass: "cart_modal" }, [
             _c("div", { staticClass: "cart_heading" }, [
-              _c("span", [_vm._v("totale " + _vm._s(_vm.cart_price()) + " €")]),
+              _c("span", { staticClass: "total_price" }, [
+                _vm._v("totale " + _vm._s(_vm.cart_price()) + " €")
+              ]),
               _vm._v(" "),
               _c(
                 "span",
@@ -39459,6 +39570,14 @@ var render = function() {
               "div",
               { staticClass: "content" },
               [
+                _vm.plates.length == 0
+                  ? _c("div", { staticClass: "text-center mt-4" }, [
+                      _vm._v("Il carrello è vuoto! "),
+                      _c("br"),
+                      _vm._v(" Seleziona un piatto per visualizzarlo QUI 👇")
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
                 _vm._l(_vm.plates, function(plate, index) {
                   return _c(
                     "div",
@@ -39478,7 +39597,7 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
-                        _c("span", { staticClass: "px-1" }, [
+                        _c("span", { staticClass: "item_price" }, [
                           _vm._v(_vm._s(plate.qty))
                         ]),
                         _vm._v(" "),
@@ -55345,8 +55464,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Programmi\MAMP\htdocs\php\progetto-finale\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Programmi\MAMP\htdocs\php\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ale\Desktop\progetto-finale\progetto-finale\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ale\Desktop\progetto-finale\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
