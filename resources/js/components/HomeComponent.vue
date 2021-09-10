@@ -30,15 +30,18 @@
     </div>
 
     <!-- categorie (ristoranti visibili) -->
-    <div v-else class="search_div sticky">
-        <!-- visualizza tutti i ristoranti RISTORANTI VISIBILI -->
-        <div v-if="isVisibleRestaurants" @click=" (isVisibleRestaurants = true), filterCategory('all'), callRestaurants() " class="px-4 py-2 m-2" :class="categories_array.includes('all') ? 'bttn' : 'bttn_reverse'" >
-          Visualizza tutti i Ristoranti
-        </div>
+    <div v-else class="sticky">
+        <div @click="showCategoriesMobile()" class="bttn show_categories">{{ visibleCatMobile ? 'Nascondi Categorie' : 'Visualizza Categorie' }}</div>
+        <div class="search_div" :class=" visibleCatMobile ? 'activeCategoriesMobile' : 'disableCategoriesMobile' ">
+            <!-- visualizza tutti i ristoranti RISTORANTI VISIBILI -->
+            <div @click=" (isVisibleRestaurants = true), filterCategory('all'), callRestaurants() " class="px-4 py-2 m-2" :class="categories_array.includes('all') ? 'bttn' : 'bttn_reverse'" >
+              Visualizza tutti i Ristoranti
+            </div>
 
-        <!-- LISTA DELLE CATEGORIE -->
-        <div class="px-4 py-2 m-2" :class=" categories_array.includes(category.name) ? 'bttn' : 'bttn_reverse' "  @click=" (isVisibleRestaurants = true), filterCategory(category.name), callRestaurants()" v-for="category in categories" :key="category.name" >
-          {{ category.name }}
+            <!-- LISTA DELLE CATEGORIE -->
+            <div class="px-4 py-2 m-2" :class=" categories_array.includes(category.name) ? 'bttn' : 'bttn_reverse' "  @click=" (isVisibleRestaurants = true), filterCategory(category.name), callRestaurants()" v-for="category in categories" :key="category.name" >
+              {{ category.name }}
+            </div>
         </div>
     </div>
 
@@ -71,9 +74,17 @@ export default {
       isVisibleRestaurants: false,
       selectedRestaurant: "",
       categories_array: [],
+      visibleCatMobile: true,
     };
   },
   methods: {
+    showCategoriesMobile(){
+      if (this.visibleCatMobile) {
+          this.visibleCatMobile = false;
+      } else {
+        this.visibleCatMobile = true;
+      }
+    },
     filterCategory(name) {
       if (name === "all") {
         this.categories_array = [];
@@ -169,6 +180,33 @@ export default {
   @media screen and (max-width: 575.98px) {
     display: flex;
     flex-direction: column;
+
+    .show_categories{
+      display: flex;
+    }
+  }
+}
+
+.show_categories{
+    display: none;
+
+    @media screen and (max-width: 575.98px) {
+    display: flex;
+    flex-direction: column;
+
+    .show_categories{
+      display: flex;
+    }
+  }
+}
+.activeCategoriesMobile {
+  display: flex;
+}
+.disableCategoriesMobile{
+  display: none;
+
+  @media screen and (min-width: 575.98px) {
+    display: flex;
   }
 }
 
@@ -206,7 +244,8 @@ export default {
     margin: 1rem;
     overflow: hidden;
     height: 16rem;
-    background-color: rgb(240, 240, 240);
+    background-color: white;
+    border: 1px solid rgb(238, 238, 238);
     text-decoration: none;
     transition: 0.2s ease;
 
