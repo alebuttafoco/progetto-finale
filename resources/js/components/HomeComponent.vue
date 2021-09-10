@@ -111,14 +111,14 @@ export default {
     filterCategory(name) {
       console.log(this.categories_array.includes(name));
       if (this.categories_array.includes(name)) {
-        console.log(this.categories_array.indexOf(name));
+        /* console.log(this.categories_array.indexOf(name)); */
         let index_name = this.categories_array.indexOf(name);
         this.categories_array.splice(index_name, 1);
         // this.categories_array.splice((indexOF(name), 1));
       } else {
         this.categories_array.push(name);
       }
-      console.log(this.categories_array);
+      /* console.log(this.categories_array); */
     },
 
     callRestaurants() {

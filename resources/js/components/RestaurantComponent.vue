@@ -31,7 +31,7 @@
       </ul>
 
       <div class="menu p-2">
-        <button @click="callRestaurants()">premi</button>
+        <!-- <button @click="callRestaurants()">premi</button> -->
         <h3 class="p-3">Menu</h3>
         <!-- PIATTO SINGOLO -->
         <div class="plate d-flex flex-wrap">
@@ -123,7 +123,7 @@ export default {
       Axios.get("/api/restaurants?id=" + this.$route.params.id)
         .then((resp) => {
           this.restaurant = resp.data.data;
-          console.log(resp.data.data);
+          /* console.log(resp.data.data); */
         })
         .catch((e) => {
           console.error(e);
