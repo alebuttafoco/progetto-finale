@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css2?family=Glory:wght@400&display=swap);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
@@ -10948,21 +10948,21 @@ a.text-dark:focus {
   margin: 0;
 }
 
-@media screen and (max-width: 1199.98px) {
+@media screen and (max-width: 1399.98px) {
   html {
-    font-size: 98%;
+    font-size: 95%;
   }
 }
 
 @media screen and (max-width: 991.98px) {
   html {
-    font-size: 94%;
+    font-size: 90%;
   }
 }
 
 @media screen and (max-width: 767.98px) {
   html {
-    font-size: 90%;
+    font-size: 87%;
   }
 }
 
@@ -10972,9 +10972,32 @@ a.text-dark:focus {
   }
 }
 
+.my_container {
+  width: 80%;
+  margin: auto;
+}
+
+@media screen and (max-width: 1499.98px) {
+  .my_container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 991.98px) {
+  .my_container {
+    width: 98%;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .my_container {
+    width: 99%;
+  }
+}
+
 body {
   color: #252525;
-  font-family: "Roboto", sans-serif;
+  font-family: "Glory", sans-serif;
 }
 
 hr {
@@ -11079,11 +11102,6 @@ header #logo {
 
 header #logo > * {
   width: 10rem;
-}
-
-header .navbar {
-  width: 80%;
-  margin: auto;
 }
 
 @media screen and (max-width: 575.98px) {
@@ -22064,21 +22082,21 @@ a.text-dark:focus {
   margin: 0;
 }
 
-@media screen and (max-width: 1199.98px) {
+@media screen and (max-width: 1399.98px) {
   html {
-    font-size: 98%;
+    font-size: 95%;
   }
 }
 
 @media screen and (max-width: 991.98px) {
   html {
-    font-size: 94%;
+    font-size: 90%;
   }
 }
 
 @media screen and (max-width: 767.98px) {
   html {
-    font-size: 90%;
+    font-size: 87%;
   }
 }
 
@@ -22088,9 +22106,32 @@ a.text-dark:focus {
   }
 }
 
+.my_container {
+  width: 80%;
+  margin: auto;
+}
+
+@media screen and (max-width: 1499.98px) {
+  .my_container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 991.98px) {
+  .my_container {
+    width: 98%;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .my_container {
+    width: 99%;
+  }
+}
+
 body {
   color: #252525;
-  font-family: "Roboto", sans-serif;
+  font-family: "Glory", sans-serif;
 }
 
 hr {
