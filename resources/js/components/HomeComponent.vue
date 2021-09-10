@@ -89,6 +89,12 @@ export default {
       if (name === "all") {
         this.categories_array = [];
         this.categories_array.push("all");
+      console.log(this.categories_array.includes(name));
+      if (this.categories_array.includes(name)) {
+        /* console.log(this.categories_array.indexOf(name)); */
+        let index_name = this.categories_array.indexOf(name);
+        this.categories_array.splice(index_name, 1);
+        // this.categories_array.splice((indexOF(name), 1));
       } else {
         if (this.categories_array.includes("all")) {
           this.categories_array.splice(this.categories_array.indexOf("all"), 1);
@@ -104,6 +110,8 @@ export default {
       if (this.categories_array.length == 0) {
         this.categories_array.push("all");
       }
+      }
+      /* console.log(this.categories_array); */
     },
     callRestaurants() {
       let string_categories = this.categories_array.toString();
@@ -132,7 +140,8 @@ export default {
     this.callRestaurants();
     this.callCategories();
   },
-};
+  
+}
 </script>
 
 <style lang="scss" scoped>

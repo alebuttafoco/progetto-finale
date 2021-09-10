@@ -120,9 +120,9 @@
             <label for="visible">Visibile</label>
             <small class="text-danger bigtxt">*</small>
 
-            <input type="radio" name="visible" required id="visible" value="1" @if ($plate->visible === 0) checked @endif>
+            <input type="radio" name="visible" required id="visible" value="1" @if ($plate->visible === 1) checked @endif>
             <span class="mr-3">Visibile</span>
-            <input type="radio" name="visible" required id="visible" value="0" @if ($plate->visible === 1) checked @endif>
+            <input type="radio" name="visible" required id="visible" value="0" @if ($plate->visible === 0) checked @endif>
             <span>Non Visibile</span>
         </div>
 
