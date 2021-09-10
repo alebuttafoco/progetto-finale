@@ -2102,50 +2102,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2319,16 +2275,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      restaurant: "",
+      restaurant: {},
+      restaurant_plates: {},
+      visible_plates: [],
+      mobileCart: false,
+      //dati carrello
+      restaurantOrder: [],
+      //dati carrello
       plates: [],
-      restaurantOrder: []
+      //dati carrello
+      modal_plate: {},
+      //modale del piatto singolo
+      showModal: false //mostra modale
+
     };
   },
   methods: {
+    selectModalPlate: function selectModalPlate(plate) {
+      this.modal_plate = plate;
+    },
+    showMobileCart: function showMobileCart() {
+      if (this.mobileCart) {
+        this.mobileCart = false;
+        console.log('chiudi il carrello');
+        console.log(this.mobileCart);
+      } else {
+        this.mobileCart = true;
+        console.log(this.mobileCart);
+        console.log('apri il carrello');
+      }
+    },
     cart_price: function cart_price() {
       var totalPrice = 0;
 
@@ -2344,7 +2349,13 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/restaurants?id=" + this.$route.params.id).then(function (resp) {
         _this.restaurant = resp.data.data;
-        console.log(resp.data.data);
+        _this.restaurant_plates = resp.data.data.plates; // funzione per prendere i piatti visibili
+
+        _this.restaurant_plates.forEach(function (food) {
+          if (food.visible == true) {
+            _this.visible_plates.push(food);
+          }
+        });
       })["catch"](function (e) {
         console.error(e);
       });
@@ -6918,7 +6929,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#HomeVideo[data-v-782dcf83] {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  -o-object-fit: cover;\n     object-fit: cover;\n  z-index: -999;\n  filter: brightness(50%);\n}\n.search_restaurants[data-v-782dcf83],\n.search_div[data-v-782dcf83] {\n  padding: 1rem;\n  background-color: white;\n}\n.search_div[data-v-782dcf83] {\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n@media screen and (max-width: 575.98px) {\n.search_div[data-v-782dcf83] {\n    display: flex;\n    flex-direction: column;\n}\n}\n.box_ricerca[data-v-782dcf83] {\n  display: flex;\n  justify-content: center;\n}\n.search_center[data-v-782dcf83] {\n  /*   width: 60%;\n  position: fixed;\n  top: 50%;\n  left: 50%; */\n  transform: translateY(50%);\n  transition: 1s;\n}\n@media screen and (max-width: 1199.98px) {\n.search_center[data-v-782dcf83] {\n    width: 70%;\n}\n}\n@media screen and (max-width: 991.98px) {\n.search_center[data-v-782dcf83] {\n    width: 75%;\n}\n}\n@media screen and (max-width: 767.98px) {\n.search_center[data-v-782dcf83] {\n    width: 80%;\n}\n}\n@media screen and (max-width: 575.98px) {\n.search_center[data-v-782dcf83] {\n    width: 90%;\n    margin: -55%;\n}\n}\n.sticky[data-v-782dcf83] {\n  position: sticky;\n  top: 0;\n  z-index: 999;\n  -webkit-animation: slide_up-data-v-782dcf83 0.5s ease;\n          animation: slide_up-data-v-782dcf83 0.5s ease;\n}\n@-webkit-keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n@keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n.restaurants[data-v-782dcf83] {\n  width: 80%;\n  margin: auto;\n  -webkit-animation: show-data-v-782dcf83 0.5s 0.5s ease;\n          animation: show-data-v-782dcf83 0.5s 0.5s ease;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n  display: flex;\n  flex-wrap: wrap;\n}\n@media screen and (max-width: 991.98px) {\n.restaurants[data-v-782dcf83] {\n    width: 98%;\n}\n}\n.restaurants .my_card[data-v-782dcf83] {\n  width: calc(100% / 4 - 2rem);\n  margin: 1rem;\n  background-color: #f0f0f0;\n  text-decoration: none;\n  transition: 0.2s ease;\n}\n@media screen and (max-width: 1199.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 991.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 767.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 2 - 2rem);\n}\n}\n@media screen and (max-width: 575.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% - 2rem);\n}\n}\n.restaurants .my_card img[data-v-782dcf83] {\n  width: 100%;\n}\n.restaurants .my_card .details[data-v-782dcf83] {\n  padding: 1rem;\n}\n.restaurants .my_card[data-v-782dcf83]:hover {\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}\n@-webkit-keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}", ""]);
+exports.push([module.i, "#HomeVideo[data-v-782dcf83] {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  -o-object-fit: cover;\n     object-fit: cover;\n  z-index: -999;\n  filter: brightness(50%);\n}\n.search_restaurants[data-v-782dcf83],\n.search_div[data-v-782dcf83] {\n  padding: 1rem;\n  background-color: white;\n}\n.search_div[data-v-782dcf83] {\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n@media screen and (max-width: 575.98px) {\n.search_div[data-v-782dcf83] {\n    display: flex;\n    flex-direction: column;\n}\n}\n.box_ricerca[data-v-782dcf83] {\n  display: flex;\n  justify-content: center;\n}\n.search_center[data-v-782dcf83] {\n  width: 60%;\n  transform: translateY(50%);\n  transition: 1s;\n}\n@media screen and (max-width: 1399.98px) {\n.search_center[data-v-782dcf83] {\n    width: 70%;\n}\n}\n@media screen and (max-width: 991.98px) {\n.search_center[data-v-782dcf83] {\n    width: 75%;\n}\n}\n@media screen and (max-width: 767.98px) {\n.search_center[data-v-782dcf83] {\n    width: 80%;\n}\n}\n@media screen and (max-width: 575.98px) {\n.search_center[data-v-782dcf83] {\n    width: 90%;\n    margin: -55%;\n}\n}\n.sticky[data-v-782dcf83] {\n  position: sticky;\n  top: 0;\n  z-index: 999;\n  -webkit-animation: slide_up-data-v-782dcf83 0.5s ease;\n          animation: slide_up-data-v-782dcf83 0.5s ease;\n}\n@-webkit-keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n@keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n.restaurants[data-v-782dcf83] {\n  -webkit-animation: show-data-v-782dcf83 0.5s 0.5s ease;\n          animation: show-data-v-782dcf83 0.5s 0.5s ease;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n  display: flex;\n  flex-wrap: wrap;\n}\n.restaurants .my_card[data-v-782dcf83] {\n  width: calc(100% / 4 - 2rem);\n  margin: 1rem;\n  background-color: #f0f0f0;\n  text-decoration: none;\n  transition: 0.2s ease;\n}\n@media screen and (max-width: 1399.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 991.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 767.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 2 - 2rem);\n}\n}\n@media screen and (max-width: 575.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% - 2rem);\n}\n}\n.restaurants .my_card img[data-v-782dcf83] {\n  width: 100%;\n}\n.restaurants .my_card .details[data-v-782dcf83] {\n  padding: 1rem;\n}\n.restaurants .my_card[data-v-782dcf83]:hover {\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}\n@-webkit-keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}", ""]);
 
 // exports
 
@@ -6937,7 +6948,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".cart[data-v-78e2f7b6] {\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  width: 20%;\n  margin: 0 1rem;\n  background-color: white;\n  border-radius: 1rem;\n  position: sticky;\n  top: 0;\n}\n.cart .content[data-v-78e2f7b6] {\n  min-height: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n}\n.cart .cart_heading[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n}\n.cart .cart_item[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.3rem;\n  border-bottom: 1px solid whitesmoke;\n}\n.cart .empty_cart[data-v-78e2f7b6] {\n  cursor: pointer;\n  display: flex;\n  justify-content: space-between;\n  padding: 0.3rem;\n}\n.cart .checkout_link[data-v-78e2f7b6] {\n  margin-top: auto;\n}\n.fas[data-v-78e2f7b6] {\n  cursor: pointer;\n  font-size: 1.4rem;\n}\n.wrapper[data-v-78e2f7b6] {\n  width: 80%;\n  margin: auto;\n  display: flex;\n}\n.restaurant[data-v-78e2f7b6] {\n  width: 80%;\n}\n.address[data-v-78e2f7b6] {\n  font-size: 0.7rem;\n}\n.img-restaurant-container[data-v-78e2f7b6] {\n  height: 300px;\n  width: 100%;\n}\n.img-restaurant-container img[data-v-78e2f7b6] {\n  width: 100%;\n  height: inherit;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.plate-img[data-v-78e2f7b6] {\n  border-bottom-left-radius: 0.25rem;\n  border-bottom-right-radius: 0.25rem;\n  max-height: 10rem;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.price-btn[data-v-78e2f7b6] {\n  position: absolute;\n  bottom: 1rem;\n  right: 1rem;\n  width: 5rem;\n}\n.card[data-v-78e2f7b6] {\n  transition: all 0.2s ease-in-out;\n}\n.card[data-v-78e2f7b6]:hover {\n  cursor: pointer;\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}", ""]);
+exports.push([module.i, ".my_container[data-v-78e2f7b6] {\n  display: flex;\n}\n@media screen and (max-width: 1199.98px) {\n.my_container[data-v-78e2f7b6] {\n    display: block;\n}\n}\n.restaurant[data-v-78e2f7b6] {\n  width: 80%;\n}\n@media screen and (max-width: 1199.98px) {\n.restaurant[data-v-78e2f7b6] {\n    width: 100%;\n}\n}\n.restaurant .address[data-v-78e2f7b6] {\n  font-size: 0.7rem;\n}\n.restaurant .img-restaurant-container[data-v-78e2f7b6] {\n  height: 300px;\n  width: 100%;\n}\n.restaurant .img-restaurant-container img[data-v-78e2f7b6] {\n  width: 100%;\n  height: inherit;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.restaurant .plates[data-v-78e2f7b6] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.restaurant .plates .my_card[data-v-78e2f7b6] {\n  border-radius: 0.5rem;\n  overflow: hidden;\n  width: calc(100% / 4 - 2rem);\n  max-height: 25rem;\n  margin: 1rem;\n  border: 1px solid #eeeeee;\n  display: flex;\n  flex-direction: column;\n  transition: 0.3s ease-in-out;\n}\n@media screen and (max-width: 1399.98px) {\n.restaurant .plates .my_card[data-v-78e2f7b6] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 991.98px) {\n.restaurant .plates .my_card[data-v-78e2f7b6] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 767.98px) {\n.restaurant .plates .my_card[data-v-78e2f7b6] {\n    width: calc(100% / 2 - 2rem);\n}\n}\n@media screen and (max-width: 575.98px) {\n.restaurant .plates .my_card[data-v-78e2f7b6] {\n    width: calc(100% - 2rem);\n}\n}\n.restaurant .plates .my_card .plate-img[data-v-78e2f7b6] {\n  height: 40%;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.restaurant .plates .my_card .card_body[data-v-78e2f7b6] {\n  height: 60%;\n  padding: 1rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.restaurant .plates .my_card .card_body .card_text[data-v-78e2f7b6] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 4;\n  -webkit-box-orient: vertical;\n}\n.restaurant .plates .my_card .card_body .price_btn[data-v-78e2f7b6] {\n  text-align: end;\n}\n.restaurant .plates .my_card .add_plate[data-v-78e2f7b6] {\n  transform: translateY(4rem);\n  transition: all 0.2s ease-in-out;\n}\n.restaurant .plates .my_card[data-v-78e2f7b6]:hover {\n  cursor: pointer;\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}\n.restaurant .plates .my_card:hover .add_plate[data-v-78e2f7b6] {\n  transform: translateY(0);\n}\n.overlay_modal[data-v-78e2f7b6] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  background-color: rgba(0, 0, 0, 0.466);\n  z-index: 999;\n  overflow: hidden;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.overlay_modal .plate_modal[data-v-78e2f7b6] {\n  background-color: white;\n  width: 30%;\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  border-radius: 0.5rem;\n  -webkit-animation: show-data-v-78e2f7b6 0.3s ease-in-out;\n          animation: show-data-v-78e2f7b6 0.3s ease-in-out;\n}\n@media screen and (max-width: 1399.98px) {\n.overlay_modal .plate_modal[data-v-78e2f7b6] {\n    width: 40%;\n}\n}\n@media screen and (max-width: 991.98px) {\n.overlay_modal .plate_modal[data-v-78e2f7b6] {\n    width: 50%;\n}\n}\n@media screen and (max-width: 767.98px) {\n.overlay_modal .plate_modal[data-v-78e2f7b6] {\n    width: 60%;\n}\n}\n@media screen and (max-width: 575.98px) {\n.overlay_modal .plate_modal[data-v-78e2f7b6] {\n    width: 80%;\n}\n}\n@-webkit-keyframes show-data-v-78e2f7b6 {\nfrom {\n    transform: scale(0.1);\n    opacity: 0;\n}\nto {\n    transform: scale(1);\n    opacity: 1;\n}\n}\n@keyframes show-data-v-78e2f7b6 {\nfrom {\n    transform: scale(0.1);\n    opacity: 0;\n}\nto {\n    transform: scale(1);\n    opacity: 1;\n}\n}\n.overlay_modal .plate_modal .bottom[data-v-78e2f7b6] {\n  height: 60%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.overlay_modal .plate_modal .bottom .details[data-v-78e2f7b6] {\n  padding: 2rem;\n}\n.overlay_modal .plate_modal .bottom .details .description[data-v-78e2f7b6] {\n  text-align: justify;\n}\n.overlay_modal .plate_modal .top[data-v-78e2f7b6] {\n  height: 40%;\n  background-color: blanchedalmond;\n  position: relative;\n}\n.overlay_modal .plate_modal .top img[data-v-78e2f7b6] {\n  border-top-left-radius: 0.5rem;\n  border-top-right-radius: 0.5rem;\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.overlay_modal .plate_modal .top .fa-times[data-v-78e2f7b6] {\n  position: absolute;\n  top: 1rem;\n  right: 1rem;\n  background-color: white;\n  border-radius: 50%;\n  width: 3rem;\n  height: 3rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.cart[data-v-78e2f7b6] {\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  width: 20%;\n  margin: 0 1rem;\n  background-color: white;\n  position: sticky;\n  top: 0;\n  box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.089);\n  border-bottom-left-radius: 0.5rem;\n  border-bottom-right-radius: 0.5rem;\n}\n.cart .content[data-v-78e2f7b6] {\n  min-height: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n}\n.cart .cart_heading[data-v-78e2f7b6] {\n  border-top-left-radius: 0.5rem;\n  border-top-right-radius: 0.5rem;\n  display: flex;\n  justify-content: space-between;\n  padding: 1rem;\n  background-color: #2B898B;\n  color: white;\n}\n.cart .cart_item[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.3rem;\n  border-bottom: 1px solid whitesmoke;\n}\n.cart .cart_item .actions[data-v-78e2f7b6] {\n  display: flex;\n  align-items: center;\n}\n.cart .empty_cart[data-v-78e2f7b6] {\n  cursor: pointer;\n  display: flex;\n  justify-content: space-between;\n  padding: 0.3rem;\n}\n.cart .checkout_link[data-v-78e2f7b6] {\n  margin-top: auto;\n}\n@media screen and (max-width: 1199.98px) {\n.cart[data-v-78e2f7b6] {\n    display: none;\n}\n}\n.mobile_cart[data-v-78e2f7b6] {\n  cursor: pointer;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: fixed;\n  bottom: 2rem;\n  right: 2rem;\n}\n@media screen and (min-width: 1199.98px) {\n.mobile_cart[data-v-78e2f7b6] {\n    display: none;\n}\n}\n.mobile_cart .fa-shopping-bag[data-v-78e2f7b6] {\n  font-size: 2rem;\n  padding: 2rem;\n  border-radius: 50%;\n  color: #2B898B;\n  background-color: #F8B735;\n  -webkit-animation: show-data-v-78e2f7b6 0.3s ease-in-out;\n          animation: show-data-v-78e2f7b6 0.3s ease-in-out;\n}\n@keyframes show-data-v-78e2f7b6 {\nfrom {\n    transform: scale(0.1);\n    opacity: 0;\n}\nto {\n    transform: scale(1);\n    opacity: 1;\n}\n}\n.mobile_cart .cart_modal[data-v-78e2f7b6] {\n  width: 100%;\n  overflow: hidden;\n  -webkit-animation: slide_up-data-v-78e2f7b6 0.3s ease-in-out;\n          animation: slide_up-data-v-78e2f7b6 0.3s ease-in-out;\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.418);\n  width: 20rem;\n  border-radius: 0.8rem;\n}\n@-webkit-keyframes slide_up-data-v-78e2f7b6 {\nfrom {\n    border-radius: 50%;\n    width: 5rem;\n    height: 5rem;\n}\nto {\n    height: 13.3rem;\n}\n}\n@keyframes slide_up-data-v-78e2f7b6 {\nfrom {\n    border-radius: 50%;\n    width: 5rem;\n    height: 5rem;\n}\nto {\n    height: 13.3rem;\n}\n}\n.mobile_cart .cart_modal .cart_heading[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n  padding: 1rem;\n  background-color: #2B898B;\n  color: white;\n  -webkit-animation: opacity-data-v-78e2f7b6 0.5s 0.1s ease-in-out;\n          animation: opacity-data-v-78e2f7b6 0.5s 0.1s ease-in-out;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n}\n@-webkit-keyframes opacity-data-v-78e2f7b6 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@keyframes opacity-data-v-78e2f7b6 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n.mobile_cart .cart_modal .content[data-v-78e2f7b6] {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  min-height: 10rem;\n  background-color: white;\n  -webkit-animation: opacity-data-v-78e2f7b6 0.5s 0.1s ease-in-out;\n          animation: opacity-data-v-78e2f7b6 0.5s 0.1s ease-in-out;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n}\n.mobile_cart .cart_modal .content .cart_item[data-v-78e2f7b6] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.3rem;\n  border-bottom: 1px solid whitesmoke;\n}\n.mobile_cart .cart_modal .content .cart_item .actions[data-v-78e2f7b6] {\n  display: flex;\n  align-items: center;\n}\n.mobile_cart .cart_modal .content .empty_cart[data-v-78e2f7b6] {\n  cursor: pointer;\n  display: flex;\n  justify-content: space-between;\n  padding: 0.3rem;\n}\n.mobile_cart .cart_modal .content .checkout_link[data-v-78e2f7b6] {\n  margin-top: auto;\n}\n.fas[data-v-78e2f7b6] {\n  cursor: pointer;\n  font-size: 1.4rem;\n}", ""]);
 
 // exports
 
@@ -39101,7 +39112,7 @@ var render = function() {
     _vm.isVisibleRestaurants
       ? _c(
           "div",
-          { staticClass: "restaurants" },
+          { staticClass: "restaurants my_container" },
           [
             !(_vm.restaurants.length != 0)
               ? _c("h4", { staticClass: "bg-white mt-5 mx-auto" }, [
@@ -39176,7 +39187,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "wrapper py-5" }, [
+  return _c("div", { staticClass: "my_container py-5" }, [
     _c("div", { staticClass: "restaurant bg-white p-0" }, [
       _c("div", { staticClass: "img-restaurant-container" }, [
         _c("img", {
@@ -39224,58 +39235,71 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "menu p-2" }, [
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                return _vm.callRestaurants()
-              }
-            }
-          },
-          [_vm._v("premi")]
-        ),
-        _vm._v(" "),
         _c("h3", { staticClass: "p-3" }, [_vm._v("Menu")]),
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "plate d-flex flex-wrap" },
-          _vm._l(_vm.restaurant.plates, function(plate, index) {
+          { staticClass: "plates" },
+          _vm._l(_vm.visible_plates, function(plate) {
             return _c(
               "div",
               {
                 key: plate.id,
-                staticClass: "card m-3 position-relative",
-                staticStyle: { width: "15rem" },
+                staticClass: "my_card",
                 on: {
                   click: function($event) {
-                    return _vm.storagePlate(plate, index)
+                    return _vm.selectModalPlate(plate)
                   }
                 }
               },
               [
                 _c("img", {
                   staticClass: "plate-img",
-                  attrs: { src: "../storage/" + plate.image, alt: plate.name }
+                  attrs: { src: "../storage/" + plate.image, alt: plate.name },
+                  on: {
+                    click: function($event) {
+                      _vm.showModal = true
+                    }
+                  }
                 }),
                 _vm._v(" "),
-                _c("div", { staticClass: "card-body" }, [
-                  _c("h5", { staticClass: "card-title" }, [
-                    _vm._v(_vm._s(plate.name))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text mb-5" }, [
-                    _vm._v(_vm._s(plate.description))
-                  ]),
+                _c("div", { staticClass: "card_body" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "details",
+                      on: {
+                        click: function($event) {
+                          _vm.showModal = true
+                        }
+                      }
+                    },
+                    [
+                      _c("h5", { staticClass: "card_title" }, [
+                        _vm._v(_vm._s(plate.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card_text" }, [
+                        _vm._v(_vm._s(plate.description))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "price_btn" }, [
+                        _c("strong", [_vm._v(_vm._s(plate.price) + " €")])
+                      ])
+                    ]
+                  ),
                   _vm._v(" "),
                   _c(
-                    "a",
+                    "div",
                     {
-                      staticClass: "btn btn-primary price-btn",
-                      attrs: { href: "#" }
+                      staticClass: "add_plate w-100 btn btn-success",
+                      on: {
+                        click: function($event) {
+                          return _vm.storagePlate(plate)
+                        }
+                      }
                     },
-                    [_c("strong", [_vm._v(_vm._s(plate.price) + " €")])]
+                    [_c("strong", [_vm._v("Aggiunti al carrello")])]
                   )
                 ])
               ]
@@ -39286,8 +39310,54 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
+    _vm.showModal
+      ? _c("div", { staticClass: "overlay_modal" }, [
+          _c("div", { staticClass: "plate_modal" }, [
+            _c("div", { staticClass: "top" }, [
+              _c("img", {
+                attrs: { src: "../storage/" + _vm.modal_plate.image, alt: "" }
+              }),
+              _vm._v(" "),
+              _c("i", {
+                staticClass: "fas fa-times",
+                on: {
+                  click: function($event) {
+                    _vm.showModal = false
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "bottom" }, [
+              _c("div", { staticClass: "details" }, [
+                _c("h2", [_vm._v(_vm._s(_vm.modal_plate.name))]),
+                _vm._v(" "),
+                _c("h3", [_vm._v(_vm._s(_vm.modal_plate.price) + " €")]),
+                _vm._v(" "),
+                _c("p", { staticClass: "description" }, [
+                  _vm._v(_vm._s(_vm.modal_plate.description))
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "add_plate w-100 btn btn-success",
+                  on: {
+                    click: function($event) {
+                      return _vm.storagePlate(_vm.modal_plate)
+                    }
+                  }
+                },
+                [_c("strong", [_vm._v("Aggiunti al carrello")])]
+              )
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
     _c("div", { staticClass: "cart" }, [
-      _c("div", { staticClass: "cart_heading btn_large" }, [
+      _c("div", { staticClass: "cart_heading" }, [
         _c("i", { staticClass: "fas fa-shopping-cart" }),
         _vm._v(" "),
         _c("span", [_vm._v("totale " + _vm._s(_vm.cart_price()) + " €")])
@@ -39303,21 +39373,23 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "actions" }, [
                 _c("i", {
-                  staticClass: "fas fa-plus-circle text-success",
-                  on: {
-                    click: function($event) {
-                      return _vm.storagePlate(plate, index)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(plate.qty))]),
-                _vm._v(" "),
-                _c("i", {
                   staticClass: "fas fa-minus-circle text-danger",
                   on: {
                     click: function($event) {
                       return _vm.minusPlate(plate, index)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "mx-2" }, [
+                  _vm._v(_vm._s(plate.qty))
+                ]),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fas fa-plus-circle text-success",
+                  on: {
+                    click: function($event) {
+                      return _vm.storagePlate(plate, index)
                     }
                   }
                 })
@@ -39354,6 +39426,87 @@ var render = function() {
         ],
         2
       )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "mobile_cart" }, [
+      _vm.mobileCart == false
+        ? _c("i", {
+            staticClass: "fas fa-shopping-bag",
+            on: {
+              click: function($event) {
+                return _vm.showMobileCart()
+              }
+            }
+          })
+        : _c("div", { staticClass: "cart_modal" }, [
+            _c("div", { staticClass: "cart_heading" }, [
+              _c("span", [_vm._v("totale " + _vm._s(_vm.cart_price()) + " €")]),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.showMobileCart()
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fas fa-times" })]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "content" },
+              [
+                _vm._l(_vm.plates, function(plate, index) {
+                  return _c(
+                    "div",
+                    { key: plate.id, staticClass: "cart_item" },
+                    [
+                      _c("span", { attrs: { span: "" } }, [
+                        _vm._v(_vm._s(plate.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "actions" }, [
+                        _c("i", {
+                          staticClass: "fas fa-minus-circle text-danger",
+                          on: {
+                            click: function($event) {
+                              return _vm.minusPlate(plate, index)
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "px-1" }, [
+                          _vm._v(_vm._s(plate.qty))
+                        ]),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fas fa-plus-circle text-success",
+                          on: {
+                            click: function($event) {
+                              return _vm.storagePlate(plate, index)
+                            }
+                          }
+                        })
+                      ])
+                    ]
+                  )
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "checkout_link btn btn-success",
+                    attrs: { href: "../cart" }
+                  },
+                  [_vm._v("Vai alla cassa")]
+                )
+              ],
+              2
+            )
+          ])
     ])
   ])
 }
