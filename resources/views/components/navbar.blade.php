@@ -10,14 +10,14 @@
 
     <div class="right_nav">
         @guest
-            <a class="nav-link bttn" href="{{ route('login') }}">{{ __('Login') }}</a>
+            <a class="bttn_reverse" href="{{ route('login') }}">{{ __('Login') }}</a>
 
             @if (Route::has('register'))
-                <a class="nav-link bttn" href="{{ route('register') }}">{{ __('Registrati') }}</a>
+                <a class="bttn_reverse" href="{{ route('register') }}">{{ __('Registrati') }}</a>
             @endif
         @else
             <div class="nav-item">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }}
                 </a>

@@ -4,19 +4,43 @@ header {
     font-weight: $txt_normal;
 
     #logo {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
+        animation: horizontal .5s;
+        transition: .3s;
+        @keyframes horizontal {
+            from{
+                transform: translateX(0rem);
+            }
+            25%{transform: translateX(2rem);}
+            75%{transform: translateX(-2rem);}
+            to{
+                transform: translateX(0rem);
+            }
+        }
 
         img {
             width: 10rem;
         }
     }
     
-    .navbar {
-    }
+    // .navbar {
+    // }
 
     .right_nav {
+        display: flex;
+
+        .bttn_reverse {
+            border-radius: .5rem !important;
+            text-decoration: none;
+            transition: .3s;
+
+            &:active{
+                transform: scale(.9);
+            }
+        }
+
+        a:first-child {
+            margin-right: .5rem;
+        }
     }
 
     .dropdown-menu {
