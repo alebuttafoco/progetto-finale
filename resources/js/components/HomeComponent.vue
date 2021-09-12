@@ -61,7 +61,7 @@
     </div>
 
     <!-- BOTTONE MOSTRA ALTRI -->
-    <div class="show_more_restaurants text-center" v-if="isVisibleRestaurants">
+    <div class="show_more_restaurants text-center" v-if="isVisibleRestaurants && restaurants != '' ">
       <h3 @click="addRestaurants()" class="btn btn-info">Mostra altri risultati...</h3>
     </div>
 
