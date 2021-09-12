@@ -57,7 +57,14 @@
           <img :src=" restaurant.image == null  ? 'img/cover_restaurant.jpg' : 'storage/' + restaurant.image" alt="" />
           <span class="details">{{ restaurant.name }}</span>
       </router-link>
+
     </div>
+
+    <!-- BOTTONE MOSTRA ALTRI -->
+    <div class="show_more_restaurants text-center" v-if="isVisibleRestaurants">
+      <h3 @click="addRestaurants()" class="btn btn-info">Mostra altri risultati...</h3>
+    </div>
+
   </div>
 </template>
 
@@ -74,9 +81,14 @@ export default {
       selectedRestaurant: "",
       categories_array: [],
       visibleCatMobile: true,
-    };
+      counterPagination: 4,
+    }
   },
   methods: {
+    addRestaurants(){
+      this.counterPagination += 4;
+      this.callRestaurants();
+    },
     showCategoriesMobile(){
       if (this.visibleCatMobile) {
           this.visibleCatMobile = false;
@@ -86,6 +98,7 @@ export default {
     },
     filterCategory(name) {
       // console.log(name);
+      this.counterPagination = 4; //reset paginazione
       if (name === "all") {
         this.categories_array = [];
         this.categories_array.push("all");
@@ -119,8 +132,12 @@ export default {
         "http://127.0.0.1:8000/api/restaurants?categories=" + string_categories
       )
         .then((resp) => {
-          this.restaurants = resp.data.data;
-          //console.log(resp.data.data);
+          // this.restaurants = resp.data.data;
+          // this.restaurants.slice(0, this.counterPagination)
+          const restData = resp.data.data;
+          if (restData) {
+            this.restaurants = restData.slice(0, this.counterPagination);
+          }
         })
         .catch((e) => {
           console.error(e);
@@ -294,6 +311,12 @@ export default {
       color: inherit;
     }
   }
+}
+.show_more_restaurants{
+  animation: show 0.5s 0.5s ease;
+  animation-fill-mode: backwards;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 // ANIMAZIONE RISTORANTI
