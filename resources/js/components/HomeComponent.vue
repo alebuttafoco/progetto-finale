@@ -48,14 +48,13 @@
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
     <div class="restaurants my_container" v-if="isVisibleRestaurants">
       <!-- messaggio ristorante non trovato con il filtro di categoria -->
-      <h4 class="bg-white mt-5 p-4 mx-auto shadow" v-if="!(restaurants.length != 0)">
+      <h4 class="bg-white mt-5 p-4 mx-auto shadow" v-if="(restaurants == '')">
         Nessun ristorante da visualizzare per questa categoria 😪
       </h4>
 
       <!-- ristorante visualizzato -->
       <router-link v-for="restaurant in restaurants" :key="restaurant.id" class="my_card" :to="{ name: 'restaurants.show', params: { id: restaurant.id } }" @click="selectedRestaurant = restaurant.id">
           <img :src=" restaurant.image == null  ? 'img/cover_restaurant.jpg' : 'storage/' + restaurant.image" alt="" />
-
           <span class="details">{{ restaurant.name }}</span>
       </router-link>
     </div>
@@ -86,12 +85,14 @@ export default {
       }
     },
     filterCategory(name) {
+      // console.log(name);
       if (name === "all") {
         this.categories_array = [];
         this.categories_array.push("all");
-      console.log(this.categories_array.includes(name));
+      }
+      // console.log(this.categories_array.includes(name));
       if (this.categories_array.includes(name)) {
-        /* console.log(this.categories_array.indexOf(name)); */
+        // console.log(this.categories_array.indexOf(name));
         let index_name = this.categories_array.indexOf(name);
         this.categories_array.splice(index_name, 1);
         // this.categories_array.splice((indexOF(name), 1));
@@ -106,12 +107,11 @@ export default {
           this.categories_array.push(name);
         }
       }
-      //console.log(this.categories_array);
+      // console.log(this.categories_array);
       if (this.categories_array.length == 0) {
         this.categories_array.push("all");
       }
-      }
-      /* console.log(this.categories_array); */
+      // console.log(this.categories_array);
     },
     callRestaurants() {
       let string_categories = this.categories_array.toString();
