@@ -4,6 +4,7 @@ header {
     font-weight: $txt_normal;
 
     #logo {
+        padding: 4.5px;
         animation: horizontal .5s;
         transition: .3s;
         @keyframes horizontal {
@@ -22,12 +23,27 @@ header {
         }
     }
     
-    // .navbar {
-    // }
+    .navbar {
+        padding: 0;
+    }
 
     .right_nav {
         display: flex;
 
+        .user_name{
+            text-decoration: none;
+            padding: .5rem;
+            border-bottom: 5px solid transparent;
+            border-top: 5px solid transparent;
+            &:hover{
+                border-bottom: 5px solid white;
+                color: white;
+            }
+        }
+        .bttn_reverse:first-child{
+            margin-right: .5rem;
+            padding: 0 1rem;
+        }
         .bttn_reverse {
             text-decoration: none;
             transition: .3s;
@@ -35,10 +51,6 @@ header {
             &:active{
                 transform: scale(.9);
             }
-        }
-
-        a:first-child {
-            margin-right: .5rem;
         }
     }
 
