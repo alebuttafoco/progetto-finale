@@ -1,36 +1,49 @@
 <template>
-<div class="container">
-  <div class="shopping-cart">
-    <div class="labels">
-      <span class="d-flex justify-content-center">Il tuo carrello</span>
-    </div>
+  <div class="container">
+    <div class="shopping-cart">
+      <div class="labels">
+        <span class="d-flex justify-content-center">Il tuo carrello</span>
+      </div>
 
-    <div class="product" v-for="(plate, index) in plates" :key='plate.id'>
-      <img width="80" :src="'storage/' + plate.image" alt="">
-      <div class="product-details ml-2">{{plate.name}}</div>
-      <div class="product-price ml-2">{{plate.price}}</div>
+      <div class="product" v-for="(plate, index) in plates" :key="plate.id">
+        <img width="80" :src="'storage/' + plate.image" alt="" />
+        <div class="product-details ml-2">{{ plate.name }}</div>
+        <div class="product-price ml-2">{{ plate.price }}</div>
 
-      <div class="d-flex ml-auto m-2">
-        <div class="product-quantity ml-2">
-          <i @click="storagePlate(plate)" class="fas fa-plus-circle text-success"></i>
-          <span>{{plate.qty}}</span>
-          <i @click="minusPlate(plate)" class="fas fa-minus-circle text-danger"></i>
+        <div class="d-flex ml-auto m-2">
+          <div class="product-quantity ml-2">
+            <i
+              @click="storagePlate(plate)"
+              class="fas fa-plus-circle text-success"
+            ></i>
+            <span>{{ plate.qty }}</span>
+            <i
+              @click="minusPlate(plate)"
+              class="fas fa-minus-circle text-danger"
+            ></i>
+          </div>
+
+          <div @click="removePlate(index)" class="product-removal ml-2">
+            <i class="fas fa-times"></i>
+          </div>
         </div>
-
-        <div @click="removePlate(index)" class="product-removal ml-2"><i class="fas fa-times"></i></div>
       </div>
 
-    </div>
-
-    <div class="totals">
-      <div class="totals-item totals-item-final m-2">
-        <label>Prezzo Finale</label>
-        <div class="totals-value">{{cart_price()}} €</div>
+      <div class="totals">
+        <div class="totals-item totals-item-final m-2">
+          <label>Prezzo Finale</label>
+          <div class="totals-value">{{ cart_price() }} €</div>
+        </div>
       </div>
+      <button
+        id="submit-button"
+        class="button button--small button--green"
+        @click="controllo()"
+      >
+        Conferma e Paga
+      </button>
     </div>
-    <button id="submit-button" class="button button--small button--green">Conferma e Paga</button>
   </div>
-</div>
 </template>
 
 <script>
@@ -40,64 +53,69 @@ export default {
   data() {
     return {
       plates: [],
-    }
+    };
   },
 
   methods: {
-    cart_price(){
+    controllo() {
+      //console.log(cart_price());
+      console.log(this.plates);
+    },
+    cart_price() {
       let totalPrice = 0;
-      this.plates.forEach(plate => {
-          totalPrice += plate.price * plate.qty;
-      })
+      this.plates.forEach((plate) => {
+        totalPrice += plate.price * plate.qty;
+      });
+      console.log(totalPrice);
       return totalPrice;
     },
     storagePlate(plate) {
       let foodInCart = [];
-      this.plates.forEach(food => {
-          foodInCart.push(food.id);
-      })
+      this.plates.forEach((food) => {
+        foodInCart.push(food.id);
+      });
       if (foodInCart.includes(plate.id)) {
-          this.plates.forEach(food => {
-              if (food.id == plate.id) {
-                  food.qty++;
-              }
-          })
+        this.plates.forEach((food) => {
+          if (food.id == plate.id) {
+            food.qty++;
+          }
+        });
       } else {
-          foodInCart.push(plate.id)
-          this.plates.unshift(plate);
+        foodInCart.push(plate.id);
+        this.plates.unshift(plate);
       }
       this.savePlates();
     },
     savePlates() {
       const parsed = JSON.stringify(this.plates);
-      localStorage.setItem('plates', parsed);
+      localStorage.setItem("plates", parsed);
     },
-    minusPlate(plate){
+    minusPlate(plate) {
       let foodInCart = [];
-      this.plates.forEach(food => {
-          foodInCart.push(food.id);
-      })
+      this.plates.forEach((food) => {
+        foodInCart.push(food.id);
+      });
       if (foodInCart.includes(plate.id)) {
-          this.plates.forEach(food => {
-              if (food.id == plate.id) {
-                  if (food.qty == 1) {
-                      this.removePlate();
-                  } else {
-                      food.qty--;
-                  }
-              }
-          })
+        this.plates.forEach((food) => {
+          if (food.id == plate.id) {
+            if (food.qty == 1) {
+              this.removePlate();
+            } else {
+              food.qty--;
+            }
+          }
+        });
       }
       this.savePlates();
     },
-    removePlate(i){
+    removePlate(i) {
       this.plates.splice(i, 1);
       this.savePlates();
     },
-    getPlates(){
+    getPlates() {
       if (this.plates != null) {
-          this.plates = JSON.parse(localStorage.getItem('plates'));
-          console.log(this.plates);
+        this.plates = JSON.parse(localStorage.getItem("plates"));
+        console.log(this.plates);
       }
     },
   },
@@ -105,8 +123,7 @@ export default {
   mounted() {
     this.getPlates();
   },
-
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -118,10 +135,10 @@ export default {
   display: flex;
   flex-direction: column;
 }
-.product{
+.product {
   display: flex;
 }
-.totals{
+.totals {
   flex-direction: row;
   display: flex;
   justify-content: flex-end;
@@ -140,7 +157,7 @@ export default {
   border-radius: 3px;
   display: inline-block;
 }
-#submit-button{
+#submit-button {
   margin-top: auto;
   width: fit-content;
   align-self: center;
