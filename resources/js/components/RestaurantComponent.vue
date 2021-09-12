@@ -239,8 +239,12 @@ export default {
       this.savePlates();
     },
     emptyCart() {
-      this.restaurantOrder = [];
-      this.plates = [];
+      this.restaurantOrder = []; //cancella il ristorante assegnato al carrello
+      //ciclo per resettare la quantita', risolve un errore quando non viene ricaricata la pagina
+      this.plates.forEach(plate => {
+        plate.qty = 1;
+      })
+      this.plates = []; // cancella tutti i piatti
       this.savePlates();
       this.saveRestaurantOrder();
     },
