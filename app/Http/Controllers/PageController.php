@@ -26,4 +26,10 @@ class PageController extends Controller
     {
         return view('cart', compact('order'));
     }
+
+
+    public function confirm()
+    {
+        return view('confirm');
+    }
 }

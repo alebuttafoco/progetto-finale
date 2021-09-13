@@ -26,6 +26,7 @@ import App from "./components/App.vue";
 
 import HomeComponent from "./components/HomeComponent.vue";
 import RestaurantComponent from "./components/RestaurantComponent.vue";
+import CartComponent from "./components/CartComponent.vue";
 // Vue.component('home-component', require('./components/HomeComponent.vue').default);
 // Vue.component('restaurant-component', require('./components/RestaurantComponent.vue').default);
 
@@ -37,7 +38,7 @@ Vue.component('cart-component', require('./components/CartComponent.vue').defaul
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
- const router = new VueRouter({
+const router = new VueRouter({
     mode: 'history',
     routes: [
         {
@@ -52,8 +53,9 @@ Vue.component('cart-component', require('./components/CartComponent.vue').defaul
         },
     ]
 })
+
 const app = new Vue({
     el: '#app',
-    components: {App},
-    router
+    components: { App },
+    router,
 });

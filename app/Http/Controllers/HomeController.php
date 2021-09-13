@@ -38,11 +38,11 @@ class HomeController extends Controller
         $unique_id = array_unique($order_id);
 
         if ($type == 'all') {
-         return $orders = Order::whereIn('id', $unique_id)->get();
+         return $orders = Order::whereIn('id', $unique_id)->orderBy('id', 'desc')->get();
             
         }
         
-        return $orders = Order::whereIn('id', $unique_id)->paginate(10);
+        return $orders = Order::whereIn('id', $unique_id)->orderBy('id', 'desc')->paginate(10);
     }
     
     public function user()
@@ -89,6 +89,9 @@ class HomeController extends Controller
             if ((Carbon::parse($order->date)->format('y') === (Carbon::now()->format('y')))) {
                 $year_order += 1;
             }
+
+
+            
         }
         
         //ddd($orders, Carbon::parse($orders[1]->date)->format('y'), Carbon::now()->format('y'));

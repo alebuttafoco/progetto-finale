@@ -21,12 +21,17 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', 'PageController@home')->name('home');
-Route::get('restaurants/{id}', 'PageController@home')->name('home');
+Route::get('restaurants/{id}', 'PageController@home')->name('restaurant');
 
 Route::get('/cart', 'PageController@showCart')->name('cart');
+Route::get('/confirm', 'PageController@confirm')->name('confirm');
 
-Route::get('/checkout', 'CheckoutController@generate')->name('checkout');
-Route::post('/pay', 'CheckoutController@checkout')->name('checkout');
+Route::any('checkout/pay', 'CheckoutController@pay' )->name('checkout.pay');
+
+
+
+// Route::get('/checkout', 'CheckoutController@generate')->name('checkout');
+// Route::post('/pay', 'CheckoutController@checkout')->name('checkout');
 Auth::routes();
 
 //rotta da vedere se tenere o cancellare, e la rotta che prima riconduceva dopo il login e la registrazione
@@ -42,3 +47,6 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     Route::get('/statistiche', 'HomeController@statistiche')->name('statistiche');
 });
+
+
+Route::post('/pay', 'CheckoutController@confirmedPay')->name('confirmed.pay');

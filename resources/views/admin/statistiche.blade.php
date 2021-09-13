@@ -6,25 +6,23 @@
 
 @section('content')
     <div class="container">
-        <div>
-            <span>Guadagni totali</sp>
-                ----------
-            <span>{{$all_profit}}</span>
+        <div class="neufo d-inline mr-4">
+            <span>Guadagni totali : </sp>
+            <span><strong>{{$all_profit}} €</strong> </span>
         </div>
-        <div>
-            <span>Ordini totali</sp>
-                ----------
-            <span>{{$order_count}}</span>
+        <div class="neufo d-inline mr-4">
+            <span>Ordini totali: </sp>
+            <span><strong>{{$order_count}}</strong></span>
         </div>
-        <div>
-            <span>Ordini di questo mese</sp>
-                ----------
-            <span>{{$month_order}}</span>
+        <div class="neufo d-inline mr-4">
+            <span>Ordini di questo mese: </sp>
+            <span><strong>{{$month_order}}</strong></span>
         </div>
-        <div>
-            <span>Ordini di questo anno</sp>
-                ----------
-            <span>{{$year_order}}</span>
+        <div class="neufo d-inline mr-4">
+            <span>Ordini di questo anno: </sp>
+            <span><strong>{{$year_order}}</strong></span>
         </div>
+
+            
     </div>
 @endsection
