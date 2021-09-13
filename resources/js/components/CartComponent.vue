@@ -47,10 +47,6 @@ export default {
   },
 
   methods: {
-    controllo() {
-      //console.log(cart_price());
-      console.log(this.plates);
-    },
     cart_price() {
       let totalPrice = 0;
       this.plates.forEach((plate) => {
@@ -58,7 +54,7 @@ export default {
       });
       const parsed = JSON.stringify(totalPrice);
       localStorage.setItem("totalPrice", parsed);
-      return totalPrice;
+      return totalPrice.toFixed(2);
     },
     storagePlate(plate) {
       let foodInCart = [];
@@ -113,8 +109,8 @@ export default {
 
   mounted() {
     this.getPlates();
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss" scoped>
