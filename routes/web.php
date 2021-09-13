@@ -50,3 +50,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
 
 Route::post('/pay', 'CheckoutController@confirmedPay')->name('confirmed.pay');
+
+/* ROTTA PER CONTROLLARE CHE IL FORM FUNZIONI CORRETTAMENTE */
+Route::any('/controlloForm', 'HomeController@ControlloPost')->name('controllo.post'); 
+    
