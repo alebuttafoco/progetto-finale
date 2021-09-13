@@ -4,9 +4,19 @@ header {
     font-weight: $txt_normal;
 
     #logo {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
+        padding: 4.5px;
+        animation: horizontal .5s;
+        transition: .3s;
+        @keyframes horizontal {
+            from{
+                transform: translateX(0rem);
+            }
+            25%{transform: translateX(2rem);}
+            75%{transform: translateX(-2rem);}
+            to{
+                transform: translateX(0rem);
+            }
+        }
 
         img {
             width: 10rem;
@@ -14,9 +24,35 @@ header {
     }
     
     .navbar {
+        padding: 0;
     }
 
     .right_nav {
+        display: flex;
+
+        .user_name{
+            text-decoration: none;
+            padding: .5rem;
+            border-bottom: 5px solid transparent;
+            border-top: 5px solid transparent;
+            &:hover{
+                border-bottom: 5px solid white;
+                color: white;
+            }
+        }
+        .bttn_reverse:first-child{
+            margin-right: .5rem;
+            padding-right: 1rem;
+            padding-left: 1rem;
+        }
+        .bttn_reverse {
+            text-decoration: none;
+            transition: .3s;
+
+            &:active{
+                transform: scale(.9);
+            }
+        }
     }
 
     .dropdown-menu {

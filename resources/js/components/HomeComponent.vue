@@ -48,17 +48,23 @@
     <!-- RISTORANTI VISUALIZZATI DOPO LA RICERCA -->
     <div class="restaurants my_container" v-if="isVisibleRestaurants">
       <!-- messaggio ristorante non trovato con il filtro di categoria -->
-      <h4 class="bg-white mt-5 p-4 mx-auto shadow" v-if="!(restaurants.length != 0)">
+      <h4 class="bg-white mt-5 p-4 mx-auto shadow" v-if="(restaurants == '')">
         Nessun ristorante da visualizzare per questa categoria 😪
       </h4>
 
       <!-- ristorante visualizzato -->
       <router-link v-for="restaurant in restaurants" :key="restaurant.id" class="my_card" :to="{ name: 'restaurants.show', params: { id: restaurant.id } }" @click="selectedRestaurant = restaurant.id">
           <img :src=" restaurant.image == null  ? 'img/cover_restaurant.jpg' : 'storage/' + restaurant.image" alt="" />
-
           <span class="details">{{ restaurant.name }}</span>
       </router-link>
+
     </div>
+
+    <!-- BOTTONE MOSTRA ALTRI -->
+    <div class="show_more_restaurants text-center" v-if="isVisibleRestaurants && restaurants != '' ">
+      <h3 @click="addRestaurants()" class="btn btn-info">Mostra altri risultati...</h3>
+    </div>
+
   </div>
 </template>
 
@@ -75,9 +81,14 @@ export default {
       selectedRestaurant: "",
       categories_array: [],
       visibleCatMobile: true,
-    };
+      counterPagination: 4,
+    }
   },
   methods: {
+    addRestaurants(){
+      this.counterPagination += 4;
+      this.callRestaurants();
+    },
     showCategoriesMobile(){
       if (this.visibleCatMobile) {
           this.visibleCatMobile = false;
@@ -86,12 +97,15 @@ export default {
       }
     },
     filterCategory(name) {
+      // console.log(name);
+      this.counterPagination = 4; //reset paginazione
       if (name === "all") {
         this.categories_array = [];
         this.categories_array.push("all");
-      console.log(this.categories_array.includes(name));
+      }
+      // console.log(this.categories_array.includes(name));
       if (this.categories_array.includes(name)) {
-        /* console.log(this.categories_array.indexOf(name)); */
+        // console.log(this.categories_array.indexOf(name));
         let index_name = this.categories_array.indexOf(name);
         this.categories_array.splice(index_name, 1);
         // this.categories_array.splice((indexOF(name), 1));
@@ -106,12 +120,11 @@ export default {
           this.categories_array.push(name);
         }
       }
-      //console.log(this.categories_array);
+      // console.log(this.categories_array);
       if (this.categories_array.length == 0) {
         this.categories_array.push("all");
       }
-      }
-      /* console.log(this.categories_array); */
+      // console.log(this.categories_array);
     },
     callRestaurants() {
       let string_categories = this.categories_array.toString();
@@ -119,8 +132,12 @@ export default {
         "http://127.0.0.1:8000/api/restaurants?categories=" + string_categories
       )
         .then((resp) => {
-          this.restaurants = resp.data.data;
-          //console.log(resp.data.data);
+          // this.restaurants = resp.data.data;
+          // this.restaurants.slice(0, this.counterPagination)
+          const restData = resp.data.data;
+          if (restData) {
+            this.restaurants = restData.slice(0, this.counterPagination);
+          }
         })
         .catch((e) => {
           console.error(e);
@@ -294,6 +311,12 @@ export default {
       color: inherit;
     }
   }
+}
+.show_more_restaurants{
+  animation: show 0.5s 0.5s ease;
+  animation-fill-mode: backwards;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 // ANIMAZIONE RISTORANTI
