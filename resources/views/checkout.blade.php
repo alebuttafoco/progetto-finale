@@ -14,7 +14,7 @@
 @endsection
 
 @section('script')
-    <footer>
+    {{-- <footer>
         <script src="https://js.braintreegateway.com/web/dropin/1.31.2/js/dropin.min.js"></script>
 
         <script type="application/javascript">
@@ -40,5 +40,5 @@
                 });
             });
         </script>
-    </footer>
+    </footer> --}}
 @endsection
