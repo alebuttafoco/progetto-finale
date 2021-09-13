@@ -11095,13 +11095,85 @@ header {
 }
 
 header #logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+  padding: 4.5px;
+  -webkit-animation: horizontal 0.5s;
+          animation: horizontal 0.5s;
+  transition: 0.3s;
+}
+
+@-webkit-keyframes horizontal {
+  from {
+    transform: translateX(0rem);
+  }
+
+  25% {
+    transform: translateX(2rem);
+  }
+
+  75% {
+    transform: translateX(-2rem);
+  }
+
+  to {
+    transform: translateX(0rem);
+  }
+}
+
+@keyframes horizontal {
+  from {
+    transform: translateX(0rem);
+  }
+
+  25% {
+    transform: translateX(2rem);
+  }
+
+  75% {
+    transform: translateX(-2rem);
+  }
+
+  to {
+    transform: translateX(0rem);
+  }
 }
 
 header #logo img {
   width: 10rem;
+}
+
+header .navbar {
+  padding: 0;
+}
+
+header .right_nav {
+  display: flex;
+}
+
+header .right_nav .user_name {
+  text-decoration: none;
+  padding: 0.5rem;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+}
+
+header .right_nav .user_name:hover {
+  border-bottom: 5px solid white;
+  color: white;
+}
+
+header .right_nav .bttn_reverse:first-child {
+  margin-right: 0.5rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+header .right_nav .bttn_reverse {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+header .right_nav .bttn_reverse:active {
+  transform: scale(0.9);
 }
 
 header .dropdown-menu {
