@@ -99,4 +99,8 @@ class HomeController extends Controller
         return view('admin.statistiche', compact('all_profit', 'order_count', 'month_order', 'year_order'));
     }
 
+
+    public function ControlloPost(Request $request){
+        ddd($request->all()); /* DIE DUMP DEBUG della verifica del FORM del carrello */
+    }
 }
