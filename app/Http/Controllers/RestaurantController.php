@@ -131,8 +131,26 @@ class RestaurantController extends Controller
             'address' => 'required | max:255',
             'city' => 'required | max:255',
             'cap' => 'required | digits:5',
-            'piva' => 'required | digits:11 | unique:restaurants,piva',
+            'piva' => 'required | digits:11',
         ]);
+
+
+        //ddd($request->piva);
+        if ($request->piva == $restaurant->piva) {
+        } else {
+            $validatedData = $request->validate([
+                'categories' => 'required | exists:categories,id',
+                'name' => 'required | max:255',
+                'description' => 'required | max:1000',
+                'image' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
+                'address' => 'required | max:255',
+                'city' => 'required | max:255',
+                'cap' => 'required | digits:5',
+                'piva' => 'required | digits:11 | unique:restaurants,piva',
+            ]);
+        }
+
+
 
         /* 
         Se "img" ovvero l'array di modifica è vuoto, ovvero falso, non fare nulla
