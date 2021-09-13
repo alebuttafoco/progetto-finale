@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\CompleteOrderUserMail;
 use App\Order;
 use App\Restaurant;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
@@ -64,19 +65,21 @@ class CheckoutController extends Controller
         //ddd($result->transaction ,$result->success, $request, $request->all(), json_decode($request->inputOrder));
 
         if ($result->success) {
-            //qui vado a fare il controllo dei dati e gli metto nel db
+            
 
+            //validate data from request
             $validated = $request->validate([
                 'customer_name'=> 'required',
                 'customer_lastname'=> 'required',
                 'customer_email'=> 'required',
-                'customer_address'=> 'required',
-                'customer_phone'=> 'required',
+                'customer_address'=> 'required|email',
+                'customer_phone'=> 'required|numeric',
                 'total'=> 'required|numeric',
                 'status'=> 'required',
                 'dateNow'=> 'required|date',
             ]);       
 
+            //create a new object Order
             $dbOrder = new Order();
             $dbOrder->customer_name   = $validated['customer_name'];
             $dbOrder->customer_lastname   = $validated['customer_lastname'];
@@ -86,17 +89,16 @@ class CheckoutController extends Controller
             $dbOrder->total_price   = $validated['total'];
             $dbOrder->save();
            
-            //Bisogna creare la relazione nel database tra l'ordine e i piatti
-            // $dbOrder->plates()->attach($order);
-            // $plates = collect($order)->map(function ($plate){
-            //     return ['quantity' => $plate->qty];
-            // });
             
-            // $dbOrder->plates()->sync($plates);
 
+            //populate pivot table order_plate
+            foreach ($order as $item) {
+                $dbOrder->plates()->attach($item->id, ['quantity' => $item->qty]);
+            }
+
+            //take data to pass on email
             $restaurant_id = $order[0]->restaurant_id;
             $restaurant = Restaurant::find($restaurant_id);
-
             $data = [
                 'customer_name' => $validated['customer_name'],
                 'customer_lastname' => $validated['customer_lastname'],
@@ -111,6 +113,7 @@ class CheckoutController extends Controller
 
             Mail::to($request->customer_email)->send(new CompleteOrderUserMail($data));
 
+            
 
 
 
