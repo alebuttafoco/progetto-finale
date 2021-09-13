@@ -9,7 +9,7 @@
         <table class="table table-striped">
             <thead>
               <tr>
-                <th >N° Ord.</th>
+                <th >ID Ord.</th>
                 <th >Customer</th>
                 <th >Status</th>
                 <th >Price</th>
@@ -23,7 +23,7 @@
 
                 {{-- {{ddd($order)}} --}}
                 <tr>
-                    <th scope="row">1</th>
+                    <th>{{$order->id}}</th>
                     <td>{{$order->customer_name}}</td>
                     <td>{{$order->status}}</td>
                     <td>{{$order->total_price}}</td>
