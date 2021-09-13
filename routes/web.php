@@ -41,3 +41,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/statistiche', 'HomeController@statistiche' )->name('statistiche');
 
 });
+
+/* ROTTA PER CONTROLLARE CHE IL FORM FUNZIONI CORRETTAMENTE */
+Route::any('/controlloForm', 'HomeController@ControlloPost')->name('controllo.post'); 
+    
