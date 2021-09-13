@@ -1,7 +1,7 @@
 // Fonts
 @import "partials/variables";
 // @import url("https://fonts.googleapis.com/css?family=Nunito");
-@import url('https://fonts.googleapis.com/css2?family=Glory:wght@400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Glory:wght@400&display=swap");
 
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
@@ -13,10 +13,14 @@
 
 @import "dashboard/layout";
 
-
-
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
 @import "partials/mixin";
 @import "partials/common";
+
+#bt-dropin {
+    label {
+        width: 100%;
+    }
+}

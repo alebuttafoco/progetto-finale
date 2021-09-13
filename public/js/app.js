@@ -1965,9 +1965,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2127,6 +2124,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2137,10 +2140,15 @@ __webpack_require__.r(__webpack_exports__);
       isVisibleRestaurants: false,
       selectedRestaurant: "",
       categories_array: [],
-      visibleCatMobile: true
+      visibleCatMobile: true,
+      counterPagination: 4
     };
   },
   methods: {
+    addRestaurants: function addRestaurants() {
+      this.counterPagination += 4;
+      this.callRestaurants();
+    },
     showCategoriesMobile: function showCategoriesMobile() {
       if (this.visibleCatMobile) {
         this.visibleCatMobile = false;
@@ -2149,35 +2157,37 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     filterCategory: function filterCategory(name) {
+      // console.log(name);
+      this.counterPagination = 4; //reset paginazione
+
       if (name === "all") {
         this.categories_array = [];
         this.categories_array.push("all");
-        console.log(this.categories_array.includes(name));
+      } // console.log(this.categories_array.includes(name));
+
+
+      if (this.categories_array.includes(name)) {
+        // console.log(this.categories_array.indexOf(name));
+        var index_name = this.categories_array.indexOf(name);
+        this.categories_array.splice(index_name, 1); // this.categories_array.splice((indexOF(name), 1));
+      } else {
+        if (this.categories_array.includes("all")) {
+          this.categories_array.splice(this.categories_array.indexOf("all"), 1);
+        }
 
         if (this.categories_array.includes(name)) {
-          /* console.log(this.categories_array.indexOf(name)); */
-          var index_name = this.categories_array.indexOf(name);
-          this.categories_array.splice(index_name, 1); // this.categories_array.splice((indexOF(name), 1));
+          var _index_name = this.categories_array.indexOf(name);
+
+          this.categories_array.splice(_index_name, 1);
         } else {
-          if (this.categories_array.includes("all")) {
-            this.categories_array.splice(this.categories_array.indexOf("all"), 1);
-          }
-
-          if (this.categories_array.includes(name)) {
-            var _index_name = this.categories_array.indexOf(name);
-
-            this.categories_array.splice(_index_name, 1);
-          } else {
-            this.categories_array.push(name);
-          }
-        } //console.log(this.categories_array);
-
-
-        if (this.categories_array.length == 0) {
-          this.categories_array.push("all");
+          this.categories_array.push(name);
         }
-      }
-      /* console.log(this.categories_array); */
+      } // console.log(this.categories_array);
+
+
+      if (this.categories_array.length == 0) {
+        this.categories_array.push("all");
+      } // console.log(this.categories_array);
 
     },
     callRestaurants: function callRestaurants() {
@@ -2185,7 +2195,13 @@ __webpack_require__.r(__webpack_exports__);
 
       var string_categories = this.categories_array.toString();
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/restaurants?categories=" + string_categories).then(function (resp) {
-        _this.restaurants = resp.data.data; //console.log(resp.data.data);
+        // this.restaurants = resp.data.data;
+        // this.restaurants.slice(0, this.counterPagination)
+        var restData = resp.data.data;
+
+        if (restData) {
+          _this.restaurants = restData.slice(0, _this.counterPagination);
+        }
       })["catch"](function (e) {
         console.error(e);
       });
@@ -2466,8 +2482,14 @@ __webpack_require__.r(__webpack_exports__);
       this.savePlates();
     },
     emptyCart: function emptyCart() {
-      this.restaurantOrder = [];
-      this.plates = [];
+      this.restaurantOrder = []; //cancella il ristorante assegnato al carrello
+      //ciclo per resettare la quantita', risolve un errore quando non viene ricaricata la pagina
+
+      this.plates.forEach(function (plate) {
+        plate.qty = 1;
+      });
+      this.plates = []; // cancella tutti i piatti
+
       this.savePlates();
       this.saveRestaurantOrder();
     },
@@ -6949,7 +6971,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".shopping-cart[data-v-e7ab8a3c] {\n  margin: 5rem auto;\n  background: #ffffff;\n  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);\n  border-radius: 0.375rem;\n  display: flex;\n  flex-direction: column;\n}\n.product[data-v-e7ab8a3c] {\n  display: flex;\n}\n.totals[data-v-e7ab8a3c] {\n  flex-direction: row;\n  display: flex;\n  justify-content: flex-end;\n}\n\n/* Pulsante Verde */\n.button[data-v-e7ab8a3c] {\n  cursor: pointer;\n  font-weight: 500;\n  left: 3px;\n  line-height: inherit;\n  position: relative;\n  text-decoration: none;\n  text-align: center;\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 3px;\n  display: inline-block;\n}\n#submit-button[data-v-e7ab8a3c] {\n  margin-top: auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  align-self: center;\n}\n.button--small[data-v-e7ab8a3c] {\n  padding: 10px 20px;\n  font-size: 0.875rem;\n}\n.button--green[data-v-e7ab8a3c] {\n  outline: none;\n  background-color: #64d18a;\n  border-color: #64d18a;\n  color: white;\n  transition: all 200ms ease;\n}\n.button--green[data-v-e7ab8a3c]:hover {\n  background-color: #8bdda8;\n  color: white;\n}", ""]);
+exports.push([module.i, ".shopping-cart[data-v-e7ab8a3c] {\n  margin: 5rem auto;\n  background: #ffffff;\n  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);\n  border-radius: 0.375rem;\n  display: flex;\n  flex-direction: column;\n}\n.your-cart[data-v-e7ab8a3c] {\n  font-size: 2.75rem;\n  color: white;\n  border-radius: 0.25rem;\n  background-color: #3178c6;\n}\n.product[data-v-e7ab8a3c] {\n  display: flex;\n  margin: 2rem;\n}\n.totals[data-v-e7ab8a3c] {\n  flex-direction: row;\n  display: flex;\n  justify-content: flex-end;\n}\nform[data-v-e7ab8a3c] {\n  /* Center the form on the page */\n  margin: 0 auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  /* Form outline */\n  padding: 1em;\n  border: 1px solid #CCC;\n  border-radius: 0.125rem;\n  display: flex;\n  flex-direction: column;\n}\nul[data-v-e7ab8a3c] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\nform li + li[data-v-e7ab8a3c] {\n  margin-top: 1em;\n}\nlabel[data-v-e7ab8a3c], small[data-v-e7ab8a3c] {\n  /* Uniform size & alignment */\n  display: inline-block;\n  width: 90px;\n}\ninput[data-v-e7ab8a3c],\ntextarea[data-v-e7ab8a3c] {\n  /* To make sure that all text fields have the same font settings\n     By default, textareas have a monospace font */\n  font: 1em sans-serif;\n  /* Uniform text field size */\n  width: 12.5rem;\n  box-sizing: border-box;\n  /* Match form field borders */\n  border: 1px solid #999;\n}\ninput[data-v-e7ab8a3c]:focus,\ntextarea[data-v-e7ab8a3c]:focus {\n  /* Additional highlight for focused elements */\n  border-color: #000;\n}\ntextarea[data-v-e7ab8a3c] {\n  /* Align multiline text fields with their labels */\n  vertical-align: top;\n  /* Provide space to type some text */\n  height: 5em;\n}\n.button[data-v-e7ab8a3c] {\n  /* Align buttons with the text fields */\n  padding-left: 90px;\n  /* same size as the label elements */\n}\nbutton[data-v-e7ab8a3c] {\n  /* This extra margin represent roughly the same space as the space\n     between the labels and their text fields */\n  margin-left: 0.5em;\n}\n\n/* Pulsante Verde */\n.button[data-v-e7ab8a3c] {\n  cursor: pointer;\n  font-weight: 500;\n  left: 3px;\n  line-height: inherit;\n  position: relative;\n  text-decoration: none;\n  text-align: center;\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 3px;\n  display: inline-block;\n}\n#submit-button[data-v-e7ab8a3c] {\n  margin-top: auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  align-self: center;\n}\n.button--small[data-v-e7ab8a3c] {\n  padding: 10px 20px;\n  font-size: 0.875rem;\n}\n.button--green[data-v-e7ab8a3c] {\n  outline: none;\n  background-color: #64d18a;\n  border-color: #64d18a;\n  color: white;\n  transition: all 200ms ease;\n}\n.button--green[data-v-e7ab8a3c]:hover {\n  background-color: #8bdda8;\n  color: white;\n}", ""]);
 
 // exports
 
@@ -6968,7 +6990,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#HomeVideo[data-v-782dcf83] {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  -o-object-fit: cover;\n     object-fit: cover;\n  z-index: -999;\n  filter: brightness(50%);\n}\n.search_restaurants[data-v-782dcf83],\n.search_div[data-v-782dcf83] {\n  padding: 1rem;\n  background-color: white;\n}\n.search_center[data-v-782dcf83] {\n  height: 90vh;\n  min-height: 300px;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n@media screen and (min-width: 575.99px) {\n.search_center .search_container[data-v-782dcf83] {\n    width: 80%;\n}\n}\n@media screen and (max-width: 575.98px) {\n.search_center .search_container[data-v-782dcf83] {\n    position: sticky;\n    top: 0;\n    height: 100%;\n    width: 100%;\n}\n}\n.search_div[data-v-782dcf83] {\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n@media screen and (max-width: 575.98px) {\n.search_div[data-v-782dcf83] {\n    display: flex;\n    flex-direction: column;\n}\n.search_div .show_categories[data-v-782dcf83] {\n    display: flex;\n}\n}\n.show_categories[data-v-782dcf83] {\n  display: none;\n}\n@media screen and (max-width: 575.98px) {\n.show_categories[data-v-782dcf83] {\n    display: flex;\n    flex-direction: column;\n}\n.show_categories .show_categories[data-v-782dcf83] {\n    display: flex;\n}\n}\n.activeCategoriesMobile[data-v-782dcf83] {\n  display: flex;\n}\n.disableCategoriesMobile[data-v-782dcf83] {\n  display: none;\n}\n@media screen and (min-width: 575.98px) {\n.disableCategoriesMobile[data-v-782dcf83] {\n    display: flex;\n}\n}\n.sticky[data-v-782dcf83] {\n  position: sticky;\n  top: 0;\n  z-index: 999;\n  -webkit-animation: slide_up-data-v-782dcf83 0.5s ease;\n          animation: slide_up-data-v-782dcf83 0.5s ease;\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.13);\n}\n@-webkit-keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n@keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n.restaurants[data-v-782dcf83] {\n  -webkit-animation: show-data-v-782dcf83 0.5s 0.5s ease;\n          animation: show-data-v-782dcf83 0.5s 0.5s ease;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n  display: flex;\n  flex-wrap: wrap;\n}\n.restaurants .my_card[data-v-782dcf83] {\n  width: calc(100% / 4 - 2rem);\n  border-radius: 0.5rem;\n  margin: 1rem;\n  overflow: hidden;\n  height: 16rem;\n  background-color: white;\n  border: 1px solid #eeeeee;\n  text-decoration: none;\n  transition: 0.2s ease;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n@media screen and (max-width: 1399.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 991.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 767.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 2 - 2rem);\n}\n}\n@media screen and (max-width: 575.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% - 2rem);\n}\n}\n.restaurants .my_card img[data-v-782dcf83] {\n  height: 75%;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.restaurants .my_card .details[data-v-782dcf83] {\n  height: 25%;\n  padding: 1rem;\n  font-size: 1.1rem;\n}\n.restaurants .my_card[data-v-782dcf83]:hover {\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}\n@-webkit-keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}", ""]);
+exports.push([module.i, "#HomeVideo[data-v-782dcf83] {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  -o-object-fit: cover;\n     object-fit: cover;\n  z-index: -999;\n  filter: brightness(50%);\n}\n.search_restaurants[data-v-782dcf83],\n.search_div[data-v-782dcf83] {\n  padding: 1rem;\n  background-color: white;\n}\n.search_center[data-v-782dcf83] {\n  height: 90vh;\n  min-height: 300px;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n@media screen and (min-width: 575.99px) {\n.search_center .search_container[data-v-782dcf83] {\n    width: 80%;\n}\n}\n@media screen and (max-width: 575.98px) {\n.search_center .search_container[data-v-782dcf83] {\n    position: sticky;\n    top: 0;\n    height: 100%;\n    width: 100%;\n}\n}\n.search_div[data-v-782dcf83] {\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n@media screen and (max-width: 575.98px) {\n.search_div[data-v-782dcf83] {\n    display: flex;\n    flex-direction: column;\n}\n.search_div .show_categories[data-v-782dcf83] {\n    display: flex;\n}\n}\n.show_categories[data-v-782dcf83] {\n  display: none;\n}\n@media screen and (max-width: 575.98px) {\n.show_categories[data-v-782dcf83] {\n    display: flex;\n    flex-direction: column;\n}\n.show_categories .show_categories[data-v-782dcf83] {\n    display: flex;\n}\n}\n.activeCategoriesMobile[data-v-782dcf83] {\n  display: flex;\n}\n.disableCategoriesMobile[data-v-782dcf83] {\n  display: none;\n}\n@media screen and (min-width: 575.98px) {\n.disableCategoriesMobile[data-v-782dcf83] {\n    display: flex;\n}\n}\n.sticky[data-v-782dcf83] {\n  position: sticky;\n  top: 0;\n  z-index: 999;\n  -webkit-animation: slide_up-data-v-782dcf83 0.5s ease;\n          animation: slide_up-data-v-782dcf83 0.5s ease;\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.13);\n}\n@-webkit-keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n@keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n.restaurants[data-v-782dcf83] {\n  -webkit-animation: show-data-v-782dcf83 0.5s 0.5s ease;\n          animation: show-data-v-782dcf83 0.5s 0.5s ease;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n  display: flex;\n  flex-wrap: wrap;\n}\n.restaurants .my_card[data-v-782dcf83] {\n  width: calc(100% / 4 - 2rem);\n  border-radius: 0.5rem;\n  margin: 1rem;\n  overflow: hidden;\n  height: 16rem;\n  background-color: white;\n  border: 1px solid #eeeeee;\n  text-decoration: none;\n  transition: 0.2s ease;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n@media screen and (max-width: 1399.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 991.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 767.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 2 - 2rem);\n}\n}\n@media screen and (max-width: 575.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% - 2rem);\n}\n}\n.restaurants .my_card img[data-v-782dcf83] {\n  height: 75%;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.restaurants .my_card .details[data-v-782dcf83] {\n  height: 25%;\n  padding: 1rem;\n  font-size: 1.1rem;\n}\n.restaurants .my_card[data-v-782dcf83]:hover {\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}\n.show_more_restaurants[data-v-782dcf83] {\n  -webkit-animation: show-data-v-782dcf83 0.5s 0.5s ease;\n          animation: show-data-v-782dcf83 0.5s 0.5s ease;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n  margin-top: 3rem;\n  margin-bottom: 3rem;\n}\n@-webkit-keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}", ""]);
 
 // exports
 
@@ -38947,10 +38969,10 @@ var render = function() {
             _c("div", { staticClass: "d-flex ml-auto m-2" }, [
               _c("div", { staticClass: "product-quantity ml-2" }, [
                 _c("i", {
-                  staticClass: "fas fa-plus-circle text-success",
+                  staticClass: "fas fa-minus-circle text-danger",
                   on: {
                     click: function($event) {
-                      return _vm.storagePlate(plate)
+                      return _vm.minusPlate(plate)
                     }
                   }
                 }),
@@ -38958,10 +38980,10 @@ var render = function() {
                 _c("span", [_vm._v(_vm._s(plate.qty))]),
                 _vm._v(" "),
                 _c("i", {
-                  staticClass: "fas fa-minus-circle text-danger",
+                  staticClass: "fas fa-plus-circle text-success",
                   on: {
                     click: function($event) {
-                      return _vm.minusPlate(plate)
+                      return _vm.storagePlate(plate)
                     }
                   }
                 })
@@ -39003,9 +39025,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "labels" }, [
-      _c("span", { staticClass: "d-flex justify-content-center" }, [
-        _vm._v("Il tuo carrello")
-      ])
+      _c(
+        "h3",
+        { staticClass: "d-flex justify-content-center m-2 your-cart p-2" },
+        [_vm._v("Il tuo carrello")]
+      )
     ])
   }
 ]
@@ -39220,7 +39244,7 @@ var render = function() {
           "div",
           { staticClass: "restaurants my_container" },
           [
-            !(_vm.restaurants.length != 0)
+            _vm.restaurants == ""
               ? _c("h4", { staticClass: "bg-white mt-5 p-4 mx-auto shadow" }, [
                   _vm._v(
                     "\n      Nessun ristorante da visualizzare per questa categoria 😪\n    "
@@ -39266,6 +39290,23 @@ var render = function() {
           ],
           2
         )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.isVisibleRestaurants && _vm.restaurants != ""
+      ? _c("div", { staticClass: "show_more_restaurants text-center" }, [
+          _c(
+            "h3",
+            {
+              staticClass: "btn btn-info",
+              on: {
+                click: function($event) {
+                  return _vm.addRestaurants()
+                }
+              }
+            },
+            [_vm._v("Mostra altri risultati...")]
+          )
+        ])
       : _vm._e()
   ])
 }
@@ -55469,8 +55510,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\ale\Desktop\progetto-finale\progetto-finale\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ale\Desktop\progetto-finale\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Programmi\MAMP\htdocs\php\progetto-finale\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Programmi\MAMP\htdocs\php\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

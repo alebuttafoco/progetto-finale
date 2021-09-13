@@ -11095,19 +11095,228 @@ header {
 }
 
 header #logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+  padding: 4.5px;
+  -webkit-animation: horizontal 0.5s;
+          animation: horizontal 0.5s;
+  transition: 0.3s;
+}
+
+@-webkit-keyframes horizontal {
+  from {
+    transform: translateX(0rem);
+  }
+
+  25% {
+    transform: translateX(2rem);
+  }
+
+  75% {
+    transform: translateX(-2rem);
+  }
+
+  to {
+    transform: translateX(0rem);
+  }
+}
+
+@keyframes horizontal {
+  from {
+    transform: translateX(0rem);
+  }
+
+  25% {
+    transform: translateX(2rem);
+  }
+
+  75% {
+    transform: translateX(-2rem);
+  }
+
+  to {
+    transform: translateX(0rem);
+  }
 }
 
 header #logo img {
   width: 10rem;
 }
 
+header .navbar {
+  padding: 0;
+}
+
+header .right_nav {
+  display: flex;
+}
+
+header .right_nav .user_name {
+  text-decoration: none;
+  padding: 0.5rem;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+}
+
+header .right_nav .user_name:hover {
+  border-bottom: 5px solid white;
+  color: white;
+}
+
+header .right_nav .bttn_reverse:first-child {
+  margin-right: 0.5rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+header .right_nav .bttn_reverse {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+header .right_nav .bttn_reverse:active {
+  transform: scale(0.9);
+}
+
 header .dropdown-menu {
   top: 70% !important;
   right: 0 !important;
   left: auto !important;
+}
+
+.shopping-cart {
+  margin: 5rem auto;
+  background: #ffffff;
+  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 0.375rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.your-cart {
+  font-size: 2.75rem;
+  color: white;
+  border-radius: 0.25rem;
+  background-color: #3178c6;
+}
+
+.product {
+  display: flex;
+  margin: 2rem;
+}
+
+.totals {
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+}
+
+form {
+  /* Center the form on the page */
+  margin: 0 auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  /* Form outline */
+  padding: 1em;
+  border: 1px solid #CCC;
+  border-radius: 0.125rem;
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+form li + li {
+  margin-top: 1em;
+}
+
+label,
+small {
+  /* Uniform size & alignment */
+  display: inline-block;
+  width: 90px;
+}
+
+input,
+textarea {
+  /* To make sure that all text fields have the same font settings
+     By default, textareas have a monospace font */
+  font: 1em sans-serif;
+  /* Uniform text field size */
+  width: 12.5rem;
+  box-sizing: border-box;
+  /* Match form field borders */
+  border: 1px solid #999;
+}
+
+input:focus,
+textarea:focus {
+  /* Additional highlight for focused elements */
+  border-color: #000;
+}
+
+textarea {
+  /* Align multiline text fields with their labels */
+  vertical-align: top;
+  /* Provide space to type some text */
+  height: 5em;
+}
+
+.button {
+  /* Align buttons with the text fields */
+  padding-left: 90px;
+  /* same size as the label elements */
+}
+
+button {
+  /* This extra margin represent roughly the same space as the space
+     between the labels and their text fields */
+  margin-left: 0.5em;
+}
+
+/* Pulsante Verde */
+
+.button {
+  cursor: pointer;
+  font-weight: 500;
+  left: 3px;
+  line-height: inherit;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+#submit-button {
+  margin-top: auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: center;
+}
+
+.button--small {
+  padding: 10px 20px;
+  font-size: 0.875rem;
+}
+
+.button--green {
+  outline: none;
+  background-color: #64d18a;
+  border-color: #64d18a;
+  color: white;
+  transition: all 200ms ease;
+}
+
+.button--green:hover {
+  background-color: #8bdda8;
+  color: white;
 }
 
 .dashboard {
@@ -22216,5 +22425,9 @@ h4 {
 .bigtxt {
   font-size: 1rem;
   font-weight: 800;
+}
+
+#bt-dropin label {
+  width: 100%;
 }
 
