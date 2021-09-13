@@ -11217,6 +11217,10 @@ form {
   width: fit-content;
   /* Form outline */
   padding: 1em;
+<<<<<<< HEAD
+=======
+  border: 1px solid #CCC;
+>>>>>>> alessandro
   border-radius: 0.125rem;
   display: flex;
   flex-direction: column;
@@ -11242,7 +11246,11 @@ small {
 input,
 textarea {
   /* To make sure that all text fields have the same font settings
+<<<<<<< HEAD
        By default, textareas have a monospace font */
+=======
+     By default, textareas have a monospace font */
+>>>>>>> alessandro
   font: 1em sans-serif;
   /* Uniform text field size */
   width: 12.5rem;
@@ -11272,7 +11280,11 @@ textarea {
 
 button {
   /* This extra margin represent roughly the same space as the space
+<<<<<<< HEAD
        between the labels and their text fields */
+=======
+     between the labels and their text fields */
+>>>>>>> alessandro
   margin-left: 0.5em;
 }
 
