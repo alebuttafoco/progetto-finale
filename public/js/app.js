@@ -1968,13 +1968,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1992,7 +1985,8 @@ __webpack_require__.r(__webpack_exports__);
       this.plates.forEach(function (plate) {
         totalPrice += plate.price * plate.qty;
       });
-      console.log(totalPrice);
+      var parsed = JSON.stringify(totalPrice);
+      localStorage.setItem("totalPrice", parsed);
       return totalPrice;
     },
     storagePlate: function storagePlate(plate) {
@@ -38997,21 +38991,7 @@ var render = function() {
               _vm._v(_vm._s(_vm.cart_price()) + " €")
             ])
           ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "button button--small button--green",
-            attrs: { id: "submit-button" },
-            on: {
-              click: function($event) {
-                return _vm.controllo()
-              }
-            }
-          },
-          [_vm._v("\n      Conferma e Paga\n    ")]
-        )
+        ])
       ],
       2
     )
@@ -55040,6 +55020,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue");
 /* harmony import */ var _components_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/HomeComponent.vue */ "./resources/js/components/HomeComponent.vue");
 /* harmony import */ var _components_RestaurantComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/RestaurantComponent.vue */ "./resources/js/components/RestaurantComponent.vue");
+/* harmony import */ var _components_CartComponent_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/CartComponent.vue */ "./resources/js/components/CartComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -55059,6 +55040,7 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
  */
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
 
 
 

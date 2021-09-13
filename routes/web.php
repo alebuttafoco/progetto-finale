@@ -21,9 +21,10 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', 'PageController@home')->name('home');
-Route::get('restaurants/{id}', 'PageController@home')->name('home');
+Route::get('restaurants/{id}', 'PageController@home')->name('restaurant');
 
 Route::get('/cart', 'PageController@showCart')->name('cart');
+Route::get('/confirm', 'PageController@confirm')->name('confirm');
 
 Route::any('checkout/pay', 'CheckoutController@pay' )->name('checkout.pay');
 
@@ -48,31 +49,4 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 });
 
 
-Route::post('/pay', function (Request $request)
-{
-    //ddd($request);
-
-    $gateway = new Braintree\Gateway([
-        'environment' => config('services.braintree.environment'),
-        'merchantId' => config('services.braintree.merchantId'),
-        'publicKey' => config('services.braintree.publicKey'),
-        'privateKey' => config('services.braintree.privateKey')
-    ]);
-
-    $amount = $request->amount;
-ddd($amount);
-  $result = $gateway->transaction()->sale([
-      'amount' => $amount,
-      'paymentMethodNonce' => 'fake-valid-nonce',
-      'customer' => [
-          'firstName' => 'Tony',
-          'lastName' => 'Stark',
-          'email' => 'tony@avengers.com',
-      ],
-      'options' => [
-          'submitForSettlement' => true
-      ]
-  ]);
-
-ddd($result,$result->success);
-});
+Route::post('/pay', 'CheckoutController@confirmedPay')->name('confirmed.pay');

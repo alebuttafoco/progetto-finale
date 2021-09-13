@@ -35,13 +35,6 @@
           <div class="totals-value">{{ cart_price() }} €</div>
         </div>
       </div>
-      <button
-        id="submit-button"
-        class="button button--small button--green"
-        @click="controllo()"
-      >
-        Conferma e Paga
-      </button>
     </div>
   </div>
 </template>
@@ -66,7 +59,8 @@ export default {
       this.plates.forEach((plate) => {
         totalPrice += plate.price * plate.qty;
       });
-      console.log(totalPrice);
+      const parsed = JSON.stringify(totalPrice);
+      localStorage.setItem("totalPrice", parsed);
       return totalPrice;
     },
     storagePlate(plate) {
