@@ -9,14 +9,13 @@
 
 
     @if (!($restaurants === false))
-        <table class="table table-striped">
+        <table class="bg-secondary table">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Image</th>
                     <th scope="col">Indirizzo</th>
-                    <th scope="col">Descrizione</th>
                     <th scope="col">P. IVA</th>
                     <th scope="col">Azioni</th>
 
@@ -24,16 +23,12 @@
             </thead>
             <tbody>
 
-
                 @foreach ($restaurants as $restaurant)
                     <tr>
                         <th>{{ $restaurant->id }}</th>
                         <td>{{ $restaurant->name }}</td>
-                        <td><img width="100"
-                                src="{{ $restaurant->image == null ? asset('img/cover_restaurant.jpg') : asset('storage/' . $restaurant->image) }}"
-                                alt=""></td>
+                        <td><img src="{{ $restaurant->image == null ? asset('img/cover_restaurant.jpg') : asset('storage/' . $restaurant->image) }}" alt=""></td>
                         <td>{{ $restaurant->address }} <br> {{ $restaurant->city }} <br> {{ $restaurant->cap }}</td>
-                        <td>{{ $restaurant->description }}</td>
                         <td>{{ $restaurant->piva }}</td>
                         <td>
                             <a class="btn btn-success" href="{{ route('admin.restaurant.show', $restaurant->id) }}">

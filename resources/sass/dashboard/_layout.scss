@@ -1,19 +1,63 @@
 .dashboard {
     background-color: white;
-    padding-bottom: 5rem;
-    margin-top: 4rem;
+    box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.158);
+    padding: 1rem;
     border-radius: 0.4rem;
 
-    & li {
-        margin: 0.3rem 0;
+    display: flex;
+    @media screen and (max-width: 900px) {
+        flex-direction: column;
+    }
 
-        & a {
-            &:hover {
-                color: $secondary !important;
-                border-color: $secondary !important;
+    .sidebar{
+        width: 25%;
+        min-width: 10rem;
+        padding: 1rem;
+    
+        font-size: 1.1rem;
+        
+        @media screen and (max-width: 900px) {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+        }
+    
+        .nav-link {
+            margin: 1rem 0;
+            background: linear-gradient(90deg, rgba(248,183,53,1) 50%, rgba(255,255,255,1) 50%);
+            background-size: 200%;
+            background-position:99%;
+            transition: .3s ease-in-out;
+            color: black;
+            &:hover{
+                background-position: 0;
+                color: #2B898B;
             }
+           .fas {
+               width: 2.5rem;
+           }
         }
     }
+
+    .table {
+        img {
+            width: 5rem;
+            height: 5rem;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
+    // & li {
+    //     margin: 0.3rem 0;
+
+    //     & a {
+    //         &:hover {
+    //             color: $secondary !important;
+    //             border-color: $secondary !important;
+    //         }
+    //     }
+    // }
 }
 
 .img-restaurant {
