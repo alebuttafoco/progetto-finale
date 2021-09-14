@@ -2135,7 +2135,7 @@ __webpack_require__.r(__webpack_exports__);
       isVisibleRestaurants: false,
       selectedRestaurant: "",
       categories_array: [],
-      visibleCatMobile: true,
+      visibleCatMobile: false,
       counterPagination: 4
     };
   },
