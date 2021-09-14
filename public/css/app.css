@@ -10954,21 +10954,9 @@ a.text-dark:focus {
   }
 }
 
-@media screen and (max-width: 991.98px) {
-  html {
-    font-size: 90%;
-  }
-}
-
 @media screen and (max-width: 767.98px) {
   html {
-    font-size: 87%;
-  }
-}
-
-@media screen and (max-width: 575.98px) {
-  html {
-    font-size: 85%;
+    font-size: 90%;
   }
 }
 
@@ -11023,12 +11011,6 @@ h2 {
 
 h4 {
   margin: 0;
-}
-
-.container {
-  width: 1200px;
-  min-width: 800px;
-  margin: auto;
 }
 
 .bttn {
@@ -11087,6 +11069,32 @@ h4 {
 .bigtxt {
   font-size: 1rem;
   font-weight: 800;
+}
+
+.fa-spinner {
+  font-size: 4rem;
+  -webkit-animation: spin 0.5s ease-in-out infinite;
+          animation: spin 0.5s ease-in-out infinite;
+}
+
+@-webkit-keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 header {
@@ -11209,85 +11217,6 @@ header .dropdown-menu {
   justify-content: flex-end;
 }
 
-form {
-  /* Center the form on the page */
-  margin: 0 auto;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  /* Form outline */
-  padding: 1em;
-<<<<<<< HEAD
-=======
-  border: 1px solid #CCC;
->>>>>>> alessandro
-  border-radius: 0.125rem;
-  display: flex;
-  flex-direction: column;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-form li + li {
-  margin-top: 1em;
-}
-
-label,
-small {
-  /* Uniform size & alignment */
-  display: inline-block;
-  width: 90px;
-}
-
-input,
-textarea {
-  /* To make sure that all text fields have the same font settings
-<<<<<<< HEAD
-       By default, textareas have a monospace font */
-=======
-     By default, textareas have a monospace font */
->>>>>>> alessandro
-  font: 1em sans-serif;
-  /* Uniform text field size */
-  width: 12.5rem;
-  box-sizing: border-box;
-  /* Match form field borders */
-  border: 1px solid #999;
-}
-
-input:focus,
-textarea:focus {
-  /* Additional highlight for focused elements */
-  border-color: #000;
-}
-
-textarea {
-  /* Align multiline text fields with their labels */
-  vertical-align: top;
-  /* Provide space to type some text */
-  height: 5em;
-}
-
-.button {
-  /* Align buttons with the text fields */
-  padding-left: 90px;
-  /* same size as the label elements */
-}
-
-button {
-  /* This extra margin represent roughly the same space as the space
-<<<<<<< HEAD
-       between the labels and their text fields */
-=======
-     between the labels and their text fields */
->>>>>>> alessandro
-  margin-left: 0.5em;
-}
-
 /* Pulsante Verde */
 
 .button {
@@ -11332,18 +11261,90 @@ button {
 
 .dashboard {
   background-color: white;
-  padding-bottom: 5rem;
-  margin-top: 4rem;
+  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.158);
+  padding: 1rem;
   border-radius: 0.4rem;
+  display: flex;
 }
 
-.dashboard li {
-  margin: 0.3rem 0;
+@media screen and (max-width: 900px) {
+  .dashboard {
+    flex-direction: column;
+  }
 }
 
-.dashboard li a:hover {
-  color: #2B898B !important;
-  border-color: #2B898B !important;
+.dashboard .sidebar {
+  width: 20%;
+  min-width: 12rem;
+  padding: 1rem;
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 900px) {
+  .dashboard .sidebar {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+
+.dashboard .sidebar .nav-link {
+  margin: 1rem 0;
+  background: linear-gradient(90deg, #f8b735 50%, white 50%);
+  background-size: 200%;
+  background-position: 99%;
+  transition: 0.3s ease-in-out;
+  color: black;
+}
+
+.dashboard .sidebar .nav-link:hover {
+  background-position: 0;
+  color: #2B898B;
+}
+
+.dashboard .sidebar .nav-link .fas {
+  width: 2.5rem;
+}
+
+@media screen and (max-width: 550px) {
+  .dashboard .sidebar .nav-link {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .dashboard .sidebar .nav-link {
+    background: none;
+    border-bottom: 3px solid #f8b735;
+  }
+}
+
+.dashboard .table img {
+  width: 5rem;
+  height: 5rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+
+.dashboard .table .actions a {
+  width: 6.5rem;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+  .dashboard .table .actions a {
+    width: 3rem;
+    margin: auto;
+    display: block;
+  }
+
+  .dashboard .table .actions span {
+    display: none;
+  }
 }
 
 .img-restaurant {
@@ -22303,21 +22304,9 @@ a.text-dark:focus {
   }
 }
 
-@media screen and (max-width: 991.98px) {
-  html {
-    font-size: 90%;
-  }
-}
-
 @media screen and (max-width: 767.98px) {
   html {
-    font-size: 87%;
-  }
-}
-
-@media screen and (max-width: 575.98px) {
-  html {
-    font-size: 85%;
+    font-size: 90%;
   }
 }
 
@@ -22372,12 +22361,6 @@ h2 {
 
 h4 {
   margin: 0;
-}
-
-.container {
-  width: 1200px;
-  min-width: 800px;
-  margin: auto;
 }
 
 .bttn {
@@ -22438,7 +22421,19 @@ h4 {
   font-weight: 800;
 }
 
-#bt-dropin label {
-  width: 100%;
+.fa-spinner {
+  font-size: 4rem;
+  -webkit-animation: spin 0.5s ease-in-out infinite;
+          animation: spin 0.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
