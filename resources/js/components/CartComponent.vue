@@ -12,14 +12,13 @@
 
       <div class="d-flex ml-auto m-2">
         <div class="product-quantity ml-2">
-          <i @click="minusPlate(plate)" class="fas fa-minus-circle text-danger"></i>
-          <span>{{plate.qty}}</span>
-          <i @click="storagePlate(plate)" class="fas fa-plus-circle text-success"></i>
+          <i @click="minusPlate(plate)" class="fas fa-minus-circle text-danger fa-lg"></i>
+          <span class="plate-number">{{plate.qty}}</span>
+          <i @click="storagePlate(plate)" class="fas fa-plus-circle text-success fa-lg"></i>
+          <i @click="removePlate(index)" class="fas fa-times product-removal fa-lg ml-2"></i>
         </div>
 
-          <div @click="removePlate(index)" class="product-removal ml-2">
-            <i class="fas fa-times"></i>
-          </div>
+          
         </div>
       </div>
 
@@ -118,6 +117,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .shopping-cart {
   margin: 5rem auto;
   background: #ffffff;
@@ -127,10 +127,10 @@ export default {
   flex-direction: column;
 }
 .your-cart{
-    font-size: 2.75rem;
-    color: white;
-    border-radius: 0.25rem;
-    background-color: #3178c6;
+  font-size: 2.75rem;
+  color: white;
+  border-radius: 0.25rem;
+  background-color: #3178c6;
 }
 .product{
   display: flex;
@@ -141,13 +141,20 @@ export default {
   display: flex;
   justify-content: flex-end;
 }
+.product-quantity{
+  display:flex;
+}
+.plate-number{
+  font-size: 1.05rem;
+  font-weight: 600;
+  width: 2rem;
+  text-align: center;
+  line-height: 1;
+}
 form {
-  /* Center the form on the page */
   margin: 0 auto;
   width: fit-content;
-  /* Form outline */
   padding: 1em;
-  border: 1px solid #CCC;
   border-radius: .125rem;
   display: flex;
   flex-direction: column;
@@ -164,47 +171,22 @@ form li + li {
 }
 
 label, small {
-  /* Uniform size & alignment */
   display: inline-block;
   width: 90px;
 }
 
-input,
-textarea {
-  /* To make sure that all text fields have the same font settings
-     By default, textareas have a monospace font */
+input {
   font: 1em sans-serif;
-
-  /* Uniform text field size */
   width: 12.5rem;
   box-sizing: border-box;
-
-  /* Match form field borders */
   border: 1px solid #999;
 }
 
-input:focus,
-textarea:focus {
-  /* Additional highlight for focused elements */
+input:focus {
   border-color: #000;
 }
 
-textarea {
-  /* Align multiline text fields with their labels */
-  vertical-align: top;
-
-  /* Provide space to type some text */
-  height: 5em;
-}
-
-.button {
-  /* Align buttons with the text fields */
-  padding-left: 90px; /* same size as the label elements */
-}
-
 button {
-  /* This extra margin represent roughly the same space as the space
-     between the labels and their text fields */
   margin-left: .5em;
 }
 /* Pulsante Verde */
@@ -220,6 +202,7 @@ button {
   border-width: 1px;
   border-radius: 3px;
   display: inline-block;
+  padding-left: 90px; 
 }
 #submit-button {
   margin-top: auto;

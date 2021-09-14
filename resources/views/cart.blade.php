@@ -28,7 +28,7 @@
           <textarea type="text" class="form-control" name="notes" rows="4">{{ old('notes') }}</textarea>
       </div> --}}
       <div class="form-group col-12 mt-3 mb-0">
-          <button type="submit" class="btn btn-primary">Prosegui col pagamento</button>
+        <button type="submit" id="submit-button" class="button button--small button--green">Conferma e Paga</button>
       </div>
   </div>
 </form>
@@ -38,10 +38,10 @@
     <ul>
         <li>
           <label for="firstName">Nome:</label>
-          <input type="text" id="firstName" name="firstName" required placeholder="Mario" value="{{ old('firstName') }}">
+          <input type="text" id="firstName" name="firstName" required placeholder="" value="{{ old('firstName') }}">
         </li>
         <li>
-          <label for="lastName">Cognome:</label>
+          <label for="lastName"></label>
           <input type="text" id="lastName" name="lastName" required placeholder="Rossi" value="{{ old('lastName') }}"> 
         </li>
         <li>
