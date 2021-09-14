@@ -11294,9 +11294,16 @@ header .dropdown-menu {
   width: 2.5rem;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 515px) {
+  .dashboard .sidebar .nav-link span {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 650px) {
   .dashboard .sidebar .nav-link {
-    font-size: 1rem;
+    text-align: center;
+    font-size: 0.8rem;
   }
 }
 
@@ -11304,6 +11311,18 @@ header .dropdown-menu {
   .dashboard .sidebar .nav-link {
     background: none;
     border-bottom: 3px solid #f8b735;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .dashboard .table .table_image {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .dashboard .table .actions_title {
+    display: none;
   }
 }
 
@@ -11323,6 +11342,12 @@ header .dropdown-menu {
   align-items: center;
 }
 
+@media screen and (max-width: 500px) {
+  .dashboard .table .actions {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 900px) {
   .dashboard .table .actions a {
     width: 3rem;
@@ -11335,18 +11360,63 @@ header .dropdown-menu {
   }
 }
 
-.img-restaurant {
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 100%;
-  height: 100%;
+@media screen and (min-width: 501px) {
+  .dashboard .table .plate_actions {
+    display: none;
+  }
 }
 
-.neufo {
-  padding: 20px 20px 20px 20px;
-  border-radius: 40px;
-  background: #ecf0f3;
-  box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #ffffff;
+.dashboard .actions_mobile {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid #2B898B;
+}
+
+@media screen and (min-width: 501px) {
+  .dashboard .actions_mobile {
+    display: none;
+  }
+}
+
+.dashboard .admin_show {
+  margin: auto;
+}
+
+.dashboard .admin_show .image_box,
+.dashboard .admin_show .description {
+  max-width: 40rem;
+}
+
+.dashboard .admin_show .img_restaurant {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 2px solid #F8B735;
+  border-radius: 0.5rem;
+}
+
+.dashboard .admin_show .description {
+  margin-top: 1rem;
+}
+
+.dashboard .admin_show .description h3 {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background-color: #2B898B;
+  color: white;
+  border-radius: 0.5rem;
+}
+
+.dashboard .admin_form {
+  margin: auto;
+  width: 100%;
+  max-width: 50rem;
+}
+
+.dashboard .admin_form form {
+  border: 4px solid #2c4792;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 
 /*!
