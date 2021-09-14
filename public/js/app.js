@@ -2033,7 +2033,6 @@ __webpack_require__.r(__webpack_exports__);
     getPlates: function getPlates() {
       if (this.plates != null) {
         this.plates = JSON.parse(localStorage.getItem("plates"));
-        console.log(this.plates);
       }
     }
   },
