@@ -8,7 +8,7 @@
         </header>
 
 
-        <div class="container dashboard">
+        <div class="container-fluid dashboard">
             <div class="row">
                 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse" style="">
                     <div class="position-sticky pt-3">
