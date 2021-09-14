@@ -10948,18 +10948,6 @@ a.text-dark:focus {
   margin: 0;
 }
 
-@media screen and (max-width: 1399.98px) {
-  html {
-    font-size: 95%;
-  }
-}
-
-@media screen and (max-width: 767.98px) {
-  html {
-    font-size: 90%;
-  }
-}
-
 .my_container {
   width: 80%;
   margin: auto;
@@ -22296,18 +22284,6 @@ a.text-dark:focus {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
-
-@media screen and (max-width: 1399.98px) {
-  html {
-    font-size: 95%;
-  }
-}
-
-@media screen and (max-width: 767.98px) {
-  html {
-    font-size: 90%;
-  }
 }
 
 .my_container {
