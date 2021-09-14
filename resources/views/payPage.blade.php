@@ -76,7 +76,7 @@
         <input id="nonce" name="payment_method_nonce" type="hidden">
     
         <div class="text-center">
-          <input disabled id="btn_pay" class="btn btn-success" data-toggle="modal" data-target="#loading" type="submit" value="Effettua il pagamento">
+          <input id="btn_pay" class="btn btn-success" data-toggle="modal" data-target="#loading" type="submit" value="Effettua il pagamento">
         </div>
     
     </form>
@@ -98,21 +98,21 @@
     document.getElementById('total').value = localStorage.getItem('totalPrice');
     document.getElementById('inputOrder').value = localStorage.getItem('plates');
 
-    function manage(txt) {
-        var inputs = document.getElementsByClassName('check_value');
+    // function manage(txt) {
+    //     var inputs = document.getElementsByClassName('check_value');
 
-        var bt = document.getElementById('btn_pay');
+    //     var bt = document.getElementById('btn_pay');
 
-        for (let i = 0; i < inputs.length; i++) {
+    //     for (let i = 0; i < inputs.length; i++) {
 
-             if (inputs[i].value != '') {
-                bt.disabled = false;
-            }
-            else {
-                bt.disabled = true;
-            }
-        }
-    }
+    //          if (inputs[i].value != '') {
+    //             bt.disabled = false;
+    //         }
+    //         else {
+    //             bt.disabled = true;
+    //         }
+    //     }
+    // }
 
     </script>
 
