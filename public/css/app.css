@@ -11419,6 +11419,10 @@ header .dropdown-menu {
   border-radius: 0.5rem;
 }
 
+.active_route {
+  background: #F8B735 !important;
+}
+
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
