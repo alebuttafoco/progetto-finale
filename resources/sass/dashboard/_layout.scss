@@ -11,7 +11,7 @@
 
     .sidebar{
         width: 20%;
-        min-width: 10rem;
+        min-width: 12rem;
         padding: 1rem;
     
         font-size: 1.1rem;
@@ -33,9 +33,20 @@
                 background-position: 0;
                 color: #2B898B;
             }
-           .fas {
-               width: 2.5rem;
-           }
+
+            .fas {
+                width: 2.5rem;
+            }
+
+           @media screen and (max-width: 550px) {
+                font-size: 1rem;
+
+            }
+           @media screen and (max-width: 900px) {
+               background: none;
+                border-bottom: 3px solid rgba(248,183,53,1);
+
+            }
         }
     }
 
@@ -45,6 +56,27 @@
             height: 5rem;
             object-fit: cover;
             border-radius: 50%;
+        }
+
+        .actions {
+            a {
+                width: 6.5rem;
+                margin: auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            @media screen and (max-width: 900px) {
+                a {
+                    width: 3rem;
+                    margin: auto;
+                    display: block;
+                }
+                span {
+                    display: none;
+                }
+            }
         }
     }
 

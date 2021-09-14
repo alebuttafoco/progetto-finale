@@ -11275,7 +11275,7 @@ header .dropdown-menu {
 
 .dashboard .sidebar {
   width: 20%;
-  min-width: 10rem;
+  min-width: 12rem;
   padding: 1rem;
   font-size: 1.1rem;
 }
@@ -11306,12 +11306,45 @@ header .dropdown-menu {
   width: 2.5rem;
 }
 
+@media screen and (max-width: 550px) {
+  .dashboard .sidebar .nav-link {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .dashboard .sidebar .nav-link {
+    background: none;
+    border-bottom: 3px solid #f8b735;
+  }
+}
+
 .dashboard .table img {
   width: 5rem;
   height: 5rem;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
+}
+
+.dashboard .table .actions a {
+  width: 6.5rem;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+  .dashboard .table .actions a {
+    width: 3rem;
+    margin: auto;
+    display: block;
+  }
+
+  .dashboard .table .actions span {
+    display: none;
+  }
 }
 
 .img-restaurant {
