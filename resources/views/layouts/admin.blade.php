@@ -44,24 +44,8 @@
         </main>
     </div>
 
+    @include('components.footer')
 
-    <footer>        
-        <div class="social">
-            <i class="fab fa-facebook"></i> 
-            <i class="fab fa-twitter"></i>
-            <i class="fab fa-instagram"></i>
-            <i class="fab fa-youtube"></i>
-        </div>
-        <img src="{{asset('img/logo_white.png')}}" alt="">
-        <h4>Realizzato da <br> 👇 </h4>
-        <div class="authors">
-            <div> <a href="https://github.com/AndreiBurbulia"><i class="fab fa-github"></i> Andrei Burbulia</a> </div>
-            <div> <a href="https://github.com/fdrbrs"><i class="fab fa-github"></i> Federico Borsci</a> </div>
-            <div> <a href="https://github.com/alebuttafoco"><i class="fab fa-github"></i> Alessandro Buttafoco </a> </div>
-            <div> <a href="https://github.com/10xMike"><i class="fab fa-github"></i> Michele Catena</a> </div>
-            <div> <a href="https://github.com/peppe-p"><i class="fab fa-github"></i> Giuseppe Bumbello</a> </div>
-        </div>
-    </footer>
 </body>
 
 </html>

@@ -6,40 +6,63 @@
 
 @section('content')
 
+<div class="w-100 border">
+  {{-- dati ordine --}}
+  <h3 class="bg-primary p-2">Dati Ordine</h3>
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <th class="w-50">Nome cliente</th>
+        <td>{{$order->customer_name}}</td>
+      </tr>
+  
+      <tr>
+        <th>Cognome cliente</th>
+        <td>{{$order->customer_lastname}}</td>
+      </tr>
+  
+      <tr>
+        <th>Indirizzo cliente</th>
+        <td>{{$order->customer_address}}</td>
+      </tr>
+  
+      <tr>
+        <th>Stato ordine</th>
+        <td>{{$order->status}}</td>
+      </tr>
+  
+      <tr>
+        <th>Data ordine</th>
+        <td>{{$order->date}}</td>
+      </tr>
+  
+      <tr>
+        <th>Prezzo totale</th>
+        <td>{{$order->total_price}} €</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  {{-- piatti ordinati --}}
+  <h3 class="bg-primary p-2">Piatti Ordinati</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="w-50">Piatto ordinato</th>
+        <th>Quantità</th>
+      </tr>
+    </thead>
 
-<div>
-  <span><strong>Customer name: </strong></span>
-  <span>{{$order->customer_name}}</span>
-<div>
-  <div>
-    <span><strong>Customer Lastname: </strong></span>
-    <span>{{$order->customer_lastname}}</span>
-  <div>
-    <div>
-      <span><strong>Customer Address: </strong></span>
-      <span>{{$order->customer_address}}</span>
-    <div>
-      <div>
-        <span><strong>Order status: </strong></span>
-        <span>{{$order->status}}</span>
-      <div>
-        <div>
-          <span><strong>Order Date: </strong></span>
-          <span>{{$order->date}}</span>
-        <div>
-          <div>
-            <span><strong>order total Price: </strong></span>
-            <span>{{$order->total_price}}</span>
-          <div>
-            <br>
-            <br>
-            <br>
-  <h5>Lista Piatti</h5>
-  @foreach ($order->plates as $plate)
-      <p>{{$plate->name}} x {{$plate->pivot->quantity}}</p>
-  @endforeach
+    <tbody>
+      <tr>
+        @foreach ($order->plates as $plate)
+        <td>{{$plate->name}}</td>
+        <td>{{$plate->pivot->quantity}}</td>
+        @endforeach
+      </tr>
+    </tbody>
+
+  </table>
 </div>
 
-</div>
-        
 @endsection

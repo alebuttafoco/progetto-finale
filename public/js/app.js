@@ -2133,7 +2133,7 @@ __webpack_require__.r(__webpack_exports__);
       selectedRestaurant: "",
       categories_array: [],
       visibleCatMobile: false,
-      counterPagination: 4
+      counterPagination: 8
     };
   },
   methods: {
@@ -2150,7 +2150,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     filterCategory: function filterCategory(name) {
       // console.log(name);
-      this.counterPagination = 4; //reset paginazione
+      this.counterPagination = 8; //reset paginazione
 
       if (name === "all") {
         this.categories_array = [];
