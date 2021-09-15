@@ -40,7 +40,7 @@ class PlateController extends Controller
         //validation
         $validated_data = $request->validate([
             'name' => 'required | max:255',
-            'image' => 'required | mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:50',
+            'image' => 'required | mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
             'description' => 'required | max:1000',
             'price' => 'required | numeric | between: 0,999',
             'type' => 'required',
@@ -87,7 +87,7 @@ class PlateController extends Controller
 
         $validated_data = $request->validate([
             'name' => 'required | max:255',
-            'image' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:50',
+            'image' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
             'description' => 'required | max:1000',
             'price' => 'required | numeric | between: 0,999',
             'type' => 'required',
