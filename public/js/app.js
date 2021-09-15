@@ -1963,6 +1963,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -6963,7 +6975,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".shopping-cart[data-v-e7ab8a3c] {\n  margin: 5rem auto;\n  background: #ffffff;\n  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);\n  border-radius: 0.375rem;\n  display: flex;\n  flex-direction: column;\n}\n.your-cart[data-v-e7ab8a3c] {\n  font-size: 2.75rem;\n  color: white;\n  border-radius: 0.25rem;\n  background-color: #3178c6;\n}\n.product[data-v-e7ab8a3c] {\n  display: flex;\n  margin: 2rem;\n}\n.totals[data-v-e7ab8a3c] {\n  flex-direction: row;\n  display: flex;\n  justify-content: flex-end;\n}\n.totals .totals-value[data-v-e7ab8a3c] {\n  font-size: 1.2rem;\n  font-weight: bold;\n}\n.product-quantity[data-v-e7ab8a3c] {\n  display: flex;\n}\n.plate-number[data-v-e7ab8a3c] {\n  font-size: 1.05rem;\n  font-weight: 600;\n  width: 2rem;\n  text-align: center;\n  line-height: 1;\n}\nform[data-v-e7ab8a3c] {\n  margin: 0 auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  padding: 1em;\n  border-radius: 0.125rem;\n  display: flex;\n  flex-direction: column;\n}\nul[data-v-e7ab8a3c] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\nform li + li[data-v-e7ab8a3c] {\n  margin-top: 1em;\n}\nlabel[data-v-e7ab8a3c],\nsmall[data-v-e7ab8a3c] {\n  /* Uniform size & alignment */\n  display: inline-block;\n  width: 90px;\n}\ninput[data-v-e7ab8a3c] {\n  font: 1em sans-serif;\n  width: 12.5rem;\n  box-sizing: border-box;\n  border: 1px solid #999;\n}\ninput[data-v-e7ab8a3c]:focus {\n  border-color: #000;\n}\nbutton[data-v-e7ab8a3c] {\n  margin-left: 0.5em;\n}\n\n/* Pulsante Verde */\n.button[data-v-e7ab8a3c] {\n  cursor: pointer;\n  font-weight: 500;\n  left: 3px;\n  line-height: inherit;\n  position: relative;\n  text-decoration: none;\n  text-align: center;\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 3px;\n  display: inline-block;\n  padding-left: 90px;\n}\n#submit-button[data-v-e7ab8a3c] {\n  margin-top: auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  align-self: center;\n}\n.button--small[data-v-e7ab8a3c] {\n  padding: 10px 20px;\n  font-size: 0.875rem;\n}\n.button--green[data-v-e7ab8a3c] {\n  outline: none;\n  background-color: #64d18a;\n  border-color: #64d18a;\n  color: white;\n  transition: all 200ms ease;\n}\n.button--green[data-v-e7ab8a3c]:hover {\n  background-color: #8bdda8;\n  color: white;\n}", ""]);
+exports.push([module.i, ".shopping-cart[data-v-e7ab8a3c] {\n  margin: 5rem auto;\n  background: #ffffff;\n  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);\n  border-radius: 0.375rem;\n  display: flex;\n  flex-direction: column;\n}\n.your-cart[data-v-e7ab8a3c] {\n  font-size: 2.75rem;\n  color: white;\n  border-radius: 0.25rem;\n  background-color: #3178c6;\n}\n.product[data-v-e7ab8a3c] {\n  display: flex;\n  padding: 1.125rem;\n  margin: 0;\n  align-items: center;\n  border-bottom: 1px solid #5053554a;\n}\n.product img[data-v-e7ab8a3c] {\n  width: 7rem;\n  height: 7rem;\n  border-radius: 5px;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.totals[data-v-e7ab8a3c] {\n  flex-direction: row;\n  display: flex;\n  justify-content: flex-end;\n}\n.totals .totals-value[data-v-e7ab8a3c] {\n  font-size: 1.2rem;\n  font-weight: bold;\n}\n.totals-item[data-v-e7ab8a3c] {\n  font-size: 1.125rem;\n  font-weight: 600;\n  padding: 1.125rem;\n}\n.product-quantity[data-v-e7ab8a3c] {\n  display: flex;\n}\n.product-quantity .fas[data-v-e7ab8a3c] {\n  cursor: pointer;\n  transition: 0.3s ease;\n}\n.product-quantity .fas[data-v-e7ab8a3c]:active {\n  transform: scale(0.9);\n}\n.plate-number[data-v-e7ab8a3c] {\n  font-size: 1.05rem;\n  font-weight: 600;\n  width: 2rem;\n  text-align: center;\n  line-height: 1;\n}\nform[data-v-e7ab8a3c] {\n  margin: 0 auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  padding: 1em;\n  border-radius: 0.125rem;\n  display: flex;\n  flex-direction: column;\n}\nul[data-v-e7ab8a3c] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\nform li + li[data-v-e7ab8a3c] {\n  margin-top: 1em;\n}\nlabel[data-v-e7ab8a3c],\nsmall[data-v-e7ab8a3c] {\n  /* Uniform size & alignment */\n  display: inline-block;\n  width: 90px;\n}\ninput[data-v-e7ab8a3c] {\n  font: 1em sans-serif;\n  width: 12.5rem;\n  box-sizing: border-box;\n  border: 1px solid #999;\n}\ninput[data-v-e7ab8a3c]:focus {\n  border-color: #000;\n}\nbutton[data-v-e7ab8a3c] {\n  margin-left: 0.5em;\n}\n\n/* Pulsante Verde */\n.button[data-v-e7ab8a3c] {\n  cursor: pointer;\n  font-weight: 500;\n  left: 3px;\n  line-height: inherit;\n  position: relative;\n  text-decoration: none;\n  text-align: center;\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 3px;\n  display: inline-block;\n  padding-left: 90px;\n}\n#submit-button[data-v-e7ab8a3c] {\n  margin-top: auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  align-self: center;\n}\n.button--small[data-v-e7ab8a3c] {\n  padding: 10px 20px;\n  font-size: 0.875rem;\n}\n.button--green[data-v-e7ab8a3c] {\n  outline: none;\n  background-color: #64d18a;\n  border-color: #64d18a;\n  color: white;\n  transition: all 200ms ease;\n}\n.button--green[data-v-e7ab8a3c]:hover {\n  background-color: #8bdda8;\n  color: white;\n}", ""]);
 
 // exports
 
@@ -38937,7 +38949,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "my_container" }, [
     _c(
       "div",
       { staticClass: "shopping-cart" },
@@ -38946,17 +38958,17 @@ var render = function() {
         _vm._v(" "),
         _vm._l(_vm.plates, function(plate, index) {
           return _c("div", { key: plate.id, staticClass: "product" }, [
-            _c("img", {
-              attrs: { width: "80", src: "storage/" + plate.image, alt: "" }
-            }),
+            _c("img", { attrs: { src: "storage/" + plate.image, alt: "" } }),
             _vm._v(" "),
-            _c("div", { staticClass: "product-details ml-2" }, [
-              _vm._v(_vm._s(plate.name))
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "product-price ml-2" }, [
-              _vm._v("( " + _vm._s(plate.price) + " € )")
-            ]),
+            _c(
+              "div",
+              { staticClass: "product-details ml-2 d-flex flex-column" },
+              [
+                _c("span", [_vm._v(_vm._s(plate.name))]),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(plate.price) + " € ")])
+              ]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "d-flex ml-auto m-2" }, [
               _c("div", { staticClass: "product-quantity ml-2" }, [
@@ -38991,19 +39003,19 @@ var render = function() {
                   }
                 })
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "totals" }, [
-              _c("div", { staticClass: "totals-item totals-item-final m-2" }, [
-                _c("label", [_vm._v("Prezzo Finale")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "totals-value" }, [
-                  _vm._v(_vm._s(_vm.cart_price()) + " €")
-                ])
-              ])
             ])
           ])
-        })
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "totals" }, [
+          _c("div", { staticClass: "totals-item totals-item-final m-2" }, [
+            _c("label", [_vm._v("Prezzo Finale")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "totals-value" }, [
+              _vm._v(_vm._s(_vm.cart_price()) + " €")
+            ])
+          ])
+        ])
       ],
       2
     )
@@ -55495,8 +55507,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\ale\Desktop\progetto-finale\progetto-finale\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ale\Desktop\progetto-finale\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Programmi\MAMP\htdocs\php\progetto-finale\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Programmi\MAMP\htdocs\php\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
