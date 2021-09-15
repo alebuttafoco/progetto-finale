@@ -6,6 +6,7 @@
 
 @section('content')
 
+<div class="w-100">
   <table class="table table-striped">
       <thead>
         <tr class="text-center">
@@ -32,6 +33,9 @@
           @endforeach  
       </tbody>
   </table>
-  {{$orders->links()}}
+
+  {{-- link di navigazione --}}
+  <div class="d-flex justify-content-center">{{$orders->links()}}</div>
+</div>
 
 @endsection
