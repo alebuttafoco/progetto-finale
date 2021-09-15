@@ -1,21 +1,29 @@
 <template>
-<div class="container">
-  <div class="shopping-cart">
-    <div class="labels">
-      <h3 class="d-flex justify-content-center m-2 your-cart p-2">Il tuo carrello</h3>
-    </div>
+  <div class="container">
+    <div class="shopping-cart">
+      <div class="labels">
+        <h3 class="d-flex justify-content-center m-2 your-cart p-2">
+          Il tuo carrello
+        </h3>
+      </div>
 
       <div class="product" v-for="(plate, index) in plates" :key="plate.id">
         <img width="80" :src="'storage/' + plate.image" alt="" />
         <div class="product-details ml-2">{{ plate.name }}</div>
-        <div class="product-price ml-2">{{ plate.price }}</div>
+        <div class="product-price ml-2">( {{ plate.price }} € )</div>
 
-      <div class="d-flex ml-auto m-2">
-        <div class="product-quantity ml-2">
-          <i @click="minusPlate(plate)" class="fas fa-minus-circle text-danger"></i>
-          <span>{{plate.qty}}</span>
-          <i @click="storagePlate(plate)" class="fas fa-plus-circle text-success"></i>
-        </div>
+        <div class="d-flex ml-auto m-2">
+          <div class="product-quantity ml-2">
+            <i
+              @click="minusPlate(plate)"
+              class="fas fa-minus-circle text-danger"
+            ></i>
+            <span>{{ plate.qty }}</span>
+            <i
+              @click="storagePlate(plate)"
+              class="fas fa-plus-circle text-success"
+            ></i>
+          </div>
 
           <div @click="removePlate(index)" class="product-removal ml-2">
             <i class="fas fa-times"></i>
@@ -30,9 +38,8 @@
         </div>
       </div>
     </div>
-    
-    <!-- inserire due divisori/contenitori per il form -->
 
+    <!-- inserire due divisori/contenitori per il form -->
   </div>
 </template>
 
@@ -126,13 +133,13 @@ export default {
   display: flex;
   flex-direction: column;
 }
-.your-cart{
-    font-size: 2.75rem;
-    color: white;
-    border-radius: 0.25rem;
-    background-color: #3178c6;
+.your-cart {
+  font-size: 2.75rem;
+  color: white;
+  border-radius: 0.25rem;
+  background-color: #3178c6;
 }
-.product{
+.product {
   display: flex;
   margin: 2rem;
 }
@@ -140,6 +147,10 @@ export default {
   flex-direction: row;
   display: flex;
   justify-content: flex-end;
+  .totals-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
 }
 form {
   /* Center the form on the page */
@@ -147,8 +158,8 @@ form {
   width: fit-content;
   /* Form outline */
   padding: 1em;
-  border: 1px solid #CCC;
-  border-radius: .125rem;
+  border: 1px solid #ccc;
+  border-radius: 0.125rem;
   display: flex;
   flex-direction: column;
 }
@@ -163,7 +174,8 @@ form li + li {
   margin-top: 1em;
 }
 
-label, small {
+label,
+small {
   /* Uniform size & alignment */
   display: inline-block;
   width: 90px;
@@ -205,7 +217,7 @@ textarea {
 button {
   /* This extra margin represent roughly the same space as the space
      between the labels and their text fields */
-  margin-left: .5em;
+  margin-left: 0.5em;
 }
 /* Pulsante Verde */
 .button {

@@ -1965,6 +1965,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -6971,7 +6978,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".shopping-cart[data-v-e7ab8a3c] {\n  margin: 5rem auto;\n  background: #ffffff;\n  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);\n  border-radius: 0.375rem;\n  display: flex;\n  flex-direction: column;\n}\n.your-cart[data-v-e7ab8a3c] {\n  font-size: 2.75rem;\n  color: white;\n  border-radius: 0.25rem;\n  background-color: #3178c6;\n}\n.product[data-v-e7ab8a3c] {\n  display: flex;\n  margin: 2rem;\n}\n.totals[data-v-e7ab8a3c] {\n  flex-direction: row;\n  display: flex;\n  justify-content: flex-end;\n}\nform[data-v-e7ab8a3c] {\n  /* Center the form on the page */\n  margin: 0 auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  /* Form outline */\n  padding: 1em;\n  border: 1px solid #CCC;\n  border-radius: 0.125rem;\n  display: flex;\n  flex-direction: column;\n}\nul[data-v-e7ab8a3c] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\nform li + li[data-v-e7ab8a3c] {\n  margin-top: 1em;\n}\nlabel[data-v-e7ab8a3c], small[data-v-e7ab8a3c] {\n  /* Uniform size & alignment */\n  display: inline-block;\n  width: 90px;\n}\ninput[data-v-e7ab8a3c],\ntextarea[data-v-e7ab8a3c] {\n  /* To make sure that all text fields have the same font settings\n     By default, textareas have a monospace font */\n  font: 1em sans-serif;\n  /* Uniform text field size */\n  width: 12.5rem;\n  box-sizing: border-box;\n  /* Match form field borders */\n  border: 1px solid #999;\n}\ninput[data-v-e7ab8a3c]:focus,\ntextarea[data-v-e7ab8a3c]:focus {\n  /* Additional highlight for focused elements */\n  border-color: #000;\n}\ntextarea[data-v-e7ab8a3c] {\n  /* Align multiline text fields with their labels */\n  vertical-align: top;\n  /* Provide space to type some text */\n  height: 5em;\n}\n.button[data-v-e7ab8a3c] {\n  /* Align buttons with the text fields */\n  padding-left: 90px;\n  /* same size as the label elements */\n}\nbutton[data-v-e7ab8a3c] {\n  /* This extra margin represent roughly the same space as the space\n     between the labels and their text fields */\n  margin-left: 0.5em;\n}\n\n/* Pulsante Verde */\n.button[data-v-e7ab8a3c] {\n  cursor: pointer;\n  font-weight: 500;\n  left: 3px;\n  line-height: inherit;\n  position: relative;\n  text-decoration: none;\n  text-align: center;\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 3px;\n  display: inline-block;\n}\n#submit-button[data-v-e7ab8a3c] {\n  margin-top: auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  align-self: center;\n}\n.button--small[data-v-e7ab8a3c] {\n  padding: 10px 20px;\n  font-size: 0.875rem;\n}\n.button--green[data-v-e7ab8a3c] {\n  outline: none;\n  background-color: #64d18a;\n  border-color: #64d18a;\n  color: white;\n  transition: all 200ms ease;\n}\n.button--green[data-v-e7ab8a3c]:hover {\n  background-color: #8bdda8;\n  color: white;\n}", ""]);
+exports.push([module.i, ".shopping-cart[data-v-e7ab8a3c] {\n  margin: 5rem auto;\n  background: #ffffff;\n  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);\n  border-radius: 0.375rem;\n  display: flex;\n  flex-direction: column;\n}\n.your-cart[data-v-e7ab8a3c] {\n  font-size: 2.75rem;\n  color: white;\n  border-radius: 0.25rem;\n  background-color: #3178c6;\n}\n.product[data-v-e7ab8a3c] {\n  display: flex;\n  margin: 2rem;\n}\n.totals[data-v-e7ab8a3c] {\n  flex-direction: row;\n  display: flex;\n  justify-content: flex-end;\n}\n.totals .totals-value[data-v-e7ab8a3c] {\n  font-size: 1.2rem;\n  font-weight: bold;\n}\nform[data-v-e7ab8a3c] {\n  /* Center the form on the page */\n  margin: 0 auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  /* Form outline */\n  padding: 1em;\n  border: 1px solid #ccc;\n  border-radius: 0.125rem;\n  display: flex;\n  flex-direction: column;\n}\nul[data-v-e7ab8a3c] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\nform li + li[data-v-e7ab8a3c] {\n  margin-top: 1em;\n}\nlabel[data-v-e7ab8a3c],\nsmall[data-v-e7ab8a3c] {\n  /* Uniform size & alignment */\n  display: inline-block;\n  width: 90px;\n}\ninput[data-v-e7ab8a3c],\ntextarea[data-v-e7ab8a3c] {\n  /* To make sure that all text fields have the same font settings\n     By default, textareas have a monospace font */\n  font: 1em sans-serif;\n  /* Uniform text field size */\n  width: 12.5rem;\n  box-sizing: border-box;\n  /* Match form field borders */\n  border: 1px solid #999;\n}\ninput[data-v-e7ab8a3c]:focus,\ntextarea[data-v-e7ab8a3c]:focus {\n  /* Additional highlight for focused elements */\n  border-color: #000;\n}\ntextarea[data-v-e7ab8a3c] {\n  /* Align multiline text fields with their labels */\n  vertical-align: top;\n  /* Provide space to type some text */\n  height: 5em;\n}\n.button[data-v-e7ab8a3c] {\n  /* Align buttons with the text fields */\n  padding-left: 90px;\n  /* same size as the label elements */\n}\nbutton[data-v-e7ab8a3c] {\n  /* This extra margin represent roughly the same space as the space\n     between the labels and their text fields */\n  margin-left: 0.5em;\n}\n\n/* Pulsante Verde */\n.button[data-v-e7ab8a3c] {\n  cursor: pointer;\n  font-weight: 500;\n  left: 3px;\n  line-height: inherit;\n  position: relative;\n  text-decoration: none;\n  text-align: center;\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 3px;\n  display: inline-block;\n}\n#submit-button[data-v-e7ab8a3c] {\n  margin-top: auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  align-self: center;\n}\n.button--small[data-v-e7ab8a3c] {\n  padding: 10px 20px;\n  font-size: 0.875rem;\n}\n.button--green[data-v-e7ab8a3c] {\n  outline: none;\n  background-color: #64d18a;\n  border-color: #64d18a;\n  color: white;\n  transition: all 200ms ease;\n}\n.button--green[data-v-e7ab8a3c]:hover {\n  background-color: #8bdda8;\n  color: white;\n}", ""]);
 
 // exports
 
@@ -38963,7 +38970,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "product-price ml-2" }, [
-              _vm._v(_vm._s(plate.price))
+              _vm._v("( " + _vm._s(plate.price) + " € )")
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "d-flex ml-auto m-2" }, [
@@ -39028,7 +39035,7 @@ var staticRenderFns = [
       _c(
         "h3",
         { staticClass: "d-flex justify-content-center m-2 your-cart p-2" },
-        [_vm._v("Il tuo carrello")]
+        [_vm._v("\n        Il tuo carrello\n      ")]
       )
     ])
   }

@@ -72,7 +72,7 @@ class CheckoutController extends Controller
                 'customer_name'=> 'required',
                 'customer_lastname'=> 'required',
                 'customer_email'=> 'required',
-                'customer_address'=> 'required|email',
+                'customer_address'=> 'required',
                 'customer_phone'=> 'required|numeric',
                 'total'=> 'required|numeric',
                 'status'=> 'required',
@@ -120,7 +120,7 @@ class CheckoutController extends Controller
             return redirect()->route('confirm');
 
         }else{
-            //qui trasmetto l'errore
+            return back()->with('message', 'Si è verificato un errore la preghiamo di riprovare!');
         }
     }
 }
