@@ -1,14 +1,17 @@
 <template>
-<div class="container">
+<div class="my_container">
   <div class="shopping-cart">
     <div class="labels">
       <h3 class="d-flex justify-content-center m-2 your-cart p-2">Il tuo carrello</h3>
     </div>
 
       <div class="product" v-for="(plate, index) in plates" :key="plate.id">
-        <img width="80" :src="'storage/' + plate.image" alt="" />
-        <div class="product-details ml-2">{{ plate.name }}</div>
-        <div class="product-price ml-2">{{ plate.price }}</div>
+        <img :src="'storage/' + plate.image" alt="" />
+        <div class="product-details ml-2 d-flex flex-column ">
+          <span>{{ plate.name }}</span>
+          <span>{{ plate.price }} € </span>
+        </div>
+        <!-- <div class="product-price ml-2"></div> -->
 
       <div class="d-flex ml-auto m-2">
         <div class="product-quantity ml-2">
@@ -130,15 +133,37 @@ export default {
 }
 .product{
   display: flex;
-  margin: 2rem;
+  padding: 1.125rem;
+  margin: 0;
+  align-items: center;
+  border-bottom: 1px solid #5053554a;
+
+  img{
+    width: 7rem;
+    height: 7rem;
+    border-radius: 5px;
+    object-fit: cover;
+  }
 }
 .totals {
   flex-direction: row;
   display: flex;
   justify-content: flex-end;
 }
+.totals-item{
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 1.125rem;
+}
 .product-quantity{
   display:flex;
+  .fas{
+    &:active{
+      transform:scale(.9);
+    }
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
 }
 .plate-number{
   font-size: 1.05rem;
