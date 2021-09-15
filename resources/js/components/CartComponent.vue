@@ -31,6 +31,7 @@
 
     <!-- inserire due divisori/contenitori per il form -->
   </div>
+  </div>
 </template>
 
 <script>
