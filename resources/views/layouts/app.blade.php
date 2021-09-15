@@ -61,11 +61,11 @@
         <img src="{{asset('img/logo_white.png')}}" alt="">
         <h4>Realizzato da <br> 👇 </h4>
         <div class="authors">
-            <div><i class="far fa-copyright"></i> Andrei Burbulia</div>
-            <div><i class="far fa-copyright"></i> Federico Borsci</div>
-            <div><i class="far fa-copyright"></i> Alessandro Buttafoco</div>
-            <div><i class="far fa-copyright"></i> Michele Catena</div>
-            <div><i class="far fa-copyright"></i> Giuseppe Bumbello</div>
+            <div> <a href="https://github.com/AndreiBurbulia"><i class="fab fa-github"></i> Andrei Burbulia</a> </div>
+            <div> <a href="https://github.com/fdrbrs"><i class="fab fa-github"></i> Federico Borsci</a> </div>
+            <div> <a href="https://github.com/alebuttafoco"><i class="fab fa-github"></i> Alessandro Buttafoco </a> </div>
+            <div> <a href="https://github.com/10xMike"><i class="fab fa-github"></i> Michele Catena</a> </div>
+            <div> <a href="https://github.com/peppe-p"><i class="fab fa-github"></i> Giuseppe Bumbello</a> </div>
         </div>
     </footer>
 </body>

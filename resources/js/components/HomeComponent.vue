@@ -79,7 +79,7 @@ export default {
       selectedRestaurant: "",
       categories_array: [],
       visibleCatMobile: false,
-      counterPagination: 4,
+      counterPagination: 8,
     }
   },
   methods: {
@@ -96,7 +96,7 @@ export default {
     },
     filterCategory(name) {
       // console.log(name);
-      this.counterPagination = 4; //reset paginazione
+      this.counterPagination = 8; //reset paginazione
       if (name === "all") {
         this.categories_array = [];
         this.categories_array.push("all");
