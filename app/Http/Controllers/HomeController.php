@@ -52,18 +52,6 @@ class HomeController extends Controller
 
     public function ordini()
     {
-
-
-
-
-
-
-
-
-
-
-
-
         $orders = $this->datiOrdini("paginate");
         //ddd($orders);
         return view('admin.ordini', compact('orders'));
