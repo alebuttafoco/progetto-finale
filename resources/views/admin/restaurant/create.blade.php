@@ -5,15 +5,16 @@
 @endsection
 
 @section('content')
+{{-- tasto INDIETRO --}}
+{{-- <div class="actions_bar">
+    <a href="{{ route('admin.restaurant.index') }}" class="btn btn-primary" role="button" aria-pressed="true"><i
+            class="fa fa-chevron-left" aria-hidden="true"></i> Indietro</a>
+</div> --}}
 
-    <div class="actions_bar">
-        <a href="{{ route('admin.restaurant.index') }}" class="btn btn-primary" role="button" aria-pressed="true"><i
-                class="fa fa-chevron-left" aria-hidden="true"></i> Indietro</a>
-    </div>
+<div class="admin_form">
     @include('components.error')
-
     {{-- Alert per campi obbligatori --}}
-    <div class="alert alert-warning alert-dismissible fade show mt-5" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <i class="fas fa-info-circle"></i>
         Completa i <strong>campi obbligatori *</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -21,7 +22,7 @@
         </button>
     </div>
 
-    <form class="mt-5" action="{{ route('admin.restaurant.store') }}" method="post"
+    <form action="{{ route('admin.restaurant.store') }}" method="post"
         enctype="multipart/form-data">
         @csrf
 
@@ -128,4 +129,5 @@
         <button type="submit" class="btn btn-block btn-primary">Conferma</button>
 
     </form>
+</div>
 @endsection
