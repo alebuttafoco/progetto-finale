@@ -82,8 +82,8 @@
           </div>
         </div>
         <span v-if="plates.length != 0" @click="emptyCart()" class="empty_cart bg-danger text-white">Svuota il carrello <i class="fas fa-trash-alt"></i></span>
-
-        <a class="checkout_link btn btn-success" href="../cart">Vai alla cassa</a>
+        
+        <a :class="plates.length > 0 ? 'btn-success' : 'd-none'"  class="checkout_link btn" href="../cart ">Vai alla cassa</a>
       </div>
     </div>
 
@@ -514,8 +514,9 @@ export default {
   position: sticky;
   top: 0;
   box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.089);
-  border-bottom-left-radius: .5rem;
-  border-bottom-right-radius: .5rem;
+  // border-bottom-left-radius: .5rem;
+  // border-bottom-right-radius: .5rem;
+  border-radius: .5rem;
 
   @media screen and (max-width:1199.98px) {
     display: none;
@@ -610,6 +611,8 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   background-color: white;
+  border-bottom-left-radius: .5rem;
+  border-bottom-right-radius: .5rem;
   .cart_item {
     display: flex;
     justify-content: space-between;

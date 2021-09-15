@@ -12,22 +12,12 @@
         <div class="product-details ml-2">{{ plate.name }}</div>
         <div class="product-price ml-2">( {{ plate.price }} € )</div>
 
-        <div class="d-flex ml-auto m-2">
-          <div class="product-quantity ml-2">
-            <i
-              @click="minusPlate(plate)"
-              class="fas fa-minus-circle text-danger"
-            ></i>
-            <span>{{ plate.qty }}</span>
-            <i
-              @click="storagePlate(plate)"
-              class="fas fa-plus-circle text-success"
-            ></i>
-          </div>
-
-          <div @click="removePlate(index)" class="product-removal ml-2">
-            <i class="fas fa-times"></i>
-          </div>
+      <div class="d-flex ml-auto m-2">
+        <div class="product-quantity ml-2">
+          <i @click="minusPlate(plate)" class="fas fa-minus-circle text-danger fa-lg"></i>
+          <span class="plate-number">{{plate.qty}}</span>
+          <i @click="storagePlate(plate)" class="fas fa-plus-circle text-success fa-lg"></i>
+          <i @click="removePlate(index)" class="fas fa-times product-removal fa-lg ml-2"></i>
         </div>
       </div>
 
@@ -40,6 +30,7 @@
     </div>
 
     <!-- inserire due divisori/contenitori per il form -->
+  </div>
   </div>
 </template>
 
@@ -54,10 +45,6 @@ export default {
   },
 
   methods: {
-    controllo() {
-      //console.log(cart_price());
-      console.log(this.plates);
-    },
     cart_price() {
       let totalPrice = 0;
       this.plates.forEach((plate) => {
@@ -65,7 +52,7 @@ export default {
       });
       const parsed = JSON.stringify(totalPrice);
       localStorage.setItem("totalPrice", parsed);
-      return totalPrice;
+      return totalPrice.toFixed(2);
     },
     storagePlate(plate) {
       let foodInCart = [];
@@ -152,13 +139,20 @@ export default {
     font-weight: bold;
   }
 }
+.product-quantity {
+  display: flex;
+}
+.plate-number {
+  font-size: 1.05rem;
+  font-weight: 600;
+  width: 2rem;
+  text-align: center;
+  line-height: 1;
+}
 form {
-  /* Center the form on the page */
   margin: 0 auto;
   width: fit-content;
-  /* Form outline */
   padding: 1em;
-  border: 1px solid #ccc;
   border-radius: 0.125rem;
   display: flex;
   flex-direction: column;
@@ -181,42 +175,18 @@ small {
   width: 90px;
 }
 
-input,
-textarea {
-  /* To make sure that all text fields have the same font settings
-     By default, textareas have a monospace font */
+input {
   font: 1em sans-serif;
-
-  /* Uniform text field size */
   width: 12.5rem;
   box-sizing: border-box;
-
-  /* Match form field borders */
   border: 1px solid #999;
 }
 
-input:focus,
-textarea:focus {
-  /* Additional highlight for focused elements */
+input:focus {
   border-color: #000;
 }
 
-textarea {
-  /* Align multiline text fields with their labels */
-  vertical-align: top;
-
-  /* Provide space to type some text */
-  height: 5em;
-}
-
-.button {
-  /* Align buttons with the text fields */
-  padding-left: 90px; /* same size as the label elements */
-}
-
 button {
-  /* This extra margin represent roughly the same space as the space
-     between the labels and their text fields */
   margin-left: 0.5em;
 }
 /* Pulsante Verde */
@@ -232,6 +202,7 @@ button {
   border-width: 1px;
   border-radius: 3px;
   display: inline-block;
+  padding-left: 90px;
 }
 #submit-button {
   margin-top: auto;

@@ -6,28 +6,30 @@
 
 @section('content')
 
-    <div class="actions_bar mb-5">
-        <a href="{{ route('admin.restaurant.index') }}" class="btn btn-primary" role="button" aria-pressed="true"><i
-                class="fa fa-chevron-left" aria-hidden="true"></i> Indietro</a>
+{{-- bottone INDIETRO --}}
+{{-- <div class="actions_bar mb-5">
+    <a href="{{ route('admin.restaurant.index') }}" class="btn btn-primary" role="button" aria-pressed="true"><i
+            class="fa fa-chevron-left" aria-hidden="true"></i> Indietro</a>
+</div> --}}
+
+{{-- contenuto --}}
+<div class="admin_show">
+    <div class="image_box text-center">
+        <img class="img_restaurant" src="{{ $restaurant->image == null ? asset('img/cover_restaurant.jpg') : asset('storage/' . $restaurant->image) }}" alt="Copertina immagine ristorante">
     </div>
-    <div class="container p-0 w-auto" id="single-restaurant-page">
-        <div class="img-restaurant-container">
-            <img class="img-restaurant"
-                src="{{ $restaurant->image == null ? asset('img/cover_restaurant.jpg') : asset('storage/' . $restaurant->image) }}"
-                alt="Copertina immagine ristorante">
-        </div>
 
-        <p class="p-2 pl-3">
-            {{ $restaurant->description }}
-        </p>
-
-        <div class="address p-2 pl-3">{{ $restaurant->address }}, {{ $restaurant->city }}, {{ $restaurant->cap }}</div>
-
-        <ul class="list-inline text-secondary p-2 pl-3">
+    <div class="description">
+        <h3>Descrizione</h3>
+        <p>{{ $restaurant->description }}</p>
+        <h3>Indirizzo</h3>
+        <div class="address">{{ $restaurant->address }}, {{ $restaurant->city }}, {{ $restaurant->cap }}</div>
+        <h3>Categorie</h3>
+        <ul>
             @foreach ($restaurant->categories as $category)
-                <li class="list-inline-item">{{ $category->name }}</li>
+                <li class="list-inline-item">#{{ $category->name }}</li>
             @endforeach
         </ul>
-
     </div>
+</div>
+
 @endsection

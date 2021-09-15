@@ -5,20 +5,21 @@
     margin: 0;
 }
 
-html {
-    @media screen and (max-width:1399.98px) {
-        font-size: 95%;
-    }
-    @media screen and (max-width:991.98px) {
-        font-size: 90%;
-    }
-    @media screen and (max-width:767.98px) {
-        font-size: 87%;
-    }
-    @media screen and (max-width:575.98px) {
-        font-size: 85%;
-    }
-}
+// MEDIA PER MODIFICARE IL FONT RESPONSIVE
+// html {
+//     @media screen and (max-width:1399.98px) {
+//         font-size: 9%;
+//     }
+//     @media screen and (max-width:991.98px) {
+//         font-size: 90%;
+//     }
+//     @media screen and (max-width:767.98px) {
+//         font-size: 100%;
+//     }
+//     @media screen and (max-width:575.98px) {
+//         font-size: 85%;
+//     }
+// }
 
 .my_container {
     // definire il conteiner e le media
@@ -35,6 +36,10 @@ html {
         width: 99%;
     }
 
+}
+
+main {
+    min-height: 100vh;
 }
 
 body {
@@ -70,11 +75,11 @@ h4 {
 
 
 // CLASSES
-.container {
-    width: 1200px;
-    min-width: 800px;
-    margin: auto;
-}
+// .container {
+//     width: 1200px;
+//     min-width: 800px;
+//     margin: auto;
+// }
 
 .bttn {
     @include d-flex;
@@ -130,4 +135,15 @@ h4 {
 .bigtxt{
     font-size: 1rem;
     font-weight: 800;
+}
+
+// animazione loading pagina
+.fa-spinner {
+    font-size: 4rem;
+    animation: spin .5s ease-in-out infinite;
+    @keyframes spin {
+        from{transform: rotate(0deg);}
+        to{transform: rotate(360deg);}
+        
+    }
 }

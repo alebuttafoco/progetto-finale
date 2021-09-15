@@ -5,15 +5,17 @@
 @endsection
 
 @section('content')
-    <a class="btn btn-success mb-3" href="{{ route('admin.plate.index') }}">
-        <i class="fas fa-chevron-left"></i>
-        Indietro
-    </a>
+{{-- bottone INDIETRO --}}
+{{-- <a class="btn btn-success mb-3" href="{{ route('admin.plate.index') }}">
+    <i class="fas fa-chevron-left"></i>
+    Indietro
+</a> --}}
 
+
+<div class="admin_form">
     @include('components.error')
-
     {{-- Alert per campi obbligatori --}}
-    <div class="alert alert-warning alert-dismissible fade show mt-5" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <i class="fas fa-info-circle"></i>
         Completa i <strong>campi obbligatori *</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -21,7 +23,7 @@
         </button>
     </div>
 
-    <form class="mt-5" method="POST" action="{{ route('admin.plate.update', $plate->id) }}"
+    <form method="POST" action="{{ route('admin.plate.update', $plate->id) }}"
         enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -130,4 +132,5 @@
             <button type="submit" class="btn btn-block btn-primary">Aggiorna Piatto</button>
         </div>
     </form>
+</div>
 @endsection

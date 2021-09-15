@@ -8,19 +8,9 @@
 
 @import "partials/mixin";
 @import "partials/common";
+@import "partials/footer";
 @import "partials/header";
 @import "partials/cart";
 
 @import "dashboard/layout";
 
-// Bootstrap
-@import "~bootstrap/scss/bootstrap";
-
-@import "partials/mixin";
-@import "partials/common";
-
-#bt-dropin {
-    label {
-        width: 100%;
-    }
-}

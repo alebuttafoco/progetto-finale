@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class CompleteOrderUserMail extends Mailable
+class CompleteOrderAdminMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,7 +28,7 @@ class CompleteOrderUserMail extends Mailable
      */
     public function build()
     {
-        return $this->from('deliverboo@gmail.com')->subject('Ordine Confermato!')
-            ->view('mail.completeUserOrder', $this->data);
+        return $this->from('deliverboo@gmail.com')->subject('Hai ricevuto un nuovo ordine.')
+            ->view('mail.completeAdminOrder', $this->data);
     }
 }
