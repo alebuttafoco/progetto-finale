@@ -1962,22 +1962,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-<<<<<<< HEAD
-//
-<<<<<<< HEAD
-=======
-//
-//
-//
-//
-//
-//
-//
->>>>>>> andrei
-=======
->>>>>>> alessandro
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2047,6 +2031,7 @@ __webpack_require__.r(__webpack_exports__);
     getPlates: function getPlates() {
       if (this.plates != null) {
         this.plates = JSON.parse(localStorage.getItem("plates"));
+        console.log(this.plates);
       }
     }
   },
@@ -2068,8 +2053,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
 //
 //
 //
@@ -6979,15 +6962,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-<<<<<<< HEAD
-<<<<<<< HEAD
-exports.push([module.i, ".shopping-cart[data-v-e7ab8a3c] {\n  margin: 5rem auto;\n  background: #ffffff;\n  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);\n  border-radius: 0.375rem;\n  display: flex;\n  flex-direction: column;\n}\n.your-cart[data-v-e7ab8a3c] {\n  font-size: 2.75rem;\n  color: white;\n  border-radius: 0.25rem;\n  background-color: #3178c6;\n}\n.product[data-v-e7ab8a3c] {\n  display: flex;\n  margin: 2rem;\n}\n.totals[data-v-e7ab8a3c] {\n  flex-direction: row;\n  display: flex;\n  justify-content: flex-end;\n}\nform[data-v-e7ab8a3c] {\n  /* Center the form on the page */\n  margin: 0 auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  /* Form outline */\n  padding: 1em;\n  border: 1px solid #CCC;\n  border-radius: 0.125rem;\n  display: flex;\n  flex-direction: column;\n}\nul[data-v-e7ab8a3c] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\nform li + li[data-v-e7ab8a3c] {\n  margin-top: 1em;\n}\nlabel[data-v-e7ab8a3c], small[data-v-e7ab8a3c] {\n  /* Uniform size & alignment */\n  display: inline-block;\n  width: 90px;\n}\ninput[data-v-e7ab8a3c],\ntextarea[data-v-e7ab8a3c] {\n  /* To make sure that all text fields have the same font settings\n     By default, textareas have a monospace font */\n  font: 1em sans-serif;\n  /* Uniform text field size */\n  width: 12.5rem;\n  box-sizing: border-box;\n  /* Match form field borders */\n  border: 1px solid #999;\n}\ninput[data-v-e7ab8a3c]:focus,\ntextarea[data-v-e7ab8a3c]:focus {\n  /* Additional highlight for focused elements */\n  border-color: #000;\n}\ntextarea[data-v-e7ab8a3c] {\n  /* Align multiline text fields with their labels */\n  vertical-align: top;\n  /* Provide space to type some text */\n  height: 5em;\n}\n.button[data-v-e7ab8a3c] {\n  /* Align buttons with the text fields */\n  padding-left: 90px;\n  /* same size as the label elements */\n}\nbutton[data-v-e7ab8a3c] {\n  /* This extra margin represent roughly the same space as the space\n     between the labels and their text fields */\n  margin-left: 0.5em;\n}\n\n/* Pulsante Verde */\n.button[data-v-e7ab8a3c] {\n  cursor: pointer;\n  font-weight: 500;\n  left: 3px;\n  line-height: inherit;\n  position: relative;\n  text-decoration: none;\n  text-align: center;\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 3px;\n  display: inline-block;\n}\n#submit-button[data-v-e7ab8a3c] {\n  margin-top: auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  align-self: center;\n}\n.button--small[data-v-e7ab8a3c] {\n  padding: 10px 20px;\n  font-size: 0.875rem;\n}\n.button--green[data-v-e7ab8a3c] {\n  outline: none;\n  background-color: #64d18a;\n  border-color: #64d18a;\n  color: white;\n  transition: all 200ms ease;\n}\n.button--green[data-v-e7ab8a3c]:hover {\n  background-color: #8bdda8;\n  color: white;\n}", ""]);
-=======
-exports.push([module.i, ".shopping-cart[data-v-e7ab8a3c] {\n  margin: 5rem auto;\n  background: #ffffff;\n  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);\n  border-radius: 0.375rem;\n  display: flex;\n  flex-direction: column;\n}\n.your-cart[data-v-e7ab8a3c] {\n  font-size: 2.75rem;\n  color: white;\n  border-radius: 0.25rem;\n  background-color: #3178c6;\n}\n.product[data-v-e7ab8a3c] {\n  display: flex;\n  margin: 2rem;\n}\n.totals[data-v-e7ab8a3c] {\n  flex-direction: row;\n  display: flex;\n  justify-content: flex-end;\n}\n.totals .totals-value[data-v-e7ab8a3c] {\n  font-size: 1.2rem;\n  font-weight: bold;\n}\nform[data-v-e7ab8a3c] {\n  /* Center the form on the page */\n  margin: 0 auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  /* Form outline */\n  padding: 1em;\n  border: 1px solid #ccc;\n  border-radius: 0.125rem;\n  display: flex;\n  flex-direction: column;\n}\nul[data-v-e7ab8a3c] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\nform li + li[data-v-e7ab8a3c] {\n  margin-top: 1em;\n}\nlabel[data-v-e7ab8a3c],\nsmall[data-v-e7ab8a3c] {\n  /* Uniform size & alignment */\n  display: inline-block;\n  width: 90px;\n}\ninput[data-v-e7ab8a3c],\ntextarea[data-v-e7ab8a3c] {\n  /* To make sure that all text fields have the same font settings\n     By default, textareas have a monospace font */\n  font: 1em sans-serif;\n  /* Uniform text field size */\n  width: 12.5rem;\n  box-sizing: border-box;\n  /* Match form field borders */\n  border: 1px solid #999;\n}\ninput[data-v-e7ab8a3c]:focus,\ntextarea[data-v-e7ab8a3c]:focus {\n  /* Additional highlight for focused elements */\n  border-color: #000;\n}\ntextarea[data-v-e7ab8a3c] {\n  /* Align multiline text fields with their labels */\n  vertical-align: top;\n  /* Provide space to type some text */\n  height: 5em;\n}\n.button[data-v-e7ab8a3c] {\n  /* Align buttons with the text fields */\n  padding-left: 90px;\n  /* same size as the label elements */\n}\nbutton[data-v-e7ab8a3c] {\n  /* This extra margin represent roughly the same space as the space\n     between the labels and their text fields */\n  margin-left: 0.5em;\n}\n\n/* Pulsante Verde */\n.button[data-v-e7ab8a3c] {\n  cursor: pointer;\n  font-weight: 500;\n  left: 3px;\n  line-height: inherit;\n  position: relative;\n  text-decoration: none;\n  text-align: center;\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 3px;\n  display: inline-block;\n}\n#submit-button[data-v-e7ab8a3c] {\n  margin-top: auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  align-self: center;\n}\n.button--small[data-v-e7ab8a3c] {\n  padding: 10px 20px;\n  font-size: 0.875rem;\n}\n.button--green[data-v-e7ab8a3c] {\n  outline: none;\n  background-color: #64d18a;\n  border-color: #64d18a;\n  color: white;\n  transition: all 200ms ease;\n}\n.button--green[data-v-e7ab8a3c]:hover {\n  background-color: #8bdda8;\n  color: white;\n}", ""]);
->>>>>>> andrei
-=======
-exports.push([module.i, ".shopping-cart[data-v-e7ab8a3c] {\n  margin: 5rem auto;\n  background: #ffffff;\n  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);\n  border-radius: 0.375rem;\n  display: flex;\n  flex-direction: column;\n}\n.your-cart[data-v-e7ab8a3c] {\n  font-size: 2.75rem;\n  color: white;\n  border-radius: 0.25rem;\n  background-color: #3178c6;\n}\n.product[data-v-e7ab8a3c] {\n  display: flex;\n  margin: 2rem;\n}\n.totals[data-v-e7ab8a3c] {\n  flex-direction: row;\n  display: flex;\n  justify-content: flex-end;\n}\n.product-quantity[data-v-e7ab8a3c] {\n  display: flex;\n}\n.plate-number[data-v-e7ab8a3c] {\n  font-size: 1.05rem;\n  font-weight: 600;\n  width: 2rem;\n  text-align: center;\n  line-height: 1;\n}\nform[data-v-e7ab8a3c] {\n  margin: 0 auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  padding: 1em;\n  border-radius: 0.125rem;\n  display: flex;\n  flex-direction: column;\n}\nul[data-v-e7ab8a3c] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\nform li + li[data-v-e7ab8a3c] {\n  margin-top: 1em;\n}\nlabel[data-v-e7ab8a3c], small[data-v-e7ab8a3c] {\n  display: inline-block;\n  width: 90px;\n}\ninput[data-v-e7ab8a3c] {\n  font: 1em sans-serif;\n  width: 12.5rem;\n  box-sizing: border-box;\n  border: 1px solid #999;\n}\ninput[data-v-e7ab8a3c]:focus {\n  border-color: #000;\n}\nbutton[data-v-e7ab8a3c] {\n  margin-left: 0.5em;\n}\n\n/* Pulsante Verde */\n.button[data-v-e7ab8a3c] {\n  cursor: pointer;\n  font-weight: 500;\n  left: 3px;\n  line-height: inherit;\n  position: relative;\n  text-decoration: none;\n  text-align: center;\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 3px;\n  display: inline-block;\n  padding-left: 90px;\n}\n#submit-button[data-v-e7ab8a3c] {\n  margin-top: auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  align-self: center;\n}\n.button--small[data-v-e7ab8a3c] {\n  padding: 10px 20px;\n  font-size: 0.875rem;\n}\n.button--green[data-v-e7ab8a3c] {\n  outline: none;\n  background-color: #64d18a;\n  border-color: #64d18a;\n  color: white;\n  transition: all 200ms ease;\n}\n.button--green[data-v-e7ab8a3c]:hover {\n  background-color: #8bdda8;\n  color: white;\n}", ""]);
->>>>>>> alessandro
+exports.push([module.i, ".shopping-cart[data-v-e7ab8a3c] {\n  margin: 5rem auto;\n  background: #ffffff;\n  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);\n  border-radius: 0.375rem;\n  display: flex;\n  flex-direction: column;\n}\n.your-cart[data-v-e7ab8a3c] {\n  font-size: 2.75rem;\n  color: white;\n  border-radius: 0.25rem;\n  background-color: #3178c6;\n}\n.product[data-v-e7ab8a3c] {\n  display: flex;\n  margin: 2rem;\n}\n.totals[data-v-e7ab8a3c] {\n  flex-direction: row;\n  display: flex;\n  justify-content: flex-end;\n}\n.totals .totals-value[data-v-e7ab8a3c] {\n  font-size: 1.2rem;\n  font-weight: bold;\n}\n.product-quantity[data-v-e7ab8a3c] {\n  display: flex;\n}\n.plate-number[data-v-e7ab8a3c] {\n  font-size: 1.05rem;\n  font-weight: 600;\n  width: 2rem;\n  text-align: center;\n  line-height: 1;\n}\nform[data-v-e7ab8a3c] {\n  margin: 0 auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  padding: 1em;\n  border-radius: 0.125rem;\n  display: flex;\n  flex-direction: column;\n}\nul[data-v-e7ab8a3c] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\nform li + li[data-v-e7ab8a3c] {\n  margin-top: 1em;\n}\nlabel[data-v-e7ab8a3c],\nsmall[data-v-e7ab8a3c] {\n  /* Uniform size & alignment */\n  display: inline-block;\n  width: 90px;\n}\ninput[data-v-e7ab8a3c] {\n  font: 1em sans-serif;\n  width: 12.5rem;\n  box-sizing: border-box;\n  border: 1px solid #999;\n}\ninput[data-v-e7ab8a3c]:focus {\n  border-color: #000;\n}\nbutton[data-v-e7ab8a3c] {\n  margin-left: 0.5em;\n}\n\n/* Pulsante Verde */\n.button[data-v-e7ab8a3c] {\n  cursor: pointer;\n  font-weight: 500;\n  left: 3px;\n  line-height: inherit;\n  position: relative;\n  text-decoration: none;\n  text-align: center;\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 3px;\n  display: inline-block;\n  padding-left: 90px;\n}\n#submit-button[data-v-e7ab8a3c] {\n  margin-top: auto;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  align-self: center;\n}\n.button--small[data-v-e7ab8a3c] {\n  padding: 10px 20px;\n  font-size: 0.875rem;\n}\n.button--green[data-v-e7ab8a3c] {\n  outline: none;\n  background-color: #64d18a;\n  border-color: #64d18a;\n  color: white;\n  transition: all 200ms ease;\n}\n.button--green[data-v-e7ab8a3c]:hover {\n  background-color: #8bdda8;\n  color: white;\n}", ""]);
 
 // exports
 
@@ -7006,7 +6981,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#HomeVideo[data-v-782dcf83] {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  -o-object-fit: cover;\n     object-fit: cover;\n  z-index: -999;\n  filter: brightness(50%);\n}\n.search_restaurants[data-v-782dcf83],\n.search_div[data-v-782dcf83] {\n  padding: 1rem;\n  background-color: white;\n}\n.search_center[data-v-782dcf83] {\n  height: 90vh;\n  min-height: 300px;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n@media screen and (min-width: 575.99px) {\n.search_center .search_container[data-v-782dcf83] {\n    width: 80%;\n}\n}\n@media screen and (max-width: 575.98px) {\n.search_center .search_container[data-v-782dcf83] {\n    position: sticky;\n    top: 0;\n    height: 100%;\n    width: 100%;\n}\n}\n.search_div[data-v-782dcf83] {\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n@media screen and (max-width: 575.98px) {\n.search_div[data-v-782dcf83] {\n    display: flex;\n    flex-direction: column;\n}\n.search_div .show_categories[data-v-782dcf83] {\n    display: flex;\n}\n}\n.show_categories[data-v-782dcf83] {\n  display: none;\n}\n@media screen and (max-width: 575.98px) {\n.show_categories[data-v-782dcf83] {\n    display: flex;\n    flex-direction: column;\n}\n.show_categories .show_categories[data-v-782dcf83] {\n    display: flex;\n}\n}\n.activeCategoriesMobile[data-v-782dcf83] {\n  display: flex;\n}\n.disableCategoriesMobile[data-v-782dcf83] {\n  display: none;\n}\n@media screen and (min-width: 575.98px) {\n.disableCategoriesMobile[data-v-782dcf83] {\n    display: flex;\n}\n}\n.sticky[data-v-782dcf83] {\n  position: sticky;\n  top: 0;\n  z-index: 999;\n  -webkit-animation: slide_up-data-v-782dcf83 0.5s ease;\n          animation: slide_up-data-v-782dcf83 0.5s ease;\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.13);\n}\n@-webkit-keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n@keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n.restaurants[data-v-782dcf83] {\n  -webkit-animation: show-data-v-782dcf83 0.5s 0.5s ease;\n          animation: show-data-v-782dcf83 0.5s 0.5s ease;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n  display: flex;\n  flex-wrap: wrap;\n}\n.restaurants .my_card[data-v-782dcf83] {\n  width: calc(100% / 4 - 2rem);\n  border-radius: 0.5rem;\n  margin: 1rem;\n  overflow: hidden;\n  height: 16rem;\n  background-color: white;\n  border: 1px solid #eeeeee;\n  text-decoration: none;\n  transition: 0.2s ease;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n@media screen and (max-width: 1399.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 991.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 767.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 2 - 2rem);\n}\n}\n@media screen and (max-width: 575.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% - 2rem);\n}\n}\n.restaurants .my_card img[data-v-782dcf83] {\n  height: 75%;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.restaurants .my_card .details[data-v-782dcf83] {\n  height: 25%;\n  padding: 1rem;\n  font-size: 1.1rem;\n}\n.restaurants .my_card[data-v-782dcf83]:hover {\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}\n.show_more_restaurants[data-v-782dcf83] {\n  -webkit-animation: show-data-v-782dcf83 0.5s 0.5s ease;\n          animation: show-data-v-782dcf83 0.5s 0.5s ease;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n  margin-top: 3rem;\n  margin-bottom: 3rem;\n}\n@-webkit-keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}", ""]);
+exports.push([module.i, "#HomeVideo[data-v-782dcf83] {\n  position: absolute;\n  width: 100%;\n  height: 100vh;\n  min-height: 300px;\n  -o-object-fit: cover;\n     object-fit: cover;\n  z-index: -999;\n  filter: brightness(50%);\n}\n.search_restaurants[data-v-782dcf83],\n.search_div[data-v-782dcf83] {\n  padding: 1rem;\n  background-color: white;\n}\n.search_center[data-v-782dcf83] {\n  overflow: auto;\n  min-height: 100vh;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n@media screen and (min-width: 575.99px) {\n.search_center .search_container[data-v-782dcf83] {\n    width: 80%;\n}\n}\n@media screen and (max-width: 575.98px) {\n.search_center .search_container[data-v-782dcf83] {\n    position: sticky;\n    top: 0;\n    height: 100%;\n    width: 100%;\n}\n}\n.search_div[data-v-782dcf83] {\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n@media screen and (max-width: 575.98px) {\n.search_div[data-v-782dcf83] {\n    display: flex;\n    flex-direction: column;\n}\n.search_div .show_categories[data-v-782dcf83] {\n    display: flex;\n}\n}\n.show_categories[data-v-782dcf83] {\n  display: none;\n}\n@media screen and (max-width: 575.98px) {\n.show_categories[data-v-782dcf83] {\n    display: flex;\n    flex-direction: column;\n}\n.show_categories .show_categories[data-v-782dcf83] {\n    display: flex;\n}\n}\n.activeCategoriesMobile[data-v-782dcf83] {\n  display: flex;\n}\n.disableCategoriesMobile[data-v-782dcf83] {\n  display: none;\n}\n@media screen and (min-width: 575.98px) {\n.disableCategoriesMobile[data-v-782dcf83] {\n    display: flex;\n}\n}\n.sticky[data-v-782dcf83] {\n  position: sticky;\n  top: 0;\n  z-index: 999;\n  -webkit-animation: slide_up-data-v-782dcf83 0.5s ease;\n          animation: slide_up-data-v-782dcf83 0.5s ease;\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.13);\n}\n@-webkit-keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n@keyframes slide_up-data-v-782dcf83 {\nfrom {\n    position: absolute;\n    top: 400px;\n    opacity: 0;\n}\nto {\n    position: sticky;\n    top: 0;\n    opacity: 1;\n}\n}\n.restaurants[data-v-782dcf83] {\n  -webkit-animation: show-data-v-782dcf83 0.5s 0.5s ease;\n          animation: show-data-v-782dcf83 0.5s 0.5s ease;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n  display: flex;\n  flex-wrap: wrap;\n}\n.restaurants .my_card[data-v-782dcf83] {\n  width: calc(100% / 4 - 2rem);\n  border-radius: 0.5rem;\n  margin: 1rem;\n  overflow: hidden;\n  height: 16rem;\n  background-color: white;\n  border: 1px solid #eeeeee;\n  text-decoration: none;\n  transition: 0.2s ease;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n@media screen and (max-width: 1399.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 991.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 3 - 2rem);\n}\n}\n@media screen and (max-width: 767.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% / 2 - 2rem);\n}\n}\n@media screen and (max-width: 575.98px) {\n.restaurants .my_card[data-v-782dcf83] {\n    width: calc(100% - 2rem);\n}\n}\n.restaurants .my_card img[data-v-782dcf83] {\n  height: 75%;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.restaurants .my_card .details[data-v-782dcf83] {\n  height: 25%;\n  padding: 1rem;\n  font-size: 1.1rem;\n}\n.restaurants .my_card[data-v-782dcf83]:hover {\n  transform: translatey(-5px);\n  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.336);\n  color: inherit;\n}\n.show_more_restaurants[data-v-782dcf83] {\n  -webkit-animation: show-data-v-782dcf83 0.5s 0.5s ease;\n          animation: show-data-v-782dcf83 0.5s 0.5s ease;\n  -webkit-animation-fill-mode: backwards;\n          animation-fill-mode: backwards;\n  margin-top: 3rem;\n  margin-bottom: 3rem;\n}\n@-webkit-keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}\n@keyframes show-data-v-782dcf83 {\nfrom {\n    opacity: 0;\n}\nto {\n    opacity: 1;\n}\n}", ""]);
 
 // exports
 
@@ -38957,101 +38932,8 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c(
-      "div",
-      { staticClass: "shopping-cart" },
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._l(_vm.plates, function(plate, index) {
-          return _c("div", { key: plate.id, staticClass: "product" }, [
-            _c("img", {
-              attrs: { width: "80", src: "storage/" + plate.image, alt: "" }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "product-details ml-2" }, [
-              _vm._v(_vm._s(plate.name))
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "product-price ml-2" }, [
-              _vm._v("( " + _vm._s(plate.price) + " € )")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "d-flex ml-auto m-2" }, [
-              _c("div", { staticClass: "product-quantity ml-2" }, [
-                _c("i", {
-                  staticClass: "fas fa-minus-circle text-danger fa-lg",
-                  on: {
-                    click: function($event) {
-                      return _vm.minusPlate(plate)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("span", { staticClass: "plate-number" }, [
-                  _vm._v(_vm._s(plate.qty))
-                ]),
-                _vm._v(" "),
-                _c("i", {
-                  staticClass: "fas fa-plus-circle text-success fa-lg",
-                  on: {
-                    click: function($event) {
-                      return _vm.storagePlate(plate)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("i", {
-                  staticClass: "fas fa-times product-removal fa-lg ml-2",
-                  on: {
-                    click: function($event) {
-                      return _vm.removePlate(index)
-                    }
-                  }
-                })
-              ])
-            ])
-          ])
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "totals" }, [
-          _c("div", { staticClass: "totals-item totals-item-final m-2" }, [
-            _c("label", [_vm._v("Prezzo Finale")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "totals-value" }, [
-              _vm._v(_vm._s(_vm.cart_price()) + " €")
-            ])
-          ])
-        ])
-      ],
-      2
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "labels" }, [
-      _c(
-        "h3",
-        { staticClass: "d-flex justify-content-center m-2 your-cart p-2" },
-<<<<<<< HEAD
-        [_vm._v("Il tuo carrello")]
-=======
-        [_vm._v("\n        Il tuo carrello\n      ")]
->>>>>>> andrei
-      )
-    ])
-  }
-]
-render._withStripped = true
+var render = function () {}
+var staticRenderFns = []
 
 
 
@@ -39073,22 +38955,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "home_wrapper" }, [
-    _c("div", { staticClass: "box_video" }, [
-      !_vm.isVisibleRestaurants
-        ? _c(
-            "video",
-            {
-              attrs: { autoplay: "", muted: "", loop: "", id: "HomeVideo" },
-              domProps: { muted: true }
-            },
-            [
-              _c("source", {
-                attrs: { src: "img/video.mp4", type: "video/mp4" }
-              })
-            ]
-          )
-        : _vm._e()
-    ]),
+    !_vm.isVisibleRestaurants
+      ? _c(
+          "video",
+          {
+            attrs: { autoplay: "", muted: "", loop: "", id: "HomeVideo" },
+            domProps: { muted: true }
+          },
+          [_c("source", { attrs: { src: "img/video.mp4", type: "video/mp4" } })]
+        )
+      : _vm._e(),
     _vm._v(" "),
     !_vm.isVisibleRestaurants
       ? _c("div", { staticClass: "search_center" }, [
@@ -55529,8 +55405,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Programmi\MAMP\htdocs\php\progetto-finale\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Programmi\MAMP\htdocs\php\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\php\progetto-finale\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\php\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
