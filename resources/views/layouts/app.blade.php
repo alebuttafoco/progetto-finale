@@ -51,6 +51,22 @@
 
     <footer>
         @yield('script')
+        
+        <div class="social">
+            <i class="fab fa-facebook"></i> 
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+        </div>
+        <img src="{{asset('img/logo_white.png')}}" alt="">
+        <h4>Realizzato da <br> 👇 </h4>
+        <div class="authors">
+            <div><i class="far fa-copyright"></i> Andrei Burbulia</div>
+            <div><i class="far fa-copyright"></i> Federico Borsci</div>
+            <div><i class="far fa-copyright"></i> Alessandro Buttafoco</div>
+            <div><i class="far fa-copyright"></i> Michele Catena</div>
+            <div><i class="far fa-copyright"></i> Giuseppe Bumbello</div>
+        </div>
     </footer>
 </body>
 

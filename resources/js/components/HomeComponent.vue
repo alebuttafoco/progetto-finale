@@ -1,10 +1,8 @@
 <template>
   <div class="home_wrapper">
-    <div class="box_video">
-      <video v-if="!isVisibleRestaurants" autoplay muted loop id="HomeVideo">
-        <source src="img/video.mp4" type="video/mp4" />
-      </video>
-    </div>
+    <video v-if="!isVisibleRestaurants" autoplay muted loop id="HomeVideo">
+      <source src="img/video.mp4" type="video/mp4" />
+    </video>
 
     <!-- RICERCA DEL RISTORANTE -->
     <div v-if="!isVisibleRestaurants" class="search_center">
@@ -163,9 +161,11 @@ export default {
 
 <style lang="scss" scoped>
 #HomeVideo {
-  position: fixed;
+  position: absolute;
   width: 100%;
+  // height: calc(100vh - 48.73px);
   height: 100vh;
+  min-height: 300px;
   object-fit: cover;
   z-index: -999;
   filter: brightness(50%);
@@ -178,8 +178,8 @@ export default {
 }
 
 .search_center {
-  height: 90vh;
-  min-height: 300px;
+  overflow: auto;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -263,6 +263,7 @@ export default {
   animation-fill-mode: backwards;
   display: flex;
   flex-wrap: wrap;
+  // min-height: 55vh;
 
   .my_card {
     width: calc(100% / 4 - 2rem);
