@@ -6,7 +6,7 @@
 
 
     @if (session('message'))
-        <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+        <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
             <strong>{{ session('message') }}</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -57,7 +57,7 @@
             </div>
             <div class="form-group col-md-6 mb-3">
                 <label for="customer_phone">Telefono:</label>
-                <input type="tel" class="form-control" name="customer_phone" value="{{ old('customer_phone') }}" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Inserisci il tuo numero in questo formato: 123-456-7890" required>
+                <input maxlength="10" type="tel" class="form-control" name="customer_phone" value="{{ old('customer_phone') }}" placeholder="Inserisci il tuo numero di telefono" required>
                 <small class="form-text text-muted">Assicurati che il numero di telefono rispetti il formato indicato</small>
             </div>
             <div class="form-group col-12 mb-3">

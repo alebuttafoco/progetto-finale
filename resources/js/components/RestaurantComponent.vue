@@ -611,7 +611,8 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   background-color: white;
-  border-radius: .5rem;
+  border-bottom-left-radius: .5rem;
+  border-bottom-right-radius: .5rem;
   .cart_item {
     display: flex;
     justify-content: space-between;
