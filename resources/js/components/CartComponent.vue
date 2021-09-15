@@ -1,14 +1,16 @@
 <template>
-<div class="container">
-  <div class="shopping-cart">
-    <div class="labels">
-      <h3 class="d-flex justify-content-center m-2 your-cart p-2">Il tuo carrello</h3>
-    </div>
+  <div class="container">
+    <div class="shopping-cart">
+      <div class="labels">
+        <h3 class="d-flex justify-content-center m-2 your-cart p-2">
+          Il tuo carrello
+        </h3>
+      </div>
 
       <div class="product" v-for="(plate, index) in plates" :key="plate.id">
         <img width="80" :src="'storage/' + plate.image" alt="" />
         <div class="product-details ml-2">{{ plate.name }}</div>
-        <div class="product-price ml-2">{{ plate.price }}</div>
+        <div class="product-price ml-2">( {{ plate.price }} € )</div>
 
       <div class="d-flex ml-auto m-2">
         <div class="product-quantity ml-2">
@@ -16,9 +18,6 @@
           <span class="plate-number">{{plate.qty}}</span>
           <i @click="storagePlate(plate)" class="fas fa-plus-circle text-success fa-lg"></i>
           <i @click="removePlate(index)" class="fas fa-times product-removal fa-lg ml-2"></i>
-        </div>
-
-          
         </div>
       </div>
 
@@ -29,9 +28,8 @@
         </div>
       </div>
     </div>
-    
-    <!-- inserire due divisori/contenitori per il form -->
 
+    <!-- inserire due divisori/contenitori per il form -->
   </div>
 </template>
 
@@ -108,12 +106,11 @@ export default {
 
   mounted() {
     this.getPlates();
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 .shopping-cart {
   margin: 5rem auto;
   background: #ffffff;
@@ -122,13 +119,13 @@ export default {
   display: flex;
   flex-direction: column;
 }
-.your-cart{
+.your-cart {
   font-size: 2.75rem;
   color: white;
   border-radius: 0.25rem;
   background-color: #3178c6;
 }
-.product{
+.product {
   display: flex;
   margin: 2rem;
 }
@@ -136,11 +133,15 @@ export default {
   flex-direction: row;
   display: flex;
   justify-content: flex-end;
+  .totals-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
 }
-.product-quantity{
-  display:flex;
+.product-quantity {
+  display: flex;
 }
-.plate-number{
+.plate-number {
   font-size: 1.05rem;
   font-weight: 600;
   width: 2rem;
@@ -151,7 +152,7 @@ form {
   margin: 0 auto;
   width: fit-content;
   padding: 1em;
-  border-radius: .125rem;
+  border-radius: 0.125rem;
   display: flex;
   flex-direction: column;
 }
@@ -166,7 +167,9 @@ form li + li {
   margin-top: 1em;
 }
 
-label, small {
+label,
+small {
+  /* Uniform size & alignment */
   display: inline-block;
   width: 90px;
 }
@@ -183,7 +186,7 @@ input:focus {
 }
 
 button {
-  margin-left: .5em;
+  margin-left: 0.5em;
 }
 /* Pulsante Verde */
 .button {
@@ -198,7 +201,7 @@ button {
   border-width: 1px;
   border-radius: 3px;
   display: inline-block;
-  padding-left: 90px; 
+  padding-left: 90px;
 }
 #submit-button {
   margin-top: auto;

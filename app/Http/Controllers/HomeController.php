@@ -90,11 +90,9 @@ class HomeController extends Controller
                 $year_order += 1;
             }
 
-
             
         }
-        
-        //ddd($orders, Carbon::parse($orders[1]->date)->format('y'), Carbon::now()->format('y'));
+
 
         return view('admin.statistiche', compact('all_profit', 'order_count', 'month_order', 'year_order'));
     }
