@@ -40,12 +40,43 @@
                                 <span>Modifica</span>
                                 <i class="fas fa-edit"></i>
                             </a>
-
+                           
                             {{-- DELETE BUTTON WITH MODAL --}}
-                            <a class="btn btn-danger my-1" data-toggle="modal" data-target="#deleteModalID{{ $restaurant->id }}">
-                                <span>Elimina</span>
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
+                            <a class="btn btn-danger" data-toggle="modal"
+                                data-target="#deleteModalID{{ $restaurant->id }}"> <span>Elimina</span> <i class="fas fa-trash-alt"></i></a>
+                            <!-- Modal -->
+                            <div class="modal fade" id="deleteModalID{{ $restaurant->id }}" tabindex="-1"
+                                role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Eliminazione - Ristorante N.{{ $restaurant->id }}
+                                            </h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="container-fluid">
+                                                <strong>ID:</strong> {{ $restaurant->id }}
+                                                <br>
+                                                <strong>NOME RISTORANTE:</strong> {{ $restaurant->name }}
+                                                <br>
+                                                <br>
+                                                Sei sicuro di voler eliminare questo ristorante ed i suoi contenuti?
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Annulla</button>
+                                            <form action="{{ route('admin.restaurant.destroy', $restaurant->id) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Elimina</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- END DELETE BUTTON WITH MODAL --}}
                         </div>
                     </td>
                 </tr>
@@ -64,46 +95,47 @@
                         </a>
 
                         {{-- DELETE BUTTON WITH MODAL --}}
-                        <a class="btn btn-danger my-1" data-toggle="modal" data-target="#deleteModalID{{ $restaurant->id }}">
-                            <span>Elimina</span>
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
+                        <a class="btn btn-danger" data-toggle="modal"
+                        data-target="#deleteModalID{{ $restaurant->id }}"> <span>Elimina</span> <i class="fas fa-trash-alt"></i></a>
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteModalID{{ $restaurant->id }}" tabindex="-1"
+                            role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Eliminazione - Ristorante N.{{ $restaurant->id }}
+                                        </h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            <strong>ID:</strong> {{ $restaurant->id }}
+                                            <br>
+                                            <strong>NOME RISTORANTE:</strong> {{ $restaurant->name }}
+                                            <br>
+                                            <br>
+                                            Sei sicuro di voler eliminare questo ristorante ed i suoi contenuti?
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Annulla</button>
+                                        <form action="{{ route('admin.restaurant.destroy', $restaurant->id) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Elimina</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- END DELETE BUTTON WITH MODAL --}}
+
+                        
                     </div>
                 </tr>
 
-                <!-- Modal -->
-                <div class="modal fade" id="deleteModalID{{ $restaurant->id }}" tabindex="-1"
-                    role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Eliminazione - Ristorante N.{{ $restaurant->id }}
-                                </h5>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <strong>ID:</strong> {{ $restaurant->id }}
-                                    <br>
-                                    <strong>NOME RISTORANTE:</strong> {{ $restaurant->name }}
-                                    <br>
-                                    <br>
-                                    Sei sicuro di voler eliminare questo ristorante ed i suoi contenuti?
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                    data-dismiss="modal">Annulla</button>
-                                <form action="{{ route('admin.restaurant.destroy', $restaurant->id) }}"
-                                    method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Elimina</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{-- END DELETE BUTTON WITH MODAL --}}
+                
             @endforeach
         @else
         <div class="d-flex flex-column flex-grow-1">

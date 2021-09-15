@@ -61,69 +61,52 @@
                             </a>
 
                             {{-- DELETE BUTTON WITH MODAL --}}
-                            <a class="btn btn-danger my-1" data-toggle="modal" data-target="#deleteModalID{{ $plate->id }}">
-                                <span>Elimina</span>
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </div>
-                    </td>
-
-                    {{-- actions --}}
-                    <td class="plate_actions ">
-                        <div class="d-flex justify-content-around">
-                            <a class="btn btn-success my-1" href="{{ route('admin.plate.destroy', $plate->id) }}">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            <a href="{{ route('admin.plate.edit', $plate->id) }}" class="btn btn-secondary my-1">
-                                <i class="fas fa-edit"></i>
-                            </a>
-
-                            {{-- DELETE BUTTON WITH MODAL --}}
-                            <a class="btn btn-danger my-1" data-toggle="modal" data-target="#deleteModalID{{ $plate->id }}">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-
-
-                <!-- Modal -->
-                <div class="modal fade" id="deleteModalID{{ $plate->id }}" tabindex="-1"
-                    role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Eliminazione Piatto: {{ $plate->name }}</h5>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <strong>ID:</strong> {{ $plate->id }}
-                                    <br>
-                                    <strong>NOME PIATTO:</strong> {{ $plate->name }}
-                                    <br>
-                                    <br>
-                                    Sei sicuro di voler eliminare questo piatto?
+                            <a class="btn btn-danger" data-toggle="modal"
+                            data-target="#deleteModalID{{ $plate->id }}"> <span>Elimina</span> <i class="fas fa-trash-alt"></i></a>
+                            <!-- Modal -->
+                            <div class="modal fade" id="deleteModalID{{ $plate->id }}" tabindex="-1"
+                                role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Eliminazione Piatto: {{ $plate->name }}</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="container-fluid">
+                                                <strong>ID:</strong> {{ $plate->id }}
+                                                <br>
+                                                <strong>NOME PIATTO:</strong> {{ $plate->name }}
+                                                <br>
+                                                <br>
+                                                Sei sicuro di voler eliminare questo piatto?
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Annulla</button>
+                                            <form action="{{ route('admin.plate.destroy', $plate->id) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Elimina</button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                    data-dismiss="modal">Annulla</button>
-                                <form action="{{ route('admin.plate.destroy', $plate->id) }}"
-                                    method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Elimina</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{-- END DELETE BUTTON WITH MODAL --}}
+                            {{-- END DELETE BUTTON WITH MODAL --}}
 
-            @endforeach
-    @endif
-        </tbody>
-    </table>
+                            
+                        </div>
+                    </td>
+
+                </tr>
+                @endforeach
+
+
+            </tbody>
+        </table>
+        @endif
 
     @if ($plates != null)
     {{$plates->links()}}

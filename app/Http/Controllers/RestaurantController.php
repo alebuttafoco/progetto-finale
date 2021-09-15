@@ -176,9 +176,10 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
+        
         $plates = Plate::where('restaurant_id', $restaurant->id)->get();
         Plate::destroy($plates);
-        Restaurant::destroy($restaurant->id);
+        $restaurant->delete();
         return redirect()->route('admin.restaurant.index');
     }
 }

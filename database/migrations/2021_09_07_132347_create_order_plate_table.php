@@ -18,8 +18,8 @@ class CreateOrderPlateTable extends Migration
             $table->smallInteger('quantity');
             $table->unsignedBigInteger('plate_id')->nullable();
             $table->unsignedBigInteger('order_id')->nullable();
-            $table->foreign('plate_id')->references('id')->on('plates');
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('plate_id')->references('id')->on('plates')->onDelete('set null');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('set null');
         });
     }
 
