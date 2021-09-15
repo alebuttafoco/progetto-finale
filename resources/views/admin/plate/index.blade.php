@@ -61,12 +61,12 @@
                             </a>
 
                             {{-- DELETE BUTTON WITH MODAL --}}
-                            <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModalID{{ $plate->id }}"> 
+                            <a class="btn btn-danger" data-toggle="modal" data-target="#modal1"> 
                                 <span>Elimina</span> 
                                 <i class="fas fa-trash-alt"></i>
                             </a>
                             <!-- Modal -->
-                            <div class="modal fade" id="deleteModalID{{ $plate->id }}" tabindex="-1"
+                            <div class="modal fade" id="modal1" tabindex="-1"
                                 role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -110,11 +110,11 @@
                                 <i class="fas fa-edit"></i>
                             </a>
                             {{-- DELETE BUTTON WITH MODAL --}}
-                            <a class="btn btn-danger my-1" data-toggle="modal" data-target="#deleteModalMID{{ $plate->id }}"> 
+                            <a class="btn btn-danger my-1" data-toggle="modal" data-target="#modalphone"> 
                                 <i class="fas fa-trash-alt"></i>
                             </a>
                             <!-- Modal -->
-                            <div class="modal fade" id="deleteModalMID{{ $plate->id }}" tabindex="-1"
+                            <div class="modal fade" id="modalphone" tabindex="-1"
                                 role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
