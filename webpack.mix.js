@@ -13,4 +13,6 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .copyDirectory('resources/img', 'public/img');
+    .copyDirectory('resources/img', 'public/img')
+    .copy('node_modules/chart.js/dist/chart.js', 'public/chart.js/chart.js')
+
