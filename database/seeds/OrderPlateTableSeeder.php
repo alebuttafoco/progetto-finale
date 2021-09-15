@@ -33,7 +33,7 @@ class OrderPlateTableSeeder extends Seeder
             
             $customer_number = count(Order::all()); 
             
-            for($i=1; $i <= 500; $i++) {
+            for($j=1; $j <= 500; $j++) {
             $random_plate = rand(1, $count_id_plates); //RANDOM ID PLATE
             $gino = $array_id_plates[$random_plate-1];
             $plate_random = Plate::find($gino);
