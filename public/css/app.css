@@ -11122,14 +11122,15 @@ footer .authors {
   justify-content: center;
 }
 
+footer .authors a {
+  text-decoration: none;
+  color: white;
+}
+
 footer .authors div {
   margin-top: 1rem;
   transition: 0.2s ease-in-out;
   padding: 0.5rem 2rem;
-}
-
-footer .authors div:not(:last-child) {
-  border-right: 1px solid white;
 }
 
 footer .authors div:hover {
@@ -11148,10 +11149,6 @@ footer .authors div:hover {
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
-  }
-
-  footer .authors div:not(:last-child) {
-    border-right: none;
   }
 }
 
