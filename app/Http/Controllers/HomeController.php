@@ -96,7 +96,7 @@ class HomeController extends Controller
             }
         };
 
-        ddd($gennaio);
+        // ddd($gennaio);
         return view('admin.statistiche', compact('all_profit', 'order_count', 'month_order', 'year_order'));
     }
 
