@@ -25,7 +25,7 @@ window.onload = function () {
         labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
         datasets: [{
             label: 'Ordini per mese',
-            data: [12, 19, 7, 5, 21, 10],
+            data: order_month,
             backgroundColor: [
                 '#36a2eb',
             ],
@@ -53,7 +53,7 @@ window.onload = function () {
         labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
         datasets: [{
             label: 'Guadagni per mese',
-            data: [320, 289, 200, 253, 223, 109],
+            data: earnings_month,
             backgroundColor: [
                 '#ff6384',
             ],
@@ -81,7 +81,7 @@ window.onload = function () {
         labels: earnings_years_key,
         datasets: [{
             label: 'Guadagni per anno',
-            data: [10312, 12937, 14902,],
+            data: earnings_years_value,
             backgroundColor: [
                 '#36a2eb',
                 '#ff6384',
@@ -102,7 +102,7 @@ window.onload = function () {
         labels: orders_years_key,
         datasets: [{
             label: 'Ordini per anno',
-            data: [1721, 2162, 2876,],
+            data: orders_years_value,
             backgroundColor: [
                 '#F4B400',
                 '#36a2eb',

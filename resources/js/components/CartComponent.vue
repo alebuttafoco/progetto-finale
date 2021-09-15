@@ -1,24 +1,36 @@
 <template>
-<div class="my_container">
-  <div class="shopping-cart">
-    <div class="labels">
-      <h3 class="d-flex justify-content-center m-2 your-cart p-2">Il tuo carrello</h3>
-    </div>
+  <div class="my_container">
+    <div class="shopping-cart">
+      <div class="labels">
+        <h3 class="d-flex justify-content-center m-2 your-cart p-2">
+          Il tuo carrello
+        </h3>
+      </div>
 
       <div class="product" v-for="(plate, index) in plates" :key="plate.id">
         <img :src="'storage/' + plate.image" alt="" />
-        <div class="product-details ml-2 d-flex flex-column ">
+        <div class="product-details ml-2 d-flex flex-column">
           <span>{{ plate.name }}</span>
           <span>{{ plate.price }} € </span>
         </div>
         <!-- <div class="product-price ml-2"></div> -->
 
-      <div class="d-flex ml-auto m-2">
-        <div class="product-quantity ml-2">
-          <i @click="minusPlate(plate)" class="fas fa-minus-circle text-danger fa-lg"></i>
-          <span class="plate-number">{{plate.qty}}</span>
-          <i @click="storagePlate(plate)" class="fas fa-plus-circle text-success fa-lg"></i>
-          <i @click="removePlate(index)" class="fas fa-times product-removal fa-lg ml-2"></i>
+        <div class="d-flex ml-auto m-2">
+          <div class="product-quantity ml-2">
+            <i
+              @click="minusPlate(plate)"
+              class="fas fa-minus-circle text-danger fa-lg"
+            ></i>
+            <span class="plate-number">{{ plate.qty }}</span>
+            <i
+              @click="storagePlate(plate)"
+              class="fas fa-plus-circle text-success fa-lg"
+            ></i>
+            <i
+              @click="removePlate(index)"
+              class="fas fa-times product-removal fa-lg ml-2"
+            ></i>
+          </div>
         </div>
       </div>
 
@@ -28,10 +40,9 @@
           <div class="totals-value">{{ cart_price() }} €</div>
         </div>
       </div>
-    </div>
 
-    <!-- inserire due divisori/contenitori per il form -->
-  </div>
+      <!-- inserire due divisori/contenitori per il form -->
+    </div>
   </div>
 </template>
 
@@ -134,7 +145,7 @@ export default {
   align-items: center;
   border-bottom: 1px solid #5053554a;
 
-  img{
+  img {
     width: 7rem;
     height: 7rem;
     border-radius: 5px;
@@ -150,16 +161,16 @@ export default {
     font-weight: bold;
   }
 }
-.totals-item{
+.totals-item {
   font-size: 1.125rem;
   font-weight: 600;
   padding: 1.125rem;
 }
-.product-quantity{
-  display:flex;
-  .fas{
-    &:active{
-      transform:scale(.9);
+.product-quantity {
+  display: flex;
+  .fas {
+    &:active {
+      transform: scale(0.9);
     }
     cursor: pointer;
     transition: 0.3s ease;
