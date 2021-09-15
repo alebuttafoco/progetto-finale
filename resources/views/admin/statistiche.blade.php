@@ -11,6 +11,12 @@
 <script type="text/javascript">
 
 window.onload = function () {
+    let order_month = {{$order_month}};
+    let earnings_month = {{$earnings_month}};
+    let earnings_years_key = {{$earnings_years_key}};
+    let earnings_years_value = {{$earnings_years_value}};
+    let orders_years_value = {{$orders_years_value}};
+    let orders_years_key = {{$orders_years_key}};
     //ordini per mese
 	var ctx = document.getElementById('ordinePerMese').getContext('2d');
     var ordinePerMese = new Chart(ctx, {
@@ -18,8 +24,8 @@ window.onload = function () {
     data: {
         labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
         datasets: [{
-            label: '# ordini per mese',
-            data: [12, 19, 3, 5, 2, 3,1,2,3,4,5,6],
+            label: 'Ordini per mese',
+            data: order_month,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
             ],
@@ -44,8 +50,8 @@ window.onload = function () {
     data: {
         labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
         datasets: [{
-            label: '# guadagni per mese',
-            data: [1100, 1900, 300, 500, 200, 300,100,200,300,400,500,600],
+            label: 'Guadagni per mese',
+            data: earnings_month,
             backgroundColor: [
                 'rgba(155, 99, 132, 0.2)',
             ],
@@ -68,10 +74,10 @@ window.onload = function () {
     var guadagniPerAnno = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['2019','2020', '2021'],
+        labels: earnings_years_key,
         datasets: [{
-            label: '# guadagni per anno',
-            data: [12123, 15534, 18645,],
+            label: 'Guadagni per anno',
+            data: earnings_years_value,
             backgroundColor: [
                 'rgba(255, 55, 132, 0.2)',
             ],
@@ -94,10 +100,10 @@ window.onload = function () {
     var ordiniPerAnno = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['2019','2020', '2021'],
+        labels: orders_years_key,
         datasets: [{
-            label: '# ordini per anno',
-            data: [7564, 9263, 12431,],
+            label: 'Ordini per anno',
+            data: orders_years_value,
             backgroundColor: [
                 'rgba(255, 55, 100, 0.2)',
             ],
@@ -119,19 +125,44 @@ window.onload = function () {
 </script>
 
 <div class="container">
+
+    <div class="row">
+
+        <div class="card p-3 d-inline mr-4">
+            <span>Guadagni totali : </sp>
+            <span><strong>{{$all_profit}} €</strong> </span>
+        </div>
+        <div class="card p-3 d-inline mr-4">
+            <span>Ordini totali: </sp>
+            <span><strong>{{$order_count}}</strong></span>
+        </div>
+        <div class="card p-3 d-inline mr-4">
+            <span>Ordini di questo mese: </sp>
+            <span><strong>{{$month_order}}</strong></span>
+        </div>
+        <div class="card p-3 d-inline mr-4">
+            <span>Ordini di questo anno: </sp>
+            <span><strong>{{$year_order}}</strong></span>
+        </div>
+    </div>
     <!-- Grafici -->
 
     <!-- ordine per mese -->
     <div class="row">
-        <div>
-            <canvas id="ordinePerMese" width="800"></canvas>
+        <div class="col-6">
+            <div>
+                <canvas id="ordinePerMese"></canvas>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div>
+                <canvas id="guadagniPerMese"></canvas>
+            </div>
         </div>
     </div>
     <!-- guadagni per mese -->
     <div class="row">
-        <div>
-            <canvas id="guadagniPerMese" width="800"></canvas>
-        </div>
     </div>
     <!-- guadagni per anno -->
     <div class="row">
@@ -146,28 +177,6 @@ window.onload = function () {
         </div>
     </div>
 
-    <!-- Numeri -->
-    <div class="row">
-    <div class="container">
-        <div class="neufo d-inline mr-4">
-            <span>Guadagni totali : </sp>
-            <span><strong>{{$all_profit}} €</strong> </span>
-        </div>
-        <div class="neufo d-inline mr-4">
-            <span>Ordini totali: </sp>
-            <span><strong>{{$order_count}}</strong></span>
-        </div>
-        <div class="neufo d-inline mr-4">
-            <span>Ordini di questo mese: </sp>
-            <span><strong>{{$month_order}}</strong></span>
-        </div>
-        <div class="neufo d-inline mr-4">
-            <span>Ordini di questo anno: </sp>
-            <span><strong>{{$year_order}}</strong></span>
-        </div>
-
-    </div>
-    </div>
 </div>
     
     
