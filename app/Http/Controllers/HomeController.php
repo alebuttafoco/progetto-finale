@@ -78,6 +78,7 @@ class HomeController extends Controller
         $order_count = count($orders);
         $month_order = 0;
         $year_order = 0;
+        $gennaio = 0;
         foreach ($orders as $order) {
             //all profit 
             $all_profit += $order->total_price;
@@ -89,16 +90,18 @@ class HomeController extends Controller
             if ((Carbon::parse($order->date)->format('y') === (Carbon::now()->format('y')))) {
                 $year_order += 1;
             }
+            //order on this month
+            if (Carbon::parse($order->date)->format('m') === '07') {
+                $gennaio += 1;
+            }
+        };
 
-            
-        }
-
-
+        ddd($gennaio);
         return view('admin.statistiche', compact('all_profit', 'order_count', 'month_order', 'year_order'));
     }
 
 
-    public function ControlloPost(Request $request){
-        ddd($request->all()); /* DIE DUMP DEBUG della verifica del FORM del carrello */
-    }
+    // public function ControlloPost(Request $request){
+    //     ddd($request->all()); /* DIE DUMP DEBUG della verifica del FORM del carrello */
+    // };
 }
