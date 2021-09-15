@@ -68,7 +68,7 @@
                         </div>
                     </td>
 
-                    {{-- actions --}}
+                    {{-- actions mobile --}}
                     <td class="plate_actions ">
                         <div class="d-flex justify-content-around">
                             <a class="btn btn-success my-1" href="{{ route('admin.plate.destroy', $plate->id) }}">
