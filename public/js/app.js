@@ -1964,6 +1964,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
 //
 //
 //
@@ -1975,6 +1976,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+=======
+>>>>>>> alessandro
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -38962,7 +38965,11 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
+<<<<<<< HEAD
               { staticClass: "product-details ml-2 d-flex flex-column" },
+=======
+              { staticClass: "product-details ml-2 d-flex flex-column " },
+>>>>>>> alessandro
               [
                 _c("span", [_vm._v(_vm._s(plate.name))]),
                 _vm._v(" "),
@@ -39030,7 +39037,7 @@ var staticRenderFns = [
       _c(
         "h3",
         { staticClass: "d-flex justify-content-center m-2 your-cart p-2" },
-        [_vm._v("\n        Il tuo carrello\n      ")]
+        [_vm._v("Il tuo carrello")]
       )
     ])
   }
