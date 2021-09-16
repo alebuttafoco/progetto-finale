@@ -54,12 +54,12 @@
     </thead>
 
     <tbody>
+      @foreach ($order->plates as $plate)
       <tr>
-        @foreach ($order->plates as $plate)
         <td>{{$plate->name}}</td>
         <td>{{$plate->pivot->quantity}}</td>
-        @endforeach
       </tr>
+        @endforeach
     </tbody>
 
   </table>

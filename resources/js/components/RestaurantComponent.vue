@@ -443,8 +443,8 @@ export default {
         width: 80%;
     }
     background-color: white;
-    width: 30%;
-    height: fit-content;
+    width: 40%;
+    max-height: 95vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -463,8 +463,9 @@ export default {
     }
 
     .bottom{
-      height: 60%;
+      height: 90%;
       display: flex;
+      overflow: auto;
       flex-direction: column;
       justify-content: space-between;
 
@@ -477,7 +478,7 @@ export default {
       }
     }
     .top{
-      height: 40%;
+      height: 200px;
       background-color: blanchedalmond;
       position: relative;
 
