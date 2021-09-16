@@ -1964,7 +1964,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-<<<<<<< HEAD
 //
 //
 //
@@ -1976,8 +1975,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-=======
->>>>>>> alessandro
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -38965,11 +38962,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-<<<<<<< HEAD
               { staticClass: "product-details ml-2 d-flex flex-column" },
-=======
-              { staticClass: "product-details ml-2 d-flex flex-column " },
->>>>>>> alessandro
               [
                 _c("span", [_vm._v(_vm._s(plate.name))]),
                 _vm._v(" "),
@@ -39037,7 +39030,7 @@ var staticRenderFns = [
       _c(
         "h3",
         { staticClass: "d-flex justify-content-center m-2 your-cart p-2" },
-        [_vm._v("Il tuo carrello")]
+        [_vm._v("\n        Il tuo carrello\n      ")]
       )
     ])
   }
@@ -55514,8 +55507,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Programmi\MAMP\htdocs\php\progetto-finale\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Programmi\MAMP\htdocs\php\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ale\Desktop\progetto-finale\progetto-finale\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ale\Desktop\progetto-finale\progetto-finale\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
