@@ -7,7 +7,7 @@
 <form method="POST" action="{{ Route('checkout.pay') }}">
   @csrf
       <div id="button-box" class="text-center">
-        <button type="submit" id="submit-button" class="button button--small button--green">Conferma e Paga</button>
+        <button type="submit" id="submit-button" class="button button--small button--green mb-5">Conferma e Paga</button>
       </div>
 </form>
 
